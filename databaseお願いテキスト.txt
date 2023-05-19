@@ -1,5 +1,5 @@
 以下のテーブル情報からmysqlのcreatetable文を作成してください。
-users:
+users
 ユーザID	user_id		varchar(191)	NN	-	PKメールアドレスを登録する予定
 ユーザ名	user_name		varchar(191)	NN	-	-
 パスワード	user_password		varchar(255)	NN	-	-
@@ -7,12 +7,116 @@ users:
 アイコン画像	user_icon		mediumblob	-	初期アイコン	前回の画像保存方法を参照
 都道府県ID	prefecture_id		INT	-	-	FK,ドロップダウンリストから選択？
 
-インデックス:
+インデックス
 
-外部キー(FK側)：
+外部キー(FK側)
 1	follows_follow_id	user_id			follows		follow_user_id
 2	follows_follower_od	user_id			follows		follower_user_id
 3	favorites_user_id	user_id			favorites		user_id
 4	goods_user_id	user_id			goods		user_id
 外部キー(PK側)：
 1       users_prefectures_id	prefectures_id			prefectures		prefecture_id
+
+follows
+1	フォローユーザID	follow_user_id		varchar(191)	NN	-	PK,FK(users.user_id)、フォローされる側
+2	フォロワーユーザID	follower_user_id		varchar(191)	NN	-	PK,FK(users.user_id)、フォローする側
+
+インデックス
+1	idx_follower_id		follower_user_id			いいえ
+
+外部キー(PK側)
+1	follows_follow_id	follow_user_id			users		user_id
+2	follows_follower_od	follower_user_id			users		user_id
+
+recipes
+1	レシピID	recipe_id		INT	NN	-	PK連番
+2	レシピタイトル	recipe_name		varchar(191)	NN	-	-
+3	サムネイル画像	recipe_image		mediumblob	NN	-	前回の画像保存参照
+4	紹介文	recipe_introduction		varchar(200)	-	-	-
+5	ジャンルID	genre_id		INT	NN	-	FK(genres.genre_id)
+6	ユーザID	user_id		varchar(191)	NN	-	FK(users.user_id)
+7	時間帯ID	time_zone_id		INT	NN	"指定しない"	ドロップダウンリストから選択
+8	何人前	recipe_people		INT	NN	1	-
+9	投稿判別フラグ	recipe_is_upload		INT	NN	0	公開されたら1、下書き状態なら0
+10	都道府県ID	perfecture_id		INT	NN	-	-
+
+外部キー
+1	favorites_recipe_id	recipe_id			favorites		recipe_id
+2	goods_recipe_id	recipe_id			goods		recipe_id
+3	how_to_make_recipe_id	recipe_id			how_to_make		recipe_id
+4	materials_recipe_id	recipe_id			materials		recipe_id
+1	recipes_user_id	user_id			users		user_id
+2	recipes_genre_id	genre_id			genres		genre_id
+3	recipes_prefecture_id	prefecture_id			prefectures		prefecture_id
+4	recipes_time_zone_id	time_zone_id			time_zones		time_zone_id
+
+favorites
+1	ユーザID	user_id		varchar(191)	NN	-	PK,FK(users.user_id)
+2	レシピID	recipe_id		INT	NN	-	PK,FK(recipes.recipe_id)
+3	お気に入り日時	favorite_time		DATE	NN	-	-
+外部キー
+1	favorites_user_id	user_id			users		user_id
+2	favorites_recipe_id	recipe_id			recipes		recipe_id
+
+goods
+1	ユーザID	user_id		varchar(191)	NN	-	PK,FK(users.user_id)
+2	レシピID	recipe_id		INT	NN	-	PK,FK(recipes.recipe_id)
+3	いいね日時	good_time		DATE	NN	-	-
+外部キー
+1	goods_user_id	user_id			users		user_id
+2	goods_recipe_id	recipe_id			recipes		recipe_id
+
+how_to_make
+1	レシピID	recipe_id		INT	NN	-	PK,FK(recipes.recipe_id)
+2	詳細番号	how_to_make_lines_number		INT	NN	-	PK
+3	作り方画像	how_to_make_image		mediumblob	NN	(出来れば)NoImageを追加	前回の画像保存参照
+4	作り方テキスト	how_to_make_text		varchar(191)	NN	-	-
+外部キー
+1	how_to_make_recipe_id	recipe_id			recipes		recipe_id
+
+materials
+1	レシピID	recipe_id		INT	NN	-	PK,FK(recipes.recipe_id)
+2	詳細番号	material_line_number		INT	NN	-	PK
+3	材料名	material_name		varchar(191)	NN	-	-
+4	分量	material_quantity		varchar(191)	NN	-	-
+5	費用	material_cost		INT	-	0	-
+外部キー
+1	materials_recipe_id	recipe_id			recipes		recipe_id
+
+genres
+1	ジャンルID	genre_id		INT	NN	-	PK,連番
+2	ジャンル名	genre_name		varchar(191)	NN	-	-
+外部キー
+1	recipes_genre_id	genre_id			recipes		genre_id
+
+prefectures
+1	都道府県ID	prefecture_id		INT	NN	-	PK,連番
+2	都道府県名	prefecture_name		varchar(191)	NN	-	-
+外部キー
+1	users_prefecture_id	prefecture_id			users		prefecture_id
+2	recipes_prefecture_id	prefecture_id			recipes		prefecture_id
+
+time_zones
+1	時間帯ID	time_zone_id		INT	NN	-	PK,連番
+2	時間帯名	time_zone_name		varchar(191)	NN	-	-
+外部キー
+1	recipes_time_zone_id	time_zone_id			recipes		time_zone_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
