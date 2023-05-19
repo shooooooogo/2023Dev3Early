@@ -1,0 +1,18 @@
+以下のテーブル情報からmysqlのcreatetable文を作成してください。
+users:
+ユーザID	user_id		varchar(191)	NN	-	PKメールアドレスを登録する予定
+ユーザ名	user_name		varchar(191)	NN	-	-
+パスワード	user_password		varchar(255)	NN	-	-
+紹介文	user_introduction		varchar(200)	-	"よろしくお願いします。"	-
+アイコン画像	user_icon		mediumblob	-	初期アイコン	前回の画像保存方法を参照
+都道府県ID	prefecture_id		INT	-	-	FK,ドロップダウンリストから選択？
+
+インデックス:
+
+外部キー(FK側)：
+1	follows_follow_id	user_id			follows		follow_user_id
+2	follows_follower_od	user_id			follows		follower_user_id
+3	favorites_user_id	user_id			favorites		user_id
+4	goods_user_id	user_id			goods		user_id
+外部キー(PK側)：
+1       users_prefectures_id	prefectures_id			prefectures		prefecture_id
