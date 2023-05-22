@@ -51,17 +51,24 @@
     <nav id="g-nav">
         <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
             <ul>
-                <li><a href="#">Top</a></li>  
-                <li><a href="#">About</a></li>  
-                <li><a href="#">Service</a></li>  
-                <li><a href="#">Contact</a></li>  
-                <li><p>あたたたたたたたたたったたたたたたたたあたたあ</p></li>
+                <!-- <li>ここに色々書くと横から出てくる奴に表示されます</li> -->
+                <li><a href="#">Top画面</a></li>  
+                <li><a href="#">ランキング</a></li>  
+                <li><a href="#">料理検索</a></li>
+                <li><a href="#">マイページ</a></li>
+                <li><a href="#">レシピを作る</a></li>
+                <li><a href="#">ログアウト</a></li>  
+                
+
+                <li>
+                    <form action="#" method="post" class="search_container">
+                        <input type="text" size="25" placeholder="料理名・食材名">
+                        <input type="submit" value="&#xf002">
+                    </form>
+                </li>
             </ul>
             <!-- 虫眼鏡付きの検索ボックス -->
-            <form action="#" method="post" class="search_container">
-                <input type="text" size="25" placeholder="料理名・食材名">
-                <input type="submit" value="&#xf002">
-            </form>
+            
         </div>
     </nav>
 
