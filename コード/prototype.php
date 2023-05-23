@@ -40,7 +40,10 @@
 
     <!-- ナビゲーションバー(本気) -->
     <header id="header">
-        <h1>Logo</h1>
+        <div class="text-start">
+            <img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ">
+        </div>
+        
     </header>
 
     <div class="openbtn1">
@@ -53,6 +56,13 @@
             <ul>
                 <!-- <li>ここに色々書くと横から出てくる奴に表示されます</li> -->
                 
+                <!-- ロゴ -->
+                <div class="text-center mb-3">
+                    <img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ">
+                </div>
+                
+
+
                 <!-- 虫眼鏡付きの検索ボックス -->
                 <li>
                     <form action="#" method="post" class="search_container">
@@ -88,9 +98,9 @@
     <!-- 下のナビゲーションバー ※リンク未定義-->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="#" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/高床式のホームアイコン素材.png"></a>
-            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/マイページアイコン.png"></a>
-            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/レシピ作成アイコン.png"></a>
+            <a href="#" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
+            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
+            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
         </div>
     </footer>
 
