@@ -7,6 +7,7 @@
 /* 下に表示するバーのcss */
 footer{
     width: 100%;
+    height:10vh;
     background-color: #fff;
     color: #000;
     text-align: center;
@@ -16,11 +17,12 @@ footer{
 
     position: absolute;/*←絶対位置*/
     bottom:0; /*下に固定*/
+    border-top:solid #000000 2px; /*テキストの上のborder*/
 }
 
 /* footerの中の要素を縦が中央になるようにしたいやつ */
 .footerBar{
-    padding-top: 2vh;
+    margin-left: 10%;
 }
 
 
@@ -28,6 +30,36 @@ footer{
     border-width:0px 2px 0px 0px;
     border-style: solid;
 }
+/* footerのアイコン配置 */
+.imgIcon{
+    width:80%;
+    margin-top:30%;
+    margin-bottom:0%;
+    padding:0%;
+    text-align: center;
+}
+
+/* フォントについてのcss */
+
+/* ゴシック体 */
+.fontGothic{
+    font-family:MS PGothic;
+}
+/* 太字ゴシック体 */
+.fontGothicBold{
+    font-family:MS PGothic;
+    font-weight:bold;
+}
+/* メイリオ体 */
+.fontMeiryo{
+    font-family: Meiryo;
+}
+/* 太字メイリオ体 */
+.fontMeiryoBold{
+    font-family: Meiryo;
+    font-weight:bold;
+}
+
 
 /* 検索ボックス */
 .search_container{

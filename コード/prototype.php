@@ -52,6 +52,15 @@
         <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
             <ul>
                 <!-- <li>ここに色々書くと横から出てくる奴に表示されます</li> -->
+                
+                <!-- 虫眼鏡付きの検索ボックス -->
+                <li>
+                    <form action="#" method="post" class="search_container">
+                        <input type="text" size="25" placeholder="料理名・食材名">
+                        <input type="submit" value="&#xf002">
+                    </form>
+                </li>
+
                 <li><a href="#">Top画面</a></li>  
                 <li><a href="#">ランキング</a></li>  
                 <li><a href="#">料理検索</a></li>
@@ -59,28 +68,29 @@
                 <li><a href="#">レシピを作る</a></li>
                 <li><a href="#">ログアウト</a></li>  
                 
-
-                <li>
-                    <form action="#" method="post" class="search_container">
-                        <input type="text" size="25" placeholder="料理名・食材名">
-                        <input type="submit" value="&#xf002">
-                    </form>
-                </li>
-            </ul>
-            <!-- 虫眼鏡付きの検索ボックス -->
-            
+               
+            </ul>            
         </div>
     </nav>
 
+    <!-- フォント例 -->
+    <div style="text-align:center">
+        <p class="fontGothic">pゴシック</p>
+        <p class="fontGothicBold">p太字ゴシック</p>
+        <h3 class="fontGothic">h3ゴシック見出し</h3>
+        <h4 class="fontGothic">h4ゴシック見出し</h4>
+        <h5 class="fontGothic">h5ゴシック見出し</h5>
+        <h6 class="fontGothic">h6ゴシック見出し</h6>
+    </div>
     
     
 
-    <!-- 下のナビゲーションバー -->
+    <!-- 下のナビゲーションバー ※リンク未定義-->
     <footer class="text-center">
-        <div class="row footerBar">
-            <p class="col-4 footerBorder">ホーム</p>
-            <p class="col-4 footerBorder">マイページ</p>
-            <p class="col-4">投稿</p>
+        <div class="row footerBar fontGothicBold">
+            <a href="#" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/高床式のホームアイコン素材.png"></a>
+            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/マイページアイコン.png"></a>
+            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/レシピ作成アイコン.png"></a>
         </div>
     </footer>
 
