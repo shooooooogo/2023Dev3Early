@@ -13,31 +13,36 @@
     <!-- このページのstyleをここに記す -->
     <style>
         .kyouchou{color:red;text-decoration:none;}
-        .loginbtn{border:none;background-color:#FF7800;border-radius:5px}
+        .btn{border:none;background-color:#FF7800;border-radius:5px}
+        .toplogo{width: 200px;}
 
     </style>
 
 
-    <!-- cssの導入 せんで良かったやないかい！！　-->
+    <!-- cssの導入 なんかわからんけど読み込めてなさそう-->
     <link rel="stylesheet" href="css/style.css?v=2">
 
+
     <!-- DB接続するであろうコード -->
+
+    
 </head>
 <body>
     <center>
+        <img class="toplogo" src="img/SumaDeliIcon.png" alt="ロゴじゃい"/>
 
-        <p>ログイン</p>
+        <b><p>ログイン</p></b>
         
 
-        <form method="post" action="遷移先URL">
+        <form method="post" action="top.php">
             <input type="email" name="mail" placeholder=" メールアドレス"><br>
             <input type="password" name="passward" placeholder=" パスワード"><br>
-            <input type="submit" value="ログイン" class="loginbtn"><br>
+            <input type="submit" value="ログイン" class="btn"><br>
         </form>
 
-        <p>パスワードを忘れたかたは<a class="kyouchou" href="忘れたかたのURL">こちら</a></p>
+        <p>パスワードを忘れた方は<a class="kyouchou" href="忘れたかたのURL">こちら</a></p>
 
-        <a href="新規登録URL"><input type="button" value="新規登録"></a>
+        <a href="新規登録URL" ><input type="button" class="btn" value="新規登録"></a>
 
 
 
