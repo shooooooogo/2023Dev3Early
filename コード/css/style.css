@@ -13,9 +13,11 @@ footer{
     text-align: center;
     padding: 0px;
     margin:0px;
+    z-index: 9998;
 
 
-    position: absolute;/*←絶対位置*/
+    /* position: absolute;←絶対位置 */
+    position: fixed;
     bottom:0; /*下に固定*/
     border-top:solid #000000 2px; /*テキストの上のborder*/
 }
@@ -99,3 +101,6 @@ footer{
  .logo{
     width:7vh;
  }
+ .noDecoration{
+    text-decoration: none;
+}
