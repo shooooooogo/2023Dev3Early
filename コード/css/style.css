@@ -63,4 +63,10 @@ footer{
     outline : none;
   }
   
+  /* ボタンのCSS　制作者上村 */
+  .btn{
+    border:none;
+    background-color:#FF7800;
+    border: radius 5px;
+  }
  
