@@ -1,11 +1,10 @@
-<!-- プロトタイプ出来たら頑張る系のポッチャマ -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>料理詳細画面</title>
+    <title>レシピ確認</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
 
@@ -24,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
     <!-- 個別cssの読み込み場所 -->
-        <link rel="stylesheet" href="css/dishDetail.css">
+
     <!--  -->
 </head>
 <body>
@@ -88,27 +87,16 @@
 
     <!-- このdivの中に要素を書き込んでください -->
     <div class="container-fluid elements">
-        
-        <!-- 料理のサムネ＆タイトル -->
-        <div class="row pt-2" style="width:100%">
-            <img class="dishImg col-12 offset-1 img-fluid" src="img/PepperRice.png" alt="">
+        <!-- フォント例 -->
+        <div style="text-align:center">
+            <p class="fontGothic">pゴシック</p>
+            <p class="fontGothicBold">p太字ゴシック</p>
+            <h3 class="fontGothic">h3ゴシック見出し</h3>
+            <h4 class="fontGothic">h4ゴシック見出し</h4>
+            <h5 class="fontGothic">h5ゴシック見出し</h5>
+            <h6 class="fontGothic">h6ゴシック見出し</h6>
         </div>
-        <h1>ぶちうまペッパーライス</h1>
-
-        <!-- レシピを作成したユーザの情報 -->
-        <div class="row mt-2 mb-2 user">
-            <img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png">
-            <h3 class="col-4 ml-2 userSell2">上村晋一</h3>
-            <button class="col-4 p-3 orangeBtn userSell3">フォロー</button>
-        </div>
-        
-        <h2>紹介文</h2>
-        <p>ガチで旨すぎてぶちぶちになる位の美味しさです。食え！</p>
-
-        <h2>材料</h2>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <!-- ここまで -->
         <div class="footerCooporation">
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>

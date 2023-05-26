@@ -1,11 +1,10 @@
-<!-- プロトタイプ出来たら頑張る系のポッチャマ -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>料理詳細画面</title>
+    <title>レシピを作成</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
 
@@ -24,8 +23,10 @@
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
     <!-- 個別cssの読み込み場所 -->
-        <link rel="stylesheet" href="css/dishDetail.css">
-    <!--  -->
+    <link rel="stylesheet" href="css/createRecipe.css">
+
+    <!-- 個別jsの読み込み場所 -->
+    <script src="../script/addMaterial.js"></script>
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -88,26 +89,59 @@
 
     <!-- このdivの中に要素を書き込んでください -->
     <div class="container-fluid elements">
+
+        <form class="row" method="post" action="createRecipeRemind.php">
         
-        <!-- 料理のサムネ＆タイトル -->
-        <div class="row pt-2" style="width:100%">
-            <img class="dishImg col-12 offset-1 img-fluid" src="img/PepperRice.png" alt="">
-        </div>
-        <h1>ぶちうまペッパーライス</h1>
+        <!-- レシピのタイトル -->
+        <span>
+        <h1>・レシピのタイトル</h1>
+        <input class="textInput col-11 ms-3" type="text" placeholder="(例)さばの味噌煮">
+        </span>
 
-        <!-- レシピを作成したユーザの情報 -->
-        <div class="row mt-2 mb-2 user">
-            <img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png">
-            <h3 class="col-4 ml-2 userSell2">上村晋一</h3>
-            <button class="col-4 p-3 orangeBtn userSell3">フォロー</button>
-        </div>
+        <!-- サムネイル -->
+        <span>
+            <h1>・サムネイル</h1>
+            <input class="textInput col-11 ms-3" type="text">
+        </span>
+    
+        <!-- 紹介文 -->
+        <span>
+            <h1 class="ms-2">・紹介文</h1>
+            <input class="textInput col-11 ms-3" type="text" placeholder="ここに紹介文を入力してください">
+        </span>
+    
+        <!-- 材料 -->
+        <span>
+            <h1 class="ms-3">・材料</h1>
+            <input class="textInput mb-4 col-11 ms-3" type="text" placeholder="何人前">
+        </span>
         
-        <h2>紹介文</h2>
-        <p>ガチで旨すぎてぶちぶちになる位の美味しさです。食え！</p>
+        <span>
+            <input class="textInput col-5 ms-3" type="text" placeholder="材料名">
+            <input class="textInput col-5 offset-1" type="text" placeholder="分量">
+            <input class="textInput col-11 ms-3" type="text" placeholder="材料の費用">
+            <span class="offset-3" id="addMaterial">+  材料を追加で入力する</span>
+        </span>
+        
+        <!-- 作り方 -->
+        <span>
+            <h1>・作り方</h1>
+        </span>
 
-        <h2>材料</h2>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+        <!-- 時間帯 -->
+        <span>
+            <h1>時間帯(以下の内から選択)</h1>
+            <select name="time_zone">
+                <option value="0">時間帯を指定しない</option>
+                <option value="1">朝食</option>
+                <option value="2">昼食</option>
+                <option value="3">夕食</option>
+                <option value="4">おやつ</option>
+            </select>
+        </span>
+        </form>
+        
+        
 
         <!-- ここまで -->
         <div class="footerCooporation">
