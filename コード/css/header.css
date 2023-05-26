@@ -62,7 +62,7 @@
 
 /*========= ボタンのためのCSS ===============*/
 .openbtn1{
-  position:fixed;
+  position:absolute;
     z-index: 9999;/*ボタンを最前面に*/
   top:10px;
   right: 10px;

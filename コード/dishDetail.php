@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロトタイプ</title>
+    <title>料理詳細画面</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
 
@@ -89,6 +89,12 @@
     <!-- このdivの中に要素を書き込んでください -->
     <div class="container-fluid elements">
         
+        <!-- 料理のサムネ＆タイトル -->
+        <div class="row pt-2" style="width:100%">
+            <img class="dishImg col-12 offset-1 img-fluid" src="img/PepperRice.png" alt="">
+        </div>
+        <h1>ぶちうまペッパーライス</h1>
+
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 border-bottom user">
             <img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png">
@@ -96,16 +102,11 @@
             <button class="col-4 p-3 orangeBtn userSell3">フォロー</button>
         </div>
         
-        <!-- 料理の部分 -->
-        <h1>ぶちうまペッパーライス</h1>
-        <div class="container-fluid row">
-            <img class="dishImg col-12 offset-1 img-fluid" src="img/PepperRice.png" alt="">
-        </div>
-        
         <h2>紹介文</h2>
         <p>ガチで旨すぎてぶちぶちになる位の美味しさです。食え！</p>
 
         <h2>材料</h2>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
         <!-- ここまで -->
