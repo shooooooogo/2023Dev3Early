@@ -5,6 +5,14 @@
 <!DOCTYPE html>
 <html lang="Ja">
 <head>
+
+    <!-- cssの導入 なんかわからんけど読み込めてなさそう-->
+    <link rel="stylesheet" href="css/style.css?v=2">
+
+    <!-- 拡大縮小禁止するよん -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +27,7 @@
     </style>
 
 
-    <!-- cssの導入 なんかわからんけど読み込めてなさそう-->
-    <link rel="stylesheet" href="css/style.css?v=2">
+    
 
 
     <!-- DB接続するであろうコード -->
@@ -36,13 +43,16 @@
 
         <form method="post" action="top.php">
             <input type="email" name="mail" placeholder=" メールアドレス"><br>
-            <input type="password" name="passward" placeholder=" パスワード"><br>
+            <input type="password" name="password" placeholder=" パスワード"><br><br>
             <input type="submit" value="ログイン" class="btn"><br>
         </form>
 
-        <p>パスワードを忘れた方は<a class="kyouchou" href="忘れたかたのURL">こちら</a></p>
+        <br>
 
-        <a href="新規登録URL" ><input type="button" class="btn" value="新規登録"></a>
+        <p>パスワードを忘れた方は<a class="kyouchou" href="resettingPassword.php">こちら</a></p><br>
+        
+
+        <a href="newMember.php" ><input type="button" class="btn" value="新規登録"></a>
 
 
 
