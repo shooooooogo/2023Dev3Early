@@ -1,0 +1,47 @@
+.dishImg{
+    width:100vh;
+    margin:0px;
+
+}
+
+.border-bottom{
+    border-bottom: 1px solid #333;
+}
+
+/* 料理詳細ページで使うボタンのcss */
+.orangeBtn{
+    background: #ff7800;
+    border-radius:  5px;
+    color:#000;
+}
+
+/* ユーザ情報の部分 */
+.user{
+    height:60px;
+    text-align:center;
+    position:relative;
+}
+
+.userSell1{
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    height:100%;
+    width:auto;
+}
+
+.userSell2{
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.userSell3{
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    height:80%;
+}

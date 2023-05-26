@@ -22,6 +22,9 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
+    <!-- 個別cssの読み込み場所 -->
+
+    <!--  -->
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -107,7 +110,7 @@
     
 
 
-    <!-- 下のナビゲーションバー ※リンク未定義-->
+    <!-- 下のナビゲーションバー -->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
