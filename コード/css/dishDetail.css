@@ -25,7 +25,7 @@
 .userSell1{
     position:absolute;
     top:45%;
-    left:50%;
+    left:5%;
     transform:translate(-50%,-50%);
     height:100%;
     width:auto;
@@ -34,14 +34,14 @@
 .userSell2{
     position:absolute;
     top:45%;
-    left:50%;
+    left:35%;
     transform:translate(-50%,-50%);
 }
 
 .userSell3{
     position:absolute;
     top:45%;
-    left:50%;
+    left:75%;
     transform:translate(-50%,-50%);
     height:80%;
 }
