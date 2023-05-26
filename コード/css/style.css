@@ -97,6 +97,13 @@ footer{
     outline : none;
   }
   
+  /* ボタンのCSS　制作者上村 */
+  .btn{
+    border:none;
+    background-color:#FF7800;
+    border: radius 5px;
+  }
+ 
  /* ロゴの表示について */
  .logo{
     width:7vh;

@@ -1,0 +1,45 @@
+/* テキストボックス */
+.inline-block{
+    display: block;
+}
+.register-info{
+    font-size: 25px;
+    font-family: Meirio;
+    padding: 40px;
+}
+.input-Area{
+    text-align: center;
+    margin: 40px 40px;
+}
+.textbox{
+    width: 80%;
+    margin: 15px 0;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #F7F7F7;
+}
+
+/* ボタン */
+.button-Area{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+.button{
+    width: 130px;
+    margin: 0 18px;
+    padding: 15px;
+    font-size: 20px;
+    color: #000;
+    font-family: Meiryo;
+    /* font-weight:bold; */
+    border: 0.5px solid #696969;
+    border-radius: 5px;
+    background-color: #FF7800;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
