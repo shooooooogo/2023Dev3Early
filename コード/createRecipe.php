@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="css/createRecipe.css">
 
     <!-- 個別jsの読み込み場所 -->
-    <script src="../script/addMaterial.js"></script>
+    <script src="./script/addMaterial.js"></script>
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -92,53 +92,56 @@
 
         <form class="row" method="post" action="createRecipeRemind.php">
         
-        <!-- レシピのタイトル -->
-        <span>
-        <h1>・レシピのタイトル</h1>
-        <input class="textInput col-11 ms-3" type="text" placeholder="(例)さばの味噌煮">
-        </span>
+            <!-- レシピのタイトル -->
+            <span>
+            <h1  class="ms-2">・レシピのタイトル</h1>
+            <input class="textInput col-11 ms-3" type="text" placeholder="(例)さばの味噌煮">
+            </span>
 
-        <!-- サムネイル -->
-        <span>
-            <h1>・サムネイル</h1>
-            <input class="textInput col-11 ms-3" type="text">
-        </span>
-    
-        <!-- 紹介文 -->
-        <span>
-            <h1 class="ms-2">・紹介文</h1>
-            <input class="textInput col-11 ms-3" type="text" placeholder="ここに紹介文を入力してください">
-        </span>
-    
-        <!-- 材料 -->
-        <span>
-            <h1 class="ms-3">・材料</h1>
-            <input class="textInput mb-4 col-11 ms-3" type="text" placeholder="何人前">
-        </span>
+            <!-- サムネイル -->
+            <span>
+                <h1 class="ms-2">・サムネイル</h1>
+                <input class="textInput col-11 ms-3" type="text">
+            </span>
         
-        <span>
-            <input class="textInput col-5 ms-3" type="text" placeholder="材料名">
-            <input class="textInput col-5 offset-1" type="text" placeholder="分量">
-            <input class="textInput col-11 ms-3" type="text" placeholder="材料の費用">
-            <span class="offset-3" id="addMaterial">+  材料を追加で入力する</span>
-        </span>
+            <!-- 紹介文 -->
+            <span>
+                <h1 class="ms-2">・紹介文</h1>
+                <input class="textInput col-11 ms-3" type="text" placeholder="ここに紹介文を入力してください">
+            </span>
         
-        <!-- 作り方 -->
-        <span>
-            <h1>・作り方</h1>
-        </span>
+            <!-- 材料 -->
+            <span>
+                <h1 class="ms-2">・材料</h1>
+                <input class="textInput mb-4 col-11 ms-3" type="text" placeholder="何人前">
+            </span>
+            
+            <span id="addMaterialSpan">
+                <input class="textInput col-5 ms-3" type="text" placeholder="材料名">
+                <input class="textInput col-5 offset-1" type="text" placeholder="分量">
+                <input class="textInput col-11 ms-3" type="text" placeholder="材料の費用">
+                <span class="offset-3" id="addMaterial">+  材料を追加で入力する</span>
+            </span>
+            
+            <!-- 作り方 -->
+            <span>
+                <h1 class="ms-2">・作り方</h1>
+            </span>
 
-        <!-- 時間帯 -->
-        <span>
-            <h1>時間帯(以下の内から選択)</h1>
-            <select name="time_zone">
-                <option value="0">時間帯を指定しない</option>
-                <option value="1">朝食</option>
-                <option value="2">昼食</option>
-                <option value="3">夕食</option>
-                <option value="4">おやつ</option>
-            </select>
-        </span>
+            <!-- 時間帯 -->
+            <span>
+                <h1 class="ms-2">時間帯(以下の内から選択)</h1>
+                <select name="time_zone">
+                    <option value="0">時間帯を指定しない</option>
+                    <option value="1">朝食</option>
+                    <option value="2">昼食</option>
+                    <option value="3">夕食</option>
+                    <option value="4">おやつ</option>
+                </select>
+            </span>
+
+            <!-- <button>下書きを保存する</button>
+            <button>投稿する</button> -->
         </form>
         
         
