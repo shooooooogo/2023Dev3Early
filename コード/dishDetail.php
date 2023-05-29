@@ -105,9 +105,11 @@
         <h2>紹介文</h2>
         <p>ガチで旨すぎてぶちぶちになる位の美味しさです。食え！</p>
 
+
         <h2>材料</h2>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+        <input type="button" value="いいね<i class='bi bi-hand-thumbs-up'></i>"/>
 
         <!-- ここまで -->
         <div class="footerCooporation">
