@@ -1,3 +1,9 @@
+-- 使用するデータベースの作成
+CREATE DATABASE smart_delicious;
+
+-- テーブルを作成するデータベースを選択
+USE smart_delicious;
+
 -- ジャンルテーブルの作成
 CREATE TABLE genres (
   genre_id INT NOT NULL AUTO_INCREMENT,
