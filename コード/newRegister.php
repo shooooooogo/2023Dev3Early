@@ -29,7 +29,7 @@
 <body>
     <!-- この中に要素を追加 -->
 <center>
-        <img class="logo" src="./img/SumaDeliicon.png" alt="ロゴです">
+        <img class="newRegisterlogo" src="./img/SumaDeliicon.png" alt="ロゴです">
 
     <div class="SmartDelicious">
         
