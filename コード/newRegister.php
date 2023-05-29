@@ -28,21 +28,28 @@
 </head>
 <body>
     <!-- この中に要素を追加 -->
+<center>
+        <img class="logo" src="./img/SumaDeliicon.png" alt="ロゴです">
+
+    <div class="SmartDelicious">
+        
+    </div>
 
     <div class="input-Area">
 
         <h1 class="register-info">登録情報を入力</h1>
 
-        <div class="inline-block"><input type="text" class="textbox" placeholder="メールアドレス"></div>
-        <div class="inline-block"><input type="text" class="textbox" placeholder="パスワード"></div>
-        <div class="inline-block"><input type="text" class="textbox" placeholder="ユーザー名"></div>
+        <div class="inline-block"><input type="email" class="textbox" name="email" placeholder="メールアドレス"></div>
+        <div class="inline-block"><input type="password" class="textbox" name="password" placeholder="パスワード"></div>
+        <div class="inline-block"><input type="text" class="textbox" name="username" placeholder="ユーザー名"></div>
 
     </div>
 
     <div class="button-Area">
-        <button class="button">戻る</button>
-        <a href="./top.php"><button class="button">登録</button></a>
+        <a href="#"><button class="button">戻る</button></a>
+        <input type="submit" class="button" value="登録">
     </div>
+</center>
     
     <!-- /この中に要素を追加 -->
 
