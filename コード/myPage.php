@@ -38,61 +38,10 @@
         </div>
     </div> -->
 
-    <!-- ナビゲーションバー(本気) -->
-    <header id="header">
-        <div class="text-start">
-            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
-        </div>
-        
-    </header>
-
-    <div class="openbtn1">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <nav id="g-nav">
-        <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
-            <ul>
-                <!-- <li>ここに色々書くと横から出てくる奴に表示されます</li> -->
-                
-                <!-- ロゴ -->
-                <!-- <div class="text-center mb-3">
-                    <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
-                </div> -->
-                
-                <!-- ユーザ情報表示 -->
-                <div>
-                    <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5">
-                        <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2">ユーザ名</h3>
-                    </a>
-                </div>
-
-
-                <!-- 虫眼鏡付きの検索ボックス -->
-                <li class="text-start">
-                    <form action="#" method="post" class="search_container">
-                        <input type="text" size="15" placeholder="料理名・食材名">
-                        <input type="submit" value="&#xf002">
-                    </form>
-                </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
-                <li><a href="#">Top画面</a></li>  
-                <li><a href="#">ランキング</a></li>  
-                <li><a href="#">料理検索</a></li>
-                <li><a href="#">マイページ</a></li>
-                <li><a href="#">レシピを作る</a></li>
-                <li><a href="#">ログアウト</a></li>  
-                
-               
-            </ul>            
-        </div>
-    </nav>
-
     <!-- この中に要素を追加 -->
-    
+        <img class=UserIcon_default>
+
+        
     <!-- /この中に要素を追加 -->
 
 
