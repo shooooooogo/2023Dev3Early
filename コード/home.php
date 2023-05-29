@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レシピを作成</title>
+    <title>プロトタイプ</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
 
@@ -22,11 +22,6 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
-    <!-- 個別cssの読み込み場所 -->
-    <link rel="stylesheet" href="css/createRecipe.css">
-
-    <!-- 個別jsの読み込み場所 -->
-    <script src="./script/addMaterial.js"></script>
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -60,111 +55,53 @@
         <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
             <ul>
                 <!-- <li>ここに色々書くと横から出てくる奴に表示されます</li> -->
-            
+                
+                <!-- ロゴ -->
+                <!-- <div class="text-center mb-3">
+                    <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
+                </div> -->
+                
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5 noDecoration">
+                    <a href="myPage.php" class="row ml-5">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
+                        <h3 class="col-6 text-start ml-3 pt-2">ユーザ名</h3>
                     </a>
                 </div>
 
 
                 <!-- 虫眼鏡付きの検索ボックス -->
                 <li class="text-start">
-                    <form action="searchResult.php" method="post" class="search_container">
+                    <form action="#" method="post" class="search_container">
                         <input type="text" size="15" placeholder="料理名・食材名">
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
                 <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
-                <li><a href="top.php">Top画面</a></li>
-                <li><a href="ranking.php">ランキング</a></li>
-                <li><a href="myPage.php">マイページ</a></li>
-                <li><a href="createRecipe.php">レシピを作る</a></li>
+                <li><a href="#">Top画面</a></li>  
+                <li><a href="#">ランキング</a></li>  
+                <li><a href="#">料理検索</a></li>
+                <li><a href="#">マイページ</a></li>
+                <li><a href="#">レシピを作る</a></li>
+                <li><a href="#">ログアウト</a></li>  
+                
+               
             </ul>            
         </div>
     </nav>
 
-    <!-- このdivの中に要素を書き込んでください -->
-    <div class="container-fluid elements">
-
-        <form class="row" method="post" action="createRecipeRemind.php">
-        
-            <!-- レシピのタイトル -->
-            <span>
-            <h1  class="ms-2">・レシピのタイトル</h1>
-            <input class="textInput col-11 ms-3" type="text" placeholder="(例)さばの味噌煮">
-            </span>
-
-            <!-- サムネイル -->
-            <span>
-                <h1 class="ms-2">・サムネイル</h1>
-                <input class="textInput col-11 ms-3" type="text">
-            </span>
-        
-            <!-- 紹介文 -->
-            <span>
-                <h1 class="ms-2">・紹介文</h1>
-                <input class="textInput col-11 ms-3" type="text" placeholder="ここに紹介文を入力してください">
-            </span>
-        
-            <!-- 材料 -->
-            <span>
-                <h1 class="ms-2">・材料</h1>
-                <input class="textInput mb-4 col-11 ms-3" type="text" placeholder="何人前">
-            </span>
-            
-            <span id="addMaterialSpan">
-                <input class="textInput col-5 ms-3" type="text" placeholder="材料名">
-                <input class="textInput col-5 offset-1" type="text" placeholder="分量">
-                <input class="textInput col-11 ms-3" type="text" placeholder="材料の費用">
-                <span class="offset-3" id="addMaterial">+  材料を追加で入力する</span>
-            </span>
-            
-            <!-- 作り方 -->
-            <span>
-                <h1 class="ms-2">・作り方</h1>
-            </span>
-
-            <!-- 時間帯 -->
-            <span>
-                <h1 class="ms-2">時間帯(以下の内から選択)</h1>
-                <select name="time_zone">
-                    <option value="0">時間帯を指定しない</option>
-                    <option value="1">朝食</option>
-                    <option value="2">昼食</option>
-                    <option value="3">夕食</option>
-                    <option value="4">おやつ</option>
-                </select>
-            </span>
-
-            <!-- <button>下書きを保存する</button>
-            <button>投稿する</button> -->
-        </form>
-        
-        
-
-        <!-- ここまで -->
-        <div class="footerCooporation">
-            <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
-            <ul class="md-flex">
-                <li><a href="terms.php">利用規約</a></li>
-                <li><a href="privacy.php">プライバシーポリシー</a></li>
-            </ul>
-        </div>
-    </div>
+    <!-- この中に要素を追加 -->
     
-    
+    <!-- /この中に要素を追加 -->
 
 
-    <!-- 下のナビゲーションバー -->
+    <!-- 下のナビゲーションバー ※リンク未定義-->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="#" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
+            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
+            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
         </div>
     </footer>
 
