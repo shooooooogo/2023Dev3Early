@@ -105,9 +105,19 @@
         <h2>紹介文</h2>
         <p>ガチで旨すぎてぶちぶちになる位の美味しさです。食え！</p>
 
-        
-<button type="button" class="orangeBtn">ボタン<i class="bi bi-hand-thumbs-up" style=""></i></button>
-<button type="button" class="defo-btn">ボタン</button>
+        <!-- いいねお気に入りボタン -->
+        <div class="row pt-2" style="width:100%">
+            <button type="button" class="defo-btn offset-1 col-5" style="height: 50px;">ボタン<i class="bi bi-hand-thumbs-up"></i></button>
+            <button type="button" class="defo-btn offset-1 col-5" >ボタン<i class="bi bi-bookmark-star"></i></button>
+        </div>
+
+        <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
+        <h6>都道府県ラベル： 山口県</h6>
+
+        <!-- 食費 -->
+        <h2>・食費</h2>
+        <b class="kingaku" style="color:#FFE300;"> 505円/1人</b>
+
 
 
         <h2>材料</h2>
