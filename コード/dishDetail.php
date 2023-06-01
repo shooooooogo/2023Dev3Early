@@ -116,7 +116,7 @@
 
         <!-- 食費 -->
         <h2>・食費</h2>
-        <b class="kingaku" style="color:#FFE300;"> 505円/1人</b>
+        <b class="kingaku"> 505円/1人</b>
 
 
 
