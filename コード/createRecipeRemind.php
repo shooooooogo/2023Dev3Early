@@ -87,16 +87,10 @@
 
     <!-- このdivの中に要素を書き込んでください -->
     <div class="container-fluid elements">
-        <!-- フォント例 -->
-        <div style="text-align:center">
-            <p class="fontGothic">pゴシック</p>
-            <p class="fontGothicBold">p太字ゴシック</p>
-            <h3 class="fontGothic">h3ゴシック見出し</h3>
-            <h4 class="fontGothic">h4ゴシック見出し</h4>
-            <h5 class="fontGothic">h5ゴシック見出し</h5>
-            <h6 class="fontGothic">h6ゴシック見出し</h6>
-        </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <?=var_dump($_POST);
+            var_dump($_FILES['recipe_image']);
+        
+        ?>
         <!-- ここまで -->
         <div class="footerCooporation">
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
