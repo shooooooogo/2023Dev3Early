@@ -112,15 +112,18 @@
         </div>
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
-        <h6>都道府県ラベル： 山口県</h6>
+        <h6>都道府県ラベル： 山口県</h6><br>
 
         <!-- 食費 -->
-        <h2>・食費</h2>
-        <b class="kingaku"> 505円/1人</b>
+        <h3>・食費</h3>
+        <div  
+        style="color:#FFE300;text-align: center;font-size:40px;"> 505円/1人</div>
 
 
+        <!-- 材料 -->
+        <h3>・材料</h3>
+        <div class="row pt-2 pb-2" style="width:100%">
 
-        <h2>材料</h2>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
         
