@@ -99,10 +99,13 @@ footer{
   
   /* ボタンのCSS　制作者上村 */
   .defo-btn{
-    border:none;
-    background-color:#FF7800;
-    border: radius 5px;
+    color:#000;
+    background:#FF7800;
+    border-radius:  5px;
+    
   }
+  
+  
  
  /* ロゴの表示について */
  .logo{
