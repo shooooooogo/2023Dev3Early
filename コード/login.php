@@ -1,6 +1,7 @@
 <!-- このコードはすべて上村によって書かれています。
 上村の許可を得ずソースに変更を加えたり自作発言等上村に不利益が生じる場合
 ソース破損罪または迷惑罪にあたり罰せられる可能性があります -->
+<!-- デザイン統一にあたってソースをいじらせていただきました。陳謝。 -->
 
 <!DOCTYPE html>
 <html lang="Ja">
@@ -20,8 +21,8 @@
 
     <!-- このページのstyleをここに記す -->
     <style>
-        .loginlabel{font-size: 25px;margin: 60px 0 40px;font-family: Meiryo;}
-        .textbox{width: 267px;margin: 15px 0;padding: 5px;font-size: 15px;text-align: center;border: 1px solid #ccc;border-radius: 5px;background-color: #F7F7F7;}
+        .loginlabel{font-size: 25px;margin: 70px 0 40px;font-family: Meiryo;}
+        .textbox{width: 267px;margin: 15px 0;padding: 5px;font-size: 15px;text-align: center;border: 1px solid #ccc;border-radius: 5px;background-color: #4b49496b;}
         .kyouchou{color:red;text-decoration:none;}
         /* .btn{border:none;background-color:#FF7800;border-radius:5px} */
         .btn{
@@ -30,7 +31,7 @@
             font-size: 20px;
             color: #000;
             font-family: "Meiryo";
-            border: 0.5px solid #696969;
+            /* border: 0.5px solid #696969; */border: none;
             border-radius: 5px;
             background-color: #FF7800;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
