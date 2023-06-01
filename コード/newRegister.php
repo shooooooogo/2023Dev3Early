@@ -31,6 +31,7 @@
     </div>
 
     <div class="input-Area">
+    <form method="post" action="login_check.php">
 
         <div class="register-info">登録情報を入力</div>
 
@@ -44,6 +45,7 @@
         <a href="#"><button class="button">戻る</button></a>
         <input type="submit" class="button" value="登録">
     </div>
+</form>
 </center>
     
     <!-- /この中に要素を追加 -->
