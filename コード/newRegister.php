@@ -26,18 +26,13 @@
 <center>
         <img class="newRegisterlogo" src="img/SumaDeliIcon.png" alt="ロゴです">
 
-    <div class="SmartDelicious">
-        
-    </div>
-
-    <div class="input-Area">
-
-        <div class="register-info">登録情報を入力</div>
-
-        <div class="inline-block"><input type="email" class="textbox" name="email" placeholder="メールアドレス"></div>
-        <div class="inline-block"><input type="password" class="textbox" name="password" placeholder="パスワード"></div>
-        <div class="inline-block"><input type="text" class="textbox" name="username" placeholder="ユーザー名"></div>
-
+        <form action="#" method="POST">
+            <div class="input-Area">
+                <div class="register-info">登録情報を入力</div>
+                <div class="inline-block"><input type="email" class="textbox" name="email" placeholder="メールアドレス"></div>
+                <div class="inline-block"><input type="password" class="textbox" name="password" placeholder="パスワード"></div>
+                <div class="inline-block"><input type="text" class="textbox" name="username" placeholder="ユーザー名"></div>
+        </form>
     </div>
 
     <div class="button-Area">
