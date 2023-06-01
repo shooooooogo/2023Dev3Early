@@ -20,9 +20,23 @@
 
     <!-- このページのstyleをここに記す -->
     <style>
+        .loginlabel{font-size: 25px;margin: 60px 0 40px;font-family: Meiryo;}
+        .textbox{width: 267px;margin: 15px 0;padding: 5px;font-size: 15px;text-align: center;border: 1px solid #ccc;border-radius: 5px;background-color: #F7F7F7;}
         .kyouchou{color:red;text-decoration:none;}
-        .btn{border:none;background-color:#FF7800;border-radius:5px}
-        .toplogo{width: 200px;}
+        /* .btn{border:none;background-color:#FF7800;border-radius:5px} */
+        .btn{
+            width: 267px;
+            padding: 15px;
+            font-size: 20px;
+            color: #000;
+            font-family: "Meiryo";
+            border: 0.5px solid #696969;
+            border-radius: 5px;
+            background-color: #FF7800;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .toplogo{width: 200px;margin-top:20px;}
+        .space{margin-top: 20px;}
 
     </style>
 
@@ -38,12 +52,14 @@
     <center>
         <img class="toplogo" src="img/SumaDeliIcon.png" alt="ロゴじゃい"/>
 
-        <b><p>ログイン</p></b>
+        <!-- <h1 class="loginlabel">ログイン</h1> -->
+        <div class="loginlabel">ログイン</div>
         
 
         <form method="post" action="top.php">
-            <input type="email" name="mail" placeholder=" メールアドレス"><br>
-            <input type="password" name="password" placeholder=" パスワード"><br><br>
+            <input class="textbox" type="email" name="mail" placeholder=" メールアドレス"><br>
+            <input class="textbox" type="password" name="password" placeholder=" パスワード"><br><br>
+            <div class="space"></div>
             <input type="submit" value="ログイン" class="btn"><br>
         </form>
 
