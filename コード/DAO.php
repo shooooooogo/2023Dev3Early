@@ -34,9 +34,18 @@ class DAO{
         $ps= $pdo->prepare($sql);
         $ps->bindValue(1, $logmail, PDO::PARAM_STR);
         $ps->execute();
-        //パスワードの照合のため、login_check.phpに移動
-        $log_check = $ps->fetchAll();
-        return $log_check;
+        //データベースに登録しているメアドがあったら
+        if ($ps->rowCount() > 0) {
+            //パスワードの照合のため、login_check.phpに移動
+            $log_check = $ps->fetchAll();
+            return $log_check;
+        }else{
+            //データベースに登録していないとき
+            echo "メールアドレスが間違っています。もう一度やり直してください";
+            $log_check = $ps->fetchAll();
+            return $log_check;
+        }
+        
     }
 
 
@@ -44,9 +53,12 @@ class DAO{
     //メールアドレス再設定
     public function resetMail($resetmail,$newmail){
                 $pdo= $this->dbConnect();
+                                                // ↓新たに追加したいメアド       ↓前のメアド
                 $sql= "UPDATE users SET user_id = :new_user_id WHERE user_id = :reset_user_id";
                 $ps= $pdo->prepare($sql);
+                //新たに追加するメアドを投入
                 $ps->bindValue(':new_user_id', $newmail);
+                //前のメアドを投入
                 $ps->bindValue(':reset_user_id',$resetmail);
                 $ps->execute();
                 // メールアドレスの更新に成功した場合、ログインページに移動する
@@ -62,13 +74,14 @@ class DAO{
     //パスワード再設定
     public function resetPassword($resetpass,$newpass){
                 $pdo= $this->dbConnect();
+                                                // ↓新たに追加したいパスワード       ↓前のパスワード
                 $sql= "UPDATE users SET user_id = :new_user_password WHERE user_id = :reset_user_password";
                 $ps= $pdo->prepare($sql);
+                //新たに追加するパスワードを投入
                 $ps->bindValue(':new_user_password', $newpass);
+                //前のパスワードを投入
                 $ps->bindValue(':reset_user_password',$resetpass);
                 $ps->execute();
-                header("Location: login.php");
-                exit();
                 // パスワードの更新に成功した場合、ログインページに移動する
                 if ($ps->rowCount() > 0) {
                     header("Location: login.php");
