@@ -56,7 +56,7 @@
         <div class="loginlabel">ログイン</div>
         
 
-        <form method="post" action="top.php">
+        <form method="post" action="login_check.php">
             <input class="textbox" type="email" name="mail" placeholder=" メールアドレス"><br>
             <input class="textbox" type="password" name="password" placeholder=" パスワード"><br><br>
             <div class="space"></div>
