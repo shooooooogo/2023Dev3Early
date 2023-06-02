@@ -29,7 +29,7 @@
     <p><input type="password" name="beforepassword" value="" class="form-control mb-2" placeholder="既存パスワード"></p>
     <p class="mb-2">・新しいパスワード</p>
     <p><input type="password" name="afterpassword" value="" class="form-control mb-2" placeholder="新規パスワード"></p>
-    <p><input type="submit" value="変更する" class="btn btn-warning"></p>
+    <p><input type="submit" value="変更する" class="defo-btn"></p>
       </div>
     </div>
   </div>
