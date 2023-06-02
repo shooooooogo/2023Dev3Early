@@ -26,21 +26,13 @@
 <center>
         <img class="newRegisterlogo" src="img/SumaDeliIcon.png" alt="ロゴです">
 
-<<<<<<< HEAD
-        <form action="#" method="POST">
-            <div class="input-Area">
-                <div class="register-info">登録情報を入力</div>
-                <div class="inline-block"><input type="email" class="textbox" name="email" placeholder="メールアドレス"></div>
-                <div class="inline-block"><input type="password" class="textbox" name="password" placeholder="パスワード"></div>
-                <div class="inline-block"><input type="text" class="textbox" name="username" placeholder="ユーザー名"></div>
-        </form>
-=======
     <div class="SmartDelicious">
         
     </div>
 
     <div class="input-Area">
     <form method="post" action="login_check.php">
+        
 
         <div class="register-info">登録情報を入力</div>
 
@@ -48,7 +40,6 @@
         <div class="inline-block"><input type="password" class="textbox" name="password" placeholder="パスワード"></div>
         <div class="inline-block"><input type="text" class="textbox" name="username" placeholder="ユーザー名"></div>
 
->>>>>>> f56d7edd315c30695aff64140e15a1a8b453d4f0
     </div>
 
     <div class="button-Area">
