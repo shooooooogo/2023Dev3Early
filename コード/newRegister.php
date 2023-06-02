@@ -13,42 +13,49 @@
     
     <!-- bootstrapのCSSの導入 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- 検索ボックス導入のためのcss -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- header導入のためのcss -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
-    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
-    <link rel="stylesheet" type="text/css" href="css/header.css"> -->
-
+    
     <!-- この画面専用のcss -->
     <link rel="stylesheet" href="./css/newRegister.css">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
 
 </head>
 <body>
     <!-- この中に要素を追加 -->
 <center>
-        <img class="logo" src="./img/SumaDeliicon.png" alt="ロゴです">
+        <img class="newRegisterlogo" src="img/SumaDeliIcon.png" alt="ロゴです">
 
+<<<<<<< HEAD
+        <form action="#" method="POST">
+            <div class="input-Area">
+                <div class="register-info">登録情報を入力</div>
+                <div class="inline-block"><input type="email" class="textbox" name="email" placeholder="メールアドレス"></div>
+                <div class="inline-block"><input type="password" class="textbox" name="password" placeholder="パスワード"></div>
+                <div class="inline-block"><input type="text" class="textbox" name="username" placeholder="ユーザー名"></div>
+        </form>
+=======
     <div class="SmartDelicious">
         
     </div>
 
     <div class="input-Area">
+    <form method="post" action="login_check.php">
 
-        <h1 class="register-info">登録情報を入力</h1>
+        <div class="register-info">登録情報を入力</div>
 
         <div class="inline-block"><input type="email" class="textbox" name="email" placeholder="メールアドレス"></div>
         <div class="inline-block"><input type="password" class="textbox" name="password" placeholder="パスワード"></div>
         <div class="inline-block"><input type="text" class="textbox" name="username" placeholder="ユーザー名"></div>
 
+>>>>>>> f56d7edd315c30695aff64140e15a1a8b453d4f0
     </div>
 
     <div class="button-Area">
         <a href="#"><button class="button">戻る</button></a>
         <input type="submit" class="button" value="登録">
     </div>
+</form>
 </center>
     
     <!-- /この中に要素を追加 -->

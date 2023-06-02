@@ -1,3 +1,9 @@
+.resettingMailaddresslogo{
+  display: block;
+  margin: 27px auto 15px;
+  width: 200px;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,19 +11,45 @@
   }
   
   .child {
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    /* position: absolute; */
+    /* top: 0; */
+    /* bottom: 0; */
     margin: 0 auto;
-    margin-top: 30%;
-    padding: 20%;
+    margin-top: 60px;
+    /* padding: 20%; */
   }
   input[type="email"] {
     color: #8f8d8d68;
     background-color: #4b49496b;
   }
-  /* .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
+  .mailaddress{
+    margin: 0 0 60px;
+    font-size: 25px;
+    font-family: Meiryo;
+  }
+  .changetext{
+    margin-bottom: 0;
+    font-family: Meiryo;
+  }
+  .textbox{
+    width: 267px;
+    margin: 3px 0 15px;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #F7F7F7;
+  }
+  .changeButton{
+    margin: 40px 0 0;
+    width: 267px;
+    padding: 15px;
+    font-size: 20px;
+    color: #000;
+    font-family: "Meiryo";
+    /* border: 0.5px solid #696969; */border: none;
+    border-radius: 5px;
+    background-color: #FF7800;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}

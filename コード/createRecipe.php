@@ -90,42 +90,54 @@
     <!-- このdivの中に要素を書き込んでください -->
     <div class="container-fluid elements">
 
-        <form class="row" method="post" action="createRecipeRemind.php">
+        <form class="row" method="post" action="createRecipeRemind.php" enctype="multipart/form-data">
         
             <!-- レシピのタイトル -->
             <span>
             <h1  class="ms-2">・レシピのタイトル</h1>
-            <input class="textInput col-11 ms-3" type="text" placeholder="(例)さばの味噌煮">
+            <input class="textInput col-11 ms-3" type="text" name="recipe_title" placeholder="(例)さばの味噌煮">
             </span>
 
-            <!-- サムネイル -->
+            <!-- サムネイル画像 -->
             <span>
                 <h1 class="ms-2">・サムネイル</h1>
-                <input class="textInput col-11 ms-3" type="text">
+                
+                <!-- 画像追加のinputタグ -->
+                <input class="inputs" type="file" name="recipe_image" id="recipe_image"><br/>
+                
+                <!-- 追加された画像を表示する物 -->
+                <div id="preview"></div>
             </span>
         
             <!-- 紹介文 -->
             <span>
                 <h1 class="ms-2">・紹介文</h1>
-                <input class="textInput col-11 ms-3" type="text" placeholder="ここに紹介文を入力してください">
+                <input class="textInput col-11 ms-3" type="text" name="recipe_intro" placeholder="ここに紹介文を入力してください">
             </span>
         
             <!-- 材料 -->
             <span>
                 <h1 class="ms-2">・材料</h1>
-                <input class="textInput mb-4 col-11 ms-3" type="text" placeholder="何人前">
+                <input class="textInput mb-4 col-11 ms-3" type="text" name="recipe_people" placeholder="何人前">
             </span>
             
-            <span id="addMaterialSpan">
-                <input class="textInput col-5 ms-3" type="text" placeholder="材料名">
-                <input class="textInput col-5 offset-1" type="text" placeholder="分量">
-                <input class="textInput col-11 ms-3" type="text" placeholder="材料の費用">
-                <span class="offset-3" id="addMaterial">+  材料を追加で入力する</span>
+            <!-- 余裕あれば追加した材料入力欄を消せる機能を追加したい -->
+            <!-- 材料の入力フォームを追加するボタン -->
+            <span class="text-center" id="addMaterial" name="addMaterialButton" onclick="addMaterial()">+  材料を追加する</span>
+
+            <!-- 材料の入力フォーム -->
+            <span class="mb-3" id="addMaterialSpan">
+                <p class="materialNumber ms-2">・材料1</p>
+                <input class="textInput col-5 ms-3" type="text" name="materialName1" placeholder="材料名">
+                <input class="textInput col-5 offset-1" type="text" name="materialQuantity1" placeholder="分量">
+                <input class="textInput col-11 ms-3" type="text" name="materialCost1" placeholder="材料の費用">
             </span>
+           
             
             <!-- 作り方 -->
-            <span>
-                <h1 class="ms-2">・作り方</h1>
+            <span class="mb-3" id="addHowToSpan">
+                <h1 class="ms-3">・作り方</h1>
+                
             </span>
 
             <!-- 時間帯 -->
@@ -140,6 +152,7 @@
                 </select>
             </span>
 
+            <input type="submit" value="登録する">
             <!-- <button>下書きを保存する</button>
             <button>投稿する</button> -->
         </form>
@@ -177,5 +190,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
     <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/js/5-1-14.js"></script>
     <script src="script/header.js"></script>
+
+    <!-- 固有のjs -->
+    <script src="script/createRecipe/addMaterial.js"></script>
+    <script src="script/createRecipe/addHowTo.js"></script>
 </body>
 </html>

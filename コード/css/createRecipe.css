@@ -1,4 +1,18 @@
+/* 各テキストボックスに適用するクラス */
 .textInput{
     border-bottom: solid 1px #000;
     margin-bottom: 3%;
+}
+
+/* 材料のpタグ */
+.materialNumber{
+    margin-top: 1vh;
+    margin-bottom: 0%;
+}
+
+/* サムネイルのプレビュー */
+.previewImg {
+    width: 200px;
+    margin: 10px;
+    border: solid 1px silver;
 }
