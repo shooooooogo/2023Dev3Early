@@ -27,7 +27,8 @@ CREATE TABLE prefectures (
 
 -- ユーザ情報テーブルの作成
 CREATE TABLE users (
-  user_id VARCHAR(191) NOT NULL,
+  user_id INT NOT NULL,
+  user_mail VARCHAR(191) NOT NULL,
   user_name VARCHAR(191) NOT NULL,
   user_password VARCHAR(255) NOT NULL,
   user_introduction VARCHAR(200),
@@ -39,8 +40,8 @@ CREATE TABLE users (
 
 -- フォローテーブルの作成
 CREATE TABLE follows (
-  follow_user_id VARCHAR(191) NOT NULL,
-  follower_user_id VARCHAR(191) NOT NULL,
+  follow_user_id INT NOT NULL,
+  follower_user_id INT NOT NULL,
   PRIMARY KEY (follow_user_id, follower_user_id),
   FOREIGN KEY (follow_user_id) REFERENCES users (user_id),
   FOREIGN KEY (follower_user_id) REFERENCES users (user_id)
@@ -53,7 +54,7 @@ CREATE TABLE recipes (
   recipe_image MEDIUMBLOB,
   recipe_introduction VARCHAR(200),
   genre_id INT NOT NULL,
-  user_id VARCHAR(191) NOT NULL,
+  user_id INT NOT NULL,
   time_zone_id INT NOT NULL,
   recipe_people INT NOT NULL,
   recipe_is_upload INT NOT NULL,
@@ -67,7 +68,7 @@ CREATE TABLE recipes (
 
 -- お気に入りテーブルの作成
 CREATE TABLE favorites (
-  user_id VARCHAR(191) NOT NULL,
+  user_id INT NOT NULL,
   recipe_id INT NOT NULL,
   favorite_time DATE NOT NULL,
   PRIMARY KEY (user_id, recipe_id),
@@ -77,7 +78,7 @@ CREATE TABLE favorites (
 
 -- いいねテーブルの作成
 CREATE TABLE goods (
-  user_id VARCHAR(191) NOT NULL,
+  user_id INT NOT NULL,
   recipe_id INT NOT NULL,
   good_time DATE NOT NULL,
   PRIMARY KEY (user_id, recipe_id),
