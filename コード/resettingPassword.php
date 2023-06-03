@@ -20,12 +20,14 @@
 
     <body>
     <img class="resettingPasswordlogo" src="img/SumaDeliIcon.png" alt="ロゴです">
-    <form action="login.php" method="post">
+    <form action="resettingPassMailInsert.php" method="post">
       <div class="container">
         <div class="child" style="text-align:center">
           <div class="container d-flex flex-column justify-content-center align-items-center mt-auto mb-auto">
             <div class="fontMeiryo">
               <p class="changepassword">パスワードの再設定</p>
+              <p class="changetext">・メールアドレス</p>
+          <input type="email" name="passmail" value="" class="textbox" placeholder="既存メールアドレス">
               <p class="pass">・前のパスワード</p>
               <input type="password" name="beforepassword" value="" class="textbox" placeholder="既存パスワード">
               <p class="pass new-pass">・新しいパスワード</p>
