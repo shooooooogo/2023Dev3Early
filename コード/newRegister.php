@@ -31,7 +31,7 @@
     </div>
 
     <div class="input-Area">
-    <form method="post" action="login_check.php">
+    <form method="post" action="newMemberInsert.php">
         
 
         <div class="register-info">登録情報を入力</div>
