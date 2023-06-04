@@ -138,6 +138,28 @@
             <span class="mb-3" id="addHowToSpan">
                 <h1 class="ms-3">・作り方</h1>
                 
+                <!-- 画像追加のinputタグ -->
+                <!-- <div>
+                    <input type="file" class="file-input" name="How_To_image1" id="How_To_image1" onchange="changeImage()" />
+
+                    <div id="How_To_preview"><img src="" id="image" alt="Image" onclick=""></div>
+                </div> -->
+
+                <span onclick="add()">追加する</span>
+                
+                <div class="How_To">
+                    <div id="How_To1">
+                        <input type="file" class="file-input" name="How_To_image1" id="How_To_image1" style="display: none;">
+                        
+                        <!-- 追加された画像を表示する物 -->
+                        <div class="How_To_preview" id="How_To_preview1">
+                            <img src="How_To_Default.png" id="image1" alt="Image" onclick="">
+                        </div>
+
+                    </div>
+                </div>
+                
+                
             </span>
 
             <!-- 時間帯 -->
@@ -194,5 +216,6 @@
     <!-- 固有のjs -->
     <script src="script/createRecipe/addMaterial.js"></script>
     <script src="script/createRecipe/addHowTo.js"></script>
+    <script src="script/createRecipe/addRecipe_Image.js"></script>
 </body>
 </html>
