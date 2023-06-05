@@ -127,5 +127,25 @@ class DAO{
                     }
         }
     }
+
+
+
+
+    //レシピ検索
+    public function recipeSearch($recipe_search_name){
+        $pdo= $this->dbConnect();
+    //レシピ名を検索
+    $sql= "SELECT * FROM recipes WHERE recipe_name LIKE %:recipe_set%";
+    $ps= $pdo->prepare($sql);
+    $ps->bindValue(':recipe_set',$recipe_search_name);
+    $ps->execute();
+    //検索一覧ページに移動
+    if ($ps->rowCount() > 0) {
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }else{
+        echo "該当するレシピが存在しません";
+        }
+    }
 }
 ?>
