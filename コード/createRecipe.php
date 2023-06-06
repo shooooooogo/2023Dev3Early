@@ -25,8 +25,7 @@
     <!-- 個別cssの読み込み場所 -->
     <link rel="stylesheet" href="css/createRecipe.css">
 
-    <!-- 個別jsの読み込み場所 -->
-    <script src="./script/addMaterial.js"></script>
+
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -88,6 +87,7 @@
     </nav>
 
     <!-- このdivの中に要素を書き込んでください -->
+    <!-- ※注意！クラス名やcss等個々の中に関連する物をいじる場合はjavascriptも同期できるようにコーディングしてください -->
     <div class="container-fluid elements">
 
         <form class="row" method="post" action="createRecipeRemind.php" enctype="multipart/form-data">
@@ -145,17 +145,19 @@
                     <div id="How_To_preview"><img src="" id="image" alt="Image" onclick=""></div>
                 </div> -->
 
-                <span onclick="add()">追加する</span>
+                <p class="text-center" onclick="add()">+追加する</p>
                 
                 <div class="How_To">
-                    <div id="How_To1">
-                        <input type="file" class="file-input" name="How_To_image1" id="How_To_image1" style="display: none;">
-                        
+                    <div class="row" id="How_To1">
+                        <p class=" HowToNumber ms-2">・手順1</p>
                         <!-- 追加された画像を表示する物 -->
-                        <div class="How_To_preview" id="How_To_preview1">
-                            <img src="How_To_Default.png" id="image1" alt="Image" onclick="">
-                        </div>
-
+                        <span class="How_To_preview  offset-1 col-3" id="How_To_preview1">
+                            <input type="file" class="file-input noneDisplay" name="How_To_image1" id="How_To_image1" onchange='handleFileSelectHowTo("How_To_image1","image1")'>
+                            <img src="img/How_To_Default.png" class="HowToImg" id="image1" alt="Image" onclick="document.getElementById('How_To_image1').click()">
+                        </span>
+                        <span class="offset-2 col-3">
+                            <textarea class="border" name="HowTo1" id="How_To_Text1" cols="15" rows="4" maxlength="60"></textarea>
+                        </span>
                     </div>
                 </div>
                 

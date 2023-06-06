@@ -1,7 +1,7 @@
 // 複数の画像読み込み用
-const fileInput = document.getElementById('recipe_image');
+const fileInputRecipeImage = document.getElementById('recipe_image');
 const handleFileSelect = () => {
-    const files = fileInput.files;
+    const files = fileInputRecipeImage.files;
         for (let i = 0; i < files.length; i++) {
             previewFile(files[i]);
         }
@@ -41,5 +41,5 @@ function previewFile(file) {
 }
 
 // previewのidを持つ要素(fileInput)が何かしら変更されたとき(投稿される画像のアップロード、変更等)
-fileInput.addEventListener('change', handleFileSelect);
+fileInputRecipeImage.addEventListener('change', handleFileSelect);
 

@@ -89,6 +89,7 @@
     <div class="container-fluid elements">
         <?=var_dump($_POST);
             var_dump($_FILES['recipe_image']);
+            var_dump($_FILES['How_To_image1']);
         
         ?>
         <!-- ここまで -->
