@@ -25,21 +25,14 @@
     <!-- 個別cssの読み込み場所 -->
 
     <!--  -->
+
+    <?php
+        require_once 'DAO.php';
+        $dao = new DAO();
+        // $dao->insertRecipe();
+    ?>
 </head>
 <body>
-    <!-- 謎のナビゲーションバー？ -->
-    <!-- <div class="header_inner">
-        <div class="header_comment row justify-content-between">
-             なんていうか見出しのコメント的な奴
-            <div class="header_caption col align-self-start">
-                食費をカットしよう
-            </div>
-            ユーザアイコン
-            <div class="col align-self-end">
-                <i class="bi bi-person-circle" style="text-align:right"></i>
-            </div>
-        </div>
-    </div> -->
 
     <!-- ナビゲーションバー(本気) -->
     <header id="header">
@@ -89,7 +82,8 @@
     <div class="container-fluid elements">
         <?=var_dump($_POST);
             var_dump($_FILES['recipe_image']);
-            var_dump($_FILES['How_To_image1']);
+            echo "<br><br><br><br><br><br><br><br><br>";
+            var_dump($_FILES);
         
         ?>
         <!-- ここまで -->

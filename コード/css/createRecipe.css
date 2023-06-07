@@ -53,3 +53,9 @@
 .noneDisplay{
     display: none;
 }
+
+.How_To_Border{
+  margin-left: 5%;
+  width:90%;
+  border-bottom: 1px solid #333;
+}

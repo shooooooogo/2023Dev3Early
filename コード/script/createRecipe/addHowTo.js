@@ -64,6 +64,11 @@ function add() {
     
     howToCount++;//今から作るものが作り方手順の何番目かを確認する変数を+1する
 
+    //手順の間の線を引くdivタグ
+    let borderDiv = document.createElement("div");
+    borderDiv.className = "How_To_Border mt-3 mb-1";
+    howToDiv[0].appendChild(borderDiv);
+
     //追加していく要素の格納先となるdivタグの作成
     let newHowToDiv = document.createElement("div");
     newHowToDiv.className = "row";
@@ -78,7 +83,7 @@ function add() {
     
     //画像の格納先となるspanタグの作成   
     let newPreviewSpan = document.createElement("span");
-    newPreviewSpan.className = "How_To_preview ";
+    newPreviewSpan.className = "How_To_preview offset-1 col-3";
     newPreviewSpan.id = "How_To_preview" + howToCount;
     newHowToDiv.appendChild(newPreviewSpan);
 
@@ -88,15 +93,34 @@ function add() {
     newInput.className = "file-input noneDisplay";
     newInput.name = "How_To_image" + howToCount;
     newInput.id = "How_To_image" + howToCount;
-    newHowToDiv.appendChild(newInput);
+    newInput.setAttribute('onchange',"handleFileSelectHowTo('How_To_image"+howToCount+"','image"+howToCount+"')");
+    newPreviewSpan.appendChild(newInput);
 
     //imgタグの作成
     let newImage = document.createElement("img");
     newImage.src = "img/How_To_Default.png";
-
+    newImage.className = "HowToImg";
     newImage.id = "image" + howToCount;
     newImage.alt = "Image";
+    let targetImageId = "How_To_image"+howToCount;
+    newImage.setAttribute('onclick',"document.getElementById('"+targetImageId+"').click()");
     newPreviewSpan.appendChild(newImage);
+
+    //textareaを格納するspanタグの生成
+    let newTextSpan = document.createElement("span");
+    newTextSpan.className="offset-2 col-3";
+    newHowToDiv.appendChild(newTextSpan);
+
+    //textareaを生成
+    let newTextArea = document.createElement("textarea");
+    newTextArea.className = "border";
+    newTextArea.name = "HowTo"+howToCount;
+    newTextArea.id = "How_To_Text"+howToCount;
+    newTextArea.cols = "20";
+    newTextArea.rows = "4";
+    newTextArea.maxlength = "60";
+    newTextArea.placeholder = "60文字の制限があります";
+    newTextSpan.appendChild(newTextArea);
 
     
 }
