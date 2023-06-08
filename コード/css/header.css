@@ -167,17 +167,17 @@ small{
   padding: 20px;
 }
 
-section{
+/* section{
   padding:100px 30px;
-}
+} */
 
-ul{
+/* ul{
     padding-left:0px;
-}
+} */
 
-section:nth-child(2n){
+/* section:nth-child(2n){
   background:#f3f3f3; 
-}
+} */
 
 #footer{
   background:#333;
