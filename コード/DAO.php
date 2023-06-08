@@ -1,4 +1,5 @@
 <?php
+session_start();
 //データベース接続
 class DAO{
    private function dbConnect(){
@@ -12,7 +13,7 @@ class DAO{
    public function insertGetTbl($getmail,$getpass,$getuser){         
     $pdo= $this->dbConnect();
     //メールアドレス、ユーザー名、パスワードを登録
-    $sql= "INSERT INTO users(user_id,user_name,user_password)VALUES(?,?,?)";
+    $sql= "INSERT INTO users(user_mail,user_name,user_password)VALUES(?,?,?)";
     $ps= $pdo->prepare($sql);
     $ps->bindValue(1, $getmail, PDO::PARAM_STR);
     $ps->bindValue(2, $getuser, PDO::PARAM_STR);
@@ -30,7 +31,7 @@ class DAO{
     public function loginTbl($logmail){
         $pdo= $this->dbConnect();
         //アカウントが存在するか
-        $sql= "SELECT * FROM users WHERE user_id = ?";
+        $sql= "SELECT * FROM users WHERE user_mail = ?";
         $ps= $pdo->prepare($sql);
         $ps->bindValue(1, $logmail, PDO::PARAM_STR);
         $ps->execute();
@@ -38,7 +39,13 @@ class DAO{
         if ($ps->rowCount() > 0) {
             //パスワードの照合のため、login_check.phpに移動
             $log_check = $ps->fetchAll();
+            //SESSION使うかもしれないから一応置いとく
+            foreach($log_check as  $row){
+                $_SESSION['id'] = $row['user_mail'];
+                $_SESSION['name'] = $row['user_name'];
+            }
             return $log_check;
+            exit();
         }else{
             //データベースに登録していないとき
             echo "メールアドレスが間違っています。もう一度やり直してください";
@@ -57,6 +64,7 @@ class DAO{
         $pdo = $this->dbConnect();
         $sql = "INSERT INTO recipes(recipe_name, recipe_image, recipe_introduction, genre,id, user_id, time_zone_id, recipe_people, recipe_is_upload, :perfecture_id) VALUES(:recipe_name, :recipe_image, :recipe_introduction, :genre_id, :user_id, :time_zone_id, :recipe_people, :perfecture_id)";
         $ps=$pdo->prepare($sql);
+
         $ps->bindValue(':recipe_name', $recipe_name, PDO::PARAM_STR);
         $ps->bindValue(':recipe_image', $recipe_image, PDO::PARAM_STR);
         $ps->bindValue(':recipe_introduction', $recipe_introduction, PDO::PARAM_STR);
@@ -65,20 +73,20 @@ class DAO{
         $ps->bindValue(':time_zone_id', $time_zone_id, PDO::PARAM_INT);
         $ps->bindValue(':recipe_people', $recipe_people, PDO::PARAM_INT);
         $ps->bindValue(':perfecture_id', $perfecture_id, PDO::PARAM_INT);
+        
         $ps->execute();
-
     }
     
     //メールアドレス再設定
     public function resetMail($resetmail,$newmail){
                 $pdo= $this->dbConnect();
                                                 // ↓新たに追加したいメアド       ↓前のメアド
-                $sql= "UPDATE users SET user_id = :new_user_id WHERE user_id = :reset_user_id";
+                $sql= "UPDATE users SET user_mail = :new_user_mail WHERE user_mail = :reset_user_mail";
                 $ps= $pdo->prepare($sql);
                 //新たに追加するメアドを投入
-                $ps->bindValue(':new_user_id', $newmail);
+                $ps->bindValue(':new_user_mail', $newmail);
                 //前のメアドを投入
-                $ps->bindValue(':reset_user_id',$resetmail);
+                $ps->bindValue(':reset_user_mail',$resetmail);
                 $ps->execute();
                 // メールアドレスの更新に成功した場合、ログインページに移動する
                 if ($ps->rowCount() > 0) {
@@ -91,23 +99,54 @@ class DAO{
 
 
     //パスワード再設定
-    public function resetPassword($resetpass,$newpass){
+    public function resetPassword($log_mail,$resetpass,$newpass){
                 $pdo= $this->dbConnect();
-                                                // ↓新たに追加したいパスワード       ↓前のパスワード
-                $sql= "UPDATE users SET user_id = :new_user_password WHERE user_id = :reset_user_password";
+                                                // ↓新たに追加したいパスワード     ↓WHERE句で追加する場所の指定
+                $sql= "UPDATE users SET user_password = :new_user_password  WHERE user_mail = :reset_user_password_log_mail";
                 $ps= $pdo->prepare($sql);
-                //新たに追加するパスワードを投入
-                $ps->bindValue(':new_user_password', $newpass);
-                //前のパスワードを投入
-                $ps->bindValue(':reset_user_password',$resetpass);
-                $ps->execute();
+                
+                    //新たに追加するパスワードを投入
+                $ps->bindValue(':new_user_password', password_hash($newpass, PASSWORD_DEFAULT), PDO::PARAM_STR);
+
+                foreach($log_mail as $row){
+                    
+                    //$log_mail($row)をWHERE句に設置
+                $ps->bindValue(':reset_user_password_log_mail',$row['user_mail']);
+                
+                    //入力された前のパスワードがあっているか
+                if(password_verify($resetpass, $row['user_password'])  ==  true){
+
+                    $ps->execute();
+
                 // パスワードの更新に成功した場合、ログインページに移動する
                 if ($ps->rowCount() > 0) {
                     header("Location: login.php");
                     exit();
+                }
                 }else{
                     echo "以前のパスワードが間違っています。もう一度やり直してください";
-                }
+                    }
         }
+    }
+
+
+
+
+    //レシピ検索
+    public function recipeSearch($recipe_search_name){
+        $pdo= $this->dbConnect();
+    //レシピ名を検索
+    $sql= "SELECT * FROM recipes WHERE recipe_name LIKE %:recipe_set%";
+    $ps= $pdo->prepare($sql);
+    $ps->bindValue(':recipe_set',$recipe_search_name);
+    $ps->execute();
+    //検索一覧ページに移動
+    if ($ps->rowCount() > 0) {
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }else{
+        echo "該当するレシピが存在しません";
+        }
+    }
 }
 ?>
