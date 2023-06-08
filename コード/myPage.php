@@ -66,19 +66,39 @@
         <!-- ユーザー情報 -->
         <div class="user-info">
             <p class="prefecture user-info-text">__県民</p>
-            <p class="follow user-info-text"><span class="user-info-text-bold">フォロー数</span>：9,999人</p>
-            <p class="follow user-info-text"><span class="user-info-text-bold">フォロワー数</span>：9,999人</p>
-            <textarea name="#" class="introduction user-info-text" cols="50" >テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</textarea>
+            <p class="follow user-info-text"><span class="user-info-text-bold">フォロー</span>：9,999人</p>
+            <p class="follow user-info-text"><span class="user-info-text-bold">フォロワー</span>：9,999人</p>
+            <textarea name="#" class="introduction user-info-text" cols="40" row="3">ここにユーザーの紹介文を表示</textarea>
         </div>
+    </div>
 
-        <!-- ログインまたは新規登録 -->
-        <h1 class="user-register">
+    <!-- ログインまたは新規登録 -->
+    <h1 class="user-register">
             <a href="./newRegister.php" class="user-register-link">新規登録</a>
             または<a href="./login.php" class="user-register-link">ログイン</a>
-        </h1>
+    </h1>
 
+    <section class="myPage-content">
+        <ul class="myPage-content-tab">
+            <li class="myPage-content-tablist">いいね</li>
+            <li class="myPage-content-tablist">お気に入り</li>
+            <li class="myPage-content-tablist">投稿済み</li>
+            <li class="myPage-content-tablist">下書き</li>
+        </ul>
 
-    </div>
+        <div class="myPage-content-posts">
+            <div class="myPage-content-posted">
+                <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                <div class="post-image-float">
+                    <p class="post-text">ペッパーライス</p>
+                    <p class="post-text">予算　9,999円</p>
+                </div>
+                <div class="post-like">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 
     
         
