@@ -29,8 +29,6 @@
     <?php
         require_once 'DAO.php';
         $dao = new DAO();
-        var_dump($_POST['genre_id']);
-        var_dump($_POST['time_zone_id']);
         $genre_id = (int)$_POST['genre_id'];
         $user_id=1;
         $time_zone_id = (int)$_POST['time_zone_id'];
