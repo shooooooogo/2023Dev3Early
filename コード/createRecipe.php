@@ -95,7 +95,7 @@
             <!-- レシピのタイトル -->
             <span>
             <h1  class="ms-2">・レシピのタイトル</h1>
-            <input class="textInput col-11 ms-3" type="text" name="recipe_title" placeholder="(例)さばの味噌煮">
+            <input class="textInput col-11 ms-3" type="text" name="recipe_name" placeholder="(例)さばの味噌煮">
             </span>
 
             <!-- サムネイル画像 -->
@@ -170,7 +170,7 @@
             <!-- 時間帯 -->
             <span>
                 <h1 class="ms-2">時間帯(以下の内から選択)</h1>
-                <select name="time_zone">
+                <select name="time_zone_id">
                     <option value="0">時間帯を指定しない</option>
                     <option value="1">朝食</option>
                     <option value="2">昼食</option>
@@ -179,9 +179,27 @@
                 </select>
             </span>
 
+            <!-- ジャンル -->
+            <span>
+                <h1 class="ms-2">ジャンル</h1>
+                <select name="genre_id">
+                    <option value="0">野菜料理</option>
+                    <option value="1">魚料理</option>
+                    <option value="2">肉料理</option>
+                    <option value="3">麺料理</option>
+                    <option value="4">ご飯もの</option>
+                    <option value="5">デザート</option>
+                    <option value="6">和食</option>
+                    <option value="7">中華料理</option>
+                    <option value="8">イタリアン</option>
+                    <option value="9">フレンチ</option>
+                </select>
+            </span>
+
+            <!-- 都道府県 -->
             <span>
                 <h1>都道府県</h1>
-                <select name="perfectures">
+                <select name="perfecture_id">
                     <option value="0">県を指定しない</option>
                     <option value="1">北海道</option>
                     <option value="2">青森県</option>

@@ -6,28 +6,28 @@ USE smart_delicious;
 
 -- ジャンルテーブルの作成
 CREATE TABLE genres (
-  genre_id INT NOT NULL AUTO_INCREMENT,
+  genre_id INT NOT NULL,
   genre_name VARCHAR(191) NOT NULL,
   PRIMARY KEY (genre_id)
 );
 
 -- 時間帯テーブルの作成 
 CREATE TABLE time_zones (
-  time_zone_id INT NOT NULL AUTO_INCREMENT,
+  time_zone_id INT NOT NULL,
   time_zone_name VARCHAR(191) NOT NULL,
   PRIMARY KEY (time_zone_id)
 );
 
 -- 都道府県テーブルの作成 
 CREATE TABLE prefectures (
-  prefecture_id INT NOT NULL AUTO_INCREMENT,
+  prefecture_id INT NOT NULL,
   prefecture_name VARCHAR(191) NOT NULL,
   PRIMARY KEY (prefecture_id)
 );
 
 -- ユーザ情報テーブルの作成
 CREATE TABLE users (
-  user_id INT NOT NULL,
+  user_id INT NOT NULL AUTO_INCREMENT,
   user_mail VARCHAR(191) NOT NULL,
   user_name VARCHAR(191) NOT NULL,
   user_password VARCHAR(255) NOT NULL,
