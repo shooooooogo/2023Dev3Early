@@ -1,6 +1,8 @@
 /* ユーザートップ */
-.user{
+body{
     max-width: 390px;
+}
+.user{
     margin: 0 15px;
 }
 .user-top{
@@ -50,7 +52,7 @@
 .user-register{
     text-align: center;
     font-size: 15px;
-    margin: 40px 0 0px;
+    margin: 30px 0 0px;
 }
 .user-register-link{
     text-decoration: none;
@@ -61,7 +63,7 @@
 /* マイページのタブ */
 .myPage-content{
     max-width: 767px;
-    height: 400px;
+    height: 420px;
     padding: 0;
     margin: 5px 15px 0;
     border: 1px solid #000000;
@@ -72,7 +74,7 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    background-color: #c0c0c0;
+    background-color: #dcdcdc;
     border-bottom: 1px solid #000000;
     margin-bottom: 0;
 }
@@ -84,14 +86,31 @@
 }
 
 /* 投稿内容 */
-.myPage-content-posts{
-    
+.myPage-content-posted{
+    margin: 8px 8px ;
+    height: 100px;
 }
 .post-image{
     float: left;
-    margin: 10px;
     width: 100px;
+}
+.post-text-name{
+    margin: 0 0 0 15px;
+    font-size: 20px;
+}
+.post-text-budget{
+    margin: 0 0 0 15px;
+    font-size: 18px;
 }
 .post-image-float{
     overflow: hidden;
 }
+.post-like i{
+    margin: 0 15px;
+    font-size: 18px;
+}
+.post-underline{
+    border-bottom: 1px solid #000000;
+}
+
+
