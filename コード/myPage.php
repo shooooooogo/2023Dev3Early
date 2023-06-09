@@ -78,7 +78,8 @@
             または<a href="./login.php" class="user-register-link">ログイン</a>
     </h1>
 
-    <section class="myPage-content">
+    <!-- タブ -->
+    <div class="myPage-content">
         <ul class="myPage-content-tab">
             <li class="myPage-content-tablist">いいね</li>
             <li class="myPage-content-tablist">お気に入り</li>
@@ -86,19 +87,23 @@
             <li class="myPage-content-tablist">下書き</li>
         </ul>
 
+        <!-- 各タブの中の投稿内容 -->
         <div class="myPage-content-posts">
             <div class="myPage-content-posted">
                 <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
-                <div class="post-image-float">
-                    <p class="post-text">ペッパーライス</p>
-                    <p class="post-text">予算　9,999円</p>
-                </div>
-                <div class="post-like">
-                    
+                    <div class="post-image-float">
+                        <div class="post-text-name">ペッパーライス</div>
+                        <div class="post-text-budget">予算　9,999円</div>
+                    </div>
+                    <div class="post-like">
+                        <i class="bi bi-hand-thumbs-up">9,999</i>
+                        <i class="bi bi-bookmark-star verylike">9,999</i>
+                    </div>
                 </div>
             </div>
+            <div class="post-underline"></div>
         </div>
-    </section>
+</div>
 
     
         
