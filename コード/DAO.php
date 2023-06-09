@@ -62,18 +62,22 @@ class DAO{
     // 下書き新規保存
     public function insertRecipe($recipe_name, $recipe_image, $recipe_introduction, $genre_id, $user_id, $time_zone_id, $recipe_people, $perfecture_id){
         $pdo = $this->dbConnect();
-        $sql = "INSERT INTO recipes(recipe_name, recipe_image, recipe_introduction, genre,id, user_id, time_zone_id, recipe_people, recipe_is_upload, :perfecture_id) VALUES(:recipe_name, :recipe_image, :recipe_introduction, :genre_id, :user_id, :time_zone_id, :recipe_people, :perfecture_id)";
+        $sql = "INSERT INTO recipes(recipe_id,recipe_name, recipe_image, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, perfecture_id)
+                 VALUES(:recipe_id,:recipe_name, :recipe_image, :recipe_introduction, :genre_id, :user_id, :time_zone_id, :recipe_people, :recipe_is_upload, :perfecture_id)";
         $ps=$pdo->prepare($sql);
 
+        $ps->bindValue(':recipe_id',0,PDO::PARAM_STR);
         $ps->bindValue(':recipe_name', $recipe_name, PDO::PARAM_STR);
-        $ps->bindValue(':recipe_image', $recipe_image, PDO::PARAM_STR);
+        $ps->bindValue(':recipe_image', file_get_contents($recipe_image), PDO::PARAM_STR);
         $ps->bindValue(':recipe_introduction', $recipe_introduction, PDO::PARAM_STR);
         $ps->bindValue(':genre_id', $genre_id, PDO::PARAM_INT);
         $ps->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         $ps->bindValue(':time_zone_id', $time_zone_id, PDO::PARAM_INT);
         $ps->bindValue(':recipe_people', $recipe_people, PDO::PARAM_INT);
+        $ps->bindValue(':recipe_is_upload', 0, PDO::PARAM_INT);
         $ps->bindValue(':perfecture_id', $perfecture_id, PDO::PARAM_INT);
         
+        var_dump($ps);
         $ps->execute();
     }
     

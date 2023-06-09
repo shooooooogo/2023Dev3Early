@@ -29,7 +29,12 @@
     <?php
         require_once 'DAO.php';
         $dao = new DAO();
-        // $dao->insertRecipe();
+        $genre_id = (int)$_POST['genre_id'];
+        $user_id=1;
+        $time_zone_id = (int)$_POST['time_zone_id'];
+        $recipe_people = (int)$_POST['recipe_people'];
+        $perfecture_id = (int)$_POST['perfecture_id'];
+        $dao->insertRecipe($_POST['recipe_name'],$_FILES['recipe_image']['tmp_name'],$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$perfecture_id);
     ?>
 </head>
 <body>
@@ -82,7 +87,7 @@
     <div class="container-fluid elements">
         <?=var_dump($_POST);
             var_dump($_FILES['recipe_image']);
-            echo "<br><br><br><br><br><br><br><br><br>";
+            echo "<br><br><br><br><br><br>";
             var_dump($_FILES);
         
         ?>
