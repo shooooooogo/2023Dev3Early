@@ -22,6 +22,11 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
+     <!-- このページのcss -->
+     <link rel="stylesheet" href="css/myPage.css">
+
+    
+
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -38,9 +43,71 @@
         </div>
     </div> -->
 
-    <!-- この中に要素を追加 -->
-        <img class=UserIcon_default>
+    <!-- ナビゲーションバー(本気) -->
+    <header id="header">
+        <div class="text-start">
+            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
+        </div>
+    </header>
 
+   
+
+    <!-- この中に要素を追加 -->
+    <div class="user">
+        <!-- ユーザートップ -->
+        <div class="user-top">
+            <img src="img/UserIcon_default.png" alt="アイコン" class="user-icon">
+            <h1 class="user-name">USERNAME</h1>
+            <div class="user-setting">
+                <i class="bi bi-gear-fill"></i>
+            </div>
+        </div>
+
+        <!-- ユーザー情報 -->
+        <div class="user-info">
+            <p class="prefecture user-info-text">__県民</p>
+            <p class="follow user-info-text"><span class="user-info-text-bold">フォロー</span>：9,999人</p>
+            <p class="follow user-info-text"><span class="user-info-text-bold">フォロワー</span>：9,999人</p>
+            <textarea name="#" class="introduction user-info-text" cols="40" row="3">ここにユーザーの紹介文を表示</textarea>
+        </div>
+    </div>
+
+    <!-- ログインまたは新規登録 -->
+    <h1 class="user-register">
+            <a href="./newRegister.php" class="user-register-link">新規登録</a>
+            または<a href="./login.php" class="user-register-link">ログイン</a>
+    </h1>
+
+    <!-- タブ -->
+    <div class="myPage-content">
+        <ul class="myPage-content-tab">
+            <li class="myPage-content-tablist">いいね</li>
+            <li class="myPage-content-tablist">お気に入り</li>
+            <li class="myPage-content-tablist">投稿済み</li>
+            <li class="myPage-content-tablist">下書き</li>
+        </ul>
+
+        <div class="scrollRange">
+            <!-- 各タブの中の投稿内容ここから -->
+            <div class="myPage-content-posts">
+                <div class="myPage-content-posted">
+                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                        <div class="post-image-float">
+                            <div class="post-text-name">ペッパーライス</div>
+                            <div class="post-text-budget">予算　9,999円</div>
+                        </div>
+                        <div class="post-like">
+                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                        </div>
+                </div>
+            </div>
+            <div class="post-underline"></div>
+            <!-- 各タブの投稿内容ここまで -->
+        </div>
+    </div>
+
+    
         
     <!-- /この中に要素を追加 -->
 
@@ -48,9 +115,9 @@
     <!-- 下のナビゲーションバー ※リンク未定義-->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="#" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
+            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
+            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
         </div>
     </footer>
 
