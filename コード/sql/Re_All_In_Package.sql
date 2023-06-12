@@ -1,3 +1,7 @@
+-- これは既にsmart_deliciousデータベースを作ったけど作り直す時に使うやつです
+-- 元からあるデータベースを削除
+DROP DATABASE smart_delicious;
+
 -- 使用するデータベースの作成
 CREATE DATABASE smart_delicious;
 

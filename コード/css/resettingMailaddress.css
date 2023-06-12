@@ -39,7 +39,7 @@
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #F7F7F7;
+    /* background-color: #F7F7F7; */
   }
   .changeButton{
     margin: 40px 0 0;

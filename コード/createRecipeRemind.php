@@ -19,27 +19,25 @@
 
     <!-- header導入のためのcss -->
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
-    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css"> -->
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
     <!-- 個別cssの読み込み場所 -->
 
     <!--  -->
+
+    <?php
+        require_once 'DAO.php';
+        $dao = new DAO();
+        $genre_id = (int)$_POST['genre_id'];
+        $user_id=1;
+        $time_zone_id = (int)$_POST['time_zone_id'];
+        $recipe_people = (int)$_POST['recipe_people'];
+        $perfecture_id = (int)$_POST['perfecture_id'];
+        $dao->insertRecipe($_POST['recipe_name'],$_FILES['recipe_image']['tmp_name'],$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$perfecture_id);
+    ?>
 </head>
 <body>
-    <!-- 謎のナビゲーションバー？ -->
-    <!-- <div class="header_inner">
-        <div class="header_comment row justify-content-between">
-             なんていうか見出しのコメント的な奴
-            <div class="header_caption col align-self-start">
-                食費をカットしよう
-            </div>
-            ユーザアイコン
-            <div class="col align-self-end">
-                <i class="bi bi-person-circle" style="text-align:right"></i>
-            </div>
-        </div>
-    </div> -->
 
     <!-- ナビゲーションバー(本気) -->
     <header id="header">
@@ -89,6 +87,8 @@
     <div class="container-fluid elements">
         <?=var_dump($_POST);
             var_dump($_FILES['recipe_image']);
+            echo "<br><br><br><br><br><br>";
+            var_dump($_FILES);
         
         ?>
         <!-- ここまで -->

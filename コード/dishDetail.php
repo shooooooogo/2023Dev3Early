@@ -90,10 +90,10 @@
     <div class="container-fluid elements">
         
         <!-- 料理のサムネ＆タイトル -->
-        <div class="row pt-2" style="width:100%">
+        <div class="row pt-2">
             <img class="dishImg col-12 offset-1 img-fluid" src="img/PepperRice.png" alt="">
         </div>
-        <h1>ぶちうまペッパーライス</h1>
+        <h3 style="text-align: center;">ぶちうまペッパーライス</h3>
 
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
@@ -112,19 +112,58 @@
         </div>
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
-        <h6>都道府県ラベル： 山口県</h6><br>
+        <br>
+        <h6 style="margin-left:10%">都道府県ラベル： 山口県</h6><br>
 
         <!-- 食費 -->
-        <h3>・食費</h3>
-        <div  
-        style="color:#FFE300;text-align: center;font-size:40px;"> 505円/1人</div>
+        <h3 style="margin-left:5%">食費</h3>
+        <div
+            style="color:#FFE300;text-align: center;font-size:40px;"> 505円/1人
+        </div>
 
 
         <!-- 材料 -->
-        <h3>・材料</h3>
-        <div class="row pt-2 pb-2" style="width:100%">
+        <h3 style="margin-left:5%">材料</h3>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="row pt-3" style="">
+                
+                
+                <div class="offset-1 col-4" style="font-weight:bold">材料名</div>
+                <div class="col-3" style="font-weight:bold">分量</div></b>
+                <div class="col-4" style="font-weight:bold">値段(目安)</div>
+                
+
+                <!-- ループ開始位置 DBに接続して材料たちを詳細番号毎に出力 -->
+
+                    <!-- 材料名 -->
+                    <div class="offset-1 col-4">パスタ</div>
+                    <!--　分量 -->
+                    <div class="col-3">100g</div>
+                    <!-- 値段 -->
+                    <div class="col-3"><div style="text-align:right;">100円</div></div>
+
+                <!-- ループ終了位置 -->
+
+                    <!-- 材料名 -->
+                    <div class="offset-1 col-4">玉ねぎ</div>
+                    <!--　分量 -->
+                    <div class="col-3">1/4個</div>
+                    <!-- 値段 -->
+                    <div class="col-3"><div style="text-align:right;">25円</div></div>
+                    <!-- 材料名 -->
+                    <div class="offset-1 col-4">ピーマン</div>
+                    <!--　分量 -->
+                    <div class="col-3">1個</div>
+                    <!-- 値段 -->
+                    <div class="col-3"><div style="text-align:right;">40円</div></div>
+
+                    
+
+            </div>
+
+
+
+            <br><br><br><br>
 
         
 

@@ -5,8 +5,8 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- cssの導入 -->
-      <link rel="stylesheet" href="./css/resettingMPassword.css">
       <link rel="stylesheet" href="./css/style.css?v=2">
+      <link rel="stylesheet" href="./css/resettingPassword.css">
           <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
@@ -19,22 +19,25 @@
     </head>
 
     <body>
-    <form action="login.php" method="post">
-  <div class="container">
-<div class="child" style="text-align:center">
-  <div class="container d-flex flex-column justify-content-center align-items-center mt-auto mb-auto">
-    <div class="fontMeiryoBold">
-    <p>パスワードの再設定</p>
-    <p class="mb-2">・前のパスワード</p>
-    <p><input type="password" name="beforepassword" value="" class="form-control mb-2" placeholder="既存パスワード"></p>
-    <p class="mb-2">・新しいパスワード</p>
-    <p><input type="password" name="afterpassword" value="" class="form-control mb-2" placeholder="新規パスワード"></p>
-    <p><input type="submit" value="変更する" class="defo-btn"></p>
+    <img class="resettingPasswordlogo" src="img/SumaDeliIcon.png" alt="ロゴです">
+    <form action="resettingPassMailInsert.php" method="post">
+      <div class="container">
+        <div class="child" style="text-align:center">
+          <div class="container d-flex flex-column justify-content-center align-items-center mt-auto mb-auto">
+            <div class="fontMeiryo">
+              <p class="changepassword">パスワードの再設定</p>
+              <p class="changetext">・メールアドレス</p>
+          <input type="email" name="passmail" value="" class="textbox" placeholder="既存メールアドレス">
+              <p class="pass">・前のパスワード</p>
+              <input type="password" name="beforepassword" value="" class="textbox" placeholder="既存パスワード">
+              <p class="pass new-pass">・新しいパスワード</p>
+              <input type="password" name="afterpassword" value="" class="textbox" placeholder="新規パスワード"><br>
+              <input type="submit" value="変更する" class="changebutton">
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-</form>
+    </form>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
