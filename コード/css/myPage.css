@@ -86,6 +86,13 @@ body{
 }
 
 /* 投稿内容 */
+
+.scrollRange{
+    overflow: auto;
+    height: 400px;
+}
+/* .myPage-content-posts{} */
+
 .myPage-content-posted{
     margin: 8px 8px ;
     height: 100px;
