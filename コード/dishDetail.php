@@ -163,7 +163,15 @@
 
 
 
-            <br><br><br><br>
+            <br><br>
+            <!-- 作り方 -->
+            <h3>作り方</h3>
+            
+                <div>
+                    1
+                    <img src="img/作りかた例１.webp" style="width:100% height:10px">
+                </div>
+            <br><br>
 
         
 
