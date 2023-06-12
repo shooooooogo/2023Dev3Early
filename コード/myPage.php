@@ -43,12 +43,49 @@
         </div>
     </div> -->
 
-    <!-- ナビゲーションバー(本気) -->
-    <header id="header">
+   <!-- ナビゲーションバー(本気) -->
+   <header id="header">
         <div class="text-start">
             <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
         </div>
+        
     </header>
+
+    <div class="openbtn1">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav id="g-nav">
+        <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
+            <ul>
+                <!-- <li>ここに色々書くと横から出てくる奴に表示されます</li> -->
+            
+                <!-- ユーザ情報表示 -->
+                <div>
+                    <!-- マイページへ遷移 -->
+                    <a href="myPage.php" class="row ml-5 noDecoration">
+                        <img class="col-3 img-fluid" src="img/UserIcon_default.png">
+                        <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
+                    </a>
+                </div>
+
+
+                <!-- 虫眼鏡付きの検索ボックス -->
+                <li class="text-start">
+                    <form action="searchResult.php" method="post" class="search_container">
+                        <input type="text" size="15" placeholder="料理名・食材名">
+                        <input type="submit" value="&#xf002">
+                    </form>
+                </li>
+                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <li><a href="top.php">Top画面</a></li>
+                <li><a href="ranking.php">ランキング</a></li>
+                <li><a href="myPage.php">マイページ</a></li>
+                <li><a href="createRecipe.php">レシピを作る</a></li>
+            </ul>            
+        </div>
+    </nav>
 
    
 
