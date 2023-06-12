@@ -140,9 +140,9 @@ class DAO{
     public function recipeSearch($recipe_search_name){
         $pdo= $this->dbConnect();
     //レシピ名を検索
-    $sql= "SELECT * FROM recipes WHERE recipe_name LIKE %:recipe_set%";
+    $sql= "SELECT * FROM recipes WHERE recipe_name LIKE '%$recipe_search_name%'";
     $ps= $pdo->prepare($sql);
-    $ps->bindValue(':recipe_set',$recipe_search_name);
+    // $ps->bindValue(':recipe_set',$recipe_search_name);
     $ps->execute();
     //検索一覧ページに移動
     if ($ps->rowCount() > 0) {
@@ -150,6 +150,8 @@ class DAO{
         return $resultRecipe;
     }else{
         echo "該当するレシピが存在しません";
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
         }
     }
 }
