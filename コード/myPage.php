@@ -43,6 +43,8 @@
         </div>
     </div> -->
 
+    <!-- この中に要素を追加 -->
+
    <!-- ナビゲーションバー(本気) -->
    <header id="header">
         <div class="text-start">
@@ -87,10 +89,7 @@
         </div>
     </nav>
 
-   
-
-    <!-- この中に要素を追加 -->
-    <div class="user">
+       <div class="user">
         <!-- ユーザートップ -->
         <div class="user-top">
             <img src="img/UserIcon_default.png" alt="アイコン" class="user-icon">
@@ -115,37 +114,195 @@
             または<a href="./login.php" class="user-register-link">ログイン</a>
     </h1>
 
-    <!-- タブ -->
     <div class="myPage-content">
+        <!-- タブ -->
         <ul class="myPage-content-tab">
-            <li class="myPage-content-tablist">いいね</li>
-            <li class="myPage-content-tablist">お気に入り</li>
-            <li class="myPage-content-tablist">投稿済み</li>
-            <li class="myPage-content-tablist">下書き</li>
+            <!-- いいねのコンテンツ -->
+            <li class="myPage-content-tablist likestab is-active" data-target="likes">いいね</li>
+
+            <!-- お気に入りのコンテンツ -->
+            <li class="myPage-content-tablist favoritestab" data-target="fovorites">お気に入り</li>
+
+            <!-- 投稿済みのコンテンツ -->
+            <li class="myPage-content-tablist postedtab" data-target="posted">投稿済み</li>
+
+            <!-- 下書きのコンテンツ -->
+            <li class="myPage-content-tablist draftstab" data-target="drafts">下書き</li>
         </ul>
 
-        <div class="scrollRange">
-            <!-- 各タブの中の投稿内容ここから -->
-            <div class="myPage-content-posts">
-                <div class="myPage-content-posted">
-                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
-                        <div class="post-image-float">
-                            <div class="post-text-name">ペッパーライス</div>
-                            <div class="post-text-budget">予算　9,999円</div>
+        <div class="pane-group">
+            <div class="scrollRange">
+                    <!-- いいねタブの中 -->
+                    <div id="likesTab" class="panel likestab is-show">
+                        <!-- 各タブの中の投稿内容ここから -->
+                        <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">いいねペッパーライス</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
                         </div>
-                        <div class="post-like">
-                            <i class="bi bi-hand-thumbs-up">9,999</i>
-                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                        <!-- 各タブの投稿内容ここまで -->
+
+                         <!-- 各タブの中の投稿内容ここから -->
+                         <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">いいねペッパーライス</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
                         </div>
-                </div>
+                        <!-- 各タブの投稿内容ここまで -->
+
+                        <!-- 各タブの中の投稿内容ここから -->
+                        <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">いいねペッパーライス</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
+                        </div>
+                        <!-- 各タブの投稿内容ここまで -->
+
+                        <!-- 各タブの中の投稿内容ここから -->
+                        <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">いいねペッパーライス</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
+                        </div>
+                        <!-- 各タブの投稿内容ここまで -->
+                    </div>      
+                    <!-- // いいねタブの中 -->
+
+                    <!-- お気に入りタブの中 -->
+                    <div id="favoritesTab" class="panel favoritestab">
+                        <!-- 各タブの中の投稿内容ここから -->
+                        <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">お気に入りペッパーライス</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
+                        </div>
+                        <!-- 各タブの投稿内容ここまで -->
+
+                         <!-- 各タブの中の投稿内容ここから -->
+                         <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/iekeiramen.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">家系ラーメン</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
+                        </div>
+                        <!-- 各タブの投稿内容ここまで -->
+                    </div>      
+                    <!-- // いいねタブの中 -->
+                
+                    <!-- 投稿済みタブの中 -->
+                    <div id="postedTab" class="panel postedtab">
+                        <!-- 各タブの中の投稿内容ここから -->
+                        <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">投稿済みペッパーライス</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
+                        </div>
+                        <!-- 各タブの投稿内容ここまで -->
+                    </div>
+                    <!-- // 投稿済みタブの中 -->
+
+                     <!-- 下書きタブの中 -->
+                    <!-- 各タブの中の投稿内容ここから -->
+                    <div id="draftsTab" class="panel draftstab">
+                        <div class="div-underline">
+                            <div class="myPage-content-posts">
+                                <div class="myPage-content-posted">
+                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
+                                        <div class="post-image-float">
+                                            <div class="post-text-name">下書きペッパーライス</div>
+                                            <div class="post-text-budget">予算　9,999円</div>
+                                        </div>
+                                        <div class="post-like">
+                                            <i class="bi bi-hand-thumbs-up">9,999</i>
+                                            <i class="bi bi-bookmark-star verylike">9,999</i>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="post-underline"></div>
+                        </div>
+                        <!-- 各タブの投稿内容ここまで -->
+                    </div>
+                    <!-- // 下書きタブの中 -->
             </div>
-            <div class="post-underline"></div>
-            <!-- 各タブの投稿内容ここまで -->
+            
         </div>
     </div>
-
-    
-        
     <!-- /この中に要素を追加 -->
 
 
@@ -167,5 +324,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
     <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/js/5-1-14.js"></script>
     <script src="script/header.js"></script>
+
+    <!-- このページのJs -->
+    <script src="script/myPage.js"></script>
 </body>
 </html>

@@ -84,18 +84,24 @@ body{
     padding: 8px 0;
     font-size: 18px;
 }
+.myPage-content-tablist.is-active{
+    /* background:#F00; */
+    color:#F00;
+    transition: all 0.2s ease-out;
+}
 
 /* 投稿内容 */
-
 .scrollRange{
     overflow: auto;
     height: 400px;
 }
-/* .myPage-content-posts{} */
-
+/* .myPage-content-posts{
+    position: relative;
+} */
 .myPage-content-posted{
     margin: 8px 8px ;
     height: 100px;
+    /* position: relative; */
 }
 .post-image{
     float: left;
@@ -104,6 +110,10 @@ body{
 .post-text-name{
     margin: 0 0 0 15px;
     font-size: 20px;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .post-text-budget{
     margin: 0 0 0 15px;
@@ -119,5 +129,10 @@ body{
 .post-underline{
     border-bottom: 1px solid #000000;
 }
-
+.panel{
+    display: none;
+}
+.panel.is-show{
+    display: block;
+}
 
