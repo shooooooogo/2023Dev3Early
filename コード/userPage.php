@@ -101,17 +101,17 @@
 
     <!-- ここら辺はマイページからパクってくる -->
     
-    <div style="width:90%;margin-left:auto;margin-right:auto; border-top: 1px solid #000000;">
+    <div style="width:90%;margin-left:auto;margin-right:auto; border-top: 2px solid #000000;">
         <div class="popular"><br>
             <h1 style="text-align:left">・人気のレシピ</h1>
             <!-- ここからレシピの塊 -->
             <div class="row">
                 <!-- 画像 -->
-                <div class="col-4">
+                <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
                     <image src="img/PepperRice.png"style="width:100%">
                 </div>
 
-                <div class="offset-1 col-7 row">
+                <div class="col-8 row">
                     <!-- タイトル -->
                     <div class="col-12">
                         ペッパーライス
@@ -124,23 +124,93 @@
                         100円
                     </div>
                     <!-- いいね、お気に入り　-->
-                    <div class="col-5">
+                    <div class="col-6">
                         <i class="bi bi-hand-thumbs-up"></i>
+                        <span style="">9999999</span>
                     </div>
                     <div class="col-6">
                         <i class="bi bi-bookmark-star"></i>
+                        <span style="">9999999</span>
                     </div>
                 </div>
-
-
+                <div style="border-bottom: 1px solid #000000; margin-left:auto;margin-right:auto;"></div>
             </div>
+
+
+            <div class="row" style="border-bottom: 1px solid #000000;">
+                <!-- 画像 -->
+                <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
+                    <image src="img/PepperRice.png"style="width:100%">
+                </div>
+
+                <div class="col-8 row">
+                    <!-- タイトル -->
+                    <div class="col-12">
+                        ペッパーライス
+                    </div>
+                    <!-- 予算 -->
+                    <div class="col-6">
+                        予算
+                    </div>
+                    <div class="col-6">
+                        100円
+                    </div>
+                    <!-- いいね、お気に入り　-->
+                    <div class="col-6">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <span style="">9999999</span>
+                    </div>
+                    <div class="col-6">
+                        <i class="bi bi-bookmark-star"></i>
+                        <span style="">9999999</span>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+
+
         </div>
-        <br>
+
         <div class="newpost"><br>
             <h1 style="text-align:left">・最新の投稿</h1>
 
+
+            <div class="row" style="border-bottom: 1px solid #000000;">
+                <!-- 画像 -->
+                <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
+                    <image src="img/PepperRice.png"style="width:100%">
+                </div>
+
+                <div class="col-8 row">
+                    <!-- タイトル -->
+                    <div class="col-12">
+                        ペッパーライス
+                    </div>
+                    <!-- 予算 -->
+                    <div class="col-6">
+                        予算
+                    </div>
+                    <div class="col-6">
+                        100円
+                    </div>
+                    <!-- いいね、お気に入り　-->
+                    <div class="col-6">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        <span style="">9999999</span>
+                    </div>
+                    <div class="col-6">
+                        <i class="bi bi-bookmark-star"></i>
+                        <span style="">9999999</span>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     </div>
 

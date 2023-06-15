@@ -99,6 +99,7 @@
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <!-- ここまで -->
         <div class="footerCooporation">
+            
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
             <ul class="md-flex">
                 <li><a href="terms.php">利用規約</a></li>
