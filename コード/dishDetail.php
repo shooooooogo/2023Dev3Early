@@ -163,7 +163,26 @@
 
 
 
-            <br><br><br><br>
+            <br><br>
+            <!-- 作り方 -->
+            <div style="margin-left:5%; margin-right:5%">
+                <h3 >作り方</h3>
+                <!-- 必要数に応じて増やして -->
+                <div style="margin-left:5%; margin-right:5%">
+                    <div class="number">1</div>
+                    <img src="img/作りかた例１.webp" style="width:100%; height:auto; ml-5%; mr-5%;">
+                    <div class="text">キャベツは食べやすく4~5㎝のざく切りに 肉も長いものは適当な大きさに切ってかるく塩コショウしておきます</div>
+                </div>
+                <br>
+
+                <div style="margin-left:5%; margin-right:5%">
+                    <div class="number">2</div>
+                    <img src="img/noimage.png" style="width:100%; height:auto; ml-5%; mr-5%;">
+                    <div class="text">キャベツはまずは蒸しキャベツ♪切ったキャベツと調味料Aをフライパンに入れ蓋をして中火で2~3分蒸して皿に盛りつけておきます。</div>
+                </div>
+
+            </div>
+            <br><br>
 
         
 

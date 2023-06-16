@@ -73,7 +73,7 @@
 
                 <!-- 虫眼鏡付きの検索ボックス -->
                 <li class="text-start">
-                    <form action="#" method="post" class="search_container">
+                    <form action="searchRecipe.php" method="post" class="search_container">
                         <input type="text" name="recipe_name" size="15" placeholder="料理名・食材名">
                         <input type="submit" value="&#xf002">
                     </form>
@@ -96,12 +96,12 @@
     <!-- /この中に要素を追加 -->
 
 
-    <!-- 下のナビゲーションバー ※リンク未定義-->
+    <!-- 下のナビゲーションバー -->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="#" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="#" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
+            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
+            <a href="uploadRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
         </div>
     </footer>
 
