@@ -96,7 +96,7 @@
     <!-- /この中に要素を追加 -->
 
 
-    <!-- 下のナビゲーションバー ※リンク未定義-->
+    <!-- 下のナビゲーションバー -->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
