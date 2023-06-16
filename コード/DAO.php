@@ -154,5 +154,88 @@ class DAO{
         return $resultRecipe;
         }
     }
+
+
+    //ユーザー名変更
+    public function user_name_change($change_user_name){
+        $pdo= $this->dbConnect();
+                                        // ↓新たに追加したいユーザー名       ↓場所指定
+        $sql= "UPDATE users SET user_name = :new_user_name WHERE user_mail = :reset_user_name";
+        $ps= $pdo->prepare($sql);
+        //変更するユーザー名を投入
+        $ps->bindValue(':new_user_name', $change_user_name);
+        //SESSIONで場所を指定
+        $ps->bindValue(':reset_user_name',$_SESSION['id']);
+        $ps->execute();
+        // メールアドレスの更新に成功した場合、ログインページに移動する
+        // if ($ps->rowCount() > 0) {
+        //     header("Location: login.php");
+        //     exit();
+        // }else{
+        //     echo "以前のメールアドレスが間違っています。もう一度やり直してください";
+        // }
+    }
+
+
+    //紹介文変更
+    public function introduction_change($change_introduction){
+        $pdo= $this->dbConnect();
+                                        // ↓新たに追加したいユーザー名       ↓場所指定
+        $sql= "UPDATE users SET user_introduction = :new_user_introduction WHERE user_mail = :reset_user_introduction";
+        $ps= $pdo->prepare($sql);
+        //変更するユーザー名を投入
+        $ps->bindValue(':new_user_introduction', $change_introduction);
+        //SESSIONで場所を指定
+        $ps->bindValue(':reset_user_introduction',$_SESSION['id']);
+        $ps->execute();
+        // メールアドレスの更新に成功した場合、ログインページに移動する
+        // if ($ps->rowCount() > 0) {
+        //     header("Location: login.php");
+        //     exit();
+        // }else{
+        //     echo "以前のメールアドレスが間違っています。もう一度やり直してください";
+        // }
+    }
+
+
+    //アイコン表示
+    // public function display_the_icon(){
+    //     $pdo = $this->dbConnect();
+    //     $sql= "SELECT user_icon FROM users WHERE user_mail = :search_icon";
+    //     $ps=$pdo->prepare($sql);
+        //SESSIONで場所を指定
+        // $ps->bindValue(':search_icon',$_SESSION['id']);
+        // var_dump($ps);
+    //     $ps->execute();
+    //     $icon = $ps->fetchAll();
+    //     return $icon;
+    // }
+
+
+    //アイコン変更
+    // public function icon_change($icon_image){
+    //     $pdo = $this->dbConnect();
+    //     $sql= "UPDATE users SET user_icon = :new_user_icon WHERE user_mail = :reset_user_icon";
+    //     $ps=$pdo->prepare($sql);
+    //     $ps->bindValue(':new_user_icon', file_get_contents($icon_image), PDO::PARAM_STR);
+        //SESSIONで場所を指定
+        //$ps->bindValue(':reset_user_icon',$_SESSION['id']);
+        // var_dump($ps);
+    //     $ps->execute();
+    //     $icon = $ps->fetchAll();
+    //     return $icon;
+    // }
+
+
+    //都道府県変更
+    public function prefecture_change($prefecture){
+        $pdo = $this->dbConnect();
+        $sql= "UPDATE users SET prefecture_id = :new_user_prefecture WHERE user_mail = :reset_user_prefecture";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':new_user_prefecture', $prefecture);
+        //SESSIONで場所を指定
+        $ps->bindValue(':reset_user_prefecture',$_SESSION['id']);
+        $ps->execute();
+    }
 }
 ?>
