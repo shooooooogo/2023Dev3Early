@@ -94,22 +94,22 @@ class DAO{
     }
 
 
-    INSERT INTO users() VALUES();
+    
 
     // 材料新規保存
-    public function insertMaterials($id,$name[],$quantity[],$cost[],$num){
+    public function insertMaterials($id,$name,$quantity,$cost,$num){
         $pdo = $this->dbConnect();
         $sql ="INSERT INTO materials(recipe_id, material_name, material_quantity, material_cost) VALUES(:recipe_id, :material_name, :material_quantity, :material_cost)";
         $materials = array();
         for($i=0; $i<$num; $i++){
-            $materials[i]=$pdo->prepare($sql);
+            $materials[$i]=$pdo->prepare($sql);
 
-            $materials[i].bindValue(':recipe_id',$id,PDO::PARAM_INT);
-            $materials[i].bindValue(':material_name',$name[i],PDO::PARAM_STR);
-            $materials[i].bindValue('material_quantity',$quantity[i],PDO::PARAM_STR);
-            $materials[i].bindValue('material_cost',$cost[i],PDO::PARAM_INT);
+            $materials[$i]->bindValue(':recipe_id',$id,PDO::PARAM_INT);
+            $materials[$i]->bindValue(':material_name',$name[$i],PDO::PARAM_STR);
+            $materials[$i]->bindValue('material_quantity',$quantity[$i],PDO::PARAM_STR);
+            $materials[$i]->bindValue('material_cost',$cost[$i],PDO::PARAM_INT);
 
-            $materials[i]->execute();
+            $materials[$i]->execute();
         }
 
     }
@@ -117,11 +117,13 @@ class DAO{
     // 材料の情報を取得
     public function selectMaterials($id){
         $pdo = $this->dbConnect();
-        $sql = "SELECT material_line_number,material_name, material_quantity, material_cost FROM materials WHERE recipe_id = :recipe_id"
-        $ps = $pdo->prepare($sql);
-        $ps->bindValue();
+        $sql = "SELECT material_line_number,material_name, material_quantity, material_cost FROM materials WHERE recipe_id = :recipe_id";
+        $selectMaterials = $pdo->prepare($sql);
+        $selectMaterials-> bindValue(':recipe_id',$id,PDO::PARAM_INT);
 
-        return $ps->fetchAll();
+        $selectMaterials->execute();
+
+        return $selectMaterials->fetchAll();
     }
 
 
