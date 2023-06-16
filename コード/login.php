@@ -77,3 +77,12 @@
     </center>
 </body>
 </html>
+
+<?php
+session_start();
+if(isset($_SESSION['id']) == true  &&
+     isset($_SESSION['name']) == true ){
+        header('Location: top.php');
+        exit();
+}
+?>
