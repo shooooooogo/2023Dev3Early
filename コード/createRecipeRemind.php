@@ -36,8 +36,25 @@
         $time_zone_id = (int)$_POST['time_zone_id'];
         $recipe_people = (int)$_POST['recipe_people'];
         $perfecture_id = (int)$_POST['perfecture_id'];
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // レシピのサムネイル画像をアップロードする
+            $targetDir = "img/RecipeThumbnail/";  // アップロードされたファイルを保存するディレクトリパス
+            $imageFileType = strtolower(pathinfo($_FILES["recipe_image"]["name"], PATHINFO_EXTENSION));//拡張子を格納
+            $targetFile = $targetDir.$user_id."_UserIcon.".$imageFileType;//保存するファイル名を格納
+            $uploadOk = 1;
+           
+
+            if (move_uploaded_file($_FILES["recipe_image"]["tmp_name"], $targetFile)) {
+                echo "The file " . basename($_FILES["recipe_image"]["name"]) . " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        
+
         // recipesテーブルに新規レコード登録＆ID取得
-        $currentRecipeId=$dao->insertRecipe($_POST['recipe_name'],$_FILES['recipe_image']['tmp_name'],$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$perfecture_id);
+        $currentRecipeId=$dao->insertRecipe($_POST['recipe_name'],$targetFile,$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$perfecture_id);
         
 
         // デバッグ用(完成したら削除)
@@ -54,7 +71,7 @@
 
         // 作り方が投稿されていれば、それらをhow_to_makeテーブルに全て格納する
 
-        if($_POST['How_To_image'] != NULL){
+        if($_FILES['How_To_image'] != NULL){
             echo "Hello";
         }
 

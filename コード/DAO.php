@@ -68,7 +68,7 @@ class DAO{
 
         $ps->bindValue(':recipe_id',0,PDO::PARAM_STR);
         $ps->bindValue(':recipe_name', $recipe_name, PDO::PARAM_STR);
-        $ps->bindValue(':recipe_image', file_get_contents($recipe_image), PDO::PARAM_STR);
+        $ps->bindValue(':recipe_image', $recipe_image, PDO::PARAM_STR);
         $ps->bindValue(':recipe_introduction', $recipe_introduction, PDO::PARAM_STR);
         $ps->bindValue(':genre_id', $genre_id, PDO::PARAM_INT);
         $ps->bindValue(':user_id', $user_id, PDO::PARAM_INT);
@@ -99,12 +99,14 @@ class DAO{
     // 材料新規保存
     public function insertMaterials($id,$name,$quantity,$cost,$num){
         $pdo = $this->dbConnect();
-        $sql ="INSERT INTO materials(recipe_id, material_name, material_quantity, material_cost) VALUES(:recipe_id, :material_name, :material_quantity, :material_cost)";
+        $sql ="INSERT INTO materials(recipe_id, material_line_number, material_name, material_quantity, material_cost) VALUES(:recipe_id, :material_line_number, :material_name, :material_quantity, :material_cost)";
         $materials = array();
+        
         for($i=0; $i<$num; $i++){
             $materials[$i]=$pdo->prepare($sql);
-
+            
             $materials[$i]->bindValue(':recipe_id',$id,PDO::PARAM_INT);
+            $materials[$i]->bindValue(':material_line_number',$i,PDO::PARAM_INT);
             $materials[$i]->bindValue(':material_name',$name[$i],PDO::PARAM_STR);
             $materials[$i]->bindValue('material_quantity',$quantity[$i],PDO::PARAM_STR);
             $materials[$i]->bindValue('material_cost',$cost[$i],PDO::PARAM_INT);

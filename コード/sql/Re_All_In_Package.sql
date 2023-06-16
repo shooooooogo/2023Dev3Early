@@ -93,7 +93,7 @@ CREATE TABLE goods (
 -- 作り方テーブルの作成
 CREATE TABLE how_to_make (
   recipe_id INT NOT NULL,
-  how_to_make_lines_number INT NOT NULL,
+  how_to_make_lines_number INT NOT NULL AUTO_INCREMENT,
   how_to_make_image VARCHAR(191) NOT NULL default 'img/NoImage.png',
   how_to_make_text VARCHAR(191),
   PRIMARY KEY (recipe_id, how_to_make_lines_number),
@@ -103,7 +103,7 @@ CREATE TABLE how_to_make (
 -- 材料テーブルの作成
 CREATE TABLE materials (
   recipe_id INT NOT NULL,
-  material_line_number INT NOT NULL,
+  material_line_number INT NOT NULL AUTO_INCREMENT,
   material_name VARCHAR(191),
   material_quantity VARCHAR(191),
   material_cost INT,
