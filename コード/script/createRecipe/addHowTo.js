@@ -91,7 +91,7 @@ function add() {
     let newInput = document.createElement("input");
     newInput.type = "file";
     newInput.className = "file-input noneDisplay";
-    newInput.name = "How_To_image" + howToCount;
+    newInput.name = "How_To_image[]";
     newInput.id = "How_To_image" + howToCount;
     newInput.setAttribute('onchange',"handleFileSelectHowTo('How_To_image"+howToCount+"','image"+howToCount+"')");
     newPreviewSpan.appendChild(newInput);

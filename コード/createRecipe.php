@@ -117,7 +117,13 @@
         
             <!-- 材料 -->
             <span>
+
                 <h1 class="ms-2">・材料</h1>
+                
+                <!-- 材料の個数を数えて送るタグ -->
+                <input type="hidden" id="materialNumber" name="materialNumber" value=1>
+                
+                <!-- 何人前？ -->
                 <input class="textInput mb-4 col-11 ms-3" type="text" name="recipe_people" placeholder="何人前">
             </span>
             
@@ -128,9 +134,9 @@
             <!-- 材料の入力フォーム -->
             <span class="mb-3" id="addMaterialSpan">
                 <p class="materialNumber ms-2">・材料1</p>
-                <input class="textInput col-5 ms-3" type="text" name="materialName1" placeholder="材料名">
-                <input class="textInput col-5 offset-1" type="text" name="materialQuantity1" placeholder="分量">
-                <input class="textInput col-11 ms-3" type="text" name="materialCost1" placeholder="材料の費用">
+                <input class="textInput col-5 ms-3" type="text" name="materialName[]" placeholder="材料名">
+                <input class="textInput col-5 offset-1" type="text" name="materialQuantity[]" placeholder="分量">
+                <input class="textInput col-11 ms-3" type="number" name="materialCost[]" placeholder="材料の費用">
             </span>
            
             
@@ -152,7 +158,7 @@
                         <p class=" HowToNumber ms-2">・手順1</p>
                         <!-- 追加された画像を表示する物 -->
                         <span class="How_To_preview  offset-1 col-3" id="How_To_preview1">
-                            <input type="file" class="file-input noneDisplay" name="How_To_image1" id="How_To_image1" onchange='handleFileSelectHowTo("How_To_image1","image1")'>
+                            <input type="file" class="file-input noneDisplay" name="How_To_image[]" id="How_To_image1" onchange='handleFileSelectHowTo("How_To_image1","image1")'>
                             <img src="img/How_To_Default.png" class="HowToImg" id="image1" alt="Image" onclick="document.getElementById('How_To_image1').click()">
                         </span>
                         <span class="offset-2 col-3">

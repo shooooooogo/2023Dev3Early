@@ -6,7 +6,7 @@ class DAO{
     $pdo= new PDO('mysql:host=localhost;dbname=smart_delicious;charset=utf8','root', 'root');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo; 
-}
+    }
 
 
     //新規追加部分
@@ -77,9 +77,54 @@ class DAO{
         $ps->bindValue(':recipe_is_upload', 0, PDO::PARAM_INT);
         $ps->bindValue(':perfecture_id', $perfecture_id, PDO::PARAM_INT);
         
-        var_dump($ps);
         $ps->execute();
+    
+        $lastInsertId = $pdo->LastInsertId();
+        return $lastInsertId;
     }
+
+    // レシピをidで検索
+    public function SelectRecipe($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql ="SELECT * FROM recipes WHERE recipe_id = :recipe_id";
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(":recipe_id",$recipe_id, PDO::PARAM_INT);
+        $ps->execute();
+        return $ps->fetch();
+    }
+
+
+    INSERT INTO users() VALUES();
+
+    // 材料新規保存
+    public function insertMaterials($id,$name[],$quantity[],$cost[],$num){
+        $pdo = $this->dbConnect();
+        $sql ="INSERT INTO materials(recipe_id, material_name, material_quantity, material_cost) VALUES(:recipe_id, :material_name, :material_quantity, :material_cost)";
+        $materials = array();
+        for($i=0; $i<$num; $i++){
+            $materials[i]=$pdo->prepare($sql);
+
+            $materials[i].bindValue(':recipe_id',$id,PDO::PARAM_INT);
+            $materials[i].bindValue(':material_name',$name[i],PDO::PARAM_STR);
+            $materials[i].bindValue('material_quantity',$quantity[i],PDO::PARAM_STR);
+            $materials[i].bindValue('material_cost',$cost[i],PDO::PARAM_INT);
+
+            $materials[i]->execute();
+        }
+
+    }
+
+    // 材料の情報を取得
+    public function selectMaterials($id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT material_line_number,material_name, material_quantity, material_cost FROM materials WHERE recipe_id = :recipe_id"
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue();
+
+        return $ps->fetchAll();
+    }
+
+
     
     //メールアドレス再設定
     public function resetMail($resetmail,$newmail){

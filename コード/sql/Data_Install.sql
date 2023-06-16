@@ -70,9 +70,7 @@ INSERT INTO prefectures (prefecture_id, prefecture_name) VALUES
   (46, '鹿児島県'),
   (47, '沖縄県');
 
--- ユーザテーブル
-INSERT INTO users(user_mail,user_name,user_password)
-VALUES("2101000@s.asojuku.ac.jp","ああああ","aaaa");
+
 
 -- レシピテーブル
 INSERT INTO recipes (recipe_name, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, perfecture_id)
