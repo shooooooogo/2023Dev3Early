@@ -1,0 +1,12 @@
+.suggest{
+    text-align: center;
+  }
+  
+  .suggestTop{
+    border: solid 2px #FF7800;
+    margin: 8% 20%;
+  }
+  
+  .suggestButton{
+    background-color: #FF7800;
+  }
