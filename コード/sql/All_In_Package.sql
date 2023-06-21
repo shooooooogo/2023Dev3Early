@@ -32,7 +32,7 @@ CREATE TABLE users (
   user_name VARCHAR(191) NOT NULL,
   user_password VARCHAR(255) NOT NULL,
   user_introduction VARCHAR(200),
-  user_icon MEDIUMBLOB,
+  user_icon VARCHAR(191) NOT NULL default 'img/UserIcon_default.png',
   prefecture_id INT,
   PRIMARY KEY (user_id),
   FOREIGN KEY (prefecture_id) REFERENCES prefectures (prefecture_id)
@@ -51,7 +51,7 @@ CREATE TABLE follows (
 CREATE TABLE recipes (
   recipe_id INT NOT NULL AUTO_INCREMENT,
   recipe_name VARCHAR(191) NOT NULL,
-  recipe_image MEDIUMBLOB,
+  recipe_image VARCHAR(191) NOT NULL default 'img/NoImage.png',
   recipe_introduction VARCHAR(200),
   genre_id INT NOT NULL,
   user_id INT NOT NULL,
@@ -89,8 +89,8 @@ CREATE TABLE goods (
 -- 作り方テーブルの作成
 CREATE TABLE how_to_make (
   recipe_id INT NOT NULL,
-  how_to_make_lines_number INT NOT NULL,
-  how_to_make_image MEDIUMBLOB,
+  how_to_make_lines_number INT NOT NULL AUTO_INCREMENT,
+  how_to_make_image VARCHAR(191) NOT NULL default 'img/NoImage.png',
   how_to_make_text VARCHAR(191),
   PRIMARY KEY (recipe_id, how_to_make_lines_number),
   FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
@@ -99,7 +99,7 @@ CREATE TABLE how_to_make (
 -- 材料テーブルの作成
 CREATE TABLE materials (
   recipe_id INT NOT NULL,
-  material_line_number INT NOT NULL,
+  material_line_number INT NOT NULL AUTO_INCREMENT,
   material_name VARCHAR(191),
   material_quantity VARCHAR(191),
   material_cost INT,

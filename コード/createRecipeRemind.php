@@ -29,12 +29,54 @@
     <?php
         require_once 'DAO.php';
         $dao = new DAO();
+        
+        // ジャンルid等、String型になっている物をint型に変換
         $genre_id = (int)$_POST['genre_id'];
         $user_id=1;
         $time_zone_id = (int)$_POST['time_zone_id'];
         $recipe_people = (int)$_POST['recipe_people'];
         $perfecture_id = (int)$_POST['perfecture_id'];
-        $dao->insertRecipe($_POST['recipe_name'],$_FILES['recipe_image']['tmp_name'],$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$perfecture_id);
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // レシピのサムネイル画像をアップロードする
+            $targetDir = "img/RecipeThumbnail/";  // アップロードされたファイルを保存するディレクトリパス
+            $imageFileType = strtolower(pathinfo($_FILES["recipe_image"]["name"], PATHINFO_EXTENSION));//拡張子を格納
+            $targetFile = $targetDir.$user_id."_UserIcon.".$imageFileType;//保存するファイル名を格納
+            $uploadOk = 1;
+           
+
+            if (move_uploaded_file($_FILES["recipe_image"]["tmp_name"], $targetFile)) {
+                echo "The file " . basename($_FILES["recipe_image"]["name"]) . " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        
+
+        // recipesテーブルに新規レコード登録＆ID取得
+        $currentRecipeId=$dao->insertRecipe($_POST['recipe_name'],$targetFile,$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$perfecture_id);
+        
+
+        // デバッグ用(完成したら削除)
+        var_dump($_POST);
+        echo "<br>";
+        var_dump($_FILES);
+
+
+        // 材料が登録されていれば、それらをmaterialsテーブルに格納する
+
+        if($_POST['materialName'] != NULL){
+            $dao->insertMaterials($currentRecipeId,$_POST['materialName'],$_POST['materialQuantity'],$_POST['materialCost'],$_POST['materialNumber']);
+        }
+
+        // 作り方が投稿されていれば、それらをhow_to_makeテーブルに全て格納する
+
+        if($_FILES['How_To_image'] != NULL){
+            echo "Hello";
+        }
+
+
+
     ?>
 </head>
 <body>
@@ -79,18 +121,88 @@
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
                 <li><a href="createRecipe.php">レシピを作る</a></li>
-            </ul>            
+            </ul>         
         </div>
     </nav>
 
     <!-- このdivの中に要素を書き込んでください -->
     <div class="container-fluid elements">
-        <?=var_dump($_POST);
+        <!-- =var_dump($_POST);
             var_dump($_FILES['recipe_image']);
             echo "<br><br><br><br><br><br>";
             var_dump($_FILES);
         
-        ?>
+        -->
+
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="border col-3">
+                    <p>タイトル</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+                <div class="border col-3">
+                    <p>サムネイル画像</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+
+                <div class="border col-3">
+                    <p>紹介文</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+                <div class="border col-3">
+                    <p>ジャンル</p>
+                </div>
+                <div class="border col-9">
+
+                </div>
+                <div class="border col-3">
+                    <p>投稿者</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+                <div class="border col-3">
+                    <p>時間帯</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+                <div class="border col-3">
+                    <p>何人前</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+                <div class="border col-3">
+                    <p>都道府県</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+                <div class="border col-3">
+                    <p>材料</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+                <div class="border col-3">
+                    <p>作り方</p>
+                </div>
+                <div class="border col-9">
+                    
+                </div>
+            </div>
+        </div>
+
+
         <!-- ここまで -->
         <div class="footerCooporation">
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
