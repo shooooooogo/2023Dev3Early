@@ -1,62 +1,3 @@
-// // 複数の画像読み込み用
-// const fileInput = document.getElementById('How_To_image1');
-
-// const handleFileSelectHowTo = () => {
-//     const files = fileInput.files;
-//         for (let i = 0; i < files.length; i++) {
-//             previewFile2(files[i]);
-//         }
-// }
-
-// // 画像一つ用(エラー起きた)
-// const fileInput = document.getElementById('How_To_image1');
-// const handleFileSelect = () => {
-//     const files = fileInput.files;
-//         for (let i = 0; i < files.length; i++) {
-//             previewFile(files[i]);
-//         }
-// }
-
-
-// function previewFile2(file) {
-//     // プレビュー画像を追加する要素
-//     const preview = document.getElementById('How_To_preview');
-
-//     // FileReaderオブジェクトを作成
-//     const reader = new FileReader();
-
-//     // ファイルが読み込まれたときに実行する
-//     reader.onload = function (e) {
-//         const imageUrl = e.target.result; // 画像のURLはevent.target.resultで呼び出せる
-//         const img = document.createElement("img"); // img要素を作成
-//         img.src = imageUrl; // 画像のURLをimg要素にセット
-//         img.className="previewImg";
-//         // preview内の画像をいったん削除して表示されるのを一つにする
-
-//         preview.appendChild(img); // #previewの中に追加
-//     }
-
-//     // いざファイルを読み込む
-//     reader.readAsDataURL(file);
-// }
-
-// // previewのidを持つ要素(fileInput)が何かしら変更されたとき(投稿される画像のアップロード、変更等)
-// fileInput.addEventListener('change', handleFileSelectHowTo);
-  
-
-// // 画像がアップロードされたときに、How_To_previewのクラスを持つdivタグの中の要素を削除し、アップロードされた画像を表示する
-// function changeImage() {
-//   var file = document.getElementById("How_To_image1").files[0];
-//   if (file) {
-//     var reader = new FileReader();
-//     reader.onload = function() {
-//       var image = document.getElementById("How_To_preview1");
-//       image.innerHTML = "";
-//       image.appendChild(document.createElement("img")).src = reader.result;
-//     };
-//     reader.readAsDataURL(file);
-//   }
-// }
 let howToCount = 1;//作り方の数を記録する
 const howToDiv = document.getElementsByClassName("How_To");//要素を追加していく場所を見つける
 // 追加するボタンが押された度、How_To1タグ内にある要素を全てもう一つ追加する
@@ -114,7 +55,7 @@ function add() {
     //textareaを生成
     let newTextArea = document.createElement("textarea");
     newTextArea.className = "border";
-    newTextArea.name = "HowTo"+howToCount;
+    newTextArea.name = "HowTo[]";
     newTextArea.id = "How_To_Text"+howToCount;
     newTextArea.cols = "20";
     newTextArea.rows = "4";
@@ -122,6 +63,7 @@ function add() {
     newTextArea.placeholder = "60文字の制限があります";
     newTextSpan.appendChild(newTextArea);
 
+    howToNumber.value=howToCount;
     
 }
 
