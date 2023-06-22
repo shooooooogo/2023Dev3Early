@@ -144,12 +144,8 @@
             <span class="mb-3" id="addHowToSpan">
                 <h1 class="ms-3">・作り方</h1>
                 
-                <!-- 画像追加のinputタグ -->
-                <!-- <div>
-                    <input type="file" class="file-input" name="How_To_image1" id="How_To_image1" onchange="changeImage()" />
-
-                    <div id="How_To_preview"><img src="" id="image" alt="Image" onclick=""></div>
-                </div> -->
+                <!-- 作り方の数を数えて送るタグ -->
+                <input type="hidden" id="howToNumber" name="howToNumber" value=1>
 
                 <p class="text-center" onclick="add()">+追加する</p>
                 
@@ -162,7 +158,7 @@
                             <img src="img/How_To_Default.png" class="HowToImg" id="image1" alt="Image" onclick="document.getElementById('How_To_image1').click()">
                         </span>
                         <span class="offset-2 col-3">
-                            <textarea class="border" name="HowTo1" id="How_To_Text1" cols="20" rows="4" maxlength="60" placeholder="60文字の制限があります"></textarea>
+                            <textarea class="border" name="HowTo[]" id="How_To_Text1" cols="20" rows="4" maxlength="60" placeholder="60文字の制限があります"></textarea>
                         </span>
                     </div>
                 </div>
@@ -205,7 +201,7 @@
             <!-- 都道府県 -->
             <span>
                 <h1>都道府県</h1>
-                <select name="perfecture_id">
+                <select name="prefecture_id">
                     <option value="0">県を指定しない</option>
                     <option value="1">北海道</option>
                     <option value="2">青森県</option>

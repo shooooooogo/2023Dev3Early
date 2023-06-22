@@ -75,7 +75,7 @@ VALUES
   ('test1@gmail.com','testおじさん','pass');
 
 -- レシピテーブル
-INSERT INTO recipes (recipe_name, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, perfecture_id)
+INSERT INTO recipes (recipe_name, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id)
 VALUES
   ('レシピ1', 'レシピ1の説明', 0, 1, 0, 2, 1, 1),
   ('レシピ2', 'レシピ2の説明', 1, 1, 1, 3, 0, 2),
