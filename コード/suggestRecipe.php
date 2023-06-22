@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
     <!-- 個別cssの読み込み場所 -->
-
+    <link rel="stylesheet" href="./css/suggestRecipe.css">
     <!--  -->
 </head>
 <body>
@@ -86,34 +86,62 @@
     </nav>
 
     <!-- このdivの中に要素を書き込んでください -->
-    <div class="container-fluid elements">
-        <!-- フォント例 -->
-        <div style="text-align:center">
-            <p class="fontGothic">pゴシック</p>
-            <p class="fontGothicBold">p太字ゴシック</p>
-            <h3 class="fontGothic">h3ゴシック見出し</h3>
-            <h4 class="fontGothic">h4ゴシック見出し</h4>
-            <h5 class="fontGothic">h5ゴシック見出し</h5>
-            <h6 class="fontGothic">h6ゴシック見出し</h6>
+<div class="suggest">
+
+    <form class="suggest" method="post" action="suggestRecipeResult.php">
+        
+        <div>
+            <p class="suggestTop">おすすめのメニューを<br>提案します</p>
+        <div>
+
+        <div>
+            <p>作りたいメニュー数を入力</p>
+            <input class="textInput" type="text" name="menusNumber" placeholder="">
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <!-- ここまで -->
-        <div class="footerCooporation">
-            
-            <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
-            <ul class="md-flex">
-                <li><a href="terms.php">利用規約</a></li>
-                <li><a href="privacy.php">プライバシーポリシー</a></li>
-            </ul>
+
+        <div>
+            <p>作りたいジャンルを選択</p>
+            <select name="selectgGnre">
+                    <option value="0">全ジャンル</option>
+                    <option value="1">和食</option>
+                    <option value="2">洋食</option>
+                    <option value="3">イタリアン・フレンチ</option>
+                    <option value="4">中華</option>
+                    <option value="5">中華</option>
+                    <option value="6">中華</option>
+                    <option value="7">中華</option>
+                    <option value="8">中華</option>
+                    <option value="9">中華</option>
+            </select>
         </div>
-    </div>
-    
-    
+
+        <div>
+            <p>総予算を入力</p>
+            <input class="textInput" type="text" name="Buget" placeholder="">
+        </div>
+
+        <div>
+            <p>時間帯を選択</p>
+            <select name="selectTime">
+                    <option value="0">時間帯を指定しない</option>
+                    <option value="1">朝食</option>
+                    <option value="2">昼食</option>
+                    <option value="3">夕食</option>
+                    <option value="4">おやつ</option>
+            </select>
+        </div>
+
+
+        <input class="suggestButton" type="submit" value="提案する">
+
+    </form>
+
+</div>
 
 
     <!-- 下のナビゲーションバー -->
     <footer class="text-center">
-    <div class="row footerBar fontGothicBold">
+        <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
             <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
             <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>

@@ -1,0 +1,81 @@
+.ranking{
+    margin: 10%;
+    border: solid 2px #FFE300;
+}
+
+
+.slider {
+    position:relative;
+	z-index: 1;
+	height: 50%;
+}
+
+/*矢印の設定*/
+
+.slick-prev, 
+.slick-next {
+    position: absolute;
+	z-index: 3;
+    top: 42%;
+    border-top: 2px solid #FFE300;/*矢印の色*/
+    border-right: 2px solid #FFE300;/*矢印の色*/
+    height: 25px;
+    width: 25px;
+}
+
+.slick-prev {/*戻る矢印の位置と形状*/
+    left:2.5%;
+    transform: rotate(-135deg);
+}
+
+.slick-next {/*次へ矢印の位置と形状*/
+    right:2.5%;
+    transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+
+.slick-dots {
+	position: relative;
+	z-index: 3;
+    text-align:center;
+	margin:-50px 0 0 0;
+}
+
+.slick-dots li {
+    display:inline-block;
+	margin:0 5px;
+}
+
+.slick-dots button {
+    color: transparent;
+    outline: none;
+    width:8px;
+    height:8px;
+    display:block;
+    border-radius:50%;
+    background:#FFE300;
+}
+
+.slick-dots .slick-active button{
+    background:#FFE300;/*ドットボタンの現在地表示の色*/
+}
+
+.proposalButton{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+.button{
+    width: 130px;
+    margin: 0 18px;
+    padding: 15px;
+    font-size: 20px;
+    color: #000;
+    font-family: Meiryo;
+    /* font-weight:bold; */
+    border: 0.5px solid #696969;
+    border-radius: 5px;
+    background-color: #FFE300;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
