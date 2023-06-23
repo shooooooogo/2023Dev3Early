@@ -143,6 +143,12 @@ class DAO{
 
     }
 
+    // 下書きを投稿して他の人も見れるようにする(recipe_id)
+    public function recipeUpload($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql = "UPDATE recipes SET recipe_is_uploaded";
+    }
+
 
 // 検索まとめ
 
@@ -352,32 +358,32 @@ class DAO{
 
 
     //アイコン表示
-    // public function display_the_icon(){
-    //     $pdo = $this->dbConnect();
-    //     $sql= "SELECT user_icon FROM users WHERE user_mail = :search_icon";
-    //     $ps=$pdo->prepare($sql);
+    public function display_the_icon(){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT user_icon FROM users WHERE user_mail = :search_icon";
+        $ps=$pdo->prepare($sql);
         //SESSIONで場所を指定
-        // $ps->bindValue(':search_icon',$_SESSION['id']);
-        // var_dump($ps);
-    //     $ps->execute();
-    //     $icon = $ps->fetchAll();
-    //     return $icon;
-    // }
+        $ps->bindValue(':search_icon',$_SESSION['id']);
+        //var_dump($ps);
+        $ps->execute();
+        $icon = $ps->fetchAll();
+        return $icon;
+    }
 
 
     //アイコン変更
-    // public function icon_change($icon_image){
-    //     $pdo = $this->dbConnect();
-    //     $sql= "UPDATE users SET user_icon = :new_user_icon WHERE user_mail = :reset_user_icon";
-    //     $ps=$pdo->prepare($sql);
-    //     $ps->bindValue(':new_user_icon', file_get_contents($icon_image), PDO::PARAM_STR);
+    public function icon_change($icon_image){
+        $pdo = $this->dbConnect();
+        $sql= "UPDATE users SET user_icon = :new_user_icon WHERE user_mail = :reset_user_icon";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':new_user_icon', file_get_contents($icon_image), PDO::PARAM_STR);
         //SESSIONで場所を指定
-        //$ps->bindValue(':reset_user_icon',$_SESSION['id']);
-        // var_dump($ps);
-    //     $ps->execute();
-    //     $icon = $ps->fetchAll();
-    //     return $icon;
-    // }
+        $ps->bindValue(':reset_user_icon',$_SESSION['id']);
+        //var_dump($ps);
+        $ps->execute();
+        // $icon = $ps->fetchAll();
+        // return $icon;
+    }
 
 
     //都道府県変更
