@@ -22,9 +22,11 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
-    <!-- 個別cssの読み込み場所 -->
+     <!-- このページのcss -->
+     <link rel="stylesheet" href="css/searchResult.css">
 
-    <!--  -->
+    
+
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -41,8 +43,10 @@
         </div>
     </div> -->
 
-    <!-- ナビゲーションバー(本気) -->
-    <header id="header">
+    <!-- この中に要素を追加 -->
+
+   <!-- ナビゲーションバー(本気) -->
+   <header id="header">
         <div class="text-start">
             <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
         </div>
@@ -85,38 +89,43 @@
         </div>
     </nav>
 
-    <!-- このdivの中に要素を書き込んでください -->
-    <div class="container-fluid elements">
-        <!-- フォント例 -->
-        <div style="text-align:center">
-            <p class="fontGothic">pゴシック</p>
-            <p class="fontGothicBold">p太字ゴシック</p>
-            <h3 class="fontGothic">h3ゴシック見出し</h3>
-            <h4 class="fontGothic">h4ゴシック見出し</h4>
-            <h5 class="fontGothic">h5ゴシック見出し</h5>
-            <h6 class="fontGothic">h6ゴシック見出し</h6>
-        </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <!-- ここまで -->
-        <div class="footerCooporation">
-            <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
-            <ul class="md-flex">
-                <li><a href="terms.php">利用規約</a></li>
-                <li><a href="privacy.php">プライバシーポリシー</a></li>
-            </ul>
-        </div>
+    <!-- この中に要素を追加 -->
+    <form method="GET" action="#">
+        <input type="text" name="keyword" class="search-textbox" placeholder="検索したやつの名前を表示">
+    </form>
+
+    <div class="search">
+        <ul class="search-list">
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">ここにレシピの紹介文を表示</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">ここにレシピの紹介文を表示</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">ここにレシピの紹介文を表示</p>
+            </li>
+        </ul>
     </div>
-    
-    
 
 
-    <!-- 下のナビゲーションバー -->
-    <br><br><br><br><br>
+
+
+    <!-- /この中に要素を追加 -->
+
+
+    <!-- 下のナビゲーションバー ※リンク未定義-->
     <footer class="text-center">
-    <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
-            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
+        <div class="row footerBar fontGothicBold">
+            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
+            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
+            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
         </div>
     </footer>
 
@@ -129,5 +138,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
     <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/js/5-1-14.js"></script>
     <script src="script/header.js"></script>
+
+    <!-- このページのJs -->
 </body>
 </html>

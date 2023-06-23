@@ -48,7 +48,7 @@
     <!-- ナビゲーションバー(本気) -->
     <header id="header">
         <div class="text-start">
-            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
+            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png"  alt="スマデリ"></a>
         </div>
         
     </header>
@@ -117,19 +117,6 @@
 
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </li>
         <li class="slider-item slider-item02">瞬間ランキング</li>
         <li class="slider-item slider-item03">都道府県別ランキング</li>
@@ -145,11 +132,12 @@
 
 
     <!-- 下のナビゲーションバー -->
+    <br><br><br><br><br>
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-4" style="color: #FF7800;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
-            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
+            <a href="top.php" class="col-4" style="color: #FF7800;text-decoration: none; padding:3%"><i class="bi bi-house-fill" style="margin-left:20%;font-size:40px"></i></a>
+            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none; padding:3%"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none; padding:3%"><i class="bi bi-journal-check" style="margin-right:20%;font-size:40px"></i></a>
         </div>
     </footer>
 

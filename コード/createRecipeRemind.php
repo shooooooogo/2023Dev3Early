@@ -249,6 +249,7 @@
 
 
     <!-- 下のナビゲーションバー -->
+    <br><br><br><br><br>
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
