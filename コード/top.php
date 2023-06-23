@@ -48,7 +48,7 @@
     <!-- ナビゲーションバー(本気) -->
     <header id="header">
         <div class="text-start">
-            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
+            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png"  alt="スマデリ"></a>
         </div>
         
     </header>
@@ -86,12 +86,10 @@
                     </form>
                 </li>
                 <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
-                <li><a href="#">Top画面</a></li>  
-                <li><a href="#">ランキング</a></li>  
-                <li><a href="#">料理検索</a></li>
-                <li><a href="#">マイページ</a></li>
-                <li><a href="#">レシピを作る</a></li>
-                <li><a href="#">ログアウト</a></li>  
+                <li><a href="top.php">Top画面</a></li>  
+                <li><a href="ranking.php">ランキング</a></li>  
+                <li><a href="mypage.php">マイページ</a></li>
+                <li><a href="createRecipe.php">レシピを作る</a></li>
                 
                
             </ul>            
@@ -119,19 +117,6 @@
 
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     </li>
         <li class="slider-item slider-item02">瞬間ランキング</li>
         <li class="slider-item slider-item03">都道府県別ランキング</li>
@@ -147,11 +132,12 @@
 
 
     <!-- 下のナビゲーションバー -->
+    <br><br><br><br><br>
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="uploadRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="top.php" class="col-4" style="color: #FF7800;text-decoration: none; padding:3%"><i class="bi bi-house-fill" style="margin-left:20%;font-size:40px"></i></a>
+            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none; padding:3%"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none; padding:3%"><i class="bi bi-journal-check" style="margin-right:20%;font-size:40px"></i></a>
         </div>
     </footer>
 

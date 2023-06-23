@@ -58,12 +58,12 @@ CREATE TABLE recipes (
   time_zone_id INT NOT NULL,
   recipe_people INT NOT NULL,
   recipe_is_upload INT NOT NULL,
-  perfecture_id INT NOT NULL,
+  prefecture_id INT NOT NULL,
   PRIMARY KEY (recipe_id),
   FOREIGN KEY (genre_id) REFERENCES genres (genre_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id),
   FOREIGN KEY (time_zone_id) REFERENCES time_zones (time_zone_id),
-  FOREIGN KEY (perfecture_id) REFERENCES prefectures (prefecture_id)
+  FOREIGN KEY (prefecture_id) REFERENCES prefectures (prefecture_id)
 );
 
 -- お気に入りテーブルの作成
@@ -89,7 +89,7 @@ CREATE TABLE goods (
 -- 作り方テーブルの作成
 CREATE TABLE how_to_make (
   recipe_id INT NOT NULL,
-  how_to_make_lines_number INT NOT NULL AUTO_INCREMENT,
+  how_to_make_lines_number INT NOT NULL,
   how_to_make_image VARCHAR(191) NOT NULL default 'img/NoImage.png',
   how_to_make_text VARCHAR(191),
   PRIMARY KEY (recipe_id, how_to_make_lines_number),
@@ -99,7 +99,7 @@ CREATE TABLE how_to_make (
 -- 材料テーブルの作成
 CREATE TABLE materials (
   recipe_id INT NOT NULL,
-  material_line_number INT NOT NULL AUTO_INCREMENT,
+  material_line_number INT NOT NULL,
   material_name VARCHAR(191),
   material_quantity VARCHAR(191),
   material_cost INT,
