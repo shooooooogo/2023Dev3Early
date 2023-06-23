@@ -45,9 +45,13 @@
           <?php
           require_once 'DAO.php';
           $dao = new DAO();
+          //アイコン表示する関数を起動し、returnで帰ってきた値を格納
           $result_icon = $dao->display_the_icon();
+          //result_iconをforeachで回す
           foreach($result_icon as $row){
+            //アイコン情報を取得
               $img = $row['user_icon'];
+              //アイコンを表示
               echo "<p><img src=$img></p>";
           }
           ?>
