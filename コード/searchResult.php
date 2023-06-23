@@ -91,7 +91,9 @@
 
     <!-- この中に要素を追加 -->
     <form method="GET" action="#">
-        <input type="text" name="keyword" class="search-textbox" placeholder="検索したやつの名前を表示">
+        <div class="parent-textbox">
+            <input type="text" name="keyword" class="search-textbox" placeholder="検索したやつの名前を表示">
+        </div>
     </form>
 
     <div class="search">
@@ -99,17 +101,22 @@
             <li class="search-list-content">
                 <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
                 <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">ここにレシピの紹介文を表示</p>
+                <p class="content-text">レシピ表示</p>
             </li>
             <li class="search-list-content">
                 <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
                 <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">ここにレシピの紹介文を表示</p>
+                <p class="content-text">レシピ表示</p>
             </li>
             <li class="search-list-content">
                 <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
                 <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">ここにレシピの紹介文を表示</p>
+                <p class="content-text">レシピ表示</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/spring.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">レシピ表示</p>
             </li>
         </ul>
     </div>
