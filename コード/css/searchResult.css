@@ -1,0 +1,45 @@
+/* 検索ボックス */
+.parent-textbox{
+    text-align: center;
+}
+.search-textbox{
+    display: block;
+    margin: 10px auto 10px;
+    width: 267px;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #4b49496b;
+}
+
+/* 表示される料理詳細 */
+.search-list{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+.search-list-content{
+    width: 50%;
+    min-height: 34vh;
+    max-height: 34vh;
+    list-style: none;
+    text-align: center;
+}
+.content-image{
+    width: 70%;
+    height: 30%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    margin: 20px auto 0;
+}
+.content-name{
+    margin: 0;
+    margin-top: 5px;
+}
+.content-text{
+    margin: 0;
+    margin: 10px 0;
+}
