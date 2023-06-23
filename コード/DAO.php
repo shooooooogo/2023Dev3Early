@@ -360,7 +360,7 @@ class DAO{
     //アイコン表示
     public function display_the_icon(){
         $pdo = $this->dbConnect();
-        $sql= "SELECT user_icon FROM users WHERE user_mail = :search_icon";
+        $sql= "SELECT * FROM users WHERE user_mail = :search_icon";
         $ps=$pdo->prepare($sql);
         //SESSIONで場所を指定
         $ps->bindValue(':search_icon',$_SESSION['id']);
@@ -372,14 +372,13 @@ class DAO{
 
 
     //アイコン変更
-    public function icon_change($icon_image){
+    public function icon_change($icon_id,$iconFile){
         $pdo = $this->dbConnect();
-        $sql= "UPDATE users SET user_icon = :new_user_icon WHERE user_mail = :reset_user_icon";
+        $sql= "UPDATE users SET user_icon = :new_user_icon WHERE user_id = :reset_user_icon";
         $ps=$pdo->prepare($sql);
-        $ps->bindValue(':new_user_icon', file_get_contents($icon_image), PDO::PARAM_STR);
-        //SESSIONで場所を指定
-        $ps->bindValue(':reset_user_icon',$_SESSION['id']);
-        //var_dump($ps);
+        $ps->bindValue(':new_user_icon',$iconFile, PDO::PARAM_STR);
+        //
+        $ps->bindValue(':reset_user_icon',$icon_id);
         $ps->execute();
         // $icon = $ps->fetchAll();
         // return $icon;
