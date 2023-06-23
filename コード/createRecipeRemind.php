@@ -229,6 +229,9 @@
                     
                 </div>
             </div>
+            <div>
+                <button onclick="recipeUpload(<?php echo $currentRecipeId ?>)">このままレシピを投稿する</button>
+            </div>
         </div>
 
 

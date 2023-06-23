@@ -143,6 +143,12 @@ class DAO{
 
     }
 
+    // 下書きを投稿して他の人も見れるようにする(recipe_id)
+    public function recipeUpload($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql = "UPDATE recipes SET recipe_is_uploaded"
+    }
+
 
 // 検索まとめ
 
