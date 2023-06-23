@@ -7,6 +7,7 @@
       <!-- cssの導入 -->
       <link rel="stylesheet" href="./css/style.css?v=2">
       <link rel="stylesheet" href="./css/resettingMailaddress.css">
+      <link rel="stylesheet" href="./css/createRecipe.css">
           <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
@@ -37,20 +38,23 @@
           <p><input type="submit" value="紹介文を設定する" class="changeButton"></p>
           </form>
 
-          <form action="DAO.php" method="post" enctype="multipart/form-data">
+          <form action="update_icon.php" method="post" enctype="multipart/form-data">
           <p class="changetext">・アイコン</p>
-          <input type="file" name="icon" />
-          <div id="preview"></div>
+          <!-- <input type="file" id="icon_change" name="icon" /> -->
+          <div id="icon_preview">
           <?php
           require_once 'DAO.php';
           $dao = new DAO();
-          // $result_icon = $dao->display_the_icon();
-          // foreach($result_icon as $row){
-          //     $img = base64_encode($row['user_icon']);
-          //     echo "<img src=data:images/png;base64,".$img.">";
-          // }
+          $result_icon = $dao->display_the_icon();
+          foreach($result_icon as $row){
+              $img = $row['user_icon'];
+              echo "<p><img src=$img></p>";
+          }
           ?>
-          <input type="submit" value="変更する" class="changeButton">
+          </div>
+          <!-- <input type="file" class="file-input noneDisplay" name="How_To_image[]" id="How_To_image1" onchange='handleFileSelectHowTo("How_To_image1","image1")'> -->
+          <input type="file" id="icon_change" name="icon" class="noneDisplay" />
+          <input type="button" value="アイコンを選択" class="changeButton" onclick="document.getElementById('icon_change').click()" >   <input type="submit" name="upload" value="アイコンを確定" class="changeButton">
           </form>
 
           <form action="change_prefecture.php" method="post">
@@ -124,4 +128,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- 固有のjs -->
+    <script src="script/icon/icon_display.js"></script>
+    <script src="script/icon/change_icon_display.js"></script>
     </html>
