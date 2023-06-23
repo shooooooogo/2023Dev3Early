@@ -267,5 +267,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
     <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/js/5-1-14.js"></script>
     <script src="script/header.js"></script>
+
+    <!-- 個別jsの導入 -->
+    <script src="script/createRecipe/recipeUpload.js"></script>
 </body>
 </html>
