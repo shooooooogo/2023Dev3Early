@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['id']) == false  &&
+     isset($_SESSION['name']) == false ){
+        header('Location: login.php');
+        exit();
+}
+?>
 <!DOCTYPE html>
     <html lang="ja">
     <head>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['id']) == false  &&
+     isset($_SESSION['name']) == false ){
+        header('Location: login.php');
+        exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -32,7 +40,7 @@
         
         // ジャンルid等、String型になっている物をint型に変換
         $genre_id = (int)$_POST['genre_id'];
-        $user_id=1;//ユーザ情報をsessionで管理するか分からないので、取りあえず動作するように1固定にしてあります。
+        $user_id=$_SESSION['id'];//ユーザ情報をsessionで管理するか分からないので、取りあえず動作するように1固定にしてあります。
         $time_zone_id = (int)$_POST['time_zone_id'];
         $recipe_people = (int)$_POST['recipe_people'];
         $prefecture_id = (int)$_POST['prefecture_id'];

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['id']) == false  &&
+     isset($_SESSION['name']) == false ){
+        header('Location: login.php');
+        exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -95,7 +103,7 @@
             <img src="img/UserIcon_default.png" alt="アイコン" class="user-icon">
             <h1 class="user-name">USERNAME</h1>
             <div class="user-setting">
-                <i class="bi bi-gear-fill"></i>
+                <a href="setting.php"><i class="bi bi-gear-fill"></i></a>
             </div>
         </div>
 

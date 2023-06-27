@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 //データベース接続
 class DAO{
    private function dbConnect(){
@@ -21,7 +21,7 @@ class DAO{
     $ps->bindValue(3, password_hash($getpass, PASSWORD_DEFAULT), PDO::PARAM_STR);
     $ps->execute();
     //トップページに移動
-    header("Location: top.php");
+    header("Location: login.php");
     exit();
     }
 
@@ -40,10 +40,6 @@ class DAO{
             //パスワードの照合のため、login_check.phpに移動
             $log_check = $ps->fetchAll();
             //SESSION使うかもしれないから一応置いとく
-            foreach($log_check as  $row){
-                $_SESSION['id'] = $row['user_mail'];
-                $_SESSION['name'] = $row['user_name'];
-            }
             return $log_check;
             exit();
         }else{
@@ -76,6 +72,8 @@ class DAO{
         $ps->bindValue(':recipe_is_upload', 0, PDO::PARAM_INT);
         $ps->bindValue(':prefecture_id', $prefecture_id, PDO::PARAM_INT);
         
+        var_dump($user_id);
+
         $ps->execute();
     
         $lastInsertId = (int)$pdo->LastInsertId();
