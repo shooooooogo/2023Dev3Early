@@ -25,6 +25,19 @@ class DAO{
     exit();
     }
 
+    //新規登録の際、同じメールアドレスが使われていないかチェック
+    public function insertSeachMail($seachMail){
+        $pdo= $this->dbConnect();
+        $sql= "SELECT * FROM users WHERE user_mail LIKE '$seachMail'";;
+        $ps= $pdo->prepare($sql);
+        $ps->execute();
+        if ($ps->rowCount() == 0) {
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
 
 
     //ログイン処理
