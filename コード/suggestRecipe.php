@@ -96,7 +96,7 @@
 
         <div>
             <p>作りたいメニュー数を入力</p>
-            <input class="textInput" type="text" name="menusNumber" placeholder="">
+            <input class="menuNumber" type="text" name="menusNumber" placeholder="">
         </div>
 
         <div>
@@ -117,7 +117,7 @@
 
         <div>
             <p>総予算を入力</p>
-            <input class="textInput" type="text" name="Buget" placeholder="">
+            <input class="budget" type="text" name="Buget" placeholder="">
         </div>
 
         <div>
