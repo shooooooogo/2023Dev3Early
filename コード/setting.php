@@ -2,8 +2,12 @@
 session_start();
 if(isset($_SESSION['id']) == false  &&
      isset($_SESSION['name']) == false ){
-        header('Location: login.php');
-        exit();
+      function func_alert($message){
+        echo "<script>alert('$message');</script>";
+        //アラートのOKを押したらログイン画面に移動
+        echo "<script>location.href='login.php';</script>";
+    }
+    func_alert("セッションが切れたため、もう一度ログインしなおしてください");
 }
 ?>
 <!DOCTYPE html>
@@ -54,7 +58,7 @@ if(isset($_SESSION['id']) == false  &&
           require_once 'DAO.php';
           $dao = new DAO();
           //アイコン表示する関数を起動し、returnで帰ってきた値を格納
-          $result_icon = $dao->display_the_icon();
+          $result_icon = $dao->display_the_icon($_SESSION['id']);
           //result_iconをforeachで回す
           foreach($result_icon as $row){
             //アイコン情報を取得

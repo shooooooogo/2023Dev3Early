@@ -332,54 +332,52 @@ class DAO{
 
 
     //ユーザー名変更
-    public function user_name_change($change_user_name){
+    public function user_name_change($change_user_name,$s){
         $pdo= $this->dbConnect();
                                         // ↓新たに追加したいユーザー名       ↓場所指定
-        $sql= "UPDATE users SET user_name = :new_user_name WHERE user_mail = :reset_user_name";
+        $sql= "UPDATE users SET user_name = :new_user_name WHERE user_id = :reset_user_name";
         $ps= $pdo->prepare($sql);
         //変更するユーザー名を投入
         $ps->bindValue(':new_user_name', $change_user_name);
         //SESSIONで場所を指定
-        $ps->bindValue(':reset_user_name',$_SESSION['id']);
+        $ps->bindValue(':reset_user_name',$s);
         $ps->execute();
-        // メールアドレスの更新に成功した場合、ログインページに移動する
-        // if ($ps->rowCount() > 0) {
-        //     header("Location: login.php");
-        //     exit();
-        // }else{
-        //     echo "以前のメールアドレスが間違っています。もう一度やり直してください";
-        // }
+        // ユーザー名の更新に成功した場合、returnで1を返す
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "失敗してるって適当にreturnするか。だって、ここの処理見ることなんてほぼないからねー";
+        }
     }
 
 
     //紹介文変更
-    public function introduction_change($change_introduction){
+    public function introduction_change($change_introduction,$s){
         $pdo= $this->dbConnect();
                                         // ↓新たに追加したいユーザー名       ↓場所指定
-        $sql= "UPDATE users SET user_introduction = :new_user_introduction WHERE user_mail = :reset_user_introduction";
+        $sql= "UPDATE users SET user_introduction = :new_user_introduction WHERE user_id = :reset_user_introduction";
         $ps= $pdo->prepare($sql);
         //変更するユーザー名を投入
         $ps->bindValue(':new_user_introduction', $change_introduction);
         //SESSIONで場所を指定
-        $ps->bindValue(':reset_user_introduction',$_SESSION['id']);
+        $ps->bindValue(':reset_user_introduction',$s);
         $ps->execute();
-        // メールアドレスの更新に成功した場合、ログインページに移動する
-        // if ($ps->rowCount() > 0) {
-        //     header("Location: login.php");
-        //     exit();
-        // }else{
-        //     echo "以前のメールアドレスが間違っています。もう一度やり直してください";
-        // }
+        // 紹介文の更新に成功した場合、returnで1を返す
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "失敗してるって適当にreturnするか。だって、ここの処理見ることなんてほぼないからねー";
+        }
     }
 
 
     //アイコン表示
-    public function display_the_icon(){
+    public function display_the_icon($s){
         $pdo = $this->dbConnect();
-        $sql= "SELECT * FROM users WHERE user_mail = :search_icon";
+        $sql= "SELECT * FROM users WHERE user_id = :search_icon";
         $ps=$pdo->prepare($sql);
         //SESSIONで場所を指定
-        $ps->bindValue(':search_icon',$_SESSION['id']);
+        $ps->bindValue(':search_icon',$s);
         //var_dump($ps);
         $ps->execute();
         $icon = $ps->fetchAll();
@@ -396,20 +394,30 @@ class DAO{
         //
         $ps->bindValue(':reset_user_icon',$icon_id);
         $ps->execute();
-        // $icon = $ps->fetchAll();
-        // return $icon;
+        // アイコンの更新に成功した場合、returnで1を返す
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "失敗してるって適当にreturnするか。だって、ここの処理見ることなんてほぼないからねー";
+        }
     }
 
 
     //都道府県変更
-    public function prefecture_change($prefecture){
+    public function prefecture_change($prefecture,$s){
         $pdo = $this->dbConnect();
-        $sql= "UPDATE users SET prefecture_id = :new_user_prefecture WHERE user_mail = :reset_user_prefecture";
+        $sql= "UPDATE users SET prefecture_id = :new_user_prefecture WHERE user_id = :reset_user_prefecture";
         $ps=$pdo->prepare($sql);
         $ps->bindValue(':new_user_prefecture', $prefecture);
         //SESSIONで場所を指定
-        $ps->bindValue(':reset_user_prefecture',$_SESSION['id']);
+        $ps->bindValue(':reset_user_prefecture',$s);
         $ps->execute();
+        // 都道府県の更新に成功した場合、returnで1を返す
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "失敗してるって適当にreturnするか。だって、ここの処理見ることなんてほぼないからねー";
+        }
     }
 }
 ?>
