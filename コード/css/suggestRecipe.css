@@ -1,12 +1,31 @@
 .suggest{
     text-align: center;
-  }
+}
   
-  .suggestTop{
-    border: solid 2px #FF7800;
-    margin: 8% 20%;
-  }
-  
-  .suggestButton{
-    background-color: #FF7800;
-  }
+.suggestTop{
+  border: solid 2px #FF7800;
+  margin: 8% 20%;
+}
+
+.menuNumber{
+  border-bottom: solid 1px #000;
+  margin-bottom: 3%;
+}
+
+.selectgGnre{
+
+}
+
+.budget{
+  border-bottom: solid 1px #000;
+  margin-bottom: 3%;
+}
+
+.selectTime{
+
+}
+
+.suggestButton{
+  background-color: #FF7800;
+  font-size: 25px;
+}

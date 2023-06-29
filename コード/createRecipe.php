@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['id']) == false  &&
+     isset($_SESSION['name']) == false ){
+        header('Location: login.php');
+        exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -133,11 +141,16 @@
 
             <!-- 材料の入力フォーム -->
             <span class="mb-3" id="addMaterialSpan">
-                <p class="materialNumber ms-2">・材料1</p>
-                <input class="textInput col-5 ms-3" type="text" name="materialName[]" placeholder="材料名">
-                <input class="textInput col-5 offset-1" type="text" name="materialQuantity[]" placeholder="分量">
-                <input class="textInput col-11 ms-3" type="number" name="materialCost[]" placeholder="材料の費用">
+                <span id="Material_1">
+                    <p class="materialNumber ms-2">・材料1</p>
+                    <input class="textInput col-5 ms-3" type="text" name="materialName[]" placeholder="材料名">
+                    <input class="textInput col-5 offset-1" type="text" name="materialQuantity[]" placeholder="分量">
+                    <input class="textInput col-11 ms-3" type="number" name="materialCost[]" placeholder="材料の費用">
+                </span>
             </span>
+            <div>
+                <p class="deleteMaterial text-center" onclick="deleteMaterial()">材料入力欄を一つ削除する</p>
+            </div>
            
             
             <!-- 作り方 -->
@@ -163,7 +176,7 @@
                     </div>
                 </div>
                 <div>
-                    <p class="deleteHowTo text-center" onclick="delete()">手順を一つ削除する</p>
+                    <p class="deleteHowTo text-center" onclick="deleteHowTo()">手順を一つ削除する</p>
                 </div>
                 
                 
