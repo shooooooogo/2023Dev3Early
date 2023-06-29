@@ -69,7 +69,7 @@
         <p>パスワードを忘れた方は<a class="kyouchou" href="resettingPassword.php">こちら</a></p><br>
         
 
-        <a href="newMember.php" ><input type="button" class="btn" value="新規登録"></a>
+        <a href="newRegister.php" ><input type="button" class="btn" value="新規登録"></a>
 
 
 

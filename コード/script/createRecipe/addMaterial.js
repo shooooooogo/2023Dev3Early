@@ -2,17 +2,26 @@
 let materialNumberCount=1;
 const materialNumber = document.getElementById("materialNumber");
 
+// 追加するやつを読み込み
+const AES = document.getElementById("addMaterialSpan");
+
 // 材料追加のメソッド
 function addMaterial(){
-    // 追加するやつを読み込み
-    const AES = document.getElementById("addMaterialSpan");
+
+    //材料の個数を変更
+    materialNumberCount+=1;
+    materialNumber.value=materialNumberCount;
+
+    //追加していく要素の格納先となるdivタグの作成
+    let newMaterialSpan = document.createElement("span");
+    newMaterialSpan.id = "Material_" + materialNumberCount;
+    AES.appendChild(newMaterialSpan);
     
     // 材料〇のpタグ
-    materialNumberCount+=1;
     const label=document.createElement("p");
     label.className="materialNumber ms-2";
     label.innerHTML="・材料"+materialNumberCount;
-    AES.appendChild(label);
+    newMaterialSpan.appendChild(label);
 
     // 材料名のinputタグ
     const input1 = document.createElement("input");
@@ -20,7 +29,7 @@ function addMaterial(){
     input1.setAttribute("type","text");
     input1.name = "materialName[]";
     input1.setAttribute("placeholder","材料名");
-    AES.appendChild(input1);
+    newMaterialSpan.appendChild(input1);
 
     // 材料の分量のinputタグ
     const input2 = document.createElement("input");
@@ -28,7 +37,7 @@ function addMaterial(){
     input2.setAttribute("type","text");
     input2.name = "materialQuantity[]";
     input2.setAttribute("placeholder","分量");
-    AES.appendChild(input2);
+    newMaterialSpan.appendChild(input2);
     
     // 材料の費用のinputタグ
     const input3 = document.createElement("input");
@@ -36,8 +45,21 @@ function addMaterial(){
     input3.setAttribute("type","number");
     input3.name = "materialCost[]";
     input3.setAttribute("placeholder","材料の費用");
-    AES.appendChild(input3);
+    newMaterialSpan.appendChild(input3);
 
-    //材料の個数を変更
-    materialNumber.value=materialNumberCount;
+}
+
+// 材料を一つ削除
+function deleteMaterial() {
+    // 手順を一つ削除
+    if(materialNumberCount>=2){
+        let material_element = document.getElementById("Material_"+materialNumberCount);
+        material_element.remove();
+    }
+    
+    // 変数を-1する
+    if(materialNumberCount>=2){
+        materialNumberCount--;
+        materialNumber.value=materialNumberCount;
+    }
 }
