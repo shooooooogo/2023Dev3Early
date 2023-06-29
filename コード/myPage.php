@@ -95,7 +95,9 @@
             <img src="img/UserIcon_default.png" alt="アイコン" class="user-icon">
             <h1 class="user-name">USERNAME</h1>
             <div class="user-setting">
-                <i class="bi bi-gear-fill"></i>
+                <a href="setting.php" style="color: black;">
+                    <i class="bi bi-gear-fill"></i>
+                </a>
             </div>
         </div>
 
