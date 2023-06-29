@@ -7,7 +7,6 @@
 /* 下に表示するバーのcss */
 footer{
     width: 100%;
-    height:10vh;
     background-color: #fff;
     color: #000;
     text-align: center;
@@ -109,7 +108,7 @@ footer{
  
  /* ロゴの表示について */
  .logo{
-    width:7vh;
+    width:14vh;
  }
  .noDecoration{
     text-decoration: none;    

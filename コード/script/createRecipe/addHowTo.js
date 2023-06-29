@@ -8,6 +8,7 @@ function add() {
     //手順の間の線を引くdivタグ
     let borderDiv = document.createElement("div");
     borderDiv.className = "How_To_Border mt-3 mb-1";
+    borderDiv.id = "HowToBorder"+howToCount;
     howToDiv[0].appendChild(borderDiv);
 
     //追加していく要素の格納先となるdivタグの作成
@@ -65,6 +66,28 @@ function add() {
 
     howToNumber.value=howToCount;
     
+}
+
+
+// 手順を一つ削除
+function deleteHowTo() {
+    // 手順を一つ削除
+    if(howToCount>=2){
+        let how_to_element = document.getElementById("How_To"+howToCount);
+        how_to_element.remove();    
+    }
+    
+    // borderを削除する
+    if(howToCount>=2){
+        let how_to_border = document.getElementById("HowToBorder"+howToCount);
+        how_to_border.remove();
+    }
+    
+    // 変数を-1する
+    if(howToCount>=2){
+        howToCount--;
+        howToNumber.value=howToCount;
+    }
 }
 
 // function imgChange(e,id){

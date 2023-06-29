@@ -1,4 +1,11 @@
-<!-- プロトタイプ出来たら頑張る系のポッチャマ -->
+<?php
+session_start();
+if(isset($_SESSION['id']) == false  &&
+     isset($_SESSION['name']) == false ){
+        header('Location: login.php');
+        exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -200,6 +207,7 @@
 
 
     <!-- 下のナビゲーションバー -->
+    <br><br><br><br><br>
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>

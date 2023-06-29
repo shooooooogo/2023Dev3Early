@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION['id']) == false  &&
+     isset($_SESSION['name']) == false ){
+        header('Location: login.php');
+        exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -196,6 +204,7 @@
 
 
     <!-- 下のナビゲーションバー -->
+    <br><br><br><br><br>
     <footer class="text-center">
       <div class="row footerBar fontGothicBold">
         <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
