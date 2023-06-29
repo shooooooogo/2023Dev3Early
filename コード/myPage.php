@@ -219,7 +219,7 @@ if(isset($_SESSION['id']) == false  &&
                             <div class="post-underline"></div>
                         </div>
                         <!-- 各タブの投稿内容ここまで -->
-                    </div>      
+                    <br><br></div>      
                     <!-- // いいねタブの中 -->
 
                     <!-- お気に入りタブの中 -->
@@ -261,7 +261,7 @@ if(isset($_SESSION['id']) == false  &&
                             <div class="post-underline"></div>
                         </div>
                         <!-- 各タブの投稿内容ここまで -->
-                    </div>      
+                    <br><br></div>      
                     <!-- // いいねタブの中 -->
                 
                     <!-- 投稿済みタブの中 -->
@@ -284,7 +284,7 @@ if(isset($_SESSION['id']) == false  &&
                             <div class="post-underline"></div>
                         </div>
                         <!-- 各タブの投稿内容ここまで -->
-                    </div>
+                    <br><br></div>
                     <!-- // 投稿済みタブの中 -->
 
                      <!-- 下書きタブの中 -->
@@ -307,7 +307,7 @@ if(isset($_SESSION['id']) == false  &&
                             <div class="post-underline"></div>
                         </div>
                         <!-- 各タブの投稿内容ここまで -->
-                    </div>
+                    <br><br></div>
                     <!-- // 下書きタブの中 -->
             </div>
             
