@@ -109,6 +109,16 @@ if(isset($_SESSION['id']) == false  &&
             <li class="search-list-content">
                 <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
                 <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">テキストテキストテキストテキストテキスト</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">レシピ表示</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
                 <p class="content-text">レシピ表示</p>
             </li>
             <li class="search-list-content">
@@ -122,7 +132,12 @@ if(isset($_SESSION['id']) == false  &&
                 <p class="content-text">レシピ表示</p>
             </li>
             <li class="search-list-content">
-                <img src="./img/spring.png" alt="料理画像" class="content-image">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">レシピ表示</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
                 <h1 class="content-name">ペッパーランチ</h1>
                 <p class="content-text">レシピ表示</p>
             </li>
@@ -138,9 +153,9 @@ if(isset($_SESSION['id']) == false  &&
     <!-- 下のナビゲーションバー ※リンク未定義-->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
+            <a href="mypage.php" class="col-4"style="color: #FF7800;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>
 
