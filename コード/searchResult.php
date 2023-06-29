@@ -101,6 +101,16 @@
             <li class="search-list-content">
                 <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
                 <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">テキストテキストテキストテキストテキスト</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">レシピ表示</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
                 <p class="content-text">レシピ表示</p>
             </li>
             <li class="search-list-content">
@@ -114,7 +124,12 @@
                 <p class="content-text">レシピ表示</p>
             </li>
             <li class="search-list-content">
-                <img src="./img/spring.png" alt="料理画像" class="content-image">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
+                <h1 class="content-name">ペッパーランチ</h1>
+                <p class="content-text">レシピ表示</p>
+            </li>
+            <li class="search-list-content">
+                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
                 <h1 class="content-name">ペッパーランチ</h1>
                 <p class="content-text">レシピ表示</p>
             </li>
