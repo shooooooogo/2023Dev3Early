@@ -34,6 +34,18 @@ if(isset($_SESSION['id']) == false  &&
      <link rel="stylesheet" href="css/myPage.css">
 
     
+     <?php
+        //DAOの呼び出し
+        require_once 'DAO.php';
+        $dao = new DAO();
+
+        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+        $userdata = $dao->selectUser($_SESSION['id']);
+
+        var_dump($userdata);
+
+
+    ?>
 
 </head>
 <body>
@@ -98,10 +110,10 @@ if(isset($_SESSION['id']) == false  &&
     </nav>
 
        <div class="user">
-        <!-- ユーザートップ -->
+        <!-- ユーザートップ ($userdataを用いて、各種情報を表示する) -->
         <div class="user-top">
-            <img src="img/UserIcon_default.png" alt="アイコン" class="user-icon">
-            <h1 class="user-name">USERNAME</h1>
+            <img src="<?php echo $userdata['user_icon'] ?>" alt="アイコン" class="user-icon">
+            <h1 class="user-name"><?php echo $userdata['user_name'] ?></h1>
             <div class="user-setting">
                 <a href="setting.php"><i class="bi bi-gear-fill"></i></a>
             </div>
@@ -109,10 +121,43 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- ユーザー情報 -->
         <div class="user-info">
-            <p class="prefecture user-info-text">__県民</p>
-            <p class="follow user-info-text"><span class="user-info-text-bold">フォロー</span>：9,999人</p>
-            <p class="follow user-info-text"><span class="user-info-text-bold">フォロワー</span>：9,999人</p>
-            <textarea name="#" class="introduction user-info-text" cols="40" row="3">ここにユーザーの紹介文を表示</textarea>
+            <!-- 所在地　県名 -->
+            <p class="prefecture user-info-text">
+                <?php
+                    if(empty($userdata['prefecture_id'])){//県に関する情報がnullもしくは0か
+                        echo "所在地不明";
+                    }else {
+                        $prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
+                        echo $prefecture['prefecture_name'];
+                    }
+                ?>
+            </p>
+
+            <!-- フォロー人数 -->
+            <p class="follow user-info-text">
+                <span class="user-info-text-bold">
+                    <?php
+                        $followCount = $dao->countFollowers($_SESSION['id']);
+                        echo "フォロー　：".number_format($followCount[0])."人";
+                    ?>
+                </span>
+            </p>
+            <!-- フォロワー人数 -->
+            <p class="follow user-info-text">
+                <span class="user-info-text-bold">
+                    <?php
+                        $followerCount = $dao->countFollows($_SESSION['id']);
+                        echo "フォロワー：".number_format($followerCount[0])."人";
+                    ?>
+                </span>
+            </p>
+            <!-- テキストエリアでは変更できてしまうため、pタグに変えました。　石川 -->
+            <p name="#" class="introduction user-info-text-bold">
+                <?php
+                    echo "紹介文:<br>".$userdata['user_introduction'];
+                ?>
+            </p>
+            <!-- <textarea name="#" class="introduction user-info-text" cols="40" row="3">ここにユーザーの紹介文を表示</textarea> -->
         </div>
     </div>
 
@@ -217,6 +262,38 @@ if(isset($_SESSION['id']) == false  &&
                             <div class="post-underline"></div>
                         </div>
                         <!-- 各タブの投稿内容ここまで -->
+
+
+                        <?php
+
+                            // $selectGR = $dao->selectGoodRecipes($_SESSION['id']);
+                            // var_dump($selectgood);
+                            // foreach ($selectgood as $row) {
+
+                            //     echo "<div class='div-underline'>
+                            //     <div class='myPage-content-posts'>
+                            //         <div class='myPage-content-posted'>
+                            //             <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
+                            //             <div class='post-image-float'>
+                            //                 <div class='post-text-name'>いいねペッパーライス</div>
+                            //                 <div class='post-text-budget'>予算　9,999円</div>
+                            //             </div>
+                            //             <div class='post-like'>
+                            //                 <i class='bi bi-hand-thumbs-up'>9,999</i>
+                            //                 <i class='bi bi-bookmark-star verylike'>9,999</i>
+                            //             </div>
+                            //         </div>
+                            //     </div>
+                            //     <div class='post-underline'></div>
+                            // </div>";       
+
+                                
+                            // }
+
+                        ?>
+
+
+
                     </div>      
                     <!-- // いいねタブの中 -->
 

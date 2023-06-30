@@ -71,8 +71,6 @@ class DAO{
         $ps->bindValue(':recipe_people', $recipe_people, PDO::PARAM_INT);
         $ps->bindValue(':recipe_is_upload', 0, PDO::PARAM_INT);
         $ps->bindValue(':prefecture_id', $prefecture_id, PDO::PARAM_INT);
-        
-        var_dump($user_id);
 
         $ps->execute();
     
@@ -215,7 +213,7 @@ class DAO{
         return $selectTimeZone->fetch();
     }
 
-    // 都道府県検索
+    // 都道府県検索(prefecture_id)
     public function selectPrefecture($prefecture_id){
         $pdo = $this->dbConnect();
         $sql = "SELECT * FROM prefectures WHERE prefecture_id = :prefecture_id";
@@ -228,7 +226,7 @@ class DAO{
         return $selectPrefecture->fetch();
     }
 
-    // 作り方検索
+    // 作り方検索(recipe_id)
     public function selectHowTo($recipe_id){
         $pdo = $this->dbConnect();
         $sql = "SELECT * FROM how_to_make WHERE recipe_id = :recipe_id";
@@ -240,7 +238,80 @@ class DAO{
 
         return $selectHowTo -> fetchAll();
     }
+
+    // いいね検索(user_id)
+    public function selectGood($user_id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * FROM goods WHERE user_id = :user_id";
+        $selectgood = $pdo->prepare($sql);
+
+        $selectgood->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $selectgood->execute();
+        return $selectgood->fetchAll();
+    }
+
+    // お気に入り検索(user_id)
+    public function selectFavorite($user_id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * FROM favorites WHERE user_id = :user_id";
+        $selectfavorite = $pdo->prepare();
+
+        $selectfavorite->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $selectfavorite->execute();
+        return $selectfavorite->fetchAll();
+    }
+
+
+    // フォローに関する機能(フォローする人→follower_user_id  フォローを受ける人→follow_user_id)
+    // フォローしている人数カウント(user_id)
+    public function countFollows($follower_user_id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT COUNT(*) FROM follows WHERE follower_user_id = :follower_user_id";
+        $Count = $pdo->prepare($sql);
+
+        $Count->bindValue(":follower_user_id", $follower_user_id, PDO::PARAM_INT);
+
+        $Count->execute();
+
+        return $Count->fetch();
+    }
+    // フォロワー人数カウント(user_id)
+    public function countFollowers($follow_user_id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT COUNT(*) FROM follows WHERE follow_user_id = :follow_user_id";
+        $Count = $pdo->prepare($sql);
+
+        $Count->bindValue(":follow_user_id", $follow_user_id, PDO::PARAM_INT);
+
+        $Count->execute();
+
+        return $Count->fetch();
+    }
     
+
+
+    //ユーザ毎のページで利用するレシピ情報の抽出(user_id,recipe_id)
+    public function selectGoodRecipes($user_id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT recipes.recipe_name, recipes.recipe_image, SUM(materials.material_cost) AS sumCost, COUNT(*) as goodCount, COUNT(*) as favoriteCount 
+                FROM recipes 
+                    INNER JOIN materials 
+                        ON recipes.recipe_id = materials.recipe_id 
+                    LEFT OUTER JOIN (SELECT COUNT(*) FROM recipes,goods WHERE recipes.recipe_id = goods.recipe_id) 
+                        ON recipes.recipe_id = goods.recipe_id 
+                    LEFT OUTER JOIN (SELECT COUNT(*) FROM recipes,favorites WHERE recipes.recipe_id = favorites.recipe_id)
+                        ON recipes.recipe_id = favorites.recipe_id 
+                WHERE recipes.user_id = :user_id
+                GROUP BY recipe_id";
+        $selectGR = $pdo->prepare($sql);
+
+        $selectGR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
+        $selectGR->execute();
+        return $selectGR->fetchAll();
+    }
+
 
 
     //メールアドレス再設定
