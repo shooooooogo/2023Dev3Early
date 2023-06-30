@@ -290,7 +290,7 @@ class DAO{
     public function selectFavorite($user_id){
         $pdo = $this->dbConnect();
         $sql = "SELECT * FROM favorites WHERE user_id = :user_id";
-        $selectfavorite = $pdo->prepare();
+        $selectfavorite = $pdo->prepare($sql);
 
         $selectfavorite->bindValue(":user_id", $user_id, PDO::PARAM_INT);
 
