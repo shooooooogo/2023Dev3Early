@@ -132,7 +132,7 @@ if(isset($_SESSION['id']) == false  &&
 </div>
 
 <div class="proposalButton">
-        <a href="suggestRecipe.php"><button class="button">提案</button></a>
+        <a href="suggestRecipe.php"><button class="suggestButton">提案</button></a>
 </div>
 
 

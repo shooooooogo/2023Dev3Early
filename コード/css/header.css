@@ -125,12 +125,10 @@
   }
   
   .footerCooporation {
-    padding: 2rem;
     font-size: 15px;
     color: #999;
     background: #fff;
     border-top: 1px solid #e5e7eb;
-    margin-bottom: 10vh;
   }
   
   .footerCooporation a:hover {

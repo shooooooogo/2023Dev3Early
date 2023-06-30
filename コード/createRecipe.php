@@ -183,21 +183,22 @@ if(isset($_SESSION['id']) == false  &&
             </span>
 
             <!-- 時間帯 -->
-            <span>
-                <h1 class="ms-2">時間帯(以下の内から選択)</h1>
-                <select name="time_zone_id">
+            <div style="text-align: center;">
+                <h1 class="ms-2">時間帯(以下の内から選択)</h1><br>
+                <select name="time_zone_id" style="text-align: center;">
                     <option value="0">時間帯を指定しない</option>
                     <option value="1">朝食</option>
                     <option value="2">昼食</option>
                     <option value="3">夕食</option>
                     <option value="4">おやつ</option>
                 </select>
-            </span>
+            </div>
+            <br>　
 
             <!-- ジャンル -->
-            <span>
-                <h1 class="ms-2">ジャンル</h1>
-                <select name="genre_id">
+            <div style="text-align: center;">
+                <h1 class="ms-2">ジャンル</h1><br>
+                <select name="genre_id" style="text-align: center;">
                     <option value="0">野菜料理</option>
                     <option value="1">魚料理</option>
                     <option value="2">肉料理</option>
@@ -209,12 +210,13 @@ if(isset($_SESSION['id']) == false  &&
                     <option value="8">イタリアン</option>
                     <option value="9">フレンチ</option>
                 </select>
-            </span>
+            </div>
+            <br>　
 
             <!-- 都道府県 -->
-            <span>
-                <h1>都道府県</h1>
-                <select name="prefecture_id">
+            <div style="text-align: center;">
+                <h1>都道府県</h1><br>
+                <select name="prefecture_id" style="text-align: center;">
                     <option value="0">県を指定しない</option>
                     <option value="1">北海道</option>
                     <option value="2">青森県</option>
@@ -264,11 +266,13 @@ if(isset($_SESSION['id']) == false  &&
                     <option value="46">鹿児島県</option>
                     <option value="47">沖縄県</option>
                 </select>
-            </span>
+            </div>
+            <br>　
             <input type="submit" value="登録する">
             <!-- <button>下書きを保存する</button>
             <button>投稿する</button> -->
         </form>
+        <br>
         
         
 
@@ -286,7 +290,7 @@ if(isset($_SESSION['id']) == false  &&
 
 
     <!-- 下のナビゲーションバー -->
-    <br><br><br><br><br>
+    <br><br><br>
     <footer class="text-center">
     <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
