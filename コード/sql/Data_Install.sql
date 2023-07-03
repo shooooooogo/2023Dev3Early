@@ -1,15 +1,71 @@
 -- ジャンルテーブルへ情報を入力
 INSERT INTO genres (genre_id,genre_name) VALUES
-  (0,'野菜料理'),
-  (1,'魚料理'),
-  (2,'肉料理'),
-  (3,'麺料理'),
-  (4,'ご飯もの'),
-  (5,'デザート'),
-  (6,'和食'),
-  (7,'中華料理'),
-  (8,'イタリアン'),
-  (9,'フレンチ');
+  (0,'日本料理'),
+  (1,'寿司'),
+  (2,'海鮮'),
+  (3,'うなぎ・あなご'),
+  (4,'天ぷら'),
+  (5,'とんかつ'),
+  (6,'焼き鳥'),
+  (7,'すき焼き'),
+  (8,'しゃぶしゃぶ'),
+  (9,'そば'),
+  (10,'うどん'),
+  (11,'麺類'),
+  (12,'お好み焼き'),
+  (13,'丼'),
+  (14,'おでん'),
+  (15,'洋食'),
+  (16,'ステーキ'),
+  (17,'フレンチ'),
+  (18,'イタリアン'),
+  (19,'スペイン料理'),
+  (20,'ヨーロッパ料理'),
+  (21,'アメリカ料理'),
+  (22,'中華料理'),
+  (23,'四川料理'),
+  (24,'台湾料理'),
+  (25,'飲茶・点心'),
+  (26,'餃子'),
+  (27,'肉まん'),
+  (28,'小籠包'),
+  (29,'中華がゆ'),
+  (30,'アジア・エスニック'),
+  (31,'アジア・エスニック'),
+  (32,'韓国料理'),
+  (33,'東南アジア料理'),
+  (34,'南アジア料理'),
+  (35,'中東料理'),
+  (36,'中南米料理'),
+  (37,'アフリカ料理'),
+  (38,'カレー'),
+  (39,'インドカレー'),
+  (40,'スープカレー'),
+  (41,'焼肉'),
+  (42,'ホルモン'),
+  (43,'ジンギスカン'),
+  (44,'鍋'),
+  (45,'もつ鍋'),
+  (46,'ちゃんこ鍋'),
+  (47,'火鍋'),
+  (48,'オーガニック'),
+  (49,'弁当・おにぎり'),
+  (50,'シーフード'),
+  (51,'サラダ'),
+  (52,'チーズ料理'),
+  (53,'ニンニク料理'),
+  (54,'ラーメン'),
+  (55,'つけ麺'),
+  (56,'油そば・まぜそば'),
+  (57,'担々麺'),
+  (58,'スイーツ'),
+  (59,'洋菓子'),
+  (60,'和菓子'),
+  (61,'ソフトクリーム'),
+  (62,'パン'),
+  (63,'サンドイッチ');
+
+
 
 -- 時間帯テーブル
 INSERT INTO time_zones (time_zone_id,time_zone_name) VALUES
@@ -17,7 +73,8 @@ INSERT INTO time_zones (time_zone_id,time_zone_name) VALUES
   (1,'朝食'),
   (2,'昼食'),
   (3,'夕食'),
-  (4,'おやつ');
+  (4,'おやつ'),
+  (5,'夜食');
 
 --   都道府県
 INSERT INTO prefectures (prefecture_id, prefecture_name) VALUES
@@ -70,9 +127,18 @@ INSERT INTO prefectures (prefecture_id, prefecture_name) VALUES
   (46, '鹿児島県'),
   (47, '沖縄県');
 
-INSERT INTO users(user_mail,user_name,user_password)
-VALUES
-  ('test1@gmail.com','testおじさん','pass');
+INSERT INTO users (user_mail, user_name, user_password, user_introduction, prefecture_id) 
+VALUES 
+  ('test1@gmail.com', 'test1', 'pass', 'よろしくお願いします。', 12), 
+  ('test2@gmail.com', 'test2', 'pass', 'よろしくお願いします。', 34), 
+  ('test3@gmail.com', 'test3', 'pass', 'よろしくお願いします。', 20), 
+  ('test4@gmail.com', 'test4', 'pass', 'よろしくお願いします。', 5), 
+  ('test5@gmail.com', 'test5', 'pass', 'よろしくお願いします。', 43), 
+  ('test6@gmail.com', 'test6', 'pass', 'よろしくお願いします。', 18), 
+  ('test7@gmail.com', 'test7', 'pass', 'よろしくお願いします。', 9), 
+  ('test8@gmail.com', 'test8', 'pass', 'よろしくお願いします。', 31), 
+  ('test9@gmail.com', 'test9', 'pass', 'よろしくお願いします。', 25), 
+  ('test10@gmail.com', 'test10', 'pass', 'よろしくお願いします。', 37);
 
 -- レシピテーブル
 INSERT INTO recipes (recipe_name, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id)
@@ -99,6 +165,7 @@ VALUES
 
 INSERT INTO goods (user_id, recipe_id, good_time) 
 VALUES
+
   (1, 25, '2023-06-29'),
   (2, 10, '2023-06-29'),
   (3, 45, '2023-06-29'),
