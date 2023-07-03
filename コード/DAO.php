@@ -3,7 +3,7 @@
 //データベース接続
 class DAO{
    private function dbConnect(){
-    $pdo= new PDO('mysql:host=localhost;dbname=smart_delicious;charset=utf8','root', 'root');
+    $pdo= new PDO('mysql:host=localhost;dbname=smart_delicious;charset=utf8','root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo; 
     }
@@ -135,10 +135,14 @@ class DAO{
         $targetDir = "img/HowTo/";  // アップロードされたファイルを保存するディレクトリパス
 
         for($i=0; $i<$num; $i++){
-
-            $imageFileType[$i] = strtolower(pathinfo($howToImage["name"][$i], PATHINFO_EXTENSION));//拡張子を格納
-            $targetFile[$i] = $targetDir.$recipe_id."_HowTo".$i.".".$imageFileType[$i];//保存するファイル名を格納
-            move_uploaded_file($howToImage["tmp_name"][$i], $targetFile[$i]);
+            if(is_null($howToImage['name'][$i])){
+                $imageFileType[$i] = strtolower(pathinfo($howToImage["name"][$i], PATHINFO_EXTENSION));//拡張子を格納
+                $targetFile[$i] = $targetDir.$recipe_id."_HowTo".$i.".".$imageFileType[$i];//保存するファイル名を格納
+                move_uploaded_file($howToImage["tmp_name"][$i], $targetFile[$i]);    
+            }else{
+                $targetFile[$i] = $targetDir.$recipe_id."_HowTo".$i.".png";//保存するファイル名を格納  
+                copy("img/noimage.png", $targetFile[$i]);  
+            }
             
             $insertHowTo[$i] = $pdo->prepare($sql);
             
@@ -184,6 +188,24 @@ class DAO{
         $sql ="SELECT * FROM recipes WHERE recipe_id = :recipe_id";
         $ps = $pdo->prepare($sql);
         $ps->bindValue(":recipe_id",$recipe_id, PDO::PARAM_INT);
+        $ps->execute();
+        return $ps->fetch();
+    }
+    // 投稿済みレシピ検索(recipe_id,1)
+    public function selectRecipe1($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql ="SELECT * FROM recipes WHERE recipe_id = :recipe_id AND recipe_is_upload = 1";
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(":recipe_id", $recipe_id, PDO::PARAM_INT);
+        $ps->execute();
+        return $ps->fetch();
+    }
+    // 下書きのレシピ検索(recipe_id,0)
+    public function selectRecipe0($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql ="SELECT * FROM recipes WHERE recipe_id = :recipe_id AND recipe_is_upload = 0";
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(":recipe_id", $recipe_id, PDO::PARAM_INT);
         $ps->execute();
         return $ps->fetch();
     }
@@ -277,6 +299,7 @@ class DAO{
     }
 
 
+
     // フォローに関する機能(フォローする人→follower_user_id  フォローを受ける人→follow_user_id)
     // フォローしている人数カウント(user_id)
     public function countFollows($follower_user_id){
@@ -306,23 +329,45 @@ class DAO{
 
 
     //ユーザ毎のページで利用するレシピ情報の抽出(user_id,recipe_id)
+    //特定のユーザがいいねしている投稿済みレシピの関連情報の抽出(user_id)
     public function selectGoodRecipes($user_id){
         $pdo = $this->dbConnect();
-        $sql = "SELECT recipes.recipe_name, recipes.recipe_image, SUM(materials.material_cost) AS sumCost, COUNT(*) as goodCount, COUNT(*) as favoriteCount 
-                FROM recipes 
-                    INNER JOIN materials 
-                        ON recipes.recipe_id = materials.recipe_id 
-                    LEFT OUTER JOIN (SELECT COUNT(*) FROM recipes,goods WHERE recipes.recipe_id = goods.recipe_id) 
-                        ON recipes.recipe_id = goods.recipe_id 
-                    LEFT OUTER JOIN (SELECT COUNT(*) FROM recipes,favorites WHERE recipes.recipe_id = favorites.recipe_id)
-                        ON recipes.recipe_id = favorites.recipe_id 
-                WHERE recipes.user_id = :user_id
-                GROUP BY recipe_id";
+        
+        $sql = "SELECT recipes.recipe_id, recipes.recipe_name, recipes.recipe_image, SUM(materials.material_cost) AS sumCost, (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id AND goods.user_id = :user_id) AS goodCount
+        FROM
+        recipes
+        INNER JOIN
+        materials ON recipes.recipe_id = materials.recipe_id
+        WHERE
+        recipes.recipe_is_upload = 1
+        GROUP BY
+        recipes.recipe_id
+        HAVING goodCount>=1";
         $selectGR = $pdo->prepare($sql);
 
         $selectGR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
         $selectGR->execute();
         return $selectGR->fetchAll();
+    }
+    //特定のユーザがお気に入り登録している投稿済みレシピの関連情報の抽出(user_id)
+    public function selectFavoriteRecipes($user_id){
+        $pdo = $this->dbConnect();
+        
+        $sql = "SELECT recipes.recipe_id, recipes.recipe_name, recipes.recipe_image, SUM(materials.material_cost) AS sumCost, (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id AND favorites.user_id = :user_id) AS favoriteCount
+        FROM
+        recipes
+        INNER JOIN
+        materials ON recipes.recipe_id = materials.recipe_id
+        WHERE
+        recipes.recipe_is_upload = 1
+        GROUP BY
+        recipes.recipe_id
+        HAVING favoriteCount>=1";
+        $selectFR = $pdo->prepare($sql);
+
+        $selectFR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
+        $selectFR->execute();
+        return $selectFR->fetchAll();
     }
 
 

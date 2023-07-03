@@ -268,29 +268,29 @@ if(isset($_SESSION['id']) == false  &&
 
                         <?php
 
-                            // $selectGR = $dao->selectGoodRecipes($_SESSION['id']);
-                            // var_dump($selectgood);
-                            // foreach ($selectgood as $row) {
+                            $selectGR = $dao->selectGoodRecipes($_SESSION['id']);
+                            var_dump($selectGR);
+                            foreach ($selectGR as $row) {
 
-                            //     echo "<div class='div-underline'>
-                            //     <div class='myPage-content-posts'>
-                            //         <div class='myPage-content-posted'>
-                            //             <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
-                            //             <div class='post-image-float'>
-                            //                 <div class='post-text-name'>いいねペッパーライス</div>
-                            //                 <div class='post-text-budget'>予算　9,999円</div>
-                            //             </div>
-                            //             <div class='post-like'>
-                            //                 <i class='bi bi-hand-thumbs-up'>9,999</i>
-                            //                 <i class='bi bi-bookmark-star verylike'>9,999</i>
-                            //             </div>
-                            //         </div>
-                            //     </div>
-                            //     <div class='post-underline'></div>
-                            // </div>";       
+                                echo "<div class='div-underline'>
+                                <div class='myPage-content-posts'>
+                                    <div class='myPage-content-posted'>
+                                        <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
+                                        <div class='post-image-float'>
+                                            <div class='post-text-name'>いいねペッパーライス</div>
+                                            <div class='post-text-budget'>予算　9,999円</div>
+                                        </div>
+                                        <div class='post-like'>
+                                            <i class='bi bi-hand-thumbs-up'>9,999</i>
+                                            <i class='bi bi-bookmark-star verylike'>9,999</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='post-underline'></div>
+                            </div>";       
 
                                 
-                            // }
+                            }
 
                         ?>
 
