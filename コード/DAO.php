@@ -435,7 +435,7 @@ class DAO{
     public function recipeSearch($recipe_search_name){
         $pdo= $this->dbConnect();
         //レシピ名を検索
-        $sql= "SELECT * FROM recipes WHERE recipe_name LIKE '%$recipe_search_name%'";
+        $sql= "SELECT * FROM recipes WHERE recipe_name LIKE '%$recipe_search_name%' AND recipe_is_upload = 1";
         $ps= $pdo->prepare($sql);
         // $ps->bindValue(':recipe_set',$recipe_search_name);
         $ps->execute();

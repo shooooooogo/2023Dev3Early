@@ -14,11 +14,12 @@
     position: relative;
 }
 .user-icon{
-    width: 65px;
+    width: 20%;
+    height: 20%;
     margin: 5px 0 0 7px;
 }
 .user-name{
-    font-size: 25px;
+    font-size: 6vw;
     margin:0 200px 0 10px;
 }
 .user-setting{
@@ -58,7 +59,7 @@
 }
 .user-register-link{
     text-decoration: none;
-    color: #ff4500;
+    color: #ff7800;
 }
 
 
