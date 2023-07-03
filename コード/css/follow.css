@@ -1,4 +1,4 @@
-@media (max-widht: 767px){
+@media (max-width: 767px){
     body{
         width:100%;
     }
@@ -32,7 +32,6 @@
     border: 1px solid #000000;
     border-radius: 25px;
     overflow: hidden;
-    
 }
 .follow-content-tab{
     display: flex;
@@ -57,6 +56,10 @@
 }
 
 /* 各フォロワー欄 */
+.scrollRange{
+    overflow: auto;
+    
+}
 .follow-user-info{
     display: flex;
     justify-content: flex-start;
@@ -85,4 +88,14 @@
 }
 .follow-underline{
     border-bottom: 1px solid #000000;
+}
+.follow-content-list.is-active{
+    color:#ff4500;
+    transition: all 0.2s ease-out;
+}
+.panel{
+    display: none;
+}
+.panel.is-show{
+    display: block;
 }
