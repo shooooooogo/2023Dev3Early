@@ -96,7 +96,7 @@
 /* 投稿内容 */
 .scrollRange{
     overflow: auto;
-    height: 400px;
+    height: 62vh;
 }
 /* .myPage-content-posts{
     position: relative;
