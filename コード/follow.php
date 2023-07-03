@@ -15,9 +15,6 @@ if(isset($_SESSION['id']) == false  &&
     <title>プロトタイプ</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
-
-    <!-- javascriptの導入 -->
-    <script src="./script/script.js"></script>
     
     <!-- bootstrapのCSSの導入 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -117,20 +114,38 @@ if(isset($_SESSION['id']) == false  &&
 
     <div class="follow-content">
         <ul class="follow-content-tab">
-            <li class="follow-content-list follow1">フォロー</li>
+            <li class="follow-content-list follow1 is-active">フォロー</li>
             <li class="follow-content-list follow2">フォロワー</li>
         </ul>
 
-        <!-- ユーザ欄　1人分　ここから -->
         <div class="follow-pane-group">
-            <div class="follow-user-info">
-                <img src="img/UserIcon_default.png" alt="アイコン" class="follow-user-icon">
-                <div class="follow-user-name">ユーザー名</div>
-                <button class="follow-user-button">フォロー</button>
+            <div class="scrollRange">
+                <!-- フォロータブの中 -->
+                <div class="panel follow1tab is-show">
+                    <!-- ユーザ欄　1人分　ここから -->
+                        <div class="follow-user-info">
+                                <img src="img/UserIcon_default.png" alt="アイコン" class="follow-user-icon">
+                                <div class="follow-user-name">上村</div>
+                                <button class="follow-user-button">フォロー</button>
+                            </div>
+                        <div class="follow-underline"></div>
+                    <!-- ユーザ欄　1人分　ここまで -->
+                </div>
+
+                <!-- フォロワータブの中 -->
+                <div class="panel follow2tab">
+                    <!-- ユーザ欄　1人分　ここから -->
+                        <div class="follow-user-info">
+                                <img src="img/UserIcon_default.png" alt="アイコン" class="follow-user-icon">
+                                <div class="follow-user-name">しんいち</div>
+                                <button class="follow-user-button">フォロー</button>
+                            </div>
+                        <div class="follow-underline"></div>
+                    <!-- ユーザ欄　1人分　ここまで -->
+                </div>
+                
             </div>
         </div>
-        <div class="follow-underline"></div>
-        <!-- ユーザ欄　1人分　ここまで -->
     </div>
 
 
