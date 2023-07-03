@@ -49,18 +49,26 @@ if(isset($_SESSION['id']) == false  &&
 
         // サムネイル画像をサーバ上にアップロードする
 
-        $targetDir = "img/RecipeThumbnail/";  // アップロードされたファイルを保存するディレクトリパス
-        $imageFileType = strtolower(pathinfo($_FILES["recipe_image"]["name"], PATHINFO_EXTENSION));//拡張子を格納
+        // アップロードされたファイルを保存するディレクトリパス
+        $targetDir = "img/RecipeThumbnail/";
         
         // recipesテーブルに新規レコード登録＆ID取得
         $currentRecipeId=$dao->insertRecipe($_POST['recipe_name'],$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$prefecture_id);
-        
-        $targetFile = $targetDir.$currentRecipeId."_thumbnail.".$imageFileType;//保存するファイル名を格納
-        $dao->insertRecipeThumbnail($currentRecipeId, $targetFile);
-        
 
-        move_uploaded_file($_FILES["recipe_image"]["tmp_name"], $targetFile);
+        if(isset($_FILES['recipe_image'])){//サムネイル画像がアップロードされていたか確認
+            $imageFileType = strtolower(pathinfo($_FILES["recipe_image"]["name"], PATHINFO_EXTENSION));//拡張子を格納
+        
+            $targetFile = $targetDir.$currentRecipeId."_thumbnail.".$imageFileType;//保存するファイル名を格納
+            $dao->insertRecipeThumbnail($currentRecipeId, $targetFile);
 
+            move_uploaded_file($_FILES["recipe_image"]["tmp_name"], $targetFile);
+        
+        }else{//アップロードできない場合
+            $targetFile = $targetDir.$currentRecipeId."_thumbnail.png";
+            $dao->insertRecipeThumbnail($currentRecipeId, $targetFile);
+            copy("img/noimage.png", $targetFile);
+        }
+        
 
         // 材料が登録されていれば、それらをmaterialsテーブルに格納する
 
