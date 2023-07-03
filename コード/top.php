@@ -88,7 +88,7 @@ if(isset($_SESSION['id']) == false  &&
 
                 <!-- 虫眼鏡付きの検索ボックス -->
                 <li class="text-start">
-                    <form action="searchRecipe.php" method="post" class="search_container">
+                    <form action="searchResult.php" method="post" class="search_container">
                         <input type="text" name="recipe_name" size="15" placeholder="料理名・食材名">
                         <input type="submit" value="&#xf002">
                     </form>
