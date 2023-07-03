@@ -277,8 +277,8 @@ if(isset($_SESSION['id']) == false  &&
                                     <div class='myPage-content-posted'>
                                         <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
                                         <div class='post-image-float'>
-                                            <div class='post-text-name'>いいねペッパーライス</div>
-                                            <div class='post-text-budget'>予算　9,999円</div>
+                                            <div class='post-text-name'>".$row['recipe_name']."</div>
+                                            <div class='post-text-budget'>予算　".$row['sumCost']."円</div>
                                         </div>
                                         <div class='post-like'>
                                             <i class='bi bi-hand-thumbs-up'>9,999</i>
