@@ -1,7 +1,8 @@
 .ranking{
     margin: 10%;
-    border: solid 1.5px #FFE300;
+    border: solid 1.5px #FF7800;
     background-color: #FFFAD7;
+    border-radius: 5px;
 }
 
 
@@ -19,8 +20,8 @@
     position: absolute;
 	z-index: 3;
     top: 42%;
-    border-top: 2px solid #FFE300;/*矢印の色*/
-    border-right: 2px solid #FFE300;/*矢印の色*/
+    border-top: 2px solid #FF7800;/*矢印の色*/
+    border-right: 2px solid #FF7800;/*矢印の色*/
     height: 25px;
     width: 25px;
 }
@@ -41,7 +42,7 @@
 	position: relative;
 	z-index: 3;
     text-align:center;
-	margin:-50px 0 0 0;
+	margin:10px 50px 0 0;
 }
 
 .slick-dots li {
@@ -56,11 +57,11 @@
     height:8px;
     display:block;
     border-radius:50%;
-    background:#FFE300;
+    background:#FF7800;
 }
 
 .slick-dots .slick-active button{
-    background:#FFE300;/*ドットボタンの現在地表示の色*/
+    background:#FF7800;/*ドットボタンの現在地表示の色*/
 }
 
 .proposalButton{

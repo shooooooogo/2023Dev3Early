@@ -134,11 +134,11 @@ if(isset($_SESSION['id']) == false  &&
                     <!-- いいね、お気に入り　-->
                     <div class="col-6">
                         <i class="bi bi-hand-thumbs-up"></i>
-                        <span style="">9999999</span>
+                        <span style="">9999</span>
                     </div>
                     <div class="col-6">
                         <i class="bi bi-bookmark-star"></i>
-                        <span style="">9999999</span>
+                        <span style="">9999</span>
                     </div>
                 </div>
                 <div style="border-bottom: 1px solid #000000; margin-left:auto;margin-right:auto;"></div>

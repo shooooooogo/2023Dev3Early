@@ -107,27 +107,37 @@ if(isset($_SESSION['id']) == false  &&
     <!-- この中に要素を追加 -->
     <div class="ranking">
     <ul class="slider">
-        <li class="slider-item slider-item01">総合ランキング<br>
-        総合ランキング<br>
-        総合ランキング<br>
-        総合ランキング<br>
+        <li class="slider-item slider-item01">
+        <h4 style="text-align: center">総合ランキング</h3>
+        <div class="div-underline">
+            <div class="myPage-content-posts">
+                <div class="myPage-content-posted">
+                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image" style="height:80px">
+                    <div class="post-image-float">
+                        <div class="post-text-name">ペッパーライス</div>
+                        <div class="post-text-budget">予算 9,999円</div>
+                    </div>
+                    <div class="post-like">
+                    <i class="bi bi-hand-thumbs-up">9,999</i>
+                    <i class="bi bi-bookmark-star verylike">9,999</i>
+                    </div>
+                </div>
+            </div>
+            <div class="post-underline"></div>
+        </div>
+        <image src="img/PepperRice.png" style="height:80px">
+        <image src="img/PepperRice.png" style="height:80px">
+        <image src="img/PepperRice.png" style="height:80px">
+        <image src="img/PepperRice.png" style="height:80px">
+        </li>
+        <li class="slider-item slider-item02">
+        <h4 style="text-align: center">瞬間ランキング</h3>
 
+        </li>
+        <li class="slider-item slider-item03">
+        <h4 style="text-align: center">都道府県別ランキング</h3>
 
-        総合ランキング総合ランキング総合ランキング総合ランキング総合ランキング総合ランキング総合ランキング<br>
-        総合<br>
-        総合<br>
-        総合<br>
-        総合<br>
-
-        sougou<br>
-        sougou<br>
-        sougou<br>
-
-
-    
-    </li>
-        <li class="slider-item slider-item02">瞬間ランキング</li>
-        <li class="slider-item slider-item03">都道府県別ランキング</li>
+        </li>
     </ul>
 </div>
 
