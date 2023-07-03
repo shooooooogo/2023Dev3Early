@@ -109,7 +109,7 @@ if(isset($_SESSION['id']) == false  &&
 
         <div>
             <p>作りたいジャンルを選択</p>
-            <select name="selectgGnre" style="text-align: center;">
+            <select class="selectgGnre" style="text-align: center;">
                     <option value="0">全ジャンル</option>
                     <option value="1">和食</option>
                     <option value="2">洋食</option>
@@ -130,7 +130,7 @@ if(isset($_SESSION['id']) == false  &&
 
         <div>
             <p>時間帯を選択</p>
-            <select name="selectTime"  style="text-align: center;">
+            <select class="selectTime"  style="text-align: center;">
                     <option value="0">時間帯を指定しない</option>
                     <option value="1">朝食</option>
                     <option value="2">昼食</option>

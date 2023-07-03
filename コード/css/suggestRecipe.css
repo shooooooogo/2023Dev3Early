@@ -3,7 +3,10 @@
 }
   
 .suggestTop{
-  border: solid 2px #FF7800;
+  background-color: #FFFAD7;
+  border: 0.5px solid #696969;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   margin: 8% 20%;
 }
 
@@ -13,7 +16,11 @@
 }
 
 .selectgGnre{
-
+  background-color: #FFFAD7;
+  border: 0.5px solid #696969;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 4%;
 }
 
 .budget{
@@ -22,7 +29,11 @@
 }
 
 .selectTime{
-
+  background-color: #FFFAD7;
+  border: 0.5px solid #696969;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 4%;
 }
 .suggestButton{
   width: 130px;

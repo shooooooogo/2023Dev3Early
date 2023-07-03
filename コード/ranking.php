@@ -1,11 +1,3 @@
-<?php
-session_start();
-if(isset($_SESSION['id']) == false  &&
-     isset($_SESSION['name']) == false ){
-        header('Location: login.php');
-        exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -35,21 +27,20 @@ if(isset($_SESSION['id']) == false  &&
     <!--  -->
 </head>
 <body>
-    <!-- 謎のナビゲーションバー？ -->
-    <!-- <div class="header_inner">
-        <div class="header_comment row justify-content-between">
-             なんていうか見出しのコメント的な奴
-            <div class="header_caption col align-self-start">
-                食費をカットしよう
-            </div>
-            ユーザアイコン
-            <div class="col align-self-end">
-                <i class="bi bi-person-circle" style="text-align:right"></i>
-            </div>
-        </div>
-    </div> -->
+<img class="sampledish1" src="img/PepperRice.png" alt="料理">
+<p class="dishname">nameA ペッパーライス</p>
+<p class="dishbudget">予算　〇〇円</p>
+<p class="dishgood">いいね数　〇〇</p>
 
-    <!-- ナビゲーションバー(本気) -->
+<img class="sampledish2" src="img/iekeiramen.png" alt="料理">
+<p class="dishname">nameB 家系ラーメン</p>
+<p class="dishbudget">予算　〇〇円</p>
+<p class="dishgood">いいね数　〇〇</p>
+
+<img class="sampledish3" src="img/omurice.png" alt="料理">
+<p class="dishname">nameC オムライス</p>
+<p class="dishbudget">予算　〇〇円</p>
+<p class="dishgood">いいね数　〇〇</p>
     <header id="header">
         <div class="text-start">
             <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
@@ -97,17 +88,16 @@ if(isset($_SESSION['id']) == false  &&
     <div class="container-fluid elements">
         <!-- フォント例 -->
         <div style="text-align:center">
-            <p class="fontGothic">pゴシック</p>
-            <p class="fontGothicBold">p太字ゴシック</p>
-            <h3 class="fontGothic">h3ゴシック見出し</h3>
-            <h4 class="fontGothic">h4ゴシック見出し</h4>
-            <h5 class="fontGothic">h5ゴシック見出し</h5>
-            <h6 class="fontGothic">h6ゴシック見出し</h6>
+            <p class="fontGothic"></p>
+            <p class="fontGothicBold"></p>
+            <h3 class="fontGothic"></h3>
+            <h4 class="fontGothic"></h4>
+            <h5 class="fontGothic"></h5>
+            <h6 class="fontGothic"></h6>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <!-- ここまで -->
         <div class="footerCooporation">
-            
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
             <ul class="md-flex">
                 <li><a href="terms.php">利用規約</a></li>
@@ -120,12 +110,11 @@ if(isset($_SESSION['id']) == false  &&
 
 
     <!-- 下のナビゲーションバー -->
-    <br><br><br><br><br>
     <footer class="text-center">
-    <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
-            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
+        <div class="row footerBar fontGothicBold">
+            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
+            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
+            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
         </div>
     </footer>
 
