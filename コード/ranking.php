@@ -7,7 +7,7 @@
     <title>プロトタイプ</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
-
+    <link rel="stylesheet" href="./css/ranking.css">
     <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
@@ -34,7 +34,15 @@
         </div>
         
     </header>
-<img class="sampledish1" src="img/PepperRice.png" alt="料理">
+ <div class="flex">
+  <figure class="sampledish1"><img src="img/PepperRice.png" alt="料理"></figure>
+    <p class="text">nameA ペッパーライス</p>
+</div>
+
+<div class="flex">
+  <figure class="sampledish2"><img src="img/iekeiramen.png" alt="料理"></figure>
+    <p class="text">nameB 家系ラーメン</p>
+</div>
 <p class="dishname">nameA ペッパーライス</p>
 <p class="dishbudget">予算　〇〇円</p>
 <p class="dishgood">いいね数　〇〇</p>
