@@ -27,6 +27,13 @@
     <!--  -->
 </head>
 <body>
+
+    <header id="header">
+        <div class="text-start">
+            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
+        </div>
+        
+    </header>
 <img class="sampledish1" src="img/PepperRice.png" alt="料理">
 <p class="dishname">nameA ペッパーライス</p>
 <p class="dishbudget">予算　〇〇円</p>
@@ -41,13 +48,6 @@
 <p class="dishname">nameC オムライス</p>
 <p class="dishbudget">予算　〇〇円</p>
 <p class="dishgood">いいね数　〇〇</p>
-    <header id="header">
-        <div class="text-start">
-            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
-        </div>
-        
-    </header>
-
     <div class="openbtn1">
         <span></span>
         <span></span>
