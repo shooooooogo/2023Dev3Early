@@ -100,49 +100,36 @@ if(isset($_SESSION['id']) == false  &&
     <!-- この中に要素を追加 -->
     <form method="GET" action="#">
         <div class="parent-textbox">
-            <input type="text" name="keyword" class="search-textbox" placeholder="検索したやつの名前を表示">
+        <?php
+        require_once 'DAO.php';
+        $dao = new DAO();
+        $searchName = $_POST['recipe_name'];
+           echo  "<input type=text name=keyword class=search-textbox placeholder=$searchName>"
+        ?>
         </div>
     </form>
 
     <div class="search">
         <ul class="search-list">
-            <li class="search-list-content">
-                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
-                <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">テキストテキストテキストテキストテキスト</p>
-            </li>
-            <li class="search-list-content">
-                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
-                <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">レシピ表示</p>
-            </li>
-            <li class="search-list-content">
-                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
-                <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">レシピ表示</p>
-            </li>
-            <li class="search-list-content">
-                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
-                <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">レシピ表示</p>
-            </li>
-            <li class="search-list-content">
-                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
-                <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">レシピ表示</p>
-            </li>
-            <li class="search-list-content">
-                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
-                <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">レシピ表示</p>
-            </li>
-            <li class="search-list-content">
-                <img src="./img/iekeiramen.png" alt="料理画像" class="content-image">
-                <h1 class="content-name">ペッパーランチ</h1>
-                <p class="content-text">レシピ表示</p>
-            </li>
+            <?php
+                // データベースからレシピ情報を取得します。
+                $searchRecipe = $dao->recipeSearch($_POST['recipe_name']);
+
+
+                // レシピ情報をループで処理します。
+                foreach($searchRecipe as $row){
+                    echo "<li class=\"search-list-content\">";
+                    // レシピ情報を出力します。
+                    $img = $row['recipe_image'];
+                    echo "<img src=$img alt=料理画像 class=content-image>";
+                    echo "<h1 class=content-name>$row[recipe_name]</h1>";
+                    echo "<p class=content-text>$row[recipe_introduction]</p>";
+                    echo "</li>";
+                }
+            ?>
         </ul>
     </div>
+
 
 
 

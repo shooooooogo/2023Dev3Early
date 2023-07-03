@@ -96,7 +96,7 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- 虫眼鏡付きの検索ボックス -->
                 <li class="text-start">
                     <form action="searchResult.php" method="post" class="search_container">
-                        <input type="text" size="15" placeholder="料理名・食材名">
+                        <input type="text" name="recipe_name" size="15" placeholder="料理名・食材名">
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
@@ -191,6 +191,7 @@ if(isset($_SESSION['id']) == false  &&
                     <div id="likesTab" class="panel likestab is-show">
                         <!-- 各タブの中の投稿内容ここから -->
                         <div class="div-underline">
+                            <a href="dishDetail.php" style="color: black;text-decoration: none;">
                             <div class="myPage-content-posts">
                                 <div class="myPage-content-posted">
                                     <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
@@ -204,6 +205,7 @@ if(isset($_SESSION['id']) == false  &&
                                         </div>
                                 </div>
                             </div>
+                            </a>
                             <div class="post-underline"></div>
                         </div>
                         <!-- 各タブの投稿内容ここまで -->

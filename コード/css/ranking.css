@@ -1,0 +1,18 @@
+.sampledish1{
+    width: 640px; /*画像サイズ指定*/
+    margin: 0;
+    padding: 0;                                 /* 縦幅のサイズを指定    */
+}
+
+.flex {
+    display: flex; /*横並び*/
+  }
+  .flex .image {
+    width: 640px; /*画像サイズ指定*/
+    margin: 0;
+    padding: 0;
+  }
+  .flex .text {
+    margin: 0 0 0 20px;
+    padding: 0;
+  }
