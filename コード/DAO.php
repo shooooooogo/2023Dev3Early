@@ -3,7 +3,7 @@
 //データベース接続
 class DAO{
    private function dbConnect(){
-    $pdo= new PDO('mysql:host=localhost;dbname=smart_delicious;charset=utf8','root', '');
+    $pdo= new PDO('mysql:host=localhost;dbname=smart_delicious;charset=utf8','root', 'root');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo; 
     }
@@ -135,7 +135,7 @@ class DAO{
         $targetDir = "img/HowTo/";  // アップロードされたファイルを保存するディレクトリパス
 
         for($i=0; $i<$num; $i++){
-            if(is_null($howToImage['name'][$i])){
+            if(isset($howToImage['name'][$i])){
                 $imageFileType[$i] = strtolower(pathinfo($howToImage["name"][$i], PATHINFO_EXTENSION));//拡張子を格納
                 $targetFile[$i] = $targetDir.$recipe_id."_HowTo".$i.".".$imageFileType[$i];//保存するファイル名を格納
                 move_uploaded_file($howToImage["tmp_name"][$i], $targetFile[$i]);    
@@ -333,7 +333,11 @@ class DAO{
     public function selectGoodRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT recipes.recipe_id, recipes.recipe_name, recipes.recipe_image, SUM(materials.material_cost) AS sumCost, (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id AND goods.user_id = :user_id) AS goodCount
+        $sql = "SELECT recipes.recipe_id,
+                       recipes.recipe_name, recipes.recipe_image, 
+                       SUM(materials.material_cost) AS sumCost, 
+                       (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id AND goods.user_id = :user_id) AS goodCount
+
         FROM
         recipes
         INNER JOIN

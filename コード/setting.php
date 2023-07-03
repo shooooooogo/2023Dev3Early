@@ -31,6 +31,8 @@ if(isset($_SESSION['id']) == false  &&
 
     <body>
     <!-- <img class="resettingMailaddresslogo" src="img/SumaDeliIcon.png" alt="ロゴです"> -->
+    <input type="button" onclick="history.back()" value="戻る">
+
 
     
       <div class="container">

@@ -55,7 +55,7 @@ if(isset($_SESSION['id']) == false  &&
         // recipesテーブルに新規レコード登録＆ID取得
         $currentRecipeId=$dao->insertRecipe($_POST['recipe_name'],$_POST['recipe_intro'],$genre_id,$user_id,$time_zone_id,$recipe_people,$prefecture_id);
 
-        if(is_null($_FILES['recipe_image'])){//サムネイル画像がアップロードされていたか確認
+        if(isset($_FILES['recipe_image'])){//サムネイル画像がアップロードされていたか確認
             $imageFileType = strtolower(pathinfo($_FILES["recipe_image"]["name"], PATHINFO_EXTENSION));//拡張子を格納
         
             $targetFile = $targetDir.$currentRecipeId."_thumbnail.".$imageFileType;//保存するファイル名を格納
