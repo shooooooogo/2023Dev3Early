@@ -30,8 +30,8 @@ INSERT INTO genres (genre_id,genre_name) VALUES
   (27,'肉まん'),
   (28,'小籠包'),
   (29,'中華がゆ'),
-  (30,'アジア・エスニック'),
-  (31,'アジア・エスニック'),
+  (30,'アジア'),
+  (31,'エスニック'),
   (32,'韓国料理'),
   (33,'東南アジア料理'),
   (34,'南アジア料理'),
@@ -141,27 +141,381 @@ VALUES
   ('test10@gmail.com', 'test10', 'pass', 'よろしくお願いします。', 37);
 
 -- レシピテーブル
-INSERT INTO recipes (recipe_name, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id)
+DELIMITER //
+
+CREATE PROCEDURE InsertData()
+BEGIN
+  DECLARE i INT DEFAULT 1;
+  DECLARE genre_id INT;
+  DECLARE recipe_name VARCHAR(191);
+  DECLARE recipe_image VARCHAR(191);
+  DECLARE user_id INT;
+  DECLARE random_modifire VARCHAR(20);
+  DECLARE random_image INT;
+  DECLARE recipe_introduction VARCHAR(191);
+  DECLARE recipe_people INT;
+  DECLARE recipe_is_upload INT;
+  DECLARE time_zone_id INT;
+  DECLARE prefecture_id INT;
+
+
+
+  WHILE i <= 1000 DO
+    SET genre_id = FLOOR(RAND() * 64);  -- 0~63のランダムな整数
+    
+    -- ランダムな修飾語を選択
+    SET random_modifire = CASE FLOOR(RAND() * 10)
+      WHEN 0 THEN 'おいしい'
+      WHEN 1 THEN 'うまい'
+      WHEN 2 THEN '最高の'
+      WHEN 3 THEN '上村調理人の'
+      WHEN 4 THEN '井上シェフの'
+      WHEN 5 THEN '日高コックの'
+      WHEN 6 THEN 'ごちそうの'
+      WHEN 7 THEN '美味しさ満点！'
+      WHEN 8 THEN '定番の'
+      WHEN 9 THEN '特盛'
+      ELSE '普通の'
+    END;
+
+    CASE genre_id
+      WHEN 0 THEN
+        SET recipe_name = CONCAT(random_modifire, '日本料理');
+      WHEN 1 THEN
+        SET recipe_name = CONCAT(random_modifire, '寿司');
+      WHEN 2 THEN
+        SET recipe_name = CONCAT(random_modifire, '海鮮');
+      WHEN 3 THEN
+        SET recipe_name = CONCAT(random_modifire, 'うなぎ・あなご');
+      WHEN 4 THEN
+        SET recipe_name = CONCAT(random_modifire, '天ぷら');
+      WHEN 5 THEN
+        SET recipe_name = CONCAT(random_modifire, 'とんかつ');
+      WHEN 6 THEN
+        SET recipe_name = CONCAT(random_modifire, '焼き鳥');
+      WHEN 7 THEN
+        SET recipe_name = CONCAT(random_modifire, 'すき焼き');
+      WHEN 8 THEN
+        SET recipe_name = CONCAT(random_modifire, 'しゃぶしゃぶ');
+      WHEN 9 THEN
+        SET recipe_name = CONCAT(random_modifire, 'そば');
+      WHEN 10 THEN
+        SET recipe_name = CONCAT(random_modifire, 'うどん');
+      WHEN 11 THEN
+        SET recipe_name = CONCAT(random_modifire, '麺類');
+      WHEN 12 THEN
+        SET recipe_name = CONCAT(random_modifire, 'お好み焼き');
+      WHEN 13 THEN
+        SET recipe_name = CONCAT(random_modifire, '丼');
+      WHEN 14 THEN
+        SET recipe_name = CONCAT(random_modifire, 'おでん');
+      WHEN 15 THEN
+        SET recipe_name = CONCAT(random_modifire, '洋食');
+      WHEN 16 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ステーキ');
+      WHEN 17 THEN
+        SET recipe_name = CONCAT(random_modifire, 'フレンチ');
+      WHEN 18 THEN
+        SET recipe_name = CONCAT(random_modifire, 'イタリアン');
+      WHEN 19 THEN
+        SET recipe_name = CONCAT(random_modifire, 'スペイン料理');
+      WHEN 20 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ヨーロッパ料理');
+      WHEN 21 THEN
+        SET recipe_name = CONCAT(random_modifire, 'アメリカ料理');
+      WHEN 22 THEN
+        SET recipe_name = CONCAT(random_modifire, '中華料理');
+      WHEN 23 THEN
+        SET recipe_name = CONCAT(random_modifire, '四川料理');
+      WHEN 24 THEN
+        SET recipe_name = CONCAT(random_modifire, '台湾料理');
+      WHEN 25 THEN
+        SET recipe_name = CONCAT(random_modifire, '飲茶・点心');
+      WHEN 26 THEN
+        SET recipe_name = CONCAT(random_modifire, '餃子');
+      WHEN 27 THEN
+        SET recipe_name = CONCAT(random_modifire, '肉まん');
+      WHEN 28 THEN
+        SET recipe_name = CONCAT(random_modifire, '小籠包');
+      WHEN 29 THEN
+        SET recipe_name = CONCAT(random_modifire, '中華がゆ');
+      WHEN 30 THEN
+        SET recipe_name = CONCAT(random_modifire, 'アジア');
+      WHEN 31 THEN
+        SET recipe_name = CONCAT(random_modifire, 'エスニック');
+      WHEN 32 THEN
+        SET recipe_name = CONCAT(random_modifire, '韓国料理');
+      WHEN 33 THEN
+        SET recipe_name = CONCAT(random_modifire, '東南アジア料理');
+      WHEN 34 THEN
+        SET recipe_name = CONCAT(random_modifire, '南アジア料理');
+      WHEN 35 THEN
+        SET recipe_name = CONCAT(random_modifire, '中東料理');
+      WHEN 36 THEN
+        SET recipe_name = CONCAT(random_modifire, '中南米料理');
+      WHEN 37 THEN
+        SET recipe_name = CONCAT(random_modifire, 'アフリカ料理');
+      WHEN 38 THEN
+        SET recipe_name = CONCAT(random_modifire, 'カレー');
+      WHEN 39 THEN
+        SET recipe_name = CONCAT(random_modifire, 'インドカレー');
+      WHEN 40 THEN
+        SET recipe_name = CONCAT(random_modifire, 'スープカレー');
+      WHEN 41 THEN
+        SET recipe_name = CONCAT(random_modifire, '焼肉');
+      WHEN 42 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ホルモン');
+      WHEN 43 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ジンギスカン');
+      WHEN 44 THEN
+        SET recipe_name = CONCAT(random_modifire, '鍋');
+      WHEN 45 THEN
+        SET recipe_name = CONCAT(random_modifire, 'もつ鍋');
+      WHEN 46 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ちゃんこ鍋');
+      WHEN 47 THEN
+        SET recipe_name = CONCAT(random_modifire, '火鍋');
+      WHEN 48 THEN
+        SET recipe_name = CONCAT(random_modifire, 'オーガニック');
+      WHEN 49 THEN
+        SET recipe_name = CONCAT(random_modifire, '弁当・おにぎり');
+      WHEN 50 THEN
+        SET recipe_name = CONCAT(random_modifire, 'シーフード');
+      WHEN 51 THEN
+        SET recipe_name = CONCAT(random_modifire, 'サラダ');
+      WHEN 52 THEN
+        SET recipe_name = CONCAT(random_modifire, 'チーズ料理');
+      WHEN 53 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ニンニク料理');
+      WHEN 54 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ラーメン');
+      WHEN 55 THEN
+        SET recipe_name = CONCAT(random_modifire, 'つけ麺');
+      WHEN 56 THEN
+        SET recipe_name = CONCAT(random_modifire, '油そば・まぜそば');
+      WHEN 57 THEN
+        SET recipe_name = CONCAT(random_modifire, '担々麺');
+      WHEN 58 THEN
+        SET recipe_name = CONCAT(random_modifire, 'スイーツ');
+      WHEN 59 THEN
+        SET recipe_name = CONCAT(random_modifire, '洋菓子');
+      WHEN 60 THEN
+        SET recipe_name = CONCAT(random_modifire, '和菓子');
+      WHEN 61 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ソフトクリーム');
+      WHEN 62 THEN
+        SET recipe_name = CONCAT(random_modifire, 'パン');
+      WHEN 63 THEN
+        SET recipe_name = CONCAT(random_modifire, 'サンドイッチ');
+      ELSE
+        SET recipe_name = 'ジャンルが見つかりません';
+    END CASE;
+
+    SET random_image = FLOOR(RAND() * 10);
+
+    CASE random_image
+      WHEN 0 THEN SET recipe_image ='img/sampleThumbnail1.png';
+      WHEN 1 THEN SET recipe_image ='img/sampleThumbnail2.png';
+      WHEN 2 THEN SET recipe_image ='img/sampleThumbnail3.png';
+      WHEN 3 THEN SET recipe_image ='img/sampleThumbnail4.png';
+      WHEN 4 THEN SET recipe_image ='img/sampleThumbnail5.png';
+      WHEN 5 THEN SET recipe_image ='img/sampleThumbnail6.png';
+      WHEN 6 THEN SET recipe_image ='img/sampleThumbnail7.png';
+      WHEN 7 THEN SET recipe_image ='img/sampleThumbnail8.png';
+      WHEN 8 THEN SET recipe_image ='img/sampleThumbnail9.png';
+      WHEN 9 THEN SET recipe_image ='img/sampleThumbnail10.png';
+      ELSE SET recipe_image = 'img/noimage.png';
+    END CASE;
+      
+    SET recipe_introduction = CONCAT(recipe_name, 'です。');
+
+    SET user_id = FLOOR(RAND() * 10) + 1;  -- 1~10のランダムな整数
+    SET time_zone_id = FLOOR(RAND() * 6);
+    SET recipe_people = FLOOR(RAND() * 6);
+    SET recipe_is_upload = FLOOR(RAND() * 2);
+    SET prefecture_id = FLOOR(RAND() * 48);
+    
+
+    INSERT INTO recipes (recipe_name,recipe_image, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id) VALUES (recipe_name,recipe_image, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id);
+
+    SET i = i + 1;
+  END WHILE;
+END //
+
+DELIMITER ;
+
+-- ストアドプロシージャの呼び出し
+CALL InsertData();
+
+
+
+
+
+INSERT INTO recipes (recipe_name, recipe_image, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id)
 VALUES
-  ('レシピ1', 'レシピ1の説明', 0, 1, 0, 2, 1, 1),
-  ('レシピ2', 'レシピ2の説明', 1, 1, 1, 3, 0, 2),
-  ('レシピ3', 'レシピ3の説明', 2, 1, 2, 4, 1, 3),
-  ('レシピ4', 'レシピ4の説明', 3, 1, 3, 2, 0, 4),
-  ('レシピ5', 'レシピ5の説明', 4, 1, 4, 1, 1, 5),
-  ('レシピ6', 'レシピ6の説明', 5, 1, 0, 3, 0, 6),
-  ('レシピ7', 'レシピ7の説明', 6, 1, 1, 4, 1, 7),
-  ('レシピ8', 'レシピ8の説明', 7, 1, 2, 2, 0, 8),
-  ('レシピ9', 'レシピ9の説明', 8, 1, 3, 3, 1, 9),
-  ('レシピ10', 'レシピ10の説明', 9, 1, 4, 1, 0, 10),
-  ('レシピ11', 'レシピ11の説明', 0, 1, 0, 2, 1, 11),
-  ('レシピ12', 'レシピ12の説明', 1, 1, 1, 3, 0, 12),
-  ('レシピ13', 'レシピ13の説明', 2, 1, 2, 4, 1, 13),
-  ('レシピ14', 'レシピ14の説明', 3, 1, 3, 2, 0, 14),
-  ('レシピ15', 'レシピ15の説明', 4, 1, 4, 1, 1, 15),
-  ('レシピ16', 'レシピ16の説明', 5, 1, 0, 3, 0, 16),
-  ('レシピ17', 'レシピ17の説明', 6, 1, 1, 4, 1, 17),
-  ('レシピ18', 'レシピ18の説明', 7, 1, 2, 2, 0, 18),
-  ('レシピ19', 'レシピ19の説明', 8, 1, 3, 3, 1, 19);
+('オムライス', DEFAULT, 'オムライスです。', 3, 5, 4, 3, 1, 12),
+('ラーメン', DEFAULT, 'ラーメンです。', 7, 8, 2, 4, 1, 34),
+('カレーライス', DEFAULT, 'カレーライスです。', 2, 2, 3, 2, 1, 20),
+('焼肉', DEFAULT, '焼肉です。', 9, 6, 5, 5, 1, 5),
+('寿司', DEFAULT, '寿司です。', 4, 9, 1, 1, 1, 43),
+('ハンバーガー', DEFAULT, 'ハンバーガーです。', 1, 1, 4, 3, 1, 18),
+('ピザ', DEFAULT, 'ピザです。', 6, 7, 2, 2, 1, 9),
+('うどん', DEFAULT, 'うどんです。', 8, 3, 3, 4, 1, 31),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 4, 1, 1, 1, 25),
+('天丼', DEFAULT, '天丼です。', 10, 10, 5, 5, 1, 37),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 1, 2, 2, 3, 1, 12),
+('寄せ鍋', DEFAULT, '寄せ鍋です。', 4, 5, 3, 4, 1, 34),
+('すき焼き', DEFAULT, 'すき焼きです。', 9, 9, 4, 2, 1, 20),
+('カポナータ', DEFAULT, 'カポナータです。', 6, 1, 1, 5, 1, 5),
+('たこ焼き', DEFAULT, 'たこ焼きです。', 3, 4, 5, 1, 1, 43),
+('餃子', DEFAULT, '餃子です。', 2, 7, 3, 3, 1, 18),
+('フライドチキン', DEFAULT, 'フライドチキンです。', 5, 3, 2, 2, 1, 9),
+('シーフードパスタ', DEFAULT, 'シーフードパスタです。', 8, 6, 4, 4, 1, 31),
+('ラムカレー', DEFAULT, 'ラムカレーです。', 10, 8, 1, 1, 1, 25),
+('おでん', DEFAULT, 'おでんです。', 7, 10, 5, 5, 1, 37),
+('鯖の味噌煮', DEFAULT, '鯖の味噌煮です。', 4, 2, 2, 3, 1, 12),
+('とんかつ', DEFAULT, 'とんかつです。', 1, 6, 3, 4, 1, 34),
+('チャーハン', DEFAULT, 'チャーハンです。', 6, 9, 4, 2, 1, 20),
+('オニオンスープ', DEFAULT, 'オニオンスープです。', 3, 1, 1, 5, 1, 5),
+('牛丼', DEFAULT, '牛丼です。', 5, 5, 5, 1, 1, 43),
+('カルボナーラスパゲッティ', DEFAULT, 'カルボナーラスパゲッティです。', 2, 8, 2, 3, 1, 18),
+('親子丼', DEFAULT, '親子丼です。', 9, 3, 3, 4, 1, 9),
+('カプレーゼ', DEFAULT, 'カプレーゼです。', 7, 4, 1, 2, 1, 31),
+('豚汁', DEFAULT, '豚汁です。', 10, 7, 2, 5, 1, 25),
+('サンドイッチ', DEFAULT, 'サンドイッチです。', 1, 10, 4, 1, 1, 37),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 2, 5, 3, 1, 12),
+('トマトスパゲッティ', DEFAULT, 'トマトスパゲッティです。', 6, 5, 2, 4, 1, 34),
+('寿司', DEFAULT, '寿司です。', 4, 9, 3, 2, 1, 20),
+('親子丼', DEFAULT, '親子丼です。', 9, 1, 4, 5, 1, 5),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 2, 6, 1, 1, 1, 43),
+('焼き鳥', DEFAULT, '焼き鳥です。', 3, 8, 5, 3, 1, 18),
+('カレーライス', DEFAULT, 'カレーライスです。', 7, 3, 2, 4, 1, 9),
+('天ぷら', DEFAULT, '天ぷらです。', 10, 4, 3, 2, 1, 31),
+('ハンバーグ', DEFAULT, 'ハンバーグです。', 1, 7, 4, 1, 1, 25),
+('寿司', DEFAULT, '寿司です。', 4, 10, 1, 5, 1, 37),
+('オムライス', DEFAULT, 'オムライスです。', 3, 2, 2, 3, 1, 12),
+('ラーメン', DEFAULT, 'ラーメンです。', 7, 5, 3, 4, 1, 34),
+('カレーライス', DEFAULT, 'カレーライスです。', 2, 8, 4, 2, 1, 20),
+('焼肉', DEFAULT, '焼肉です。', 9, 1, 5, 5, 1, 5),
+('寿司', DEFAULT, '寿司です。', 4, 4, 1, 1, 1, 43),
+('ハンバーガー', DEFAULT, 'ハンバーガーです。', 1, 7, 2, 3, 1, 18),
+('ピザ', DEFAULT, 'ピザです。', 6, 10, 3, 2, 1, 9),
+('うどん', DEFAULT, 'うどんです。', 8, 3, 4, 4, 1, 31),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 6, 1, 1, 1, 25),
+('天丼', DEFAULT, '天丼です。', 10, 9, 5, 5, 1, 37),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 1, 3, 2, 3, 1, 12),
+('寄せ鍋', DEFAULT, '寄せ鍋です。', 4, 5, 3, 4, 1, 34),
+('すき焼き', DEFAULT, 'すき焼きです。', 9, 8, 4, 2, 1, 20),
+('カポナータ', DEFAULT, 'カポナータです。', 6, 2, 1, 5, 1, 5),
+('たこ焼き', DEFAULT, 'たこ焼きです。', 3, 5, 5, 1, 1, 43),
+('餃子', DEFAULT, '餃子です。', 2, 9, 3, 3, 1, 18),
+('フライドチキン', DEFAULT, 'フライドチキンです。', 5, 1, 2, 2, 1, 9),
+('シーフードパスタ', DEFAULT, 'シーフードパスタです。', 8, 4, 4, 4, 1, 31),
+('ラムカレー', DEFAULT, 'ラムカレーです。', 10, 7, 1, 1, 1, 25),
+('おでん', DEFAULT, 'おでんです。', 7, 10, 5, 5, 1, 37),
+('鯖の味噌煮', DEFAULT, '鯖の味噌煮です。', 4, 3, 2, 3, 1, 12),
+('とんかつ', DEFAULT, 'とんかつです。', 1, 6, 3, 4, 1, 34),
+('チャーハン', DEFAULT, 'チャーハンです。', 6, 9, 4, 2, 1, 20),
+('オニオンスープ', DEFAULT, 'オニオンスープです。', 3, 2, 1, 5, 1, 5),
+('牛丼', DEFAULT, '牛丼です。', 5, 5, 5, 1, 1, 43),
+('カルボナーラスパゲッティ', DEFAULT, 'カルボナーラスパゲッティです。', 2, 8, 2, 3, 1, 18),
+('親子丼', DEFAULT, '親子丼です。', 9, 3, 3, 4, 1, 9),
+('カプレーゼ', DEFAULT, 'カプレーゼです。', 7, 4, 1, 2, 1, 31),
+('豚汁', DEFAULT, '豚汁です。', 10, 7, 2, 5, 1, 25),
+('サンドイッチ', DEFAULT, 'サンドイッチです。', 1, 10, 4, 1, 1, 37),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 2, 5, 3, 1, 12),
+('トマトスパゲッティ', DEFAULT, 'トマトスパゲッティです。', 6, 5, 2, 4, 1, 34),
+('寿司', DEFAULT, '寿司です。', 4, 9, 3, 2, 1, 20),
+('親子丼', DEFAULT, '親子丼です。', 9, 1, 4, 5, 1, 5),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 2, 6, 1, 1, 1, 43),
+('焼き鳥', DEFAULT, '焼き鳥です。', 3, 8, 5, 3, 1, 18),
+('カレーライス', DEFAULT, 'カレーライスです。', 7, 3, 2, 4, 1, 9),
+('天ぷら', DEFAULT, '天ぷらです。', 10, 4, 3, 2, 1, 31),
+('ハンバーグ', DEFAULT, 'ハンバーグです。', 1, 7, 4, 1, 1, 25),
+('寿司', DEFAULT, '寿司です。', 4, 10, 1, 5, 1, 37),
+('オムライス', DEFAULT, 'オムライスです。', 3, 2, 2, 3, 1, 12),
+('ラーメン', DEFAULT, 'ラーメンです。', 7, 5, 3, 4, 1, 34),
+('カレーライス', DEFAULT, 'カレーライスです。', 2, 8, 4, 2, 1, 20),
+('焼肉', DEFAULT, '焼肉です。', 9, 1, 5, 5, 1, 5),
+('寿司', DEFAULT, '寿司です。', 4, 4, 1, 1, 1, 43),
+('ハンバーガー', DEFAULT, 'ハンバーガーです。', 1, 7, 2, 3, 1, 18),
+('ピザ', DEFAULT, 'ピザです。', 6, 10, 3, 2, 1, 9),
+('うどん', DEFAULT, 'うどんです。', 8, 3, 4, 4, 1, 31),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 6, 1, 1, 1, 25),
+('天丼', DEFAULT, '天丼です。', 10, 9, 5, 5, 1, 37),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 1, 3, 2, 3, 1, 12),
+('寄せ鍋', DEFAULT, '寄せ鍋です。', 4, 5, 3, 4, 1, 34),
+('すき焼き', DEFAULT, 'すき焼きです。', 9, 8, 4, 2, 1, 20),
+('カポナータ', DEFAULT, 'カポナータです。', 6, 2, 1, 5, 1, 5),
+('たこ焼き', DEFAULT, 'たこ焼きです。', 3, 5, 5, 1, 1, 43),
+('餃子', DEFAULT, '餃子です。', 2, 9, 3, 3, 1, 18),
+('フライドチキン', DEFAULT, 'フライドチキンです。', 5, 1, 2, 2, 1, 9),
+('シーフードパスタ', DEFAULT, 'シーフードパスタです。', 8, 4, 4, 4, 1, 31),
+('ラムカレー', DEFAULT, 'ラムカレーです。', 10, 7, 1, 1, 1, 25),
+('おでん', DEFAULT, 'おでんです。', 7, 10, 5, 5, 1, 37),
+('鯖の味噌煮', DEFAULT, '鯖の味噌煮です。', 4, 2, 2, 3, 1, 12),
+('とんかつ', DEFAULT, 'とんかつです。', 1, 6, 3, 4, 1, 34),
+('チャーハン', DEFAULT, 'チャーハンです。', 6, 9, 4, 2, 1, 20),
+('オニオンスープ', DEFAULT, 'オニオンスープです。', 3, 2, 1, 5, 1, 5),
+('牛丼', DEFAULT, '牛丼です。', 5, 5, 5, 1, 1, 43),
+('カルボナーラスパゲッティ', DEFAULT, 'カルボナーラスパゲッティです。', 2, 8, 2, 3, 1, 18),
+('親子丼', DEFAULT, '親子丼です。', 9, 3, 3, 4, 1, 9),
+('カプレーゼ', DEFAULT, 'カプレーゼです。', 7, 4, 1, 2, 1, 31),
+('豚汁', DEFAULT, '豚汁です。', 10, 7, 2, 5, 1, 25),
+('サンドイッチ', DEFAULT, 'サンドイッチです。', 1, 10, 4, 1, 1, 37),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 2, 5, 3, 1, 12),
+('トマトスパゲッティ', DEFAULT, 'トマトスパゲッティです。', 6, 5, 2, 4, 1, 34),
+('寿司', DEFAULT, '寿司です。', 4, 9, 3, 2, 1, 20),
+('親子丼', DEFAULT, '親子丼です。', 9, 1, 4, 5, 1, 5),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 2, 6, 1, 1, 1, 43),
+('焼き鳥', DEFAULT, '焼き鳥です。', 3, 8, 5, 3, 1, 18),
+('カレーライス', DEFAULT, 'カレーライスです。', 7, 3, 2, 4, 1, 9),
+('天ぷら', DEFAULT, '天ぷらです。', 10, 4, 3, 2, 1, 31),
+('ハンバーグ', DEFAULT, 'ハンバーグです。', 1, 7, 4, 1, 1, 25),
+('寿司', DEFAULT, '寿司です。', 4, 10, 1, 5, 1, 37),
+('オムライス', DEFAULT, 'オムライスです。', 3, 2, 2, 3, 1, 12),
+('ラーメン', DEFAULT, 'ラーメンです。', 7, 5, 3, 4, 1, 34),
+('カレーライス', DEFAULT, 'カレーライスです。', 2, 8, 4, 2, 1, 20),
+('焼肉', DEFAULT, '焼肉です。', 9, 1, 5, 5, 1, 5),
+('寿司', DEFAULT, '寿司です。', 4, 4, 1, 1, 1, 43),
+('ハンバーガー', DEFAULT, 'ハンバーガーです。', 1, 7, 2, 3, 1, 18),
+('ピザ', DEFAULT, 'ピザです。', 6, 10, 3, 2, 1, 9),
+('うどん', DEFAULT, 'うどんです。', 8, 3, 4, 4, 1, 31),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 6, 1, 1, 1, 25),
+('天丼', DEFAULT, '天丼です。', 10, 9, 5, 5, 1, 37),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 1, 3, 2, 3, 1, 12),
+('寄せ鍋', DEFAULT, '寄せ鍋です。', 4, 5, 3, 4, 1, 34),
+('すき焼き', DEFAULT, 'すき焼きです。', 9, 8, 4, 2, 1, 20),
+('カポナータ', DEFAULT, 'カポナータです。', 6, 2, 1, 5, 1, 5),
+('たこ焼き', DEFAULT, 'たこ焼きです。', 3, 5, 5, 1, 1, 43),
+('餃子', DEFAULT, '餃子です。', 2, 9, 3, 3, 1, 18),
+('フライドチキン', DEFAULT, 'フライドチキンです。', 5, 1, 2, 2, 1, 9),
+('シーフードパスタ', DEFAULT, 'シーフードパスタです。', 8, 4, 4, 4, 1, 31),
+('ラムカレー', DEFAULT, 'ラムカレーです。', 10, 7, 1, 1, 1, 25),
+('おでん', DEFAULT, 'おでんです。', 7, 10, 5, 5, 1, 37),
+('鯖の味噌煮', DEFAULT, '鯖の味噌煮です。', 4, 2, 2, 3, 1, 12),
+('とんかつ', DEFAULT, 'とんかつです。', 1, 6, 3, 4, 1, 34),
+('チャーハン', DEFAULT, 'チャーハンです。', 6, 9, 4, 2, 1, 20),
+('オニオンスープ', DEFAULT, 'オニオンスープです。', 3, 2, 1, 5, 1, 5),
+('牛丼', DEFAULT, '牛丼です。', 5, 5, 5, 1, 1, 43),
+('カルボナーラスパゲッティ', DEFAULT, 'カルボナーラスパゲッティです。', 2, 8, 2, 3, 1, 18),
+('親子丼', DEFAULT, '親子丼です。', 9, 3, 3, 4, 1, 9),
+('カプレーゼ', DEFAULT, 'カプレーゼです。', 7, 4, 1, 2, 1, 31),
+('豚汁', DEFAULT, '豚汁です。', 10, 7, 2, 5, 1, 25),
+('サンドイッチ', DEFAULT, 'サンドイッチです。', 1, 10, 4, 1, 1, 37),
+('お好み焼き', DEFAULT, 'お好み焼きです。', 5, 2, 5, 3, 1, 12),
+('トマトスパゲッティ', DEFAULT, 'トマトスパゲッティです。', 6, 5, 2, 4, 1, 34),
+('寿司', DEFAULT, '寿司です。', 4, 9, 3, 2, 1, 20),
+('親子丼', DEFAULT, '親子丼です。', 9, 1, 4, 5, 1, 5),
+('カルボナーラ', DEFAULT, 'カルボナーラです。', 2, 6, 1, 1, 1, 43),
+('焼き鳥', DEFAULT, '焼き鳥です。', 3, 8, 5, 3, 1, 18),
+('カレーライス', DEFAULT, 'カレーライスです。', 7, 3, 2, 4, 1, 9),
+('天ぷら', DEFAULT, '天ぷらです。', 10, 4, 3, 2, 1, 31),
+('ハンバーグ', DEFAULT, 'ハンバーグです。', 1, 7, 4, 1, 1, 25),
+('寿司', DEFAULT, '寿司です。', 4, 10, 1, 5, 1, 37),
+('オムライス', DEFAULT, 'オムライスです。', 3, 2, 2, 3, 1, 12),
+('ラーメン', DEFAULT, 'ラーメンです。', 7, 5, 3, 4, 1, 34),
+('カレーライス', DEFAULT, 'カレーライスです。', 2, 8, 4, 2, 1, 20);
 
 INSERT INTO goods (user_id, recipe_id, good_time) 
 VALUES
