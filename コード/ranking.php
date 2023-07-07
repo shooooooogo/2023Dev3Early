@@ -25,6 +25,7 @@
     <!-- 個別cssの読み込み場所 -->
 
     <!--  -->
+    <title>ランキング</title>
 </head>
 <body>
 
@@ -34,28 +35,23 @@
         </div>
         
     </header>
- <div class="flex">
-  <figure class="sampledish1"><img src="img/PepperRice.png" alt="料理"></figure>
-    <p class="text">nameA ペッパーライス</p>
+
+<div class="flex">
+  <figure class="sampledish1"><img src="img/naporitan.png" alt="料理"></figure>
+    <p class="text">nameA ナポリタン</p>
 </div>
 
 <div class="flex">
   <figure class="sampledish2"><img src="img/iekeiramen.png" alt="料理"></figure>
     <p class="text">nameB 家系ラーメン</p>
 </div>
-<p class="dishname">nameA ペッパーライス</p>
-<p class="dishbudget">予算　〇〇円</p>
-<p class="dishgood">いいね数　〇〇</p>
 
-<img class="sampledish2" src="img/iekeiramen.png" alt="料理">
-<p class="dishname">nameB 家系ラーメン</p>
-<p class="dishbudget">予算　〇〇円</p>
-<p class="dishgood">いいね数　〇〇</p>
+<div class="flex">
+  <figure class="sampledish3"><img src="img/omurice.png" alt="料理"></figure>
+    <p class="text">nameC オムライス</p>
+</div>
 
-<img class="sampledish3" src="img/omurice.png" alt="料理">
-<p class="dishname">nameC オムライス</p>
-<p class="dishbudget">予算　〇〇円</p>
-<p class="dishgood">いいね数　〇〇</p>
+
     <div class="openbtn1">
         <span></span>
         <span></span>

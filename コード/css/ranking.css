@@ -1,5 +1,6 @@
 .sampledish1{
-    width: 640px; /*画像サイズ指定*/
+    width: 300px; /*画像サイズ指定*/
+    height:auto;
     margin: 0;
     padding: 0;                                 /* 縦幅のサイズを指定    */
 }
