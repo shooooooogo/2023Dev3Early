@@ -1,15 +1,71 @@
 -- ジャンルテーブルへ情報を入力
 INSERT INTO genres (genre_id,genre_name) VALUES
-  (0,'野菜料理'),
-  (1,'魚料理'),
-  (2,'肉料理'),
-  (3,'麺料理'),
-  (4,'ご飯もの'),
-  (5,'デザート'),
-  (6,'和食'),
-  (7,'中華料理'),
-  (8,'イタリアン'),
-  (9,'フレンチ');
+  (0,'日本料理'),
+  (1,'寿司'),
+  (2,'海鮮'),
+  (3,'うなぎ・あなご'),
+  (4,'天ぷら'),
+  (5,'とんかつ'),
+  (6,'焼き鳥'),
+  (7,'すき焼き'),
+  (8,'しゃぶしゃぶ'),
+  (9,'そば'),
+  (10,'うどん'),
+  (11,'麺類'),
+  (12,'お好み焼き'),
+  (13,'丼'),
+  (14,'おでん'),
+  (15,'洋食'),
+  (16,'ステーキ'),
+  (17,'フレンチ'),
+  (18,'イタリアン'),
+  (19,'スペイン料理'),
+  (20,'ヨーロッパ料理'),
+  (21,'アメリカ料理'),
+  (22,'中華料理'),
+  (23,'四川料理'),
+  (24,'台湾料理'),
+  (25,'飲茶・点心'),
+  (26,'餃子'),
+  (27,'肉まん'),
+  (28,'小籠包'),
+  (29,'中華がゆ'),
+  (30,'アジア'),
+  (31,'エスニック'),
+  (32,'韓国料理'),
+  (33,'東南アジア料理'),
+  (34,'南アジア料理'),
+  (35,'中東料理'),
+  (36,'中南米料理'),
+  (37,'アフリカ料理'),
+  (38,'カレー'),
+  (39,'インドカレー'),
+  (40,'スープカレー'),
+  (41,'焼肉'),
+  (42,'ホルモン'),
+  (43,'ジンギスカン'),
+  (44,'鍋'),
+  (45,'もつ鍋'),
+  (46,'ちゃんこ鍋'),
+  (47,'火鍋'),
+  (48,'オーガニック'),
+  (49,'弁当・おにぎり'),
+  (50,'シーフード'),
+  (51,'サラダ'),
+  (52,'チーズ料理'),
+  (53,'ニンニク料理'),
+  (54,'ラーメン'),
+  (55,'つけ麺'),
+  (56,'油そば・まぜそば'),
+  (57,'担々麺'),
+  (58,'スイーツ'),
+  (59,'洋菓子'),
+  (60,'和菓子'),
+  (61,'ソフトクリーム'),
+  (62,'パン'),
+  (63,'サンドイッチ');
+
+
 
 -- 時間帯テーブル
 INSERT INTO time_zones (time_zone_id,time_zone_name) VALUES
@@ -17,7 +73,8 @@ INSERT INTO time_zones (time_zone_id,time_zone_name) VALUES
   (1,'朝食'),
   (2,'昼食'),
   (3,'夕食'),
-  (4,'おやつ');
+  (4,'おやつ'),
+  (5,'夜食');
 
 --   都道府県
 INSERT INTO prefectures (prefecture_id, prefecture_name) VALUES
@@ -70,35 +127,233 @@ INSERT INTO prefectures (prefecture_id, prefecture_name) VALUES
   (46, '鹿児島県'),
   (47, '沖縄県');
 
-INSERT INTO users(user_mail,user_name,user_password)
-VALUES
-  ('test1@gmail.com','testおじさん','pass');
+INSERT INTO users (user_mail, user_name, user_password, user_introduction, prefecture_id) 
+VALUES 
+  ('test1@gmail.com', 'test1', 'pass', 'よろしくお願いします。', 12), 
+  ('test2@gmail.com', 'test2', 'pass', 'よろしくお願いします。', 34), 
+  ('test3@gmail.com', 'test3', 'pass', 'よろしくお願いします。', 20), 
+  ('test4@gmail.com', 'test4', 'pass', 'よろしくお願いします。', 5), 
+  ('test5@gmail.com', 'test5', 'pass', 'よろしくお願いします。', 43), 
+  ('test6@gmail.com', 'test6', 'pass', 'よろしくお願いします。', 18), 
+  ('test7@gmail.com', 'test7', 'pass', 'よろしくお願いします。', 9), 
+  ('test8@gmail.com', 'test8', 'pass', 'よろしくお願いします。', 31), 
+  ('test9@gmail.com', 'test9', 'pass', 'よろしくお願いします。', 25), 
+  ('test10@gmail.com', 'test10', 'pass', 'よろしくお願いします。', 37);
 
 -- レシピテーブル
-INSERT INTO recipes (recipe_name, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id)
-VALUES
-  ('レシピ1', 'レシピ1の説明', 0, 1, 0, 2, 1, 1),
-  ('レシピ2', 'レシピ2の説明', 1, 1, 1, 3, 0, 2),
-  ('レシピ3', 'レシピ3の説明', 2, 1, 2, 4, 1, 3),
-  ('レシピ4', 'レシピ4の説明', 3, 1, 3, 2, 0, 4),
-  ('レシピ5', 'レシピ5の説明', 4, 1, 4, 1, 1, 5),
-  ('レシピ6', 'レシピ6の説明', 5, 1, 0, 3, 0, 6),
-  ('レシピ7', 'レシピ7の説明', 6, 1, 1, 4, 1, 7),
-  ('レシピ8', 'レシピ8の説明', 7, 1, 2, 2, 0, 8),
-  ('レシピ9', 'レシピ9の説明', 8, 1, 3, 3, 1, 9),
-  ('レシピ10', 'レシピ10の説明', 9, 1, 4, 1, 0, 10),
-  ('レシピ11', 'レシピ11の説明', 0, 1, 0, 2, 1, 11),
-  ('レシピ12', 'レシピ12の説明', 1, 1, 1, 3, 0, 12),
-  ('レシピ13', 'レシピ13の説明', 2, 1, 2, 4, 1, 13),
-  ('レシピ14', 'レシピ14の説明', 3, 1, 3, 2, 0, 14),
-  ('レシピ15', 'レシピ15の説明', 4, 1, 4, 1, 1, 15),
-  ('レシピ16', 'レシピ16の説明', 5, 1, 0, 3, 0, 16),
-  ('レシピ17', 'レシピ17の説明', 6, 1, 1, 4, 1, 17),
-  ('レシピ18', 'レシピ18の説明', 7, 1, 2, 2, 0, 18),
-  ('レシピ19', 'レシピ19の説明', 8, 1, 3, 3, 1, 19);
+DROP PROCEDURE IF EXISTS InsertData;
+DELIMITER //
+
+CREATE PROCEDURE InsertData()
+BEGIN
+  DECLARE i INT DEFAULT 1;
+  DECLARE genre_id INT;
+  DECLARE recipe_name VARCHAR(191);
+  DECLARE recipe_image VARCHAR(191);
+  DECLARE user_id INT;
+  DECLARE random_modifire VARCHAR(20);
+  DECLARE random_image INT;
+  DECLARE recipe_introduction VARCHAR(191);
+  DECLARE recipe_people INT;
+  DECLARE recipe_is_upload INT;
+  DECLARE time_zone_id INT;
+  DECLARE prefecture_id INT;
+
+
+
+  WHILE i <= 1000 DO
+    SET genre_id = FLOOR(RAND() * 64);  -- 0~63のランダムな整数
+    
+    -- ランダムな修飾語を選択
+    SET random_modifire = CASE FLOOR(RAND() * 10)
+      WHEN 0 THEN 'おいしい'
+      WHEN 1 THEN 'うまい'
+      WHEN 2 THEN '最高の'
+      WHEN 3 THEN '上村調理人の'
+      WHEN 4 THEN '井上シェフの'
+      WHEN 5 THEN '日高コックの'
+      WHEN 6 THEN 'ごちそうの'
+      WHEN 7 THEN '美味しさ満点！'
+      WHEN 8 THEN '定番の'
+      WHEN 9 THEN '特盛'
+      ELSE '普通の'
+    END;
+
+    CASE genre_id
+      WHEN 0 THEN
+        SET recipe_name = CONCAT(random_modifire, '日本料理');
+      WHEN 1 THEN
+        SET recipe_name = CONCAT(random_modifire, '寿司');
+      WHEN 2 THEN
+        SET recipe_name = CONCAT(random_modifire, '海鮮');
+      WHEN 3 THEN
+        SET recipe_name = CONCAT(random_modifire, 'うなぎ・あなご');
+      WHEN 4 THEN
+        SET recipe_name = CONCAT(random_modifire, '天ぷら');
+      WHEN 5 THEN
+        SET recipe_name = CONCAT(random_modifire, 'とんかつ');
+      WHEN 6 THEN
+        SET recipe_name = CONCAT(random_modifire, '焼き鳥');
+      WHEN 7 THEN
+        SET recipe_name = CONCAT(random_modifire, 'すき焼き');
+      WHEN 8 THEN
+        SET recipe_name = CONCAT(random_modifire, 'しゃぶしゃぶ');
+      WHEN 9 THEN
+        SET recipe_name = CONCAT(random_modifire, 'そば');
+      WHEN 10 THEN
+        SET recipe_name = CONCAT(random_modifire, 'うどん');
+      WHEN 11 THEN
+        SET recipe_name = CONCAT(random_modifire, '麺類');
+      WHEN 12 THEN
+        SET recipe_name = CONCAT(random_modifire, 'お好み焼き');
+      WHEN 13 THEN
+        SET recipe_name = CONCAT(random_modifire, '丼');
+      WHEN 14 THEN
+        SET recipe_name = CONCAT(random_modifire, 'おでん');
+      WHEN 15 THEN
+        SET recipe_name = CONCAT(random_modifire, '洋食');
+      WHEN 16 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ステーキ');
+      WHEN 17 THEN
+        SET recipe_name = CONCAT(random_modifire, 'フレンチ');
+      WHEN 18 THEN
+        SET recipe_name = CONCAT(random_modifire, 'イタリアン');
+      WHEN 19 THEN
+        SET recipe_name = CONCAT(random_modifire, 'スペイン料理');
+      WHEN 20 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ヨーロッパ料理');
+      WHEN 21 THEN
+        SET recipe_name = CONCAT(random_modifire, 'アメリカ料理');
+      WHEN 22 THEN
+        SET recipe_name = CONCAT(random_modifire, '中華料理');
+      WHEN 23 THEN
+        SET recipe_name = CONCAT(random_modifire, '四川料理');
+      WHEN 24 THEN
+        SET recipe_name = CONCAT(random_modifire, '台湾料理');
+      WHEN 25 THEN
+        SET recipe_name = CONCAT(random_modifire, '飲茶・点心');
+      WHEN 26 THEN
+        SET recipe_name = CONCAT(random_modifire, '餃子');
+      WHEN 27 THEN
+        SET recipe_name = CONCAT(random_modifire, '肉まん');
+      WHEN 28 THEN
+        SET recipe_name = CONCAT(random_modifire, '小籠包');
+      WHEN 29 THEN
+        SET recipe_name = CONCAT(random_modifire, '中華がゆ');
+      WHEN 30 THEN
+        SET recipe_name = CONCAT(random_modifire, 'アジア');
+      WHEN 31 THEN
+        SET recipe_name = CONCAT(random_modifire, 'エスニック');
+      WHEN 32 THEN
+        SET recipe_name = CONCAT(random_modifire, '韓国料理');
+      WHEN 33 THEN
+        SET recipe_name = CONCAT(random_modifire, '東南アジア料理');
+      WHEN 34 THEN
+        SET recipe_name = CONCAT(random_modifire, '南アジア料理');
+      WHEN 35 THEN
+        SET recipe_name = CONCAT(random_modifire, '中東料理');
+      WHEN 36 THEN
+        SET recipe_name = CONCAT(random_modifire, '中南米料理');
+      WHEN 37 THEN
+        SET recipe_name = CONCAT(random_modifire, 'アフリカ料理');
+      WHEN 38 THEN
+        SET recipe_name = CONCAT(random_modifire, 'カレー');
+      WHEN 39 THEN
+        SET recipe_name = CONCAT(random_modifire, 'インドカレー');
+      WHEN 40 THEN
+        SET recipe_name = CONCAT(random_modifire, 'スープカレー');
+      WHEN 41 THEN
+        SET recipe_name = CONCAT(random_modifire, '焼肉');
+      WHEN 42 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ホルモン');
+      WHEN 43 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ジンギスカン');
+      WHEN 44 THEN
+        SET recipe_name = CONCAT(random_modifire, '鍋');
+      WHEN 45 THEN
+        SET recipe_name = CONCAT(random_modifire, 'もつ鍋');
+      WHEN 46 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ちゃんこ鍋');
+      WHEN 47 THEN
+        SET recipe_name = CONCAT(random_modifire, '火鍋');
+      WHEN 48 THEN
+        SET recipe_name = CONCAT(random_modifire, 'オーガニック');
+      WHEN 49 THEN
+        SET recipe_name = CONCAT(random_modifire, '弁当・おにぎり');
+      WHEN 50 THEN
+        SET recipe_name = CONCAT(random_modifire, 'シーフード');
+      WHEN 51 THEN
+        SET recipe_name = CONCAT(random_modifire, 'サラダ');
+      WHEN 52 THEN
+        SET recipe_name = CONCAT(random_modifire, 'チーズ料理');
+      WHEN 53 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ニンニク料理');
+      WHEN 54 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ラーメン');
+      WHEN 55 THEN
+        SET recipe_name = CONCAT(random_modifire, 'つけ麺');
+      WHEN 56 THEN
+        SET recipe_name = CONCAT(random_modifire, '油そば・まぜそば');
+      WHEN 57 THEN
+        SET recipe_name = CONCAT(random_modifire, '担々麺');
+      WHEN 58 THEN
+        SET recipe_name = CONCAT(random_modifire, 'スイーツ');
+      WHEN 59 THEN
+        SET recipe_name = CONCAT(random_modifire, '洋菓子');
+      WHEN 60 THEN
+        SET recipe_name = CONCAT(random_modifire, '和菓子');
+      WHEN 61 THEN
+        SET recipe_name = CONCAT(random_modifire, 'ソフトクリーム');
+      WHEN 62 THEN
+        SET recipe_name = CONCAT(random_modifire, 'パン');
+      WHEN 63 THEN
+        SET recipe_name = CONCAT(random_modifire, 'サンドイッチ');
+      ELSE
+        SET recipe_name = 'ジャンルが見つかりません';
+    END CASE;
+
+    SET random_image = FLOOR(RAND() * 10);
+
+    CASE random_image
+      WHEN 0 THEN SET recipe_image ='img/sampleThumbnail1.png';
+      WHEN 1 THEN SET recipe_image ='img/sampleThumbnail2.png';
+      WHEN 2 THEN SET recipe_image ='img/sampleThumbnail3.png';
+      WHEN 3 THEN SET recipe_image ='img/sampleThumbnail4.png';
+      WHEN 4 THEN SET recipe_image ='img/sampleThumbnail5.png';
+      WHEN 5 THEN SET recipe_image ='img/sampleThumbnail6.png';
+      WHEN 6 THEN SET recipe_image ='img/sampleThumbnail7.png';
+      WHEN 7 THEN SET recipe_image ='img/sampleThumbnail8.png';
+      WHEN 8 THEN SET recipe_image ='img/sampleThumbnail9.png';
+      WHEN 9 THEN SET recipe_image ='img/sampleThumbnail10.png';
+      ELSE SET recipe_image = 'img/noimage.png';
+    END CASE;
+      
+    SET recipe_introduction = CONCAT(recipe_name, 'です。');
+
+    SET user_id = FLOOR(RAND() * 10) + 1;  -- 1~10のランダムな整数
+    SET time_zone_id = FLOOR(RAND() * 6);
+    SET recipe_people = FLOOR(RAND() * 6);
+    SET recipe_is_upload = FLOOR(RAND() * 2);
+    SET prefecture_id = FLOOR(RAND() * 48);
+    
+
+    INSERT INTO recipes (recipe_name,recipe_image, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id) VALUES (recipe_name,recipe_image, recipe_introduction, genre_id, user_id, time_zone_id, recipe_people, recipe_is_upload, prefecture_id);
+
+    SET i = i + 1;
+  END WHILE;
+END //
+
+DELIMITER ;
+
+-- ストアドプロシージャの呼び出し
+CALL InsertData();
+
+
+
 
 INSERT INTO goods (user_id, recipe_id, good_time) 
 VALUES
+
   (1, 25, '2023-06-29'),
   (2, 10, '2023-06-29'),
   (3, 45, '2023-06-29'),
