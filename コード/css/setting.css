@@ -1,0 +1,64 @@
+/* エリア */
+.Area{
+    margin: 0 20% 0;
+}
+.icon-button-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 見出し、テキストボックス、ボタン */
+.changetext{
+    text-align: left;
+}
+.change-textbox{
+    display: block;
+    margin: 0 auto 0;
+}
+.change-button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 80%;
+    padding: 7px 10px;
+    font-size: 15px;
+    color: #000;
+    font-family: "Meiryo";
+    border: none;
+    border-radius: 5px;
+    background-color: #FF7800;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.noneDisplay{
+    margin-bottom: 5%;
+}
+.icon-change-button{
+    background-color: #ffa500;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 5%;
+}
+.icon-change-button.icon-change-button-Confirm{
+    background-color: #FF7800;
+    padding: 5px 5px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: 5%;
+}
+
+
+
+
+#icon_preview img{
+    width: 30%;
+    height: 30%;
+    display: block;
+    margin: 0 auto 0;
+}
