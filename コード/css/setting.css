@@ -1,26 +1,46 @@
+@media (max-width: 767px){
+    body{
+        width:100%;
+    }
+}
+
 /* エリア */
 .Area{
     margin: 0 20% 0;
+    max-width: 767px;
 }
 .icon-button-area{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.back-button-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+}
 
 /* 見出し、テキストボックス、ボタン */
 .changetext{
     text-align: left;
+    font-size: 20px;
+    font-weight: bold;
 }
 .change-textbox{
     display: block;
     margin: 0 auto 0;
+    background-color: #4b49496b;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
 }
 .change-button{
     display: block;
     margin-left: auto;
     margin-right: auto;
-
     width: 80%;
     padding: 7px 10px;
     font-size: 15px;
@@ -32,7 +52,10 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .noneDisplay{
-    margin-bottom: 5%;
+    margin: 5%;
+}
+.noneDisplay.icon-file{
+    margin: 5% auto;
 }
 .icon-change-button{
     background-color: #ffa500;
@@ -45,20 +68,51 @@
 }
 .icon-change-button.icon-change-button-Confirm{
     background-color: #FF7800;
-    padding: 5px 5px;
+    padding: 7px 10px;
     font-size: 15px;
     border: none;
     border-radius: 5%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     margin-right: 5%;
 }
-
-
-
-
 #icon_preview img{
     width: 30%;
     height: 30%;
     display: block;
     margin: 0 auto 0;
+}
+.select-dropdown{
+    width: 80%;
+    border: 1px solid #000000;
+    text-align: center;
+    display: block;
+    margin-bottom: 11.25px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    -webkit-appearance: button;
+}
+.changetext.changetext-font{
+    font-size: 16px;
+    text-align: center;
+}
+.back-button{
+    width: 105.21px;
+    background-color: #d3d3d3;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: 5%;
+}
+.back-button.back-button-confirm{
+    width: 105.21px;
+    background-color: #FF7800;
+    padding: 7px 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 1.5%;
 }
