@@ -36,7 +36,7 @@
         
     </header>
 <div class="flex">
-  <figure class="sampledish1"><img src="img/naporitan.png" alt="料理"></figure>
+  <figure class="sampledish1"><img src="img/naporitan.png" alt="料理" style="width: 100px"></figure>
   <div class="right">
     <p class="title">nameA ナポリタン</p>
     <p class="text">予算　○○円　
