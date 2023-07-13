@@ -25,7 +25,7 @@
     <!-- 個別cssの読み込み場所 -->
 
     <!--  -->
-    <title>ランキング</title>
+    <title>ランキング</title>   
 </head>
 <body>
 
@@ -35,21 +35,35 @@
         </div>
         
     </header>
-
 <div class="flex">
   <figure class="sampledish1"><img src="img/naporitan.png" alt="料理"></figure>
-    <p class="text">nameA ナポリタン</p>
+  <div class="right">
+    <p class="title">nameA ナポリタン</p>
+    <p class="text">予算　○○円　
+        いいね数　○○
+    </p>
+  </div>
 </div>
 
 <div class="flex">
   <figure class="sampledish2"><img src="img/iekeiramen.png" alt="料理"></figure>
-    <p class="text">nameB 家系ラーメン</p>
+  <div class="right">
+    <p class="title">nameB 家系ラーメン</p>
+    <p class="text">予算　○○円　
+        いいね数　○○
+    </p>
+  </div>
 </div>
-
 <div class="flex">
   <figure class="sampledish3"><img src="img/omurice.png" alt="料理"></figure>
-    <p class="text">nameC オムライス</p>
+  <div class="right">
+    <p class="title">nameC オムライス</p>
+    <p class="text">予算　○○円　
+        いいね数　○○
+    </p>
+  </div>
 </div>
+
 
 
     <div class="openbtn1">
