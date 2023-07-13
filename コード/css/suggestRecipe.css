@@ -1,39 +1,45 @@
 .suggest{
     text-align: center;
 }
-  
+
 .suggestTop{
   background-color: #FFFAD7;
-  border: 0.5px solid #696969;
+  border: 0.5px solid #FF7800;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  margin: 8% 20%;
+  margin: 5% 15%;
 }
 
 .menuNumber{
-  border-bottom: solid 1px #000;
-  margin-bottom: 3%;
+  background-color: #FFFAD7;
+  border: 0.5px solid #FF7800;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 3% 10%;
 }
 
 .selectgGnre{
   background-color: #FFFAD7;
-  border: 0.5px solid #696969;
+  border: 0.5px solid #FF7800;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  margin: 4%;
+  margin: 3% 10%;
 }
 
 .budget{
-  border-bottom: solid 1px #000;
-  margin-bottom: 3%;
+  background-color: #FFFAD7;
+  border: 0.5px solid #FF7800;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 3% 10%;
 }
 
 .selectTime{
   background-color: #FFFAD7;
-  border: 0.5px solid #696969;
+  border: 0.5px solid #FF7800;
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  margin: 4%;
+  margin: 3% 10%;
 }
 .suggestButton{
   width: 130px;
