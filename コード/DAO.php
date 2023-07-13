@@ -333,6 +333,7 @@ class DAO{
     public function selectGoodRecipes($user_id){
         $pdo = $this->dbConnect();
         
+<<<<<<< HEAD
         $sql = "SELECT recipes.recipe_id,
                        recipes.recipe_name, 
                        recipes.recipe_image, 
@@ -340,6 +341,15 @@ class DAO{
                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount
                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
 
+=======
+        $sql = 
+        "SELECT  recipes.recipe_id, 
+            recipes.recipe_name, 
+            recipes.recipe_image, 
+            SUM(materials.material_cost) AS sumCost, 
+            (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id AND goods.user_id = :user_id) AS goodCount, 
+            (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id AND favorites.user_id = :user_id) AS favoriteCount
+>>>>>>> 54169df6ad92b233f4e9f5114e7990a872b0e6ce
         FROM
         recipes
         INNER JOIN
@@ -359,6 +369,7 @@ class DAO{
     public function selectFavoriteRecipes($user_id){
         $pdo = $this->dbConnect();
         
+<<<<<<< HEAD
         $sql = "SELECT recipes.recipe_id,
                        recipes.recipe_name, 
                        recipes.recipe_image, 
@@ -366,15 +377,25 @@ class DAO{
                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount
                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
 
+=======
+        $sql = "SELECT recipes.recipe_id, recipes.recipe_name, recipes.recipe_image, SUM(materials.material_cost) AS sumCost, (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id ) AS goodCount, (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id ) AS favoriteCount
+>>>>>>> 54169df6ad92b233f4e9f5114e7990a872b0e6ce
         FROM
         recipes
         INNER JOIN
         materials ON recipes.recipe_id = materials.recipe_id
         WHERE
         recipes.recipe_is_upload = 1
+<<<<<<< HEAD
         AND EXISTS(SELECT * FROM favorites WHERE user_id = :user_id)
         GROUP BY
         recipes.recipe_id";
+=======
+        AND EXISTS(SELECT * FROM goods WHERE goods.recipe_id=recipes.recipe_id AND goods.user_id = :user_id)
+        GROUP BY
+        recipes.recipe_id
+        HAVING goodCount>=1";
+>>>>>>> 54169df6ad92b233f4e9f5114e7990a872b0e6ce
         $selectFR = $pdo->prepare($sql);
 
         $selectFR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
@@ -436,18 +457,92 @@ class DAO{
         }
     }
 
+//レシピ詳細Part1
+public function recipeDetail($detail_id){
+    $pdo= $this->dbConnect();
+    //レシピidでWHERE句を指定
+    $sql= "SELECT * FROM recipes WHERE recipe_id = $detail_id";
+    $ps= $pdo->prepare($sql);
+    // $ps->bindValue(':recipe_set',$recipe_search_name);
+    $ps->execute();
+    //dishDetail.phpにreturnで値を返す
+    if ($ps->rowCount() > 0) {
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }else{
+        echo "該当するレシピが存在しません";
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }
+}
 
+
+//レシピ詳細Part2
+public function recipeDetail_materials($detail_id){
+    $pdo= $this->dbConnect();
+    //レシピidでWHERE句を指定
+    $sql= "SELECT * FROM materials WHERE recipe_id = $detail_id";
+    $ps= $pdo->prepare($sql);
+    // $ps->bindValue(':recipe_set',$recipe_search_name);
+    $ps->execute();
+    //dishDetail.phpにreturnで値を返す
+    if ($ps->rowCount() > 0) {
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }else{
+        echo "該当するレシピが存在しません";
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }
+}
+//レシピ詳細Part3
+public function recipeDetail_how_to_make($detail_id){
+    $pdo= $this->dbConnect();
+    //レシピidでWHERE句を指定
+    $sql= "SELECT * FROM how_to_make WHERE recipe_id = $detail_id";
+    $ps= $pdo->prepare($sql);
+    // $ps->bindValue(':recipe_set',$recipe_search_name);
+    $ps->execute();
+    //dishDetail.phpにreturnで値を返す
+    if ($ps->rowCount() > 0) {
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }else{
+        echo "該当するレシピが存在しません";
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }
+}
 
 
     //レシピ検索
     public function recipeSearch($recipe_search_name){
         $pdo= $this->dbConnect();
         //レシピ名を検索
-        $sql= "SELECT * FROM recipes WHERE recipe_name LIKE '%$recipe_search_name%'";
+        $sql= "SELECT * FROM recipes WHERE recipe_name LIKE '%$recipe_search_name%' AND recipe_is_upload = 1";
         $ps= $pdo->prepare($sql);
         // $ps->bindValue(':recipe_set',$recipe_search_name);
         $ps->execute();
         //検索一覧ページに移動
+        if ($ps->rowCount() > 0) {
+            $resultRecipe = $ps->fetchAll();
+            return $resultRecipe;
+        }else{
+            echo "該当するレシピが存在しません";
+            $resultRecipe = $ps->fetchAll();
+            return $resultRecipe;
+        }
+    }
+
+    //レシピ詳細の投稿者特定
+    public function user_recipeDetail($recipe_user_id){
+        $pdo= $this->dbConnect();
+        //レシピidでWHERE句を指定
+        $sql= "SELECT * FROM users WHERE user_id = $recipe_user_id";
+        $ps= $pdo->prepare($sql);
+        // $ps->bindValue(':recipe_set',$recipe_search_name);
+        $ps->execute();
+        //dishDetail.phpにreturnで値を返す
         if ($ps->rowCount() > 0) {
             $resultRecipe = $ps->fetchAll();
             return $resultRecipe;
