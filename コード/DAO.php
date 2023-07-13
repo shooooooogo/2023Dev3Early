@@ -334,9 +334,11 @@ class DAO{
         $pdo = $this->dbConnect();
         
         $sql = "SELECT recipes.recipe_id,
-                       recipes.recipe_name, recipes.recipe_image, 
+                       recipes.recipe_name, 
+                       recipes.recipe_image, 
                        SUM(materials.material_cost) AS sumCost, 
-                       (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id AND goods.user_id = :user_id) AS goodCount
+                       (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount
+                       (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
 
         FROM
         recipes
@@ -344,9 +346,9 @@ class DAO{
         materials ON recipes.recipe_id = materials.recipe_id
         WHERE
         recipes.recipe_is_upload = 1
+        AND EXISTS(SELECT * FROM goods WHERE user_id = :user_id)
         GROUP BY
-        recipes.recipe_id
-        HAVING goodCount>=1";
+        recipes.recipe_id";
         $selectGR = $pdo->prepare($sql);
 
         $selectGR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
@@ -357,16 +359,22 @@ class DAO{
     public function selectFavoriteRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT recipes.recipe_id, recipes.recipe_name, recipes.recipe_image, SUM(materials.material_cost) AS sumCost, (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id AND favorites.user_id = :user_id) AS favoriteCount
+        $sql = "SELECT recipes.recipe_id,
+                       recipes.recipe_name, 
+                       recipes.recipe_image, 
+                       SUM(materials.material_cost) AS sumCost, 
+                       (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount
+                       (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
+
         FROM
         recipes
         INNER JOIN
         materials ON recipes.recipe_id = materials.recipe_id
         WHERE
         recipes.recipe_is_upload = 1
+        AND EXISTS(SELECT * FROM favorites WHERE user_id = :user_id)
         GROUP BY
-        recipes.recipe_id
-        HAVING favoriteCount>=1";
+        recipes.recipe_id";
         $selectFR = $pdo->prepare($sql);
 
         $selectFR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
