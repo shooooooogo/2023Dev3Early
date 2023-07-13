@@ -26,6 +26,11 @@ if(isset($_SESSION['id']) == false  &&
     <!-- bootstrapのCSSの導入 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- header導入のためのcss -->
+    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+
     <!-- この画面のCSS -->
     <link rel="stylesheet" href="./css/setting.css">
 
@@ -33,11 +38,51 @@ if(isset($_SESSION['id']) == false  &&
     </head>
 
     <body>
+       <!-- ナビゲーションバー(本気) -->
+   <header id="header">
+        <div class="text-start">
+            <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
+        </div>
+        
+    </header>
+
+    <div class="openbtn1">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <nav id="g-nav">
+        <div id="g-nav-list"><!--ナビの数が増えた場合縦スクロールするためのdiv※不要なら削除-->
+            <ul>
+                <!-- <li>ここに色々書くと横から出てくる奴に表示されます</li> -->
+            
+                <!-- ユーザ情報表示 -->
+                <div>
+                    <!-- マイページへ遷移 -->
+                    <a href="myPage.php" class="row ml-5 noDecoration">
+                        <img class="col-3 img-fluid" src="img/UserIcon_default.png">
+                        <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
+                    </a>
+                </div>
+
+
+                <!-- 虫眼鏡付きの検索ボックス -->
+                <li class="text-start">
+                    <form action="searchResult.php" method="post" class="search_container">
+                        <input type="text" name="recipe_name" size="15" placeholder="料理名・食材名">
+                        <input type="submit" value="&#xf002">
+                    </form>
+                </li>
+                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <li><a href="top.php">Top画面</a></li>
+                <li><a href="ranking.php">ランキング</a></li>
+                <li><a href="myPage.php">マイページ</a></li>
+                <li><a href="createRecipe.php">レシピを作る</a></li>
+            </ul>            
+        </div>
+    </nav>
     <!-- <img class="resettingMailaddresslogo" src="img/SumaDeliIcon.png" alt="ロゴです"> -->
-    <input type="button" onclick="history.back()" value="戻る">
 
-
-    
       <!-- <div class="container">
       <div class="child">
         <div class="container d-flex flex-column justify-content-center align-items-center mt-auto mb-auto
@@ -76,7 +121,7 @@ if(isset($_SESSION['id']) == false  &&
               </div>
             
             <!-- <input type="file" class="file-input noneDisplay" name="How_To_image[]" id="How_To_image1" onchange='handleFileSelectHowTo("How_To_image1","image1")'> -->
-            <input type="file" id="icon_change"  name="icon" class="noneDisplay" />
+            <input type="file" id="icon_change"  name="icon" class="noneDisplay icon-file" />
             <div class="icon-button-area">
               <input type="button" value="アイコンを選択" class="icon-change-button" onclick="document.getElementById('icon_change').click()" >   <input type="submit" name="upload" value="アイコンを確定" class="icon-change-button icon-change-button-Confirm">
             </div>
@@ -85,8 +130,8 @@ if(isset($_SESSION['id']) == false  &&
             </div>
 
             <form action="change_prefecture.php" method="post">
-            <p class="changetext">・都道府県</p>
-            <p><select name="change_user_prefecture">
+            <p class="changetext">都道府県</p>
+            <select name="change_user_prefecture" class="select-dropdown">
                       <option value="0">県を指定しない</option>
                       <option value="1">北海道</option>
                       <option value="2">青森県</option>
@@ -136,17 +181,29 @@ if(isset($_SESSION['id']) == false  &&
                       <option value="46">鹿児島県</option>
                       <option value="47">沖縄県</option>
                   </select>
-                  </p>
-            <input type="submit" value="変更を確定する" class="changeButton">
+            <input type="submit" value="変更を確定する" class="change-button">
             </form>
 
-            <p class="changetext">・メールアドレスの変更は<a href="resettingMailaddress.php">こちら</a></p>
-            <p class="changetext">・パスワードの変更は<a href="resettingPassword.php">こちら</a></p>
+            <p class="changetext changetext-font">メールアドレスの変更は<a href="resettingMailaddress.php">こちら</a></p>
+            <p class="changetext changetext-font">パスワードの変更は<a href="resettingPassword.php">こちら</a></p>
 
-            <form action="logout.php" method="post">
-            <input type="submit" value="ログアウト" class="changeButton">
-            </form>
+            <div class="back-button-area">
+              <input type="button" onclick="history.back()" value="戻る" class="back-button">
+              <form action="logout.php" method="post">
+                <input type="submit" value="ログアウト" class="back-button back-button-confirm">
+              </form>
+            </div>
       </div>
+
+      <!-- 下のナビゲーションバー -->
+    <br><br><br><br><br>
+    <footer class="text-center">
+        <div class="row footerBar fontGothicBold">
+            <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
+            <a href="mypage.php" class="col-4"style="color: #FF7800;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
+        </div>
+    </footer>
           
 
             <!-- </div>
