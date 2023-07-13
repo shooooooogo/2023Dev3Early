@@ -7,7 +7,7 @@
     <title>プロトタイプ</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
-
+    <link rel="stylesheet" href="./css/ranking.css">
     <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
@@ -25,28 +25,32 @@
     <!-- 個別cssの読み込み場所 -->
 
     <!--  -->
+    <title>ランキング</title>
 </head>
 <body>
-<img class="sampledish1" src="img/PepperRice.png" alt="料理">
-<p class="dishname">nameA ペッパーライス</p>
-<p class="dishbudget">予算　〇〇円</p>
-<p class="dishgood">いいね数　〇〇</p>
 
-<img class="sampledish2" src="img/iekeiramen.png" alt="料理">
-<p class="dishname">nameB 家系ラーメン</p>
-<p class="dishbudget">予算　〇〇円</p>
-<p class="dishgood">いいね数　〇〇</p>
-
-<img class="sampledish3" src="img/omurice.png" alt="料理">
-<p class="dishname">nameC オムライス</p>
-<p class="dishbudget">予算　〇〇円</p>
-<p class="dishgood">いいね数　〇〇</p>
     <header id="header">
         <div class="text-start">
             <a href="top.php"><img class="logo" src="img/SumaDeliIcon.png" alt="スマデリ"></a>
         </div>
         
     </header>
+
+<div class="flex">
+  <figure class="sampledish1"><img src="img/naporitan.png" alt="料理"></figure>
+    <p class="text">nameA ナポリタン</p>
+</div>
+
+<div class="flex">
+  <figure class="sampledish2"><img src="img/iekeiramen.png" alt="料理"></figure>
+    <p class="text">nameB 家系ラーメン</p>
+</div>
+
+<div class="flex">
+  <figure class="sampledish3"><img src="img/omurice.png" alt="料理"></figure>
+    <p class="text">nameC オムライス</p>
+</div>
+
 
     <div class="openbtn1">
         <span></span>
@@ -71,7 +75,7 @@
                 <!-- 虫眼鏡付きの検索ボックス -->
                 <li class="text-start">
                     <form action="searchResult.php" method="post" class="search_container">
-                        <input type="text" size="15" placeholder="料理名・食材名">
+                        <input type="text" name="recipe_name" size="15" placeholder="料理名・食材名">
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
