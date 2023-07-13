@@ -36,35 +36,37 @@
         
     </header>
 <div class="flex">
-  <figure class="sampledish1"><img src="img/naporitan.png" alt="料理" style="width: 100px"></figure>
+  <figure class="sampledish1"><img src="img/naporitan.png" alt="料理" style="width: 180px"></figure>
   <div class="right">
     <p class="title">nameA ナポリタン</p>
-    <p class="text">予算　○○円　
+    <p class="text" style="text-align:left">予算　○○円　<br>
         いいね数　○○
     </p>
   </div>
 </div>
 
 <div class="flex">
-  <figure class="sampledish2"><img src="img/iekeiramen.png" alt="料理"></figure>
+  <figure class="sampledish2"><img src="img/iekeiramen.png" alt="料理" style="width: 180px"></figure>
   <div class="right">
-    <p class="title">nameB 家系ラーメン</p>
-    <p class="text">予算　○○円　
-        いいね数　○○
+    <p class="title">   nameB 家系ラーメン</p>
+    <p class="text">    予算　○○円　<br>                    
+            いいね数　○○
     </p>
   </div>
 </div>
 <div class="flex">
-  <figure class="sampledish3"><img src="img/omurice.png" alt="料理"></figure>
+  <figure class="sampledish3"><img src="img/omurice.png" alt="料理" style="width: 180px" ></figure>
   <div class="right">
-    <p class="title">nameC オムライス</p>
-    <p class="text">予算　○○円　
-        いいね数　○○
+    <p class="title">   nameC オムライス</p>
+    <p class="text" >    予算　○○円　 <br>               
+            いいね数　○○
     </p>
   </div>
 </div>
 
-
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+</svg>
 
     <div class="openbtn1">
         <span></span>
