@@ -125,6 +125,7 @@ if(isset($_SESSION['id']) == false  &&
                 <?php
                 foreach($detailRecipe as $row){
                      $recipe_user_id = $row['user_id'];
+                     $recipe_id = $row['recipe_id'];
                     }
 
                 $resultUsername = $dao->user_recipeDetail($recipe_user_id);
@@ -135,9 +136,39 @@ if(isset($_SESSION['id']) == false  &&
 
                 ?>
             </h3>
-            <button class="col-4 p-3 orangeBtn userSell3">フォロー</button>
+            <?php if ($_SESSION['id'] != $recipe_user_id) { ?>
+                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
+            <?php } ?>
+            <!-- <button class="col-4 p-3 orangeBtn userSell3">フォロー</button> -->
+
+
         </div>
+        <?php
+        // ボタンが押されたかどうかを判定する
+        // if (isset($_POST['button'])) {
+
+        //     // ボタン名を取得する
+        //     $button_name = $_POST['button'];
         
+        //     // フォローするユーザーのIDを取得する
+        //     $follow_user_id = $_SESSION['id'];
+        
+        //     // フォローされるユーザーのIDを取得する
+        //     $follower_user_id = 1;
+        
+        //     // DAOクラスのfollowメソッドを呼び出す
+        //     $dao->follow_follower($follow_user_id, $follower_user_id);
+        
+        //     // ボタン名をフォロー中に変更する
+        //     if ($button_name === 'フォロー') {
+        //     $button_name = 'フォロー中';
+        //     }
+        // }
+        
+        // // ボタン名を表示する
+        // echo $button_name;
+        
+        ?>
         <h2>紹介文</h2>
         <p>
             <!-- ガチで旨すぎてぶちぶちになる位の美味しさです。食え！ -->
@@ -150,6 +181,8 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- いいねお気に入りボタン -->
         <div class="row pt-2" style="width:100%">
+            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i></button>
+            <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i></button>
             <button type="button" class="defo-btn offset-1 col-5" style="height: 50px;">いいね数<i class="bi bi-hand-thumbs-up"></i></button>
             <button type="button" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i></button>
         </div>
@@ -317,5 +350,9 @@ if(isset($_SESSION['id']) == false  &&
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
     <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/js/5-1-14.js"></script>
     <script src="script/header.js"></script>
+    <!-- 固有のjs -->
+    <script src="script/dishDetail/follow_follower.js"></script>
+    <script src="script/dishDetail/goods.js"></script>
+    <script src="script/dishDetail/favorite.js"></script>
 </body>
 </html>
