@@ -183,8 +183,8 @@ if(isset($_SESSION['id']) == false  &&
         <div class="row pt-2" style="width:100%">
             <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i></button>
             <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i></button>
-            <button type="button" class="defo-btn offset-1 col-5" style="height: 50px;">いいね数<i class="bi bi-hand-thumbs-up"></i></button>
-            <button type="button" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i></button>
+            <!-- <button type="button" class="defo-btn offset-1 col-5" style="height: 50px;">いいね数<i class="bi bi-hand-thumbs-up"></i></button>
+            <button type="button" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i></button> -->
         </div>
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
