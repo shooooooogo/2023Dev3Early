@@ -408,7 +408,7 @@ if(isset($_SESSION['id']) == false  &&
 
                             ?>
                         
-                    </div>
+                    <br><br><br></div>
                     
                         <!-- 各タブの投稿内容ここまで -->
                     
