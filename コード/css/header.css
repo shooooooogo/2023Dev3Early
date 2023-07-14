@@ -11,7 +11,7 @@
     right: -120%;
   width:75%;
     height: 100vh;/*ナビの高さ*/
-  background:#ff8c26;
+  background:#ff8c26; /* #ff9500候補*/
     /*動き*/
   transition: all 0s;
 }

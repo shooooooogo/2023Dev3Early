@@ -166,9 +166,8 @@ if(isset($_SESSION['id']) == false  &&
     <!-- ログインまたは新規登録 -->
     <h1 class="user-register">
             <a href="./newRegister.php" class="user-register-link">新規登録</a>
-            または
+            または<p class="user-register-link" onclick="if(confirm('ログアウトしますか？')){window.location.href = 'logout.php';}">ログイン</p>
             <!-- <a href="./login.php" class="user-register-link" onclick="comfirm('ログアウトしますか？')">ログイン</a> -->
-            <p  class="user-register-link" onclick="if(confirm('ログアウトしますか？')){window.location.href = 'logout.php';}">ログイン</p>
     </h1>
 
     <div class="myPage-content">
