@@ -74,7 +74,7 @@ CREATE TABLE recipes (
 CREATE TABLE favorites (
   user_id INT NOT NULL,
   recipe_id INT NOT NULL,
-  favorite_time DATE NOT NULL,
+  favorite_time DATETIME NOT NULL,
   PRIMARY KEY (user_id, recipe_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id),
   FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
@@ -84,7 +84,7 @@ CREATE TABLE favorites (
 CREATE TABLE goods (
   user_id INT NOT NULL,
   recipe_id INT NOT NULL,
-  good_time DATE NOT NULL,
+  good_time DATETIME NOT NULL,
   PRIMARY KEY (user_id, recipe_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id),
   FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
