@@ -70,7 +70,7 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5 noDecoration">
+                    <a href="myPage.php" class="row ml-5 noDecoration" style="text-decoration: none; color: #000;">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
                         <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
                     </a>
@@ -117,9 +117,10 @@ if(isset($_SESSION['id']) == false  &&
             ?>
         </h3>
 
+
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
-            <img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png">
+            <a href="userPage.php"><img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png"></a>
             <h3 class="col-4 ml-2 userSell2">
                 <?php
                 foreach($detailRecipe as $row){
@@ -149,8 +150,8 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- いいねお気に入りボタン -->
         <div class="row pt-2" style="width:100%">
-            <button type="button" class="defo-btn offset-1 col-5" style="height: 50px;">ボタン<i class="bi bi-hand-thumbs-up"></i></button>
-            <button type="button" class="defo-btn offset-1 col-5" >ボタン<i class="bi bi-bookmark-star"></i></button>
+            <button type="button" class="defo-btn offset-1 col-5" style="height: 50px;">いいね数<i class="bi bi-hand-thumbs-up"></i></button>
+            <button type="button" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i></button>
         </div>
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
