@@ -351,6 +351,9 @@ CALL InsertData();
 
 
 
+
+
+
 INSERT INTO goods (user_id, recipe_id, good_time) 
 VALUES
 
