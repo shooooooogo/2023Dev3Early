@@ -15,7 +15,8 @@ if(isset($_SESSION['id']) == false  &&
     <title>プロトタイプ</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
-
+    <link rel="stylesheet" href="./css/createRecipe.css">
+    
     <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
@@ -104,31 +105,34 @@ if(isset($_SESSION['id']) == false  &&
         require_once 'DAO.php';
         $dao = new DAO();
         $searchName = $_POST['recipe_name'];
-           echo  "<input type=text name=keyword class=search-textbox placeholder=$searchName>"
+           echo  "<input type=text name=keyword class=search-textbox placeholder=$searchName>";
         ?>
         </div>
     </form>
 
+    <form action="dishDetail.php" method="post">
     <div class="search">
         <ul class="search-list">
             <?php
                 // データベースからレシピ情報を取得します。
                 $searchRecipe = $dao->recipeSearch($_POST['recipe_name']);
 
-
+            
                 // レシピ情報をループで処理します。
                 foreach($searchRecipe as $row){
                     echo "<li class=\"search-list-content\">";
                     // レシピ情報を出力します。
                     $img = $row['recipe_image'];
-                    echo "<img src=$img alt=料理画像 class=content-image>";
-                    echo "<h1 class=content-name>$row[recipe_name]</h1>";
-                    echo "<p class=content-text>$row[recipe_introduction]</p>";
+                    echo "<input type=submit id=dishDetail_recipeId".$row['recipe_id']." class=noneDisplay name=recipeId value=$row[recipe_id] />";
+                    echo "<img src=$img alt=料理画像 class=content-image onclick=document.getElementById('dishDetail_recipeId".$row['recipe_id']."').click()>";
+                    echo "<h1 class=content-name onclick=document.getElementById('dishDetail_recipeId".$row['recipe_id']."').click()>$row[recipe_name]</h1>";
+                    echo "<p class=content-text onclick=document.getElementById('dishDetail_recipeId".$row['recipe_id']."').click()>$row[recipe_introduction]</p>";
                     echo "</li>";
                 }
             ?>
         </ul>
     </div>
+    </form>
 
 
 

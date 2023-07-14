@@ -98,19 +98,54 @@ if(isset($_SESSION['id']) == false  &&
         
         <!-- 料理のサムネ＆タイトル -->
         <div class="row pt-2">
-            <img class="dishImg col-12 offset-1 img-fluid" src="img/PepperRice.png" alt="">
+            <?php
+            require_once 'DAO.php';
+            $dao = new DAO();
+            $detailRecipe = $dao->recipeDetail($_POST['recipeId']);
+            foreach($detailRecipe as $row){
+                echo "<img class=dishImg col-12 offset-1 img-fluid src=$row[recipe_image] alt=>";
+            }
+            ?>
         </div>
-        <h3 style="text-align: center;">ぶちうまペッパーライス</h3>
+        <h3 style="text-align: center;">
+        <!-- ぶちうまペッパーライス -->
+            <?php
+            $detailRecipe = $dao->recipeDetail($_POST['recipeId']);
+            foreach($detailRecipe as $row){
+                echo $row['recipe_name'];
+            }
+            ?>
+        </h3>
 
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
             <img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png">
-            <h3 class="col-4 ml-2 userSell2">上村晋一</h3>
+            <h3 class="col-4 ml-2 userSell2">
+                <?php
+                foreach($detailRecipe as $row){
+                     $recipe_user_id = $row['user_id'];
+                    }
+
+                $resultUsername = $dao->user_recipeDetail($recipe_user_id);
+
+                foreach($resultUsername as $row){
+                    echo $row['user_name'];
+                   }
+
+                ?>
+            </h3>
             <button class="col-4 p-3 orangeBtn userSell3">フォロー</button>
         </div>
         
         <h2>紹介文</h2>
-        <p>ガチで旨すぎてぶちぶちになる位の美味しさです。食え！</p>
+        <p>
+            <!-- ガチで旨すぎてぶちぶちになる位の美味しさです。食え！ -->
+            <?php
+            foreach($detailRecipe as $row){
+                echo $row['recipe_introduction'];
+               }
+            ?>
+        </p>
 
         <!-- いいねお気に入りボタン -->
         <div class="row pt-2" style="width:100%">
@@ -120,12 +155,31 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
         <br>
-        <h6 style="margin-left:10%">都道府県ラベル： 山口県</h6><br>
+        <h6 style="margin-left:10%">都道府県ラベル： 
+        <!-- 山口県 -->
+            <?php
+                foreach($detailRecipe as $row){
+                    $recipe_prefecture_id = $row['prefecture_id'];
+                }
+                $resultPrefecture_name = $dao->selectPrefecture($recipe_prefecture_id);
+
+               echo $resultPrefecture_name['prefecture_name'];
+            ?>
+    </h6><br>
 
         <!-- 食費 -->
         <h3 style="margin-left:5%">食費</h3>
         <div
-            style="color:#FFE300;text-align: center;font-size:40px;"> 505円/1人
+            style="color:#FFE300;text-align: center;font-size:40px;"> 
+            <!-- 505円/1人 -->
+            <?php
+            $price = 0;
+            $detailRecipe = $dao->recipeDetail_materials($_POST['recipeId']);
+            foreach($detailRecipe as $row){
+                $price += $row['material_cost'];
+            }
+            echo $price."円/1人";
+            ?>
         </div>
 
 
@@ -143,26 +197,53 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- ループ開始位置 DBに接続して材料たちを詳細番号毎に出力 -->
 
                     <!-- 材料名 -->
-                    <div class="offset-1 col-4">パスタ</div>
+                    <div class="offset-1 col-4">
+                        <!-- パスタ -->
+                        <?php
+                        $detailRecipe = $dao->recipeDetail_materials($_POST['recipeId']);
+                        foreach($detailRecipe as $row){
+                            // echo "<div class=\"offset-1 col-4\">";
+                            echo $row['material_name'].'<br>';
+                            // echo "</div>"; 
+                        }
+                        ?>
+                        </div>
                     <!--　分量 -->
-                    <div class="col-3">100g</div>
+                    <div class="col-3">
+                        <!-- 100g -->
+                        <?php
+                        $detailRecipe = $dao->recipeDetail_materials($_POST['recipeId']);
+                        foreach($detailRecipe as $row){
+                            echo $row['material_quantity'].'<br>';
+                        }
+                        ?>
+                    </div>
                     <!-- 値段 -->
-                    <div class="col-3"><div style="text-align:right;">100円</div></div>
+                    <div class="col-3"><div style="text-align:right;">
+                    <!-- 100円 -->
+                    <?php
+                        $detailRecipe = $dao->recipeDetail_materials($_POST['recipeId']);
+                        foreach($detailRecipe as $row){
+                            echo $row['material_cost'].'<br>';
+                        }
+                        ?>
+                </div>
+            </div>
 
                 <!-- ループ終了位置 -->
 
                     <!-- 材料名 -->
-                    <div class="offset-1 col-4">玉ねぎ</div>
+                    <!-- <div class="offset-1 col-4">玉ねぎ</div> -->
                     <!--　分量 -->
-                    <div class="col-3">1/4個</div>
+                    <!-- <div class="col-3">1/4個</div> -->
                     <!-- 値段 -->
-                    <div class="col-3"><div style="text-align:right;">25円</div></div>
+                    <!-- <div class="col-3"><div style="text-align:right;">25円</div></div> -->
                     <!-- 材料名 -->
-                    <div class="offset-1 col-4">ピーマン</div>
+                    <!-- <div class="offset-1 col-4">ピーマン</div> -->
                     <!--　分量 -->
-                    <div class="col-3">1個</div>
+                    <!-- <div class="col-3">1個</div> -->
                     <!-- 値段 -->
-                    <div class="col-3"><div style="text-align:right;">40円</div></div>
+                    <!-- <div class="col-3"><div style="text-align:right;">40円</div></div> -->
 
                     
 
@@ -176,17 +257,27 @@ if(isset($_SESSION['id']) == false  &&
                 <h3 >作り方</h3>
                 <!-- 必要数に応じて増やして -->
                 <div style="margin-left:5%; margin-right:5%">
-                    <div class="number">1</div>
-                    <img src="img/作りかた例１.webp" style="width:100%; height:auto; ml-5%; mr-5%;">
-                    <div class="text">キャベツは食べやすく4~5㎝のざく切りに 肉も長いものは適当な大きさに切ってかるく塩コショウしておきます</div>
+                    <!-- <div class="number">1</div> -->
+                    <?php
+                    $imagecount = 1;
+                    // <img src="img/作りかた例１.webp" style="width:100%; height:auto; ml-5%; mr-5%;">
+                    $detailRecipe = $dao->recipeDetail_how_to_make($_POST['recipeId']);
+                        foreach($detailRecipe as $row){
+                            echo "<p><div class=number>$imagecount.</div></p>";
+                            echo "<img src=$row[how_to_make_image] style=width:100%; height:auto; ml-5%; mr-5%;>";
+                            echo "<div class=text>$row[how_to_make_text]</div>";
+                            $imagecount++;
+                        }
+                    ?>
+                    <!-- <div class="text">キャベツは食べやすく4~5㎝のざく切りに 肉も長いものは適当な大きさに切ってかるく塩コショウしておきます</div> -->
                 </div>
                 <br>
 
-                <div style="margin-left:5%; margin-right:5%">
+                <!-- <div style="margin-left:5%; margin-right:5%">
                     <div class="number">2</div>
                     <img src="img/noimage.png" style="width:100%; height:auto; ml-5%; mr-5%;">
                     <div class="text">キャベツはまずは蒸しキャベツ♪切ったキャベツと調味料Aをフライパンに入れ蓋をして中火で2~3分蒸して皿に盛りつけておきます。</div>
-                </div>
+                </div> -->
 
             </div>
             <br><br>

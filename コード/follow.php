@@ -142,6 +142,15 @@ if(isset($_SESSION['id']) == false  &&
                             </div>
                         <div class="follow-underline"></div>
                     <!-- ユーザ欄　1人分　ここまで -->
+
+                    <!-- ユーザ欄　1人分　ここから -->
+                        <div class="follow-user-info">
+                                <img src="img/UserIcon_default.png" alt="アイコン" class="follow-user-icon">
+                                <div class="follow-user-name">しんいち</div>
+                                <button class="follow-user-button">フォロー</button>
+                            </div>
+                        <div class="follow-underline"></div>
+                    <!-- ユーザ欄　1人分　ここまで -->s
                 </div>
                 
             </div>
