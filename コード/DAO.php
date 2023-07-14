@@ -613,8 +613,46 @@ public function recipeDetail_how_to_make($detail_id){
         if ($ps->rowCount() > 0) {
             return 1;
         }else{
-            return "失敗してるって適当にreturnするか。だって、ここの処理見ることなんてほぼないからねー";
+            return "失敗してるって適当にreturnするか。";
         }
+    }
+
+    //フォロー
+    public function follow_follower($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $sql= "INSERT INTO follows (follow_user_id, follower_user_id) VALUES (:follow_user_id, :follower_user_id)";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':follow_user_id', $session_id);
+        $ps->bindValue(':follower_user_id',$recipe_user_id);
+        $ps->execute();
+        
+    }
+
+
+    //いいね
+    public function goods($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $currentTime = date('Y-m-d H:i:s');
+        $sql= "INSERT INTO goods (user_id, recipe_id,good_time) VALUES (:goods_user_id, :goods_recipe_id,:goods_time)";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':goods_user_id', $session_id);
+        $ps->bindValue(':goods_recipe_id',$recipe_user_id);
+        $ps->bindValue(':goods_time',$currentTime);
+        $ps->execute();
+        
+    }
+
+    //お気に入り
+    public function favorite($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $currentTime = date('Y-m-d H:i:s');
+        $sql= "INSERT INTO favorites (user_id, recipe_id,favorite_time) VALUES (:favorites_user_id, :favorites_recipe_id,:favorites_time)";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':favorites_user_id', $session_id);
+        $ps->bindValue(':favorites_recipe_id',$recipe_user_id);
+        $ps->bindValue(':favorites_time',$currentTime);
+        $ps->execute();
+        
     }
 }
 ?>
