@@ -101,8 +101,10 @@ if(isset($_SESSION['id']) == false  &&
             <?php
             require_once 'DAO.php';
             $dao = new DAO();
+            //レシピの画像を取りに行き、$detailRecipeで受け取る
             $detailRecipe = $dao->recipeDetail($_POST['recipeId']);
-            foreach($detailRecipe as $row){
+            foreach($detailRecipe as $row){//foreachで回しながら画像を出力
+                //画像を表示
                 echo "<img class=dishImg col-12 offset-1 img-fluid src=$row[recipe_image] alt=>";
             }
             ?>
@@ -110,8 +112,10 @@ if(isset($_SESSION['id']) == false  &&
         <h3 style="text-align: center;">
         <!-- ぶちうまペッパーライス -->
             <?php
+            //レシピ名を取りに行き、$detailRecipeで受け取る
             $detailRecipe = $dao->recipeDetail($_POST['recipeId']);
-            foreach($detailRecipe as $row){
+            foreach($detailRecipe as $row){//foreachで回しながらレシピ名を出力
+                //レシピ名を表示
                 echo $row['recipe_name'];
             }
             ?>
@@ -136,9 +140,15 @@ if(isset($_SESSION['id']) == false  &&
 
                 ?>
             </h3>
-            <?php if ($_SESSION['id'] != $recipe_user_id) { ?>
+            <?php 
+            $resultFollow = $dao->follow_follower_search($_SESSION['id'],$recipe_user_id);
+            if ($_SESSION['id'] != $recipe_user_id) { 
+                if($resultFollow != 1){?>
                 <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
-            <?php } ?>
+            <?php }else{ ?>
+                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
+            <?php }
+               }?>
             <!-- <button class="col-4 p-3 orangeBtn userSell3">フォロー</button> -->
 
 
@@ -181,9 +191,21 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- いいねお気に入りボタン -->
         <div class="row pt-2" style="width:100%">
-            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i></button>
-            <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i></button>
-            
+        <?php 
+        $resultGood = $dao->goodsSearch($_SESSION['id'],$recipe_id);
+        $result_good_count = $dao->goodsCount($recipe_id);
+        $resultFavorite = $dao->favoriteSearch($_SESSION['id'],$recipe_id);
+        $result_favorite_count = $dao->favoriteCount($recipe_id);
+        if ($resultGood != 1) { ?>
+            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+            <?php }else{ ?>
+                <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+                <?php }
+                if ($resultFavorite != 1) { ?>
+                <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+                <?php }else{ ?>
+                    <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+                    <?php }?>
         </div>
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->

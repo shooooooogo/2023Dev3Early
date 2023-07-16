@@ -1,22 +1,23 @@
 
 function follows(session_id,recipe_user_id) {
-    let followButton = document.getElementById("followButton");
+    // let followButton = document.getElementById("followButton");
     if(followButton !== "フォロー中"){
         var xhr = new XMLHttpRequest();//ajaxを使用するためのコードらしい
         xhr.open("POST","XML/follow_follower.php");//どのページに(GET or POST)で情報を送りたいか   ※GET POST以外にもあるらしいけど知らないので割愛
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");//POSTでデータを送る場合に必要なコード　　第二引数はテキストを送ると言ってるらしい
-        xhr.onload = function() {
-            if (xhr.status === 200) {//ステータスコードが200だったら(成功したら)
-                followButton.textContent = "フォロー中";
-                followButton = "フォロー中";
-            } else {
-                console.error(xhr.statusText);
-            }
-        };
+        // xhr.onload = function() {
+        //     if (xhr.status === 200) {//ステータスコードが200だったら(成功したら)
+        //         followButton.textContent = "フォロー中";
+        //         followButton = "フォロー中";
+        //     } else {
+        //         console.error(xhr.statusText);
+        //     }
+        // };
         xhr.send("session_id=" + encodeURIComponent(session_id) + "&recipe_user_id=" + encodeURIComponent(recipe_user_id));//encodeURIComponentで変数をエンコードして、openで指定したファイルにデータを投げる！
-    }else{
-        followButton.textContent = "ようこそ";
     }
+    // else{
+    //     followButton.textContent = "ようこそ";
+    // }
 }
 // 参考資料
 // 

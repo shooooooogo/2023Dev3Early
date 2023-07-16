@@ -630,34 +630,98 @@ public function recipeDetail_how_to_make($detail_id){
         $ps->bindValue(':follow_user_id', $session_id);
         $ps->bindValue(':follower_user_id',$recipe_user_id);
         $ps->execute();
-        
+    }
+
+    //フォローフォロワーが存在するか
+    public function follow_follower_search($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT * FROM follows WHERE follow_user_id = :follow_user_id AND follower_user_id = :follower_user_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':follow_user_id', $session_id);
+        $ps->bindValue(':follower_user_id',$recipe_user_id);
+        $ps->execute();
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "フォローしてない";
+        }
     }
 
 
-    //いいね
-    public function goods($session_id,$recipe_user_id){
+    //いいねを押すと、そのレシピを登録
+    public function goods($session_id,$recipe_id){
         $pdo = $this->dbConnect();
+        //ここで時間を取得
         $currentTime = date('Y-m-d H:i:s');
         $sql= "INSERT INTO goods (user_id, recipe_id,good_time) VALUES (:goods_user_id, :goods_recipe_id,:goods_time)";
         $ps=$pdo->prepare($sql);
         $ps->bindValue(':goods_user_id', $session_id);
-        $ps->bindValue(':goods_recipe_id',$recipe_user_id);
+        $ps->bindValue(':goods_recipe_id',$recipe_id);
         $ps->bindValue(':goods_time',$currentTime);
         $ps->execute();
-        
+    }
+
+    //いいねが存在するか
+    public function goodsSearch($session_id,$recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT * FROM goods WHERE user_id = :goods_user_id AND recipe_id = :goods_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':goods_user_id', $session_id);
+        $ps->bindValue(':goods_recipe_id',$recipe_id);
+        $ps->execute();
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "いいねしてない";
+        }
+    }
+
+    //投稿されたレシピのいいね数をcount
+    public function goodsCount($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT COUNT(*) FROM goods WHERE recipe_id = :goods_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':goods_recipe_id',$recipe_id);
+        $ps->execute();
+        return $ps->fetch();
     }
 
     //お気に入り
-    public function favorite($session_id,$recipe_user_id){
+    public function favorite($session_id,$recipe_id){
         $pdo = $this->dbConnect();
+        //ここで時間を取得
         $currentTime = date('Y-m-d H:i:s');
         $sql= "INSERT INTO favorites (user_id, recipe_id,favorite_time) VALUES (:favorites_user_id, :favorites_recipe_id,:favorites_time)";
         $ps=$pdo->prepare($sql);
         $ps->bindValue(':favorites_user_id', $session_id);
-        $ps->bindValue(':favorites_recipe_id',$recipe_user_id);
+        $ps->bindValue(':favorites_recipe_id',$recipe_id);
         $ps->bindValue(':favorites_time',$currentTime);
         $ps->execute();
-        
+    }
+
+    //お気に入りが存在するか
+    public function favoriteSearch($session_id,$recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT * FROM favorites WHERE user_id = :favorites_user_id AND recipe_id = :favorites_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':favorites_user_id', $session_id);
+        $ps->bindValue(':favorites_recipe_id',$recipe_id);
+        $ps->execute();
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "お気に入りしてない";
+        }
+    }
+
+    //投稿されたレシピのお気に入り数をcount
+    public function favoriteCount($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT COUNT(*) FROM favorites WHERE recipe_id = :favorites_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':favorites_recipe_id',$recipe_id);
+        $ps->execute();
+        return $ps->fetch();
     }
 }
 ?>

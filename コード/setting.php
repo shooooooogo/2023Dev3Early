@@ -33,6 +33,7 @@ if(isset($_SESSION['id']) == false  &&
 
     <!-- この画面のCSS -->
     <link rel="stylesheet" href="./css/setting.css">
+    <link rel="stylesheet" href="./css/createRecipe.css">
 
       <title>設定画面</title>
     </head>
