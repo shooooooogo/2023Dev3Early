@@ -79,9 +79,9 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5">
+                    <a href="myPage.php" class="row ml-5" style="text-decoration: none;">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2">ユーザ名</h3>
+                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3>
                     </a>
                 </div>
 
@@ -107,10 +107,11 @@ if(isset($_SESSION['id']) == false  &&
     <!-- この中に要素を追加 -->
     <div class="ranking">
     <ul class="slider">
+
         <li class="slider-item slider-item01">
-        <h4 style="text-align: center">総合ランキング</h3>
+        <a style="color: #FF7800;text-decoration: none; text-align: center; " href="overallRanking.php">総合ランキング</a>
         <div class="ranking-content" style="margin:5px">
-            <image src="img/PepperRice.png" style="height:80px width:80px">
+            <image src="img/PepperRice.png" style="height:80px">
             <i class="bi bi-hand-thumbs-up">9,999</i>
             <i class="bi bi-bookmark-star verylike">9,999</i>
         </div>
@@ -118,15 +119,22 @@ if(isset($_SESSION['id']) == false  &&
         <image src="img/PepperRice.png" style="height:80px">
         <image src="img/PepperRice.png" style="height:80px">
         </li>
-        <li class="slider-item slider-item02">
-        <h4 style="text-align: center">瞬間ランキング</h3>
+
+        <li class="slider-item slider-item02" href="momentRanking.php">
+        <h4 style="text-align: center">瞬間ランキング</h4>
 
         </li>
-        <li class="slider-item slider-item03">
-        <h4 style="text-align: center">都道府県別ランキング</h3>
+
+        <li class="slider-item slider-item03" href="prefectureOverallRanking.php">
+        <h4 style="text-align: center">都道府県別総合ランキング</h4>
 
         </li>
-    </ul>
+
+        <li class="slider-item slider-item04" href="prefectureMomentRanking.php">
+        <h4 style="text-align: center">都道府県別瞬間ランキング</h4>
+
+        </li>
+
 </div>
 
 <div class="proposalButton">
