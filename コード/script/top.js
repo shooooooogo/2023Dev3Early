@@ -1,6 +1,6 @@
 $('.slider').slick({
     autoplay: true,//自動的に動き出すか。初期値はfalse。
-    autoplaySpeed: 5000,//次のスライドに切り替わる待ち時間
+    autoplaySpeed: 115000,//次のスライドに切り替わる待ち時間
     speed:500,//スライドの動きのスピード。初期値は300。
     infinite: true,//スライドをループさせるかどうか。初期値はtrue。
     slidesToShow: 1,//スライドを画面に3枚見せる
