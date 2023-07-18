@@ -124,16 +124,25 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
-            <a href="userPage.php"><img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png"></a>
-            <h3 class="col-4 ml-2 userSell2">
-                <?php
+            <a href="userPage.php">
+            <?php
                 foreach($detailRecipe as $row){
                      $recipe_user_id = $row['user_id'];
                      $recipe_id = $row['recipe_id'];
                     }
 
-                $resultUsername = $dao->user_recipeDetail($recipe_user_id);
+                    $resultUserIcon = $dao->display_the_icon($recipe_user_id);
 
+
+                    foreach($resultUserIcon as $row){
+                        $result_icon = $row['user_icon'];
+                       }
+            ?>
+                <img class="offset-1 col-2 img-fluid userSell1" src=<?php echo $result_icon?>></a>
+            <h3 class="col-4 ml-2 userSell2">
+                
+                    <?php
+                $resultUsername = $dao->user_recipeDetail($recipe_user_id);
                 foreach($resultUsername as $row){
                     echo $row['user_name'];
                    }
