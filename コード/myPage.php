@@ -166,9 +166,8 @@ if(isset($_SESSION['id']) == false  &&
     <!-- ログインまたは新規登録 -->
     <h1 class="user-register">
             <a href="./newRegister.php" class="user-register-link">新規登録</a>
-            または
+            または<p class="user-register-link" onclick="if(confirm('ログアウトしますか？')){window.location.href = 'logout.php';}">ログイン</p>
             <!-- <a href="./login.php" class="user-register-link" onclick="comfirm('ログアウトしますか？')">ログイン</a> -->
-            <p  class="user-register-link" onclick="if(confirm('ログアウトしますか？')){window.location.href = 'logout.php';}">ログイン</p>
     </h1>
 
     <div class="myPage-content">
@@ -192,7 +191,8 @@ if(isset($_SESSION['id']) == false  &&
                     <!-- いいねタブの中 -->
                     <div id="likesTab" class="panel likestab is-show">
                         <!-- 各タブの中の投稿内容ここから -->
-                        <div class="div-underline">
+                        
+                        <!-- <div class="div-underline">
                             <a href="dishDetail.php" style="color: black;text-decoration: none;">
                             <div class="myPage-content-posts">
                                 <div class="myPage-content-posted">
@@ -209,71 +209,14 @@ if(isset($_SESSION['id']) == false  &&
                             </div>
                             </a>
                             <div class="post-underline"></div>
-                        </div>
+                        </div> -->
+                        
                         <!-- 各タブの投稿内容ここまで -->
-
-                         <!-- 各タブの中の投稿内容ここから -->
-                         <div class="div-underline">
-                            <div class="myPage-content-posts">
-                                <div class="myPage-content-posted">
-                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
-                                        <div class="post-image-float">
-                                            <div class="post-text-name">いいねペッパーライス</div>
-                                            <div class="post-text-budget">予算　9,999円</div>
-                                        </div>
-                                        <div class="post-like">
-                                            <i class="bi bi-hand-thumbs-up">9,999</i>
-                                            <i class="bi bi-bookmark-star verylike">9,999</i>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="post-underline"></div>
-                        </div>
-                        <!-- 各タブの投稿内容ここまで -->
-
-                        <!-- 各タブの中の投稿内容ここから -->
-                        <div class="div-underline">
-                            <div class="myPage-content-posts">
-                                <div class="myPage-content-posted">
-                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
-                                        <div class="post-image-float">
-                                            <div class="post-text-name">いいねペッパーライス</div>
-                                            <div class="post-text-budget">予算　9,999円</div>
-                                        </div>
-                                        <div class="post-like">
-                                            <i class="bi bi-hand-thumbs-up">9,999</i>
-                                            <i class="bi bi-bookmark-star verylike">9,999</i>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="post-underline"></div>
-                        </div>
-                        <!-- 各タブの投稿内容ここまで -->
-
-                        <!-- 各タブの中の投稿内容ここから -->
-                        <div class="div-underline">
-                            <div class="myPage-content-posts">
-                                <div class="myPage-content-posted">
-                                    <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
-                                        <div class="post-image-float">
-                                            <div class="post-text-name">いいねペッパーライス</div>
-                                            <div class="post-text-budget">予算　9,999円</div>
-                                        </div>
-                                        <div class="post-like">
-                                            <i class="bi bi-hand-thumbs-up">9,999</i>
-                                            <i class="bi bi-bookmark-star verylike">9,999</i>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="post-underline"></div>
-                        </div>
-                        <!-- 各タブの投稿内容ここまで -->
-
 
                         <?php
 
                             $selectGR = $dao->selectGoodRecipes($_SESSION['id']);
-                            var_dump($selectGR);
+
                             foreach ($selectGR as $row) {
 
                                 echo "<div class='div-underline'>
@@ -285,8 +228,8 @@ if(isset($_SESSION['id']) == false  &&
                                             <div class='post-text-budget'>予算　".$row['sumCost']."円</div>
                                         </div>
                                         <div class='post-like'>
-                                            <i class='bi bi-hand-thumbs-up'>9,999</i>
-                                            <i class='bi bi-bookmark-star verylike'>9,999</i>
+                                        <i class='bi bi-hand-thumbs-up'>".$row['goodCount']."</i>
+                                        <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
                                         </div>
                                     </div>
                                 </div>
@@ -300,7 +243,7 @@ if(isset($_SESSION['id']) == false  &&
 
 
 
-                    </div>      
+                    <!-- </div>       -->
                     <br><br></div>      
                     <!-- // いいねタブの中 -->
 
@@ -308,7 +251,8 @@ if(isset($_SESSION['id']) == false  &&
                     <div id="favoritesTab" class="panel favoritestab">
                         <!-- 各タブの中の投稿内容ここから -->
                         <div class="div-underline">
-                            <div class="myPage-content-posts">
+                        
+                        <!-- <div class="myPage-content-posts">
                                 <div class="myPage-content-posted">
                                     <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
                                         <div class="post-image-float">
@@ -321,36 +265,51 @@ if(isset($_SESSION['id']) == false  &&
                                         </div>
                                 </div>
                             </div>
-                            <div class="post-underline"></div>
+                        <div class="post-underline"></div> -->
+                    
+                        <?php
+
+                            $selectFR = $dao->selectFavoriteRecipes($_SESSION['id']);
+
+                            foreach ($selectFR as $row) {
+
+                                echo "<div class='div-underline'>
+                                <div class='myPage-content-posts'>
+                                    <div class='myPage-content-posted'>
+                                        <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
+                                        <div class='post-image-float'>
+                                            <div class='post-text-name'>".$row['recipe_name']."</div>
+                                            <div class='post-text-budget'>予算　".$row['sumCost']."円</div>
+                                        </div>
+                                        <div class='post-like'>
+                                            <i class='bi bi-hand-thumbs-up'>".$row['goodCount']."</i>
+                                            <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='post-underline'></div>
+                            </div>";       
+
+                                
+                            }
+
+                        ?>
+                        
                         </div>
                         <!-- 各タブの投稿内容ここまで -->
 
-                         <!-- 各タブの中の投稿内容ここから -->
-                         <div class="div-underline">
-                            <div class="myPage-content-posts">
-                                <div class="myPage-content-posted">
-                                    <img src="./img/iekeiramen.png" alt="投稿写真" class="post-image">
-                                        <div class="post-image-float">
-                                            <div class="post-text-name">家系ラーメン</div>
-                                            <div class="post-text-budget">予算　9,999円</div>
-                                        </div>
-                                        <div class="post-like">
-                                            <i class="bi bi-hand-thumbs-up">9,999</i>
-                                            <i class="bi bi-bookmark-star verylike">9,999</i>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="post-underline"></div>
-                        </div>
-                        <!-- 各タブの投稿内容ここまで -->
+                        
+                        
                     <br><br></div>      
                     <!-- // いいねタブの中 -->
                 
                     <!-- 投稿済みタブの中 -->
                     <div id="postedTab" class="panel postedtab">
-                        <!-- 各タブの中の投稿内容ここから -->
+                    
+                    <!-- 各タブの中の投稿内容ここから -->
                         <div class="div-underline">
-                            <div class="myPage-content-posts">
+                            
+                            <!-- <div class="myPage-content-posts">
                                 <div class="myPage-content-posted">
                                     <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
                                         <div class="post-image-float">
@@ -363,14 +322,46 @@ if(isset($_SESSION['id']) == false  &&
                                         </div>
                                 </div>
                             </div>
-                            <div class="post-underline"></div>
+                            <div class="post-underline"></div> -->
+                        
+                            <?php
+                            $selectUR = $dao->selectUploadRecipes($_SESSION['id']);
+
+                            foreach ($selectUR as $row) {
+
+                                echo "<div class='div-underline'>
+                                <div class='myPage-content-posts'>
+                                    <div class='myPage-content-posted'>
+                                        <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
+                                        <div class='post-image-float'>
+                                            <div class='post-text-name'>".$row['recipe_name']."</div>
+                                            <div class='post-text-budget'>予算　".$row['sumCost']."円</div>
+                                        </div>
+                                        <div class='post-like'>
+                                            <i class='bi bi-hand-thumbs-up'>".$row['goodCount']."</i>
+                                            <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='post-underline'></div>
+                            </div>";       
+
+                                
+                            }
+
+                            ?>                            
+                        
                         </div>
                         <!-- 各タブの投稿内容ここまで -->
-                    <br><br></div>
+                    
+                        
+
+                        <br><br></div>
                     <!-- // 投稿済みタブの中 -->
 
                      <!-- 下書きタブの中 -->
                     <!-- 各タブの中の投稿内容ここから -->
+                    
                     <div id="draftsTab" class="panel draftstab">
                         <div class="div-underline">
                             <div class="myPage-content-posts">
@@ -387,9 +378,44 @@ if(isset($_SESSION['id']) == false  &&
                                 </div>
                             </div>
                             <div class="post-underline"></div>
-                        </div>
+                        
+
+                            <?php
+
+                            $selectDR = $dao->selectDraftRecipes($_SESSION['id']);
+
+                            foreach ($selectDR as $row) {
+
+                                echo "<div class='div-underline'>
+                                    <div class='myPage-content-posts'>
+                                        <div class='myPage-content-posted'>
+                                            <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
+                                            <div class='post-image-float'>
+                                                <div class='post-text-name'>".$row['recipe_name']."</div>
+                                                <div class='post-text-budget'>予算　".$row['sumCost']."円</div>
+                                            </div>
+                                            <div class='post-like'>
+                                                <i class='bi bi-hand-thumbs-up'>".$row['goodCount']."</i>
+                                                <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='post-underline'></div>
+                                </div>";       
+
+                                
+                            }
+
+                            ?>
+                        
+                    <br><br><br></div>
+                    
                         <!-- 各タブの投稿内容ここまで -->
-                    <br><br></div>
+                    
+                    
+                        
+                    
+                        <br><br></div>
                     <!-- // 下書きタブの中 -->
             </div>
             

@@ -70,7 +70,7 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5 noDecoration">
+                    <a href="myPage.php" class="row ml-5 noDecoration" style="text-decoration: none; color: #000;">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
                         <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
                     </a>
@@ -101,8 +101,10 @@ if(isset($_SESSION['id']) == false  &&
             <?php
             require_once 'DAO.php';
             $dao = new DAO();
+            //レシピの画像を取りに行き、$detailRecipeで受け取る
             $detailRecipe = $dao->recipeDetail($_POST['recipeId']);
-            foreach($detailRecipe as $row){
+            foreach($detailRecipe as $row){//foreachで回しながら画像を出力
+                //画像を表示
                 echo "<img class=dishImg col-12 offset-1 img-fluid src=$row[recipe_image] alt=>";
             }
             ?>
@@ -110,20 +112,24 @@ if(isset($_SESSION['id']) == false  &&
         <h3 style="text-align: center;">
         <!-- ぶちうまペッパーライス -->
             <?php
+            //レシピ名を取りに行き、$detailRecipeで受け取る
             $detailRecipe = $dao->recipeDetail($_POST['recipeId']);
-            foreach($detailRecipe as $row){
+            foreach($detailRecipe as $row){//foreachで回しながらレシピ名を出力
+                //レシピ名を表示
                 echo $row['recipe_name'];
             }
             ?>
         </h3>
 
+
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
-            <img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png">
+            <a href="userPage.php"><img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png"></a>
             <h3 class="col-4 ml-2 userSell2">
                 <?php
                 foreach($detailRecipe as $row){
                      $recipe_user_id = $row['user_id'];
+                     $recipe_id = $row['recipe_id'];
                     }
 
                 $resultUsername = $dao->user_recipeDetail($recipe_user_id);
@@ -134,9 +140,45 @@ if(isset($_SESSION['id']) == false  &&
 
                 ?>
             </h3>
-            <button class="col-4 p-3 orangeBtn userSell3">フォロー</button>
+            <?php 
+            $resultFollow = $dao->follow_follower_search($_SESSION['id'],$recipe_user_id);
+            if ($_SESSION['id'] != $recipe_user_id) { 
+                if($resultFollow != 1){?>
+                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
+            <?php }else{ ?>
+                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
+            <?php }
+               }?>
+            <!-- <button class="col-4 p-3 orangeBtn userSell3">フォロー</button> -->
+
+
         </div>
+        <?php
+        // ボタンが押されたかどうかを判定する
+        // if (isset($_POST['button'])) {
+
+        //     // ボタン名を取得する
+        //     $button_name = $_POST['button'];
         
+        //     // フォローするユーザーのIDを取得する
+        //     $follow_user_id = $_SESSION['id'];
+        
+        //     // フォローされるユーザーのIDを取得する
+        //     $follower_user_id = 1;
+        
+        //     // DAOクラスのfollowメソッドを呼び出す
+        //     $dao->follow_follower($follow_user_id, $follower_user_id);
+        
+        //     // ボタン名をフォロー中に変更する
+        //     if ($button_name === 'フォロー') {
+        //     $button_name = 'フォロー中';
+        //     }
+        // }
+        
+        // // ボタン名を表示する
+        // echo $button_name;
+        
+        ?>
         <h2>紹介文</h2>
         <p>
             <!-- ガチで旨すぎてぶちぶちになる位の美味しさです。食え！ -->
@@ -149,8 +191,21 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- いいねお気に入りボタン -->
         <div class="row pt-2" style="width:100%">
-            <button type="button" class="defo-btn offset-1 col-5" style="height: 50px;">ボタン<i class="bi bi-hand-thumbs-up"></i></button>
-            <button type="button" class="defo-btn offset-1 col-5" >ボタン<i class="bi bi-bookmark-star"></i></button>
+        <?php 
+        $resultGood = $dao->goodsSearch($_SESSION['id'],$recipe_id);
+        $result_good_count = $dao->goodsCount($recipe_id);
+        $resultFavorite = $dao->favoriteSearch($_SESSION['id'],$recipe_id);
+        $result_favorite_count = $dao->favoriteCount($recipe_id);
+        if ($resultGood != 1) { ?>
+            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+            <?php }else{ ?>
+                <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+                <?php }
+                if ($resultFavorite != 1) { ?>
+                <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+                <?php }else{ ?>
+                    <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+                    <?php }?>
         </div>
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
@@ -316,5 +371,9 @@ if(isset($_SESSION['id']) == false  &&
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
     <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/js/5-1-14.js"></script>
     <script src="script/header.js"></script>
+    <!-- 固有のjs -->
+    <script src="script/dishDetail/follow_follower.js"></script>
+    <script src="script/dishDetail/goods.js"></script>
+    <script src="script/dishDetail/favorite.js"></script>
 </body>
 </html>

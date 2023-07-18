@@ -135,7 +135,7 @@ class DAO{
         $targetDir = "img/HowTo/";  // アップロードされたファイルを保存するディレクトリパス
 
         for($i=0; $i<$num; $i++){
-            if(isset($howToImage['name'][$i])){
+            if(!empty($howToImage['name'][$i])){
                 $imageFileType[$i] = strtolower(pathinfo($howToImage["name"][$i], PATHINFO_EXTENSION));//拡張子を格納
                 $targetFile[$i] = $targetDir.$recipe_id."_HowTo".$i.".".$imageFileType[$i];//保存するファイル名を格納
                 move_uploaded_file($howToImage["tmp_name"][$i], $targetFile[$i]);    
@@ -333,22 +333,22 @@ class DAO{
     public function selectGoodRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT recipes.recipe_id,
-                       recipes.recipe_name, 
-                       recipes.recipe_image, 
-                       SUM(materials.material_cost) AS sumCost, 
-                       (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount
-                       (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
+        $sql = "SELECT  recipes.recipe_id,
+                        recipes.recipe_name, 
+                        recipes.recipe_image, 
+                        COALESCE(materials.material_cost,0) AS sumCost, 
+                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
+                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
 
-        FROM
-        recipes
-        INNER JOIN
-        materials ON recipes.recipe_id = materials.recipe_id
-        WHERE
-        recipes.recipe_is_upload = 1
-        AND EXISTS(SELECT * FROM goods WHERE user_id = :user_id)
-        GROUP BY
-        recipes.recipe_id";
+                FROM
+                recipes
+                LEFT OUTER JOIN
+                materials ON recipes.recipe_id = materials.recipe_id
+                WHERE
+                recipes.recipe_is_upload = 1
+                AND EXISTS(SELECT * FROM goods WHERE user_id = :user_id)
+                GROUP BY
+                recipes.recipe_id";
         $selectGR = $pdo->prepare($sql);
 
         $selectGR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
@@ -359,27 +359,81 @@ class DAO{
     public function selectFavoriteRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT recipes.recipe_id,
-                       recipes.recipe_name, 
-                       recipes.recipe_image, 
-                       SUM(materials.material_cost) AS sumCost, 
-                       (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount
-                       (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
+        $sql = "SELECT  recipes.recipe_id,
+                        recipes.recipe_name, 
+                        recipes.recipe_image, 
+                        COALESCE(materials.material_cost,0) AS sumCost, 
+                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
+                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
 
-        FROM
-        recipes
-        INNER JOIN
-        materials ON recipes.recipe_id = materials.recipe_id
-        WHERE
-        recipes.recipe_is_upload = 1
-        AND EXISTS(SELECT * FROM favorites WHERE user_id = :user_id)
-        GROUP BY
-        recipes.recipe_id";
+                FROM
+                recipes
+                LEFT OUTER JOIN
+                materials ON recipes.recipe_id = materials.recipe_id
+                WHERE
+                recipes.recipe_is_upload = 1
+                AND EXISTS(SELECT * FROM favorites WHERE user_id = :user_id)
+                GROUP BY
+                recipes.recipe_id";
         $selectFR = $pdo->prepare($sql);
 
         $selectFR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
         $selectFR->execute();
         return $selectFR->fetchAll();
+    }
+
+    //特定のユーザが作成した未投稿レシピの関連情報の抽出(user_id)
+    public function selectDraftRecipes($user_id){
+        $pdo = $this->dbConnect();
+        
+        $sql = "SELECT  recipes.recipe_id,
+                        recipes.recipe_name, 
+                        recipes.recipe_image, 
+                        COALESCE(materials.material_cost,0) AS sumCost, 
+                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
+                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
+
+                FROM
+                recipes
+                LEFT OUTER JOIN
+                materials ON recipes.recipe_id = materials.recipe_id
+                WHERE
+                recipes.recipe_is_upload = 0 AND
+                recipes.user_id = :user_id
+                GROUP BY
+                recipes.recipe_id";
+        $selectDR = $pdo->prepare($sql);
+
+        $selectDR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
+        $selectDR->execute();
+        return $selectDR->fetchAll();
+    }
+
+    //特定のユーザが作成した投稿済みレシピの関連情報の抽出(user_id)
+    public function selectUploadRecipes($user_id){
+        $pdo = $this->dbConnect();
+        
+        $sql = "SELECT  recipes.recipe_id,
+                        recipes.recipe_name, 
+                        recipes.recipe_image, 
+                        COALESCE(materials.material_cost,0) AS sumCost, 
+                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
+                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
+
+                FROM
+                recipes
+                LEFT OUTER JOIN
+                materials ON recipes.recipe_id = materials.recipe_id
+                WHERE
+                recipes.recipe_is_upload = 1 AND
+                recipes.user_id = :user_id
+                GROUP BY
+                recipes.recipe_id";
+        $selectUR = $pdo->prepare($sql);
+
+        $selectUR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
+        $selectUR->execute();
+        return $selectUR->fetchAll();
     }
 
 
@@ -618,8 +672,110 @@ public function recipeDetail_how_to_make($detail_id){
         if ($ps->rowCount() > 0) {
             return 1;
         }else{
-            return "失敗してるって適当にreturnするか。だって、ここの処理見ることなんてほぼないからねー";
+            return "失敗してるって適当にreturnするか。";
         }
+    }
+
+    //フォロー
+    public function follow_follower($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $sql= "INSERT INTO follows (follow_user_id, follower_user_id) VALUES (:follow_user_id, :follower_user_id)";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':follow_user_id', $session_id);
+        $ps->bindValue(':follower_user_id',$recipe_user_id);
+        $ps->execute();
+    }
+
+    //フォローフォロワーが存在するか
+    public function follow_follower_search($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT * FROM follows WHERE follow_user_id = :follow_user_id AND follower_user_id = :follower_user_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':follow_user_id', $session_id);
+        $ps->bindValue(':follower_user_id',$recipe_user_id);
+        $ps->execute();
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "フォローしてない";
+        }
+    }
+
+
+    //いいねを押すと、そのレシピを登録
+    public function goods($session_id,$recipe_id){
+        $pdo = $this->dbConnect();
+        //ここで時間を取得
+        $currentTime = date('Y-m-d H:i:s');
+        $sql= "INSERT INTO goods (user_id, recipe_id,good_time) VALUES (:goods_user_id, :goods_recipe_id,:goods_time)";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':goods_user_id', $session_id);
+        $ps->bindValue(':goods_recipe_id',$recipe_id);
+        $ps->bindValue(':goods_time',$currentTime);
+        $ps->execute();
+    }
+
+    //いいねが存在するか
+    public function goodsSearch($session_id,$recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT * FROM goods WHERE user_id = :goods_user_id AND recipe_id = :goods_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':goods_user_id', $session_id);
+        $ps->bindValue(':goods_recipe_id',$recipe_id);
+        $ps->execute();
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "いいねしてない";
+        }
+    }
+
+    //投稿されたレシピのいいね数をcount
+    public function goodsCount($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT COUNT(*) FROM goods WHERE recipe_id = :goods_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':goods_recipe_id',$recipe_id);
+        $ps->execute();
+        return $ps->fetch();
+    }
+
+    //お気に入り
+    public function favorite($session_id,$recipe_id){
+        $pdo = $this->dbConnect();
+        //ここで時間を取得
+        $currentTime = date('Y-m-d H:i:s');
+        $sql= "INSERT INTO favorites (user_id, recipe_id,favorite_time) VALUES (:favorites_user_id, :favorites_recipe_id,:favorites_time)";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':favorites_user_id', $session_id);
+        $ps->bindValue(':favorites_recipe_id',$recipe_id);
+        $ps->bindValue(':favorites_time',$currentTime);
+        $ps->execute();
+    }
+
+    //お気に入りが存在するか
+    public function favoriteSearch($session_id,$recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT * FROM favorites WHERE user_id = :favorites_user_id AND recipe_id = :favorites_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':favorites_user_id', $session_id);
+        $ps->bindValue(':favorites_recipe_id',$recipe_id);
+        $ps->execute();
+        if ($ps->rowCount() > 0) {
+            return 1;
+        }else{
+            return "お気に入りしてない";
+        }
+    }
+
+    //投稿されたレシピのお気に入り数をcount
+    public function favoriteCount($recipe_id){
+        $pdo = $this->dbConnect();
+        $sql= "SELECT COUNT(*) FROM favorites WHERE recipe_id = :favorites_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':favorites_recipe_id',$recipe_id);
+        $ps->execute();
+        return $ps->fetch();
     }
 }
 ?>
