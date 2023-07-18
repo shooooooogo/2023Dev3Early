@@ -109,7 +109,11 @@ if(isset($_SESSION['id']) == false  &&
     <ul class="slider">
         <li class="slider-item slider-item01">
         <h4 style="text-align: center">総合ランキング</h3>
-        <image src="img/PepperRice.png" style="height:80px">
+        <div class="ranking-content" style="margin:5px">
+            <image src="img/PepperRice.png" style="height:80px width:80px">
+            <i class="bi bi-hand-thumbs-up">9,999</i>
+            <i class="bi bi-bookmark-star verylike">9,999</i>
+        </div>
         <image src="img/PepperRice.png" style="height:80px">
         <image src="img/PepperRice.png" style="height:80px">
         <image src="img/PepperRice.png" style="height:80px">
