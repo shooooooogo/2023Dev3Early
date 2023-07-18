@@ -686,6 +686,16 @@ public function recipeDetail_how_to_make($detail_id){
         $ps->execute();
     }
 
+    //フォロー解除
+    public function delete_follow_follower($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $sql= "DELETE FROM follows WHERE follow_user_id = :follow_user_id AND follower_user_id = :follower_user_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':follow_user_id', $session_id);
+        $ps->bindValue(':follower_user_id',$recipe_user_id);
+        $ps->execute();
+    }
+
     //フォローフォロワーが存在するか
     public function follow_follower_search($session_id,$recipe_user_id){
         $pdo = $this->dbConnect();
@@ -712,6 +722,16 @@ public function recipeDetail_how_to_make($detail_id){
         $ps->bindValue(':goods_user_id', $session_id);
         $ps->bindValue(':goods_recipe_id',$recipe_id);
         $ps->bindValue(':goods_time',$currentTime);
+        $ps->execute();
+    }
+
+    //いいね解除
+    public function delete_goods($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $sql= "DELETE FROM goods WHERE user_id = :goods_user_id AND recipe_id = :goods_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':goods_user_id', $session_id);
+        $ps->bindValue(':goods_recipe_id',$recipe_user_id);
         $ps->execute();
     }
 
@@ -750,6 +770,16 @@ public function recipeDetail_how_to_make($detail_id){
         $ps->bindValue(':favorites_user_id', $session_id);
         $ps->bindValue(':favorites_recipe_id',$recipe_id);
         $ps->bindValue(':favorites_time',$currentTime);
+        $ps->execute();
+    }
+
+    //お気に入り解除
+    public function delete_favorite($session_id,$recipe_user_id){
+        $pdo = $this->dbConnect();
+        $sql= "DELETE FROM favorites WHERE user_id = :favorites_user_id AND recipe_id = :favorites_recipe_id";
+        $ps=$pdo->prepare($sql);
+        $ps->bindValue(':favorites_user_id', $session_id);
+        $ps->bindValue(':favorites_recipe_id',$recipe_user_id);
         $ps->execute();
     }
 

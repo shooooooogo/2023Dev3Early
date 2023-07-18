@@ -146,7 +146,7 @@ if(isset($_SESSION['id']) == false  &&
                 if($resultFollow != 1){?>
                 <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
             <?php }else{ ?>
-                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
+                <button id="followButton" onclick="delete_follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
             <?php }
                }?>
             <!-- <button class="col-4 p-3 orangeBtn userSell3">フォロー</button> -->
@@ -199,12 +199,12 @@ if(isset($_SESSION['id']) == false  &&
         if ($resultGood != 1) { ?>
             <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
             <?php }else{ ?>
-                <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+                <button id="goodButton" type="button" onclick="delete_goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
                 <?php }
                 if ($resultFavorite != 1) { ?>
                 <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
                 <?php }else{ ?>
-                    <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+                    <button id="favoriteButton" type="button" onclick="delete_favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
                     <?php }?>
         </div>
 
