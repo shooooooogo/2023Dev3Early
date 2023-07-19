@@ -333,22 +333,20 @@ class DAO{
     public function selectGoodRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT  recipes.recipe_id,
-                        recipes.recipe_name, 
-                        recipes.recipe_image, 
-                        COALESCE(materials.material_cost,0) AS sumCost, 
-                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
-                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
-
-                FROM
-                recipes
-                LEFT OUTER JOIN
-                materials ON recipes.recipe_id = materials.recipe_id
-                WHERE
-                recipes.recipe_is_upload = 1
-                AND EXISTS(SELECT * FROM goods WHERE user_id = :user_id)
-                GROUP BY
-                recipes.recipe_id";
+        $sql = "SELECT 
+                    recipes.recipe_id,
+                    recipes.recipe_name, 
+                    recipes.recipe_image, 
+                    SUM(materials.material_cost) AS sumCost, 
+                    COUNT(goods.recipe_id) AS goodCount, 
+                    COUNT(favorites.recipe_id) AS favoriteCount
+                FROM recipes
+                LEFT JOIN materials ON recipes.recipe_id = materials.recipe_id
+                LEFT JOIN goods ON recipes.recipe_id = goods.recipe_id
+                LEFT JOIN favorites ON recipes.recipe_id = favorites.recipe_id
+                WHERE recipes.recipe_is_upload = 1 
+                  AND goods.user_id = :user_id
+                GROUP BY recipes.recipe_id";
         $selectGR = $pdo->prepare($sql);
 
         $selectGR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
@@ -359,22 +357,20 @@ class DAO{
     public function selectFavoriteRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT  recipes.recipe_id,
-                        recipes.recipe_name, 
-                        recipes.recipe_image, 
-                        COALESCE(materials.material_cost,0) AS sumCost, 
-                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
-                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
-
-                FROM
-                recipes
-                LEFT OUTER JOIN
-                materials ON recipes.recipe_id = materials.recipe_id
-                WHERE
-                recipes.recipe_is_upload = 1
-                AND EXISTS(SELECT * FROM favorites WHERE user_id = :user_id)
-                GROUP BY
-                recipes.recipe_id";
+        $sql = "SELECT 
+                    recipes.recipe_id,
+                    recipes.recipe_name, 
+                    recipes.recipe_image, 
+                    SUM(materials.material_cost) AS sumCost, 
+                    COUNT(goods.recipe_id) AS goodCount, 
+                    COUNT(favorites.recipe_id) AS favoriteCount
+                FROM recipes
+                LEFT JOIN materials ON recipes.recipe_id = materials.recipe_id
+                LEFT JOIN goods ON recipes.recipe_id = goods.recipe_id
+                LEFT JOIN favorites ON recipes.recipe_id = favorites.recipe_id
+                WHERE recipes.recipe_is_upload = 1 
+                  AND favorites.user_id = :user_id
+                GROUP BY recipes.recipe_id";
         $selectFR = $pdo->prepare($sql);
 
         $selectFR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
@@ -386,22 +382,20 @@ class DAO{
     public function selectDraftRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT  recipes.recipe_id,
-                        recipes.recipe_name, 
-                        recipes.recipe_image, 
-                        COALESCE(materials.material_cost,0) AS sumCost, 
-                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
-                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
-
-                FROM
-                recipes
-                LEFT OUTER JOIN
-                materials ON recipes.recipe_id = materials.recipe_id
-                WHERE
-                recipes.recipe_is_upload = 0 AND
-                recipes.user_id = :user_id
-                GROUP BY
-                recipes.recipe_id";
+        $sql = "SELECT 
+                    recipes.recipe_id,
+                    recipes.recipe_name, 
+                    recipes.recipe_image, 
+                    SUM(materials.material_cost) AS sumCost, 
+                    COUNT(goods.recipe_id) AS goodCount, 
+                    COUNT(favorites.recipe_id) AS favoriteCount
+                FROM recipes
+                LEFT JOIN materials ON recipes.recipe_id = materials.recipe_id
+                LEFT JOIN goods ON recipes.recipe_id = goods.recipe_id
+                LEFT JOIN favorites ON recipes.recipe_id = favorites.recipe_id
+                WHERE recipes.recipe_is_upload = 0
+                  AND recipes.user_id = :user_id
+                GROUP BY recipes.recipe_id";
         $selectDR = $pdo->prepare($sql);
 
         $selectDR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
@@ -413,22 +407,20 @@ class DAO{
     public function selectUploadRecipes($user_id){
         $pdo = $this->dbConnect();
         
-        $sql = "SELECT  recipes.recipe_id,
-                        recipes.recipe_name, 
-                        recipes.recipe_image, 
-                        COALESCE(materials.material_cost,0) AS sumCost, 
-                        (SELECT COUNT(*) FROM goods WHERE goods.recipe_id = recipes.recipe_id) AS goodCount,
-                        (SELECT COUNT(*) FROM favorites WHERE favorites.recipe_id = recipes.recipe_id) AS favoriteCount
-
-                FROM
-                recipes
-                LEFT OUTER JOIN
-                materials ON recipes.recipe_id = materials.recipe_id
-                WHERE
-                recipes.recipe_is_upload = 1 AND
-                recipes.user_id = :user_id
-                GROUP BY
-                recipes.recipe_id";
+        $sql = "SELECT 
+                    recipes.recipe_id,
+                    recipes.recipe_name, 
+                    recipes.recipe_image, 
+                    SUM(materials.material_cost) AS sumCost, 
+                    COUNT(goods.recipe_id) AS goodCount, 
+                    COUNT(favorites.recipe_id) AS favoriteCount
+                FROM recipes
+                LEFT JOIN materials ON recipes.recipe_id = materials.recipe_id
+                LEFT JOIN goods ON recipes.recipe_id = goods.recipe_id
+                LEFT JOIN favorites ON recipes.recipe_id = favorites.recipe_id
+                WHERE recipes.recipe_is_upload = 1
+                  AND recipes.user_id = :user_id
+                GROUP BY recipes.recipe_id";
         $selectUR = $pdo->prepare($sql);
 
         $selectUR->bindValue(":user_id",$user_id, PDO::PARAM_INT);
