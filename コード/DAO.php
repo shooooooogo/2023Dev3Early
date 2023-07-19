@@ -298,6 +298,38 @@ class DAO{
         return $selectfavorite->fetchAll();
     }
 
+    // フォロー検索
+    public function selectFollow($user_id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * 
+                FROM users 
+                    left join follows 
+                    ON users.user_id = follows.follow_user_id 
+                WHERE follow_user_id = :user_id";
+        $selectF = $pdo->prepare($sql);
+
+        $selectF ->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $selectF ->execute();
+        return $selectF->fetchAll();
+    }
+    
+    // フォロワー検索
+    public function selectFollower($user_id){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * 
+                FROM users 
+                    left join follows 
+                    ON users.user_id = follows.follow_user_id 
+                WHERE follower_user_id = :user_id";
+        $selectF = $pdo->prepare($sql);
+
+        $selectF ->bindValue(":user_id", $user_id, PDO::PARAM_INT);
+
+        $selectF ->execute();
+        return $selectF->fetchAll();
+    }
+
 
 
     // フォローに関する機能(フォローする人→follower_user_id  フォローを受ける人→follow_user_id)
