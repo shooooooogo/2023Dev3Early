@@ -162,10 +162,10 @@ if(isset($_SESSION['id']) == false  &&
                 
                 if($resultFollow != 1){?>
         <!-- ボタンを押すと、onclickが走って、投稿者をフォロー　　　 ↓ここで、onclickに渡す引数を指定↓                          ↓ここでブラウザを更新してる-->
-                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>); location.reload();" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
+                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>); window.location.reload(true);" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
             <?php }else{ ?>
         <!-- ボタンを押すと、onclickが走って、投稿者のフォロー解除　　　 ↓ここで、onclickに渡す引数を指定↓                             ↓ここでブラウザを更新してる-->
-                <button id="followButton" onclick="delete_follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>); location.reload();" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
+                <button id="followButton" onclick="delete_follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>); window.location.reload(true);" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
             <?php }
                }?>
             <!-- <button class="col-4 p-3 orangeBtn userSell3">フォロー</button> -->
@@ -224,18 +224,18 @@ if(isset($_SESSION['id']) == false  &&
         $result_favorite_count = $dao->favoriteCount($recipe_id);
 
         if ($resultGood != 1) { ?>
-        <!-- ボタンを押すと、onclickが走って、いいね登録　　　              ↓ここで、onclickに渡す引数を指定↓                   ↓ここでブラウザを更新してる                                                                                                 ↓いいね数を表示-->
-            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); location.reload();" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、いいね登録　　　              ↓ここで、onclickに渡す引数を指定↓                   ↓ここでブラウザを更新してる                                                                                                     ↓いいね数を表示-->
+            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
             <?php }else{ ?>
-        <!-- ボタンを押すと、onclickが走って、いいね削除　　　                      ↓ここで、onclickに渡す引数を指定↓                       ↓ここでブラウザを更新してる                                                                                                 ↓いいね数を表示-->
-                <button id="goodButton" type="button" onclick="delete_goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); location.reload();" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、いいね削除　　　                      ↓ここで、onclickに渡す引数を指定↓                       ↓ここでブラウザを更新してる                                                                                                     ↓いいね数を表示-->
+                <button id="goodButton" type="button" onclick="delete_goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
                 <?php }
                 if ($resultFavorite != 1) { ?>
-        <!-- ボタンを押すと、onclickが走って、お気に入り登録　　　              ↓ここで、onclickに渡す引数を指定↓                           ↓ここでブラウザを更新してる                                                                             ↓お気に入り数を表示-->
-                <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); location.reload();" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、お気に入り登録　　　              ↓ここで、onclickに渡す引数を指定↓                           ↓ここでブラウザを更新してる                                                                                     ↓お気に入り数を表示-->
+                <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
                 <?php }else{ ?>
-        <!-- ボタンを押すと、onclickが走って、お気に入り削除　　　                        ↓ここで、onclickに渡す引数を指定↓                           ↓ここでブラウザを更新してる                                                                             ↓お気に入り数を表示-->
-                    <button id="favoriteButton" type="button" onclick="delete_favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); location.reload();" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、お気に入り削除　　　                        ↓ここで、onclickに渡す引数を指定↓                           ↓ここでブラウザを更新してる                                                                                        ↓お気に入り数を表示-->
+                    <button id="favoriteButton" type="button" onclick="delete_favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
                     <?php }?>
         </div>
             <script>
