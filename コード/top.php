@@ -37,6 +37,17 @@ if(isset($_SESSION['id']) == false  &&
     <!-- この画面のcss-->
     <link rel="stylesheet" href="./css/top.css">
 
+    <?php
+        //DAOの呼び出し
+        require_once 'DAO.php';
+        $dao = new DAO();
+
+        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+        $userdata = $dao->selectUser($_SESSION['id']);
+        $user_prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
+
+    ?>
+
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -109,31 +120,164 @@ if(isset($_SESSION['id']) == false  &&
     <ul class="slider">
 
         <li class="slider-item slider-item01">
-        <a style="color: #FF7800;text-decoration: none; text-align: center; " href="overallRanking.php">総合ランキング</a>
-        <div class="ranking-content" style="margin:5px">
-            <image src="img/PepperRice.png" style="height:80px">
-            <i class="bi bi-hand-thumbs-up">9,999</i>
-            <i class="bi bi-bookmark-star verylike">9,999</i>
-        </div>
-        <image src="img/PepperRice.png" style="height:80px">
-        <image src="img/PepperRice.png" style="height:80px">
-        <image src="img/PepperRice.png" style="height:80px">
+            <a style="color: #FF7800;text-decoration: none; text-align: center;" 
+                    href="overallRanking.php">
+                    総合ランキング
+            </a>
+            <?php
+                $allRankingData = $dao->selectAllRanking();
+                if(count($allRankingData)>=5){
+                    for($i=0; $i<5; $i++){
+                        echo 
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".($i+1)."位</h3>
+                            <image class='col-3' src='".$allRankingData[$i]['recipe_image']."' style='height:80px'>
+                            <h3 class='col-6'>".$allRankingData[$i]['goodCount']."ポイント</h3>
+                        </div>";
+                    }
+                }else{
+                    $i = 1;
+                    foreach ($allRankingData as $allRanking) {
+                    
+                        echo 
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".$i."位</h3>
+                            <image class='col-3' src='".$allRanking['recipe_image']."' style='height:80px'>
+                            <h3 class='offset-1 col-5'>".$allRanking['goodCount']."ポイント</h3>
+                        </div>";
+                        $i++;
+                        if($i>5){
+                            break;
+                        }
+                    }
+                }
+
+            ?>
+
+
         </li>
 
         <li class="slider-item slider-item02" href="momentRanking.php">
-        <h4 style="text-align: center">瞬間ランキング</h4>
+            <a style="color: #FF7800;text-decoration: none; text-align: center;" 
+                    href="overallRanking.php">
+                    瞬間ランキング
+            </a>
+            <?php
+                $MRData = $dao->selectMomentRanking();
+                if(count($allRankingData)>=5){
+                    for($k=0; $k<5; $k++){
+                        echo 
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".($k+1)."位</h3>
+                            <image class='col-3' src='".$allRankingData[$k]['recipe_image']."' style='height:80px'>
+                            <h3 class='col-6'>".$allRankingData[$k]['goodCount']."ポイント</h3>
+                        </div>";
+                    }
+                }else{
+                    $k = 1;
+                    foreach ($allRankingData as $allRanking) {
+                    
+                        echo 
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".$k."位</h3>
+                            <image class='col-3' src='".$allRanking['recipe_image']."' style='height:80px'>
+                            <h3 class='offset-1 col-5'>".$allRanking['goodCount']."ポイント</h3>
+                        </div>";
+                        $k++;
+                        if($k>5){
+                            break;
+                        }
+                    }
+                }
 
+            ?>
         </li>
+        <?php
+        $user_prefecture;
+        if(!empty($userdata['prefecture_id'])){
+            echo 
+            "<li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
+                <a style='color: #FF7800;text-decoration: none; text-align: center;'
+                    href='overallRanking.php'>
+                    ".$user_prefecture['prefecture_name']."総合ランキング
+                </a>";
 
-        <li class="slider-item slider-item03" href="prefectureOverallRanking.php">
-        <h4 style="text-align: center">都道府県別総合ランキング</h4>
+                $PARData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
 
-        </li>
+                if(count($MRData)>=5){
+                    for($j=0; $j<5; $j++){
+                        echo 
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".($j+1)."位</h3>
+                            <image class='col-3' src='".$PARData[$j]['recipe_image']."' style='height:80px'>
+                            <h3 class='col-6'>".$PARData[$j]['goodCount']."ポイント</h3>
+                        </div>";
+                    }
+                }else{
+                    $j = 1;
+                    foreach ($PARData as $PAR) {
+                        
+                        echo 
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".$j."位</h3>
+                            <image class='col-3' src='".$PAR['recipe_image']."' style='height:80px'>
+                            <h3 class='offset-1 col-5'>".$PAR['goodCount']."ポイント</h3>
+                        </div>";
+                        $j++;
+                        if($j>5){
+                            break;
+                        }
+                    }
+                }
 
-        <li class="slider-item slider-item04" href="prefectureMomentRanking.php">
-        <h4 style="text-align: center">都道府県別瞬間ランキング</h4>
 
-        </li>
+
+            echo 
+            "</li>
+            <li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
+                <a style='color: #FF7800;text-decoration: none; text-align: center;'
+                        href='overallRanking.php'>
+                        ".$user_prefecture['prefecture_name']."瞬間ランキング
+                </a>";
+
+                $PMRData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
+
+                if(count($MRData)>=5){
+                    for($l=0; $l<5; $l++){
+                        echo 
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".($l+1)."位</h3>
+                            <image class='col-3' src='".$PMRData[$l]['recipe_image']."' style='height:80px'>
+                            <h3 class='col-6'>".$PMRData[$l]['goodCount']."ポイント</h3>
+                        </div>";
+                    }
+                }else{
+                    $l = 1;
+                    foreach ($PMRData as $PMR) {
+                        
+                        echo
+                        "<div class='ranking-content row' style='margin:5px'>
+                            <h3 class='col-2'>".$l."位</h3>
+                            <image class='col-3' src='".$PMR['recipe_image']."' style='height:80px'>
+                            <h3 class='offset-1 col-5'>".$PMR['goodCount']."ポイント</h3>
+                        </div>";
+                        $l++;
+                        if($l>5){
+                            break;
+                        }
+                    }
+                }
+        
+            echo
+            "</li>";
+            
+        
+        
+        }
+        ?>
+
+        
+        
 
 </div>
 
