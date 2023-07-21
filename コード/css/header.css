@@ -11,10 +11,13 @@
     right: -120%;
   width:75%;
     height: 100vh;/*ナビの高さ*/
-  background:#ff8c26; /* #ff9500候補*/
+  /* background:#ff8c26;  */
+  background: #fff;
+  border-left: 1px solid #dcdcdc;
     /*動き*/
   transition: all 0s;
 }
+
 
 /*アクティブクラスがついたら位置を0に*/
 #g-nav.panelactive{
@@ -57,7 +60,7 @@
   text-transform: uppercase;
   letter-spacing: 0em;
   font-weight: bold;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ff7800;
 }
 
 
