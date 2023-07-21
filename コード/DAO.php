@@ -3,7 +3,7 @@
 //データベース接続
 class DAO{
    private function dbConnect(){
-    $pdo= new PDO('mysql:host=localhost;dbname=smart_delicious;charset=utf8','root', 'root');
+    $pdo= new PDO('mysql:host=localhost;dbname=smart_delicious;charset=utf8','root', '');
 
     return $pdo; 
     }
