@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロトタイプ</title>
+
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
     <link rel="stylesheet" href="./css/ranking.css">
@@ -22,10 +22,51 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
+    <?php
+        session_start();
+        //DAOの呼び出し
+        require_once 'DAO.php';
+        $dao = new DAO();
+
+        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+        $userdata = $dao->selectUser($_SESSION['id']);
+        $user_prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
+        $ranking_kinds = ['','総合','瞬間','総合','瞬間'];
+
+        $rankingData = array();
+
+        switch ($_GET['ver']) {
+            case 1:
+                $rankingData = $dao->selectAllRanking();
+                break;
+            case 2:
+                $rankingData = $dao->selectMomentRanking();
+                break;
+            case 3:
+                $rankingData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
+                break;
+            case 4:
+                $rankingData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
+                break;
+            default:
+                # code...
+                break;
+        }
+
+    ?>
     <!-- 個別cssの読み込み場所 -->
 
     <!--  -->
-    <title>ランキング</title>   
+    <title>
+        <?php 
+            if ($_GET['ver']>=3) {
+                echo $user_prefecture['prefecture_name'];  
+            } 
+            echo $ranking_kinds[$_GET['ver']]; 
+        ?>ランキング
+    </title>   
+
+    
 </head>
 <body>
 
@@ -35,9 +76,9 @@
         </div>
         
     </header>
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-</svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+    </svg>
 
     <div class="openbtn1">
         <span></span>
@@ -52,9 +93,9 @@
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5 noDecoration">
+                    <a href="myPage.php" class="row ml-5" style="text-decoration: none;">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
+                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3>
                     </a>
                 </div>
 
@@ -117,15 +158,23 @@
         </div>
     </div>
     
-    
+    <?php
+
+        echo "
+            <div onclick='windows.location.href=;'>
+                
+            </div>
+        ";
+
+    ?>
 
 
     <!-- 下のナビゲーションバー -->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
+            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>
 

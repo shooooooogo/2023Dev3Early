@@ -70,9 +70,9 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5 noDecoration" style="text-decoration: none; color: #000;">
+                    <a href="myPage.php" class="row ml-5" style="text-decoration: none;">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
+                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3>
                     </a>
                 </div>
 
@@ -124,16 +124,27 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
-            <a href="userPage.php"><img class="offset-1 col-2 img-fluid userSell1" src="img/UserIcon_default.png"></a>
-            <h3 class="col-4 ml-2 userSell2">
-                <?php
+            <a href="userPage.php">
+            <?php
                 foreach($detailRecipe as $row){
-                     $recipe_user_id = $row['user_id'];
-                     $recipe_id = $row['recipe_id'];
+                     $recipe_user_id = $row['user_id'];//レシピ投稿者のuser_idを$recipe_user_idに取り出す。
+                     $recipe_id = $row['recipe_id'];//レシピのidを取得
                     }
+                    //display_the_iconからアイコンの情報を持ってくる→その結果を$resultUserIconに返す
+                    $resultUserIcon = $dao->display_the_icon($recipe_user_id);
 
+
+                    foreach($resultUserIcon as $row){
+                        //$resultUserIconの情報をforeachで$result_iconに入れる
+                        $result_icon = $row['user_icon'];
+                       }
+            ?>
+                                                                    <!-- ↓ここでアイコンを表示 -->
+                <img class="offset-1 col-2 img-fluid userSell1" src=<?php echo $result_icon?>></a>
+            <h3 class="col-4 ml-2 userSell2">
+                
+                    <?php
                 $resultUsername = $dao->user_recipeDetail($recipe_user_id);
-
                 foreach($resultUsername as $row){
                     echo $row['user_name'];
                    }
@@ -141,12 +152,20 @@ if(isset($_SESSION['id']) == false  &&
                 ?>
             </h3>
             <?php 
+            //163行目でユーザーがレシピ投稿者を既にフォローしているか判定するために$resultFollowに情報を入れる
             $resultFollow = $dao->follow_follower_search($_SESSION['id'],$recipe_user_id);
-            if ($_SESSION['id'] != $recipe_user_id) { 
+
+            // ただのブラウザ更新だと1番上に戻って鬱陶しいから、リロード前のスクロール位置を取得
+            $scrollTop = isset($_COOKIE['scroll_position']) ? $_COOKIE['scroll_position'] : 0;
+
+            if ($_SESSION['id'] != $recipe_user_id) {//自分自身をフォローしないようにif文でuser_idを比較
+                
                 if($resultFollow != 1){?>
-                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
+        <!-- ボタンを押すと、onclickが走って、投稿者をフォロー　　　 ↓ここで、onclickに渡す引数を指定↓                          ↓ここでブラウザを更新してる-->
+                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>); window.location.reload(true);" class="col-4 p-3 orangeBtn userSell3">フォロー</button>
             <?php }else{ ?>
-                <button id="followButton" onclick="follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>)" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
+        <!-- ボタンを押すと、onclickが走って、投稿者のフォロー解除　　　 ↓ここで、onclickに渡す引数を指定↓                             ↓ここでブラウザを更新してる-->
+                <button id="followButton" onclick="delete_follows(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_user_id; ?>); window.location.reload(true);" class="col-4 p-3 orangeBtn userSell3">フォロー中</button>
             <?php }
                }?>
             <!-- <button class="col-4 p-3 orangeBtn userSell3">フォロー</button> -->
@@ -184,7 +203,7 @@ if(isset($_SESSION['id']) == false  &&
             <!-- ガチで旨すぎてぶちぶちになる位の美味しさです。食え！ -->
             <?php
             foreach($detailRecipe as $row){
-                echo $row['recipe_introduction'];
+                echo $row['recipe_introduction'];//ここで紹介文を表示してる
                }
             ?>
         </p>
@@ -192,21 +211,52 @@ if(isset($_SESSION['id']) == false  &&
         <!-- いいねお気に入りボタン -->
         <div class="row pt-2" style="width:100%">
         <?php 
+        //226行目でユーザーがレシピを既にいいねしているか判定するために$resultGoodに情報を入れる
         $resultGood = $dao->goodsSearch($_SESSION['id'],$recipe_id);
+
+        //いいね数を表示させるためにデータベースからいいね数を取得
         $result_good_count = $dao->goodsCount($recipe_id);
+
+        //233行目でユーザーがレシピを既にお気に入りしているか判定するために$resultFavoriteに情報を入れる
         $resultFavorite = $dao->favoriteSearch($_SESSION['id'],$recipe_id);
+
+        //お気に入り数を表示させるためにデータベースからお気に入り数を取得
         $result_favorite_count = $dao->favoriteCount($recipe_id);
+
         if ($resultGood != 1) { ?>
-            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、いいね登録　　　              ↓ここで、onclickに渡す引数を指定↓                   ↓ここでブラウザを更新してる                                                                                                     ↓いいね数を表示-->
+            <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" style="height: 50px;">いいね<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
             <?php }else{ ?>
-                <button id="goodButton" type="button" onclick="goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、いいね削除　　　                      ↓ここで、onclickに渡す引数を指定↓                       ↓ここでブラウザを更新してる                                                                                                     ↓いいね数を表示-->
+                <button id="goodButton" type="button" onclick="delete_goods(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" style="height: 50px;">いいね済<i class="bi bi-hand-thumbs-up"></i><?php echo number_format($result_good_count[0]) ?></button>
                 <?php }
                 if ($resultFavorite != 1) { ?>
-                <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、お気に入り登録　　　              ↓ここで、onclickに渡す引数を指定↓                           ↓ここでブラウザを更新してる                                                                                     ↓お気に入り数を表示-->
+                <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" >お気に入り<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
                 <?php }else{ ?>
-                    <button id="favoriteButton" type="button" onclick="favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>)" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
+        <!-- ボタンを押すと、onclickが走って、お気に入り削除　　　                        ↓ここで、onclickに渡す引数を指定↓                           ↓ここでブラウザを更新してる                                                                                        ↓お気に入り数を表示-->
+                    <button id="favoriteButton" type="button" onclick="delete_favorite(<?php echo $_SESSION['id']; ?>, <?php echo $recipe_id; ?>); window.location.reload(true);" class="defo-btn offset-1 col-5" >お気に入り済<i class="bi bi-bookmark-star"></i><?php echo number_format($result_favorite_count[0]) ?></button>
                     <?php }?>
         </div>
+            <script>
+            // スクロール位置をCookieに保存
+            function saveScrollPosition() {
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                document.cookie = 'scroll_position=' + scrollTop;
+            }
+
+            // ページ読み込み時にスクロール位置を復元
+            window.onload = function() {
+                var scrollTop = <?php echo $scrollTop; ?>;
+                window.scrollTo(0, scrollTop);
+            };
+
+            // ボタンをクリックした際にスクロール位置を保存
+            document.getElementById('followButton').addEventListener('click', saveScrollPosition);
+            document.getElementById('goodButton').addEventListener('click', saveScrollPosition);
+            document.getElementById('favoriteButton').addEventListener('click', saveScrollPosition);
+        </script>
+
 
         <!-- 都道府県ラベル 表示し河川からdb接続して持ってきて-->
         <br>
@@ -233,7 +283,7 @@ if(isset($_SESSION['id']) == false  &&
             foreach($detailRecipe as $row){
                 $price += $row['material_cost'];
             }
-            echo $price."円/1人";
+            echo $price."円/1人";//材料の合計を表示
             ?>
         </div>
 
@@ -257,9 +307,7 @@ if(isset($_SESSION['id']) == false  &&
                         <?php
                         $detailRecipe = $dao->recipeDetail_materials($_POST['recipeId']);
                         foreach($detailRecipe as $row){
-                            // echo "<div class=\"offset-1 col-4\">";
-                            echo $row['material_name'].'<br>';
-                            // echo "</div>"; 
+                            echo $row['material_name'].'<br>';//材料名を表示
                         }
                         ?>
                         </div>
@@ -269,7 +317,7 @@ if(isset($_SESSION['id']) == false  &&
                         <?php
                         $detailRecipe = $dao->recipeDetail_materials($_POST['recipeId']);
                         foreach($detailRecipe as $row){
-                            echo $row['material_quantity'].'<br>';
+                            echo $row['material_quantity'].'<br>';//分量を表示
                         }
                         ?>
                     </div>
@@ -279,7 +327,7 @@ if(isset($_SESSION['id']) == false  &&
                     <?php
                         $detailRecipe = $dao->recipeDetail_materials($_POST['recipeId']);
                         foreach($detailRecipe as $row){
-                            echo $row['material_cost'].'<br>';
+                            echo $row['material_cost'].'<br>';//値段を表示
                         }
                         ?>
                 </div>
@@ -318,9 +366,9 @@ if(isset($_SESSION['id']) == false  &&
                     // <img src="img/作りかた例１.webp" style="width:100%; height:auto; ml-5%; mr-5%;">
                     $detailRecipe = $dao->recipeDetail_how_to_make($_POST['recipeId']);
                         foreach($detailRecipe as $row){
-                            echo "<p><div class=number>$imagecount.</div></p>";
-                            echo "<img src=$row[how_to_make_image] style=width:100%; height:auto; ml-5%; mr-5%;>";
-                            echo "<div class=text>$row[how_to_make_text]</div>";
+                            echo "<p><div class=number>$imagecount.</div></p>";//投稿画像に番号を振る
+                            echo "<img src=$row[how_to_make_image] style=width:100%; height:auto; ml-5%; mr-5%;>";//投稿画像を表示
+                            echo "<div class=text>$row[how_to_make_text]</div>";//説明文を表示
                             $imagecount++;
                         }
                     ?>
@@ -356,9 +404,9 @@ if(isset($_SESSION['id']) == false  &&
     <br><br><br><br><br>
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
+            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>
 

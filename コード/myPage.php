@@ -42,8 +42,6 @@ if(isset($_SESSION['id']) == false  &&
         //マイページなので、セッションのidを利用して自分のユーザ情報を検索
         $userdata = $dao->selectUser($_SESSION['id']);
 
-        var_dump($userdata);
-
 
     ?>
 
@@ -86,9 +84,9 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5 noDecoration">
+                    <a href="myPage.php" class="row ml-5" style="text-decoration: none;">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
+                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3>
                     </a>
                 </div>
 
@@ -136,23 +134,25 @@ if(isset($_SESSION['id']) == false  &&
             </p>
 
             <!-- フォロー人数 -->
-            <p class="follow user-info-text">
-                <span class="user-info-text-bold">
-                    <?php
-                        $followCount = $dao->countFollowers($_SESSION['id']);
-                        echo "フォロー　：".number_format($followCount[0])."人";
-                    ?>
-                </span>
-            </p>
-            <!-- フォロワー人数 -->
-            <p class="follow user-info-text">
-                <span class="user-info-text-bold">
-                    <?php
-                        $followerCount = $dao->countFollows($_SESSION['id']);
-                        echo "フォロワー：".number_format($followerCount[0])."人";
-                    ?>
-                </span>
-            </p>
+            <a href="follow.php" style="text-decoration: none; color:#333333">
+                <p class="follow user-info-text">
+                    <span class="user-info-text-bold">
+                        <?php
+                            $followCount = $dao->countFollowers($_SESSION['id']);
+                            echo "フォロー　：".number_format($followCount[0])."人";
+                        ?>
+                    </span>
+                </p>
+                <!-- フォロワー人数 -->
+                <p class="follow user-info-text">
+                    <span class="user-info-text-bold">
+                        <?php
+                            $followerCount = $dao->countFollows($_SESSION['id']);
+                            echo "フォロワー：".number_format($followerCount[0])."人";
+                        ?>
+                    </span>
+                </p>
+            </a>
             <!-- テキストエリアでは変更できてしまうため、pタグに変えました。　石川 -->
             <p name="#" class="introduction user-info-text-bold">
                 <?php
@@ -363,7 +363,7 @@ if(isset($_SESSION['id']) == false  &&
                     <!-- 各タブの中の投稿内容ここから -->
                     
                     <div id="draftsTab" class="panel draftstab">
-                        <div class="div-underline">
+                        <!-- <div class="div-underline">
                             <div class="myPage-content-posts">
                                 <div class="myPage-content-posted">
                                     <img src="./img/PepperRice.png" alt="投稿写真" class="post-image">
@@ -377,7 +377,7 @@ if(isset($_SESSION['id']) == false  &&
                                         </div>
                                 </div>
                             </div>
-                            <div class="post-underline"></div>
+                            <div class="post-underline"></div> -->
                         
 
                             <?php

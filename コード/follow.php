@@ -39,8 +39,6 @@ if(isset($_SESSION['id']) == false  &&
         //マイページなので、セッションのidを利用して自分のユーザ情報を検索
         $userdata = $dao->selectUser($_SESSION['id']);
 
-        var_dump($userdata);
-
 
     ?>
 
@@ -108,8 +106,10 @@ if(isset($_SESSION['id']) == false  &&
 
 
     <div class="user">
-        <img src="img/UserIcon_default.png" alt="アイコン" class="user-icon">
-        <h1 class="user-name">ユーザー名</h1>
+        <?php
+            echo "<img src='".$userdata['user_icon']."' alt='アイコン' class='user-icon'>
+            <h1 class='user-name'>".$userdata['user_name']."</h1>";
+        ?>
     </div>
 
     <div class="follow-content">
@@ -122,35 +122,47 @@ if(isset($_SESSION['id']) == false  &&
             <div class="scrollRange">
                 <!-- フォロータブの中 -->
                 <div class="panel follow1tab is-show">
-                    <!-- ユーザ欄　1人分　ここから -->
-                        <div class="follow-user-info">
-                                <img src="img/UserIcon_default.png" alt="アイコン" class="follow-user-icon">
-                                <div class="follow-user-name">上村</div>
-                                <button class="follow-user-button">フォロー</button>
-                            </div>
-                        <div class="follow-underline"></div>
-                    <!-- ユーザ欄　1人分　ここまで -->
+                
+                <!-- 仕様変更前の -->
+                <!-- <button class='follow-user-button'>フォロー</button> -->
+
+                    <?php
+                        $followData = $dao->selectFollow($_SESSION['id']);
+
+                        foreach ($followData as $row) {
+                            $followUser = $dao->selectUser($row['follower_user_id']);
+                            echo "<div class='follow-user-info'>
+                                    <img src='".$followUser['user_icon']."' alt='アイコン' class='follow-user-icon'>
+                                    <div class='follow-user-name'>".$followUser['user_name']."</div>
+                                    <button class='follow-user-button' onclick='document.getElementById(form".$followUser['user_id'].".submit())'>ユーザページへ</button>
+                                    <form method='post' action='userPage.php' id='form".$followUser['user_id']."'>
+                                        <input type='hidden' value='".$followUser['user_name']."'>
+                                    </form>
+                                  </div>
+                                  <div class='follow-underline'></div>";
+                        }
+
+                    ?>
                 </div>
 
                 <!-- フォロワータブの中 -->
                 <div class="panel follow2tab">
-                    <!-- ユーザ欄　1人分　ここから -->
-                        <div class="follow-user-info">
-                                <img src="img/UserIcon_default.png" alt="アイコン" class="follow-user-icon">
-                                <div class="follow-user-name">しんいち</div>
-                                <button class="follow-user-button">フォロー</button>
-                            </div>
-                        <div class="follow-underline"></div>
-                    <!-- ユーザ欄　1人分　ここまで -->
 
-                    <!-- ユーザ欄　1人分　ここから -->
-                        <div class="follow-user-info">
-                                <img src="img/UserIcon_default.png" alt="アイコン" class="follow-user-icon">
-                                <div class="follow-user-name">しんいち</div>
-                                <button class="follow-user-button">フォロー</button>
-                            </div>
-                        <div class="follow-underline"></div>
-                    <!-- ユーザ欄　1人分　ここまで -->s
+                    <?php
+                        $followerData = $dao->selectFollower($_SESSION['id']);
+
+                        foreach ($followerData as $row) {
+                            $followerUser = $dao->selectUser($row['follow_user_id']);
+                            echo "<div class='follow-user-info'>
+                                    <img src='".$followerUser['user_icon']."' alt='アイコン' class='follow-user-icon'>
+                                    <div class='follow-user-name'>".$followerUser['user_name']."</div>
+                                    <button class='follow-user-button'>ユーザページへ</button>
+                                  </div>
+                                  <div class='follow-underline'></div>";
+                        }
+
+                    ?>
+
                 </div>
                 
             </div>
