@@ -85,7 +85,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -102,16 +102,16 @@ if(isset($_SESSION['id']) == false  &&
         
             <!-- レシピのタイトル -->
             <span>
-            <h1  class="ms-2">・レシピのタイトル</h1>
+            <h1  class="ms-2" style="margin-top:10px;">・レシピのタイトル</h1>
             <input class="textInput col-11 ms-3" type="text" name="recipe_name" placeholder="(例)さばの味噌煮">
             </span>
 
             <!-- サムネイル画像 -->
             <span>
-                <h1 class="ms-2">・サムネイル</h1>
+                <h1 class="ms-2"style="margin-top:10px;">・サムネイル</h1>
                 
                 <!-- 画像追加のinputタグ -->
-                <input class="inputs" type="file" name="recipe_image" id="recipe_image"><br/>
+                <input class="inputs suggestButton" type="file" name="recipe_image" id="recipe_image"><br/>
                 
                 <!-- 追加された画像を表示する物 -->
                 <div id="preview"></div>
@@ -119,14 +119,14 @@ if(isset($_SESSION['id']) == false  &&
         
             <!-- 紹介文 -->
             <span>
-                <h1 class="ms-2">・紹介文</h1>
+                <h1 class="ms-2"style="margin-top:10px;">・紹介文</h1>
                 <input class="textInput col-11 ms-3" type="text" name="recipe_intro" placeholder="ここに紹介文を入力してください">
             </span>
         
             <!-- 材料 -->
             <span>
 
-                <h1 class="ms-2">・材料</h1>
+                <h1 class="ms-2"style="margin-top:10px;">・材料</h1>
                 
                 <!-- 材料の個数を数えて送るタグ -->
                 <input type="hidden" id="materialNumber" name="materialNumber" value=1>
@@ -155,7 +155,7 @@ if(isset($_SESSION['id']) == false  &&
             
             <!-- 作り方 -->
             <span class="mb-3" id="addHowToSpan">
-                <h1 class="ms-3">・作り方</h1>
+                <h1 class="ms-3"style="margin-top:10px;">・作り方</h1>
                 
                 <!-- 作り方の数を数えて送るタグ -->
                 <input type="hidden" id="howToNumber" name="howToNumber" value=1>
@@ -193,7 +193,6 @@ if(isset($_SESSION['id']) == false  &&
                     <option value="4">おやつ</option>
                 </select>
             </div>
-            <br>　
 
             <!-- ジャンル -->
             <div style="text-align: center;">
@@ -211,7 +210,7 @@ if(isset($_SESSION['id']) == false  &&
                     <option value="9">フレンチ</option>
                 </select>
             </div>
-            <br>　
+
 
             <!-- 都道府県 -->
             <div style="text-align: center;">
@@ -267,13 +266,12 @@ if(isset($_SESSION['id']) == false  &&
                     <option value="47">沖縄県</option>
                 </select>
             </div>
-            <br>　
-            <input type="submit" value="登録する">
+            
+            <input type="submit" class="suggestButton" style="margin: auto;margin-top:10px" value="登録する">
             <!-- <button>下書きを保存する</button>
             <button>投稿する</button> -->
         </form>
         <br>
-        
         
 
         <!-- ここまで -->
