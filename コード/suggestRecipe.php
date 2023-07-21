@@ -110,7 +110,7 @@ $userdata = $dao->selectUser($_SESSION['id']);
 
         <div>
             <p>作りたいジャンルを選択</p>
-            <select class="selectgGnre" style="text-align: center;">
+            <select name="genre" class="selectgGnre" style="text-align: center;">
                 <?php
                     $genres = $dao->selectAllGenre();
                     echo "<option value=-1>ジャンルを指定しない</option>";
@@ -125,18 +125,18 @@ $userdata = $dao->selectUser($_SESSION['id']);
 
         <div>
             <p>総予算を入力</p>
-            <input class="budget" type="text" name="Buget" placeholder="" style="text-align: center;">
+            <input class="budget" type="text" name="cost" placeholder="" style="text-align: center;">
         </div>
 
         <div>
             <p>時間帯を選択</p>
-            <select class="selectTime"  style="text-align: center;">
-                    <option value="0">時間帯を指定しない</option>
-                    <option value="1">朝食</option>
-                    <option value="2">昼食</option>
-                    <option value="3">夕食</option>
-                    <option value="4">おやつ</option>
-                    <?
+            <select name="time_zone" class="selectTime"  style="text-align: center;">
+                    <?php
+                        $times = $dao->selectAllTimeZone();
+                        foreach ($times as $time) {
+                            echo "<option value='".$time['time_zone_id']."'>".$time['time_zone_name']."</option>";
+                        }
+                    ?>
             </select>
         </div><br>
 
