@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロトタイプ</title>
+
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
     <link rel="stylesheet" href="./css/ranking.css">
@@ -22,10 +22,51 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
+    <?php
+        session_start();
+        //DAOの呼び出し
+        require_once 'DAO.php';
+        $dao = new DAO();
+
+        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+        $userdata = $dao->selectUser($_SESSION['id']);
+        $user_prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
+        $ranking_kinds = ['','総合','瞬間','総合','瞬間'];
+
+        $rankingData = array();
+
+        switch ($_GET['ver']) {
+            case 1:
+                $rankingData = $dao->selectAllRanking();
+                break;
+            case 2:
+                $rankingData = $dao->selectMomentRanking();
+                break;
+            case 3:
+                $rankingData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
+                break;
+            case 4:
+                $rankingData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
+                break;
+            default:
+                # code...
+                break;
+        }
+
+    ?>
     <!-- 個別cssの読み込み場所 -->
 
     <!--  -->
-    <title>ランキング</title>   
+    <title>
+        <?php 
+            if ($_GET['ver']>=3) {
+                echo $user_prefecture['prefecture_name'];  
+            } 
+            echo $ranking_kinds[$_GET['ver']]; 
+        ?>ランキング
+    </title>   
+
+    
 </head>
 <body>
 
@@ -35,9 +76,9 @@
         </div>
         
     </header>
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-</svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+    </svg>
 
     <div class="openbtn1">
         <span></span>
@@ -117,7 +158,15 @@
         </div>
     </div>
     
-    
+    <?php
+
+        echo "
+            <div onclick='windows.location.href=;'>
+                
+            </div>
+        ";
+
+    ?>
 
 
     <!-- 下のナビゲーションバー -->

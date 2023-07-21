@@ -121,7 +121,7 @@ if(isset($_SESSION['id']) == false  &&
 
         <li class="slider-item slider-item01">
             <a style="color: #FF7800;text-decoration: none; text-align: center;" 
-                    href="overallRanking.php">
+                    href="ranking.php?ver=1">
                     総合ランキング
             </a>
             <?php
@@ -131,7 +131,7 @@ if(isset($_SESSION['id']) == false  &&
                         echo 
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".($i+1)."位</h3>
-                            <image class='col-3' src='".$allRankingData[$i]['recipe_image']."' style='height:80px'>
+                            <image class='col-3 img-fluid' src='".$allRankingData[$i]['recipe_image']."' >
                             <h3 class='col-6'>".$allRankingData[$i]['goodCount']."ポイント</h3>
                         </div>";
                     }
@@ -153,13 +153,16 @@ if(isset($_SESSION['id']) == false  &&
                 }
 
             ?>
-
+            <a style="color: #FF7800;text-decoration: none; text-align: center;" 
+                    href="ranking.php?ver=1">
+                    ランキングの詳細はこちら
+            </a>
 
         </li>
 
         <li class="slider-item slider-item02" href="momentRanking.php">
             <a style="color: #FF7800;text-decoration: none; text-align: center;" 
-                    href="overallRanking.php">
+                    href="ranking.php?ver=2">
                     瞬間ランキング
             </a>
             <?php
@@ -191,6 +194,11 @@ if(isset($_SESSION['id']) == false  &&
                 }
 
             ?>
+
+            <a style="color: #FF7800;text-decoration: none; text-align: center;" 
+                    href="ranking.php?ver=2">
+                    ランキングの詳細はこちら
+            </a>
         </li>
         <?php
         $user_prefecture;
@@ -198,7 +206,7 @@ if(isset($_SESSION['id']) == false  &&
             echo 
             "<li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
                 <a style='color: #FF7800;text-decoration: none; text-align: center;'
-                    href='overallRanking.php'>
+                    href='overallRanking.php?ver=3'>
                     ".$user_prefecture['prefecture_name']."総合ランキング
                 </a>";
 
@@ -233,10 +241,14 @@ if(isset($_SESSION['id']) == false  &&
 
 
             echo 
-            "</li>
+                "<a style='color: #FF7800;text-decoration: none; text-align: center;' 
+                href='ranking.php?ver=3'>
+                    ランキングの詳細はこちら
+                </a>
+            </li>
             <li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
                 <a style='color: #FF7800;text-decoration: none; text-align: center;'
-                        href='overallRanking.php'>
+                        href='ranking.php?ver=4'>
                         ".$user_prefecture['prefecture_name']."瞬間ランキング
                 </a>";
 
@@ -269,7 +281,11 @@ if(isset($_SESSION['id']) == false  &&
                 }
         
             echo
-            "</li>";
+                "<a style='color: #FF7800;text-decoration: none; text-align: center;' 
+                href='ranking.php?ver=4'>
+                    ランキングの詳細はこちら
+                </a>
+            </li>";
             
         
         
