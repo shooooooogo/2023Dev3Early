@@ -1,3 +1,35 @@
+<?php
+        session_start();
+        //DAOの呼び出し
+        require_once 'DAO.php';
+        $dao = new DAO();
+
+        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+        $userdata = $dao->selectUser($_SESSION['id']);
+        $user_prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
+        $ranking_kinds = ['','総合','瞬間','総合','瞬間'];
+
+        $rankingData = array();
+
+        switch ($_GET['ver']) {
+            case 1:
+                $rankingData = $dao->selectAllRanking();
+                break;
+            case 2:
+                $rankingData = $dao->selectMomentRanking();
+                break;
+            case 3:
+                $rankingData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
+                break;
+            case 4:
+                $rankingData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
+                break;
+            default:
+                # code...
+                break;
+        }
+
+    ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

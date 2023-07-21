@@ -136,6 +136,7 @@ $userdata = $dao->selectUser($_SESSION['id']);
                     <option value="2">昼食</option>
                     <option value="3">夕食</option>
                     <option value="4">おやつ</option>
+                    <?
             </select>
         </div><br>
 
