@@ -76,9 +76,9 @@
         </div>
         
     </header>
-    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-    </svg>
+    </svg> -->
 
     <div class="openbtn1">
         <span></span>
@@ -117,7 +117,7 @@
     </nav>
 
     <!-- このdivの中に要素を書き込んでください -->
-    <ul class="slider slick-initalizad stick-slider slick-dotted">== $0
+    <!-- <ul class="slider slick-initalizad stick-slider slick-dotted">
 <div class="flex">
   <figure class="sampledish1"><img src="img/naporitan.png" alt="料理" style="width: 180px"></figure>
   <div class="right">
@@ -145,9 +145,39 @@
             いいね数　○○
     </p>
   </div>
-</div>
-<ul>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div> -->
+    <h1 class='text-center'><?php
+    if ($_GET['ver']>=3) {
+        echo $user_prefecture['prefecture_name'];  
+    } 
+    echo $ranking_kinds[$_GET['ver']]; 
+    ?>ランキング
+    </h1>
+    <?php
+    
+        $count=1;
+        foreach ($rankingData as $rData) {
+            echo "
+                <div class='row' onclick='document.getElementById(".$rData['recipe_id'].").submit();'>
+                    
+                    <p >".$count."位</p>
+
+                    <img src='".$rData['recipe_image']."' class='col-4 img-fluid'>
+                    <p>".$rData['recipe_name']."</p>
+                    <p>いいね数：".$rData['goodCount']."件</p>
+                    <p>予算：".$rData['sumCost']."円</p>
+
+                    <form action='dishDetail.php' method='post' id='".$rData['recipe_id']."' style='display:none;'>
+                        <input type='hidden' name='recipeId' value='".$rData['recipe_id']."'>
+                    </form>
+                </div>
+            ";  
+            $count++;  
+        }
+        
+
+    ?>
+        <br><br><br><br><br><br><br><br><br><br>
         <!-- ここまで -->
         <div class="footerCooporation">
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
@@ -157,18 +187,9 @@
             </ul>
         </div>
     </div>
-    
-    <?php
-
-        echo "
-            <div onclick='windows.location.href=;'>
-                
-            </div>
-        ";
-
-    ?>
 
 
+    <br><br><br><br><br><br><br><br>
     <!-- 下のナビゲーションバー -->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">

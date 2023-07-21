@@ -330,6 +330,17 @@ class DAO{
         return $selectF->fetchAll();
     }
 
+    //全件検索
+    public function selectAllGenre(){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * 
+                FROM genres
+                ";
+        $selectAG = $pdo->prepare($sql);
+
+        $selectAG ->execute();
+        return $selectAG->fetchAll();
+    }
 
 
     // フォローに関する機能(フォローする人→follower_user_id  フォローを受ける人→follow_user_id)

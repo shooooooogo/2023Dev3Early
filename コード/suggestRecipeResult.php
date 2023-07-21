@@ -5,6 +5,12 @@ if(isset($_SESSION['id']) == false  &&
         header('Location: login.php');
         exit();
 }
+//DAOの呼び出し
+require_once 'DAO.php';
+$dao = new DAO();
+
+//マイページなので、セッションのidを利用して自分のユーザ情報を検索
+$userdata = $dao->selectUser($_SESSION['id']);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
