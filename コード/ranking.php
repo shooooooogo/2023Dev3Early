@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>プロトタイプ</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
     <link rel="stylesheet" href="./css/ranking.css">
@@ -22,51 +22,11 @@
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
-    <?php
-        session_start();
-        //DAOの呼び出し
-        require_once 'DAO.php';
-        $dao = new DAO();
-
-        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
-        $userdata = $dao->selectUser($_SESSION['id']);
-        $user_prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
-        $ranking_kinds = ['','総合','瞬間','総合','瞬間'];
-
-        $rankingData = array();
-
-        switch ($_GET['ver']) {
-            case 1:
-                $rankingData = $dao->selectAllRanking();
-                break;
-            case 2:
-                $rankingData = $dao->selectMomentRanking();
-                break;
-            case 3:
-                $rankingData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
-                break;
-            case 4:
-                $rankingData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
-                break;
-            default:
-                # code...
-                break;
-        }
-
-    ?>
     <!-- 個別cssの読み込み場所 -->
-
+    <link rel="stylesheet" type="text/css" href="css/ranking.css">
+ 
     <!--  -->
-    <title>
-        <?php 
-            if ($_GET['ver']>=3) {
-                echo $user_prefecture['prefecture_name'];  
-            } 
-            echo $ranking_kinds[$_GET['ver']]; 
-        ?>ランキング
-    </title>   
-
-    
+    <title>ランキング</title>   
 </head>
 <body>
 
@@ -109,7 +69,7 @@
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -149,9 +109,39 @@
             いいね数　○○
     </p>
   </div>
-</div>
-<ul>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div> -->
+    <h1 class='text-center'><?php
+    if ($_GET['ver']>=3) {
+        echo $user_prefecture['prefecture_name'];  
+    } 
+    echo $ranking_kinds[$_GET['ver']]; 
+    ?>ランキング
+    </h1>
+    <?php
+    
+        $count=1;
+        foreach ($rankingData as $rData) {
+            echo "
+                <div class='row' onclick='document.getElementById(".$rData['recipe_id'].").submit();'>
+                    
+                    <p >".$count."位</p>
+
+                    <img src='".$rData['recipe_image']."' class='col-4 img-fluid'>
+                    <p>".$rData['recipe_name']."</p>
+                    <p>いいね数：".$rData['goodCount']."件</p>
+                    <p>予算：".$rData['sumCost']."円</p>
+
+                    <form action='dishDetail.php' method='post' id='".$rData['recipe_id']."' style='display:none;'>
+                        <input type='hidden' name='recipeId' value='".$rData['recipe_id']."'>
+                    </form>
+                </div>
+            ";  
+            $count++;  
+        }
+        
+
+    ?>
+        <br><br><br><br><br><br><br><br><br><br>
         <!-- ここまで -->
         <div class="footerCooporation">
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
@@ -161,18 +151,9 @@
             </ul>
         </div>
     </div>
-    
-    <?php
-
-        echo "
-            <div onclick='windows.location.href=;'>
-                
-            </div>
-        ";
-
-    ?>
 
 
+    <br><br><br><br><br><br><br><br>
     <!-- 下のナビゲーションバー -->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">

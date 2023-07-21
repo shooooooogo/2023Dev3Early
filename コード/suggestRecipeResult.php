@@ -5,6 +5,12 @@ if(isset($_SESSION['id']) == false  &&
         header('Location: login.php');
         exit();
 }
+//DAOの呼び出し
+require_once 'DAO.php';
+$dao = new DAO();
+
+//マイページなので、セッションのidを利用して自分のユーザ情報を検索
+$userdata = $dao->selectUser($_SESSION['id']);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -84,7 +90,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
