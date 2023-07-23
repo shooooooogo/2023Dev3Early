@@ -1,10 +1,23 @@
 <?php
-session_start();
-if(isset($_SESSION['id']) == false  &&
-     isset($_SESSION['name']) == false ){
-        header('Location: login.php');
-        exit();
-}
+    session_start();
+    if(isset($_SESSION['id']) == false  &&
+        isset($_SESSION['name']) == false ){
+            header('Location: login.php');
+            exit();
+    }
+    //DAOの呼び出し
+    require_once 'DAO.php';
+    $dao = new DAO();
+
+    //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+    $userdata = $dao->selectUser($_SESSION['id']);
+
+    $genreP = $_POST['genre'];
+    $costP = $_POST['cost'];
+    $timeP = $_POST['time_zone'];
+
+    $recipeData = $dao->suggest($genreP,$costP,$timeP);
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -84,7 +97,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -95,6 +108,32 @@ if(isset($_SESSION['id']) == false  &&
 
     <!-- このdivの中に要素を書き込んでください -->
 
+    <div>
+        <h1>こちらのレシピはどうでしょうか？</h1>
+
+        <?php
+            $count=1;
+            foreach ($recipeData as $rData) {
+                echo "
+                    <div class='row' onclick='document.getElementById(".$rData['recipe_id'].").submit();'>
+
+                        <img src='".$rData['recipe_image']."' class='col-4 img-fluid'>
+                        <p>".$rData['recipe_name']."</p>
+                        
+                        
+    
+                        <form action='dishDetail.php' method='post' id='".$rData['recipe_id']."' style='display:none;'>
+                            <input type='hidden' name='recipeId' value='".$rData['recipe_id']."'>
+                        </form>
+                    </div>
+                ";  
+                $count++;  
+            }
+        ?>
+
+
+
+    </div>
     
     <!-- 下のナビゲーションバー -->
     <br><br><br><br><br>

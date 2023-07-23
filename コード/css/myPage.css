@@ -112,8 +112,15 @@
     /* position: relative; */
 }
 .post-image{
+    display: inline-block;
     float: left;
     width: 100px;
+    max-height: 100px;
+}
+.post-image-float{
+    /* overflow: hidden; */
+    display: inline-block;
+    vertical-align: top;
 }
 .post-text-name{
     margin: 0 0 0 15px;
@@ -127,11 +134,8 @@
     margin: 0 0 0 15px;
     font-size: 18px;
 }
-.post-image-float{
-    overflow: hidden;
-}
 .post-like i{
-    margin: 0 15px;
+    margin: 0 0 0 15px;
     font-size: 18px;
 }
 .post-underline{

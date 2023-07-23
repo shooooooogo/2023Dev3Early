@@ -98,7 +98,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -227,9 +227,10 @@ if(isset($_SESSION['id']) == false  &&
                                             <div class='post-text-name'>".$row['recipe_name']."</div>
                                             <div class='post-text-budget'>予算　".$row['sumCost']."円</div>
                                         </div>
+                                        <br>
                                         <div class='post-like'>
-                                        <i class='bi bi-hand-thumbs-up'>".$row['goodCount']."</i>
-                                        <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
+                                            <i class='bi bi-hand-thumbs-up'>".$row['goodCount']."</i>
+                                            <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
                                         </div>
                                     </div>
                                 </div>

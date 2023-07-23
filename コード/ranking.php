@@ -1,3 +1,35 @@
+<?php
+    session_start();
+    //DAOの呼び出し
+    require_once 'DAO.php';
+    $dao = new DAO();
+
+    //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+    $userdata = $dao->selectUser($_SESSION['id']);
+    $user_prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
+    $ranking_kinds = ['','総合','瞬間','総合','瞬間'];
+
+    $rankingData = array();
+
+    switch ($_GET['ver']) {
+        case 1:
+            $rankingData = $dao->selectAllRanking();
+            break;
+        case 2:
+            $rankingData = $dao->selectMomentRanking();
+            break;
+        case 3:
+            $rankingData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
+            break;
+        case 4:
+            $rankingData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
+            break;
+        default:
+            # code...
+            break;
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -23,7 +55,8 @@
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
     <!-- 個別cssの読み込み場所 -->
-
+    <link rel="stylesheet" type="text/css" href="css/ranking.css">
+ 
     <!--  -->
     <title>ランキング</title>   
 </head>
@@ -35,9 +68,11 @@
         </div>
         
     </header>
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-</svg>
+    <!--
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="500" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+    </svg>
+        -->
 
     <div class="openbtn1">
         <span></span>
@@ -66,7 +101,7 @@
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -76,9 +111,11 @@
     </nav>
 
     <!-- このdivの中に要素を書き込んでください -->
+    <!--
     <ul class="slider slick-initalizad stick-slider slick-dotted">== $0
+        -->
 <div class="flex">
-  <figure class="sampledish1"><img src="img/naporitan.png" alt="料理" style="width: 180px"></figure>
+  <figure class="sampledish1" style="margin:10px"><img src="img/naporitan.png" alt="料理" style="width: 180px"></figure>
   <div class="right">
     <p class="title">nameA ナポリタン</p>
     <p class="text" style="text-align:left">予算　○○円　<br>
@@ -104,9 +141,39 @@
             いいね数　○○
     </p>
   </div>
-</div>
-<ul>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div> -->
+    <h1 class='text-center'><?php
+    if ($_GET['ver']>=3) {
+        echo $user_prefecture['prefecture_name'];  
+    } 
+    echo $ranking_kinds[$_GET['ver']]; 
+    ?>ランキング
+    </h1>
+    <?php
+    
+        $count=1;
+        foreach ($rankingData as $rData) {
+            echo "
+                <div class='row' onclick='document.getElementById(".$rData['recipe_id'].").submit();'>
+                    
+                    <p >".$count."位</p>
+
+                    <img src='".$rData['recipe_image']."' class='col-4 img-fluid'>
+                    <p>".$rData['recipe_name']."</p>
+                    <p>いいね数：".$rData['goodCount']."件</p>
+                    <p>予算：".$rData['sumCost']."円</p>
+
+                    <form action='dishDetail.php' method='post' id='".$rData['recipe_id']."' style='display:none;'>
+                        <input type='hidden' name='recipeId' value='".$rData['recipe_id']."'>
+                    </form>
+                </div>
+            ";  
+            $count++;  
+        }
+        
+
+    ?>
+        <br><br><br><br><br><br><br><br><br><br>
         <!-- ここまで -->
         <div class="footerCooporation">
             <p class="copyright">© 2023 Example Inc. All Rights Reserved.</p>
@@ -116,16 +183,15 @@
             </ul>
         </div>
     </div>
-    
-    
 
 
+    <br><br><br><br><br><br><br><br>
     <!-- 下のナビゲーションバー -->
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
-            <a href="top.php" class="col-3" style="margin-left:5%"><img class="imgIcon" src="img/Home.png"></a>
-            <a href="mypage.php" class="offset-1 col-3"><img class="imgIcon" src="img/Mypage.png"></a>
-            <a href="createRecipe.php" class="offset-1 col-3"><img class="imgIcon" src="img/Recipe.png"></a>
+            <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
+            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>
 
