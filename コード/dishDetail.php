@@ -15,7 +15,6 @@ if(isset($_SESSION['id']) == false  &&
     <title>料理詳細画面</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
-
     <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
@@ -124,7 +123,9 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
-            <a href="userPage.php">
+            <form action="userPage.php" method="post">
+            <input type="hidden" name="recipe_Id" value="<?php echo $_POST['recipeId']; ?>" />
+            <div onclick="this.parentNode.submit();">
             <?php
                 foreach($detailRecipe as $row){
                      $recipe_user_id = $row['user_id'];//レシピ投稿者のuser_idを$recipe_user_idに取り出す。
@@ -140,7 +141,9 @@ if(isset($_SESSION['id']) == false  &&
                        }
             ?>
                                                                     <!-- ↓ここでアイコンを表示 -->
-                <img class="offset-1 col-2 img-fluid userSell1" src=<?php echo $result_icon?>></a>
+                <img class="offset-1 col-2 img-fluid userSell1" src=<?php echo $result_icon?>>
+                </div>
+            </form>
             <h3 class="col-4 ml-2 userSell2">
                 
                     <?php
