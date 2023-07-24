@@ -5,6 +5,12 @@ if(isset($_SESSION['id']) == false  &&
         header('Location: login.php');
         exit();
 }
+//DAOの呼び出し
+require_once 'DAO.php';
+$dao = new DAO();
+
+//マイページなので、セッションのidを利用して自分のユーザ情報を検索
+$userdata = $dao->selectUser($_SESSION['id']);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -84,7 +90,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -103,39 +109,34 @@ if(isset($_SESSION['id']) == false  &&
         <div>
 
         <div>
-            <p>作りたいメニュー数を入力</p>
-            <input class="menuNumber" type="text" name="menusNumber" placeholder="" style="text-align: center;">
-        </div>
-
-        <div>
             <p>作りたいジャンルを選択</p>
-            <select class="selectgGnre" style="text-align: center;">
-                    <option value="0">全ジャンル</option>
-                    <option value="1">和食</option>
-                    <option value="2">洋食</option>
-                    <option value="3">イタリアン・フレンチ</option>
-                    <option value="4">中華</option>
-                    <option value="5">中華</option>
-                    <option value="6">中華</option>
-                    <option value="7">中華</option>
-                    <option value="8">中華</option>
-                    <option value="9">中華</option>
+            <select name="genre" class="selectgGnre" style="text-align: center;">
+                <?php
+                    $genres = $dao->selectAllGenre();
+                    echo "<option value=-1>ジャンルを指定しない</option>";
+                    foreach ($genres as $genre) {
+                        echo"<option value='".$genre['genre_id']."'>".$genre['genre_name']."</option>";
+                    }
+                    
+                    
+                ?>
             </select>
         </div>
 
         <div>
             <p>総予算を入力</p>
-            <input class="budget" type="text" name="Buget" placeholder="" style="text-align: center;">
+            <input class="budget" type="text" name="cost" placeholder="" style="text-align: center;">
         </div>
 
         <div>
             <p>時間帯を選択</p>
-            <select class="selectTime"  style="text-align: center;">
-                    <option value="0">時間帯を指定しない</option>
-                    <option value="1">朝食</option>
-                    <option value="2">昼食</option>
-                    <option value="3">夕食</option>
-                    <option value="4">おやつ</option>
+            <select name="time_zone" class="selectTime"  style="text-align: center;">
+                    <?php
+                        $times = $dao->selectAllTimeZone();
+                        foreach ($times as $time) {
+                            echo "<option value='".$time['time_zone_id']."'>".$time['time_zone_name']."</option>";
+                        }
+                    ?>
             </select>
         </div><br>
 
@@ -152,7 +153,7 @@ if(isset($_SESSION['id']) == false  &&
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="myPage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
             <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>

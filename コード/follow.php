@@ -81,9 +81,9 @@ if(isset($_SESSION['id']) == false  &&
                 <!-- ユーザ情報表示 -->
                 <div>
                     <!-- マイページへ遷移 -->
-                    <a href="myPage.php" class="row ml-5 noDecoration">
+                    <a href="myPage.php" class="row ml-5" style="text-decoration: none;">
                         <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2 text-black">ユーザ名</h3>
+                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3>
                     </a>
                 </div>
 
@@ -176,10 +176,10 @@ if(isset($_SESSION['id']) == false  &&
     <!-- 下のナビゲーションバー -->
     <br><br><br><br><br>
     <footer class="text-center">
-        <div class="row footerBar fontGothicBold">
+    <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: #FF7800;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
-            <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
+            <a href="myPage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="createRecipe.php" class="col-4"style="color: #FF7800;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>
 

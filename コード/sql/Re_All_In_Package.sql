@@ -63,6 +63,7 @@ CREATE TABLE recipes (
   recipe_people INT NOT NULL,
   recipe_is_upload INT NOT NULL,
   prefecture_id INT NOT NULL,
+  upload_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (recipe_id),
   FOREIGN KEY (genre_id) REFERENCES genres (genre_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id),

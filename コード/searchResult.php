@@ -89,7 +89,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -145,7 +145,7 @@ if(isset($_SESSION['id']) == false  &&
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: #FF7800;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="myPage.php" class="col-4"style="color: #FF7800;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
             <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>

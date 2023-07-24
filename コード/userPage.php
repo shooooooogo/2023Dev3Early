@@ -15,6 +15,7 @@ if(isset($_SESSION['id']) == false  &&
     <title>プロトタイプ</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="./css/createRecipe.css">
 
     <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
@@ -72,7 +73,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -84,19 +85,85 @@ if(isset($_SESSION['id']) == false  &&
     <div class="user">
         <!-- ユーザートップ -->
         <div class="user-top">
-            <img src="img/UserIcon_default.png" alt="アイコン" class="user-icon">
-            <h1 class="user-name">USERNAME</h1>
+            <?php 
+            require_once 'DAO.php';
+            $dao = new DAO();
+            //投稿者の情報を取りに行き、$detailRecipeで受け取る
+            $detailRecipe = $dao->recipeDetail($_POST['recipe_Id']);
+            foreach($detailRecipe as $row){//foreachで回しながら画像を出力
+                //user_idを取得
+                $user_id = $row['user_id'];
+                //recipe_idを取得
+                $recipe_id = $row['recipe_id'];
+            }
+            //display_the_iconからアイコンの情報を持ってくる→その結果を$resultUserIconに返す
+            $resultUserIcon = $dao->display_the_icon($user_id);
+
+
+            foreach($resultUserIcon as $row){
+                //$resultUserIconの情報をforeachで$result_iconに入れる
+                $result_icon = $row['user_icon'];
+               }
+            ?>
+            <img src=<?php echo $result_icon?> alt="アイコン" class="user-icon">
+            <h1 class="user-name">
+                <!-- USERNAME -->
+                <?php
+                $resultUsername = $dao->user_recipeDetail($user_id);
+                foreach($resultUsername as $row){
+                    echo $row['user_name'];
+                   }
+                ?>
+            </h1>
             <div class="user-setting">
+            <a href="setting.php" style="color: black;">
                 <i class="bi bi-gear-fill"></i>
+                </a>
             </div>
         </div>
 
         <!-- ユーザー情報 -->
         <div class="user-info">
-            <p class="prefecture user-info-text">__県民</p>
-            <p class="follow user-info-text"><span class="user-info-text-bold">フォロー</span>：9,999人</p>
-            <p class="follow user-info-text"><span class="user-info-text-bold">フォロワー</span>：9,999人</p>
-            <textarea name="#" class="introduction user-info-text" cols="40" row="3">ここにユーザーの紹介文を表示</textarea>
+            <p class="prefecture user-info-text">
+                <!-- __県民 -->
+                <?php
+                foreach($detailRecipe as $row){
+                    $recipe_prefecture_id = $row['prefecture_id'];
+                }
+                $resultPrefecture_name = $dao->selectPrefecture($recipe_prefecture_id);
+
+               echo $resultPrefecture_name['prefecture_name'];
+            ?>
+            </p>
+            <?php 
+            $resultFollow =$dao->countFollows($user_id);
+            $resultFollower =$dao->countFollowers($user_id);
+            ?>
+
+            <p class="follow user-info-text"><span class="user-info-text-bold">フォロー</span>：
+            <!-- 9,999人 -->
+            <?php echo number_format($resultFollow[0])."人";?>
+            </p>
+
+            <p class="follow user-info-text"><span class="user-info-text-bold">フォロワー</span>：
+            <!-- 9,999人 -->
+            <?php echo number_format($resultFollower[0])."人";?>
+            </p>
+
+            <!-- <textarea name="#" class="introduction user-info-text" cols="40" row="3"> -->
+            <p name="#" class="introduction user-info-text-bold">
+                <!-- ここにユーザーの紹介文を表示 -->
+
+            紹介文：<?php 
+                    $result_introduction =$dao->selectUser($user_id);
+                    if(empty($result_introduction['user_introduction'])){//紹介文に関する情報がnullもしくは0か
+                        echo "未入力";
+                    }else {
+                        echo $result_introduction['user_introduction'];
+                    }
+                    ?>
+            </p>
+            <!-- </textarea> -->
         </div>
     </div>
 
@@ -112,27 +179,100 @@ if(isset($_SESSION['id']) == false  &&
     <div style="width:90%;margin-left:auto;margin-right:auto; border-top: 2px solid #000000;">
         <div class="popular"><br>
             <h1 style="text-align:left">・人気のレシピ</h1>
+            <?php 
+            $goods_recipe_count = $dao->getRecipesDetails($user_id);
+            $latest_recipes = $dao->recipes_letest($user_id);
+            // echo $price."円/1人";//材料の合計を表示
+            ?>
             <!-- ここからレシピの塊 -->
-            <div class="row">
+            <!-- <div class="row"> -->
                 <!-- 画像 -->
-                <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
-                    <image src="img/PepperRice.png"style="width:100%">
-                </div>
+                <!-- <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;"> -->
+                    <form action="dishDetail.php" method="post">
+            <?php 
+            $foreach_count = 0;
+            foreach($goods_recipe_count as $row){
+            echo "<input type=submit id=dishDetail_recipeId".$row['recipe_id']." class=noneDisplay name=recipeId value=$row[recipe_id] />";
 
-                <div class="col-8 row">
-                    <!-- タイトル -->
-                    <div class="col-12">
-                        ペッパーライス
+            echo "<div class='row' style='border-bottom: 1px solid #000000;'>
+
+                    <div class='col-4' style='margin-bottom: 5px; margin-top: 5px;'>
+                        <image src=$row[recipe_image] style='width:107%' onclick=document.getElementById('dishDetail_recipeId".$row['recipe_id']."').click()>
+                     </div>
+
+                <div class='col-8 row'>
+                    <div class='post-text-name'>".$row['recipe_name']."</div>
+                    <div class='post-text-budget'>予算　".$row['total_cost']."円</div>
+
+                    <div class='post-like'>
+                    <i class='bi bi-hand-thumbs-up'>".$row['goods_count']."</i>
+                    <i class='bi bi-bookmark-star verylike'>".$row['favorite_count']."</i>
                     </div>
+                </div>
+            </div>";
+            $foreach_count++;
+            if($foreach_count == 5){
+                break;
+            }
+        }
+                ?>
+
+            <div class="newpost"><br>
+                <h1 style="text-align:left">・最新の投稿</h1>
+                <?php 
+                $for_count = 0;
+                foreach($latest_recipes as $row){
+                    echo "<input type=submit id=dishDetail_recipeId".$row['recipe_id']." class=noneDisplay name=recipeId value=$row[recipe_id] />";
+
+                    echo "<div class='row' style='border-bottom: 1px solid #000000;'>
+                    <div class='col-4' style='margin-bottom: 5px; margin-top: 5px;'>
+                        <image src=$row[recipe_image] style='width:107%' onclick=document.getElementById('dishDetail_recipeId".$row['recipe_id']."').click()>
+                    </div>
+    
+                    <div class='col-8 row'>
+                    <div class='post-text-name'>
+                            $row[recipe_name]
+                        </div>
+                        <div class='post-text-budget'>
+                            予算　$row[total_cost]円
+                        </div>
+
+                        <div class='post-like'>
+                            <i class='bi bi-hand-thumbs-up'><span style=>$row[goods_count]</span></i>
+                            <i class='bi bi-bookmark-star'><span style=>$row[favorite_count]</span></i>
+                        </div>
+                    </div>
+                </div>";
+                $for_count++;
+            if($for_count == 5){
+                break;
+                }
+            }
+                ?>
+                </form>
+            </div>
+                    <!-- <image src="img/PepperRice.png"style="width:100%"> -->
+                <!-- </div> -->
+
+                <!-- <div class="col-8 row"> -->
+                    <!-- タイトル -->
+                    <!-- <div class="col-12"> -->
+                        <!-- ペッパーライス -->
+                        <?php 
+                        // foreach($goods_recipe_count as $row){
+                        //     echo $row['recipe_name'];
+                        // }
+                        ?>
+                    <!-- </div> -->
                     <!-- 予算 -->
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         予算
                     </div>
                     <div class="col-6">
                         100円
-                    </div>
+                    </div> -->
                     <!-- いいね、お気に入り　-->
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         <i class="bi bi-hand-thumbs-up"></i>
                         <span style="">9999</span>
                     </div>
@@ -140,31 +280,31 @@ if(isset($_SESSION['id']) == false  &&
                         <i class="bi bi-bookmark-star"></i>
                         <span style="">9999</span>
                     </div>
-                </div>
-                <div style="border-bottom: 1px solid #000000; margin-left:auto;margin-right:auto;"></div>
-            </div>
+                </div> -->
+                <!-- <div style="border-bottom: 1px solid #000000; margin-left:auto;margin-right:auto;"></div> -->
+            <!-- </div> -->
 
 
-            <div class="row" style="border-bottom: 1px solid #000000;">
+            <!-- <div class="row" style="border-bottom: 1px solid #000000;"> -->
                 <!-- 画像 -->
-                <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
+                <!-- <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
                     <image src="img/PepperRice.png"style="width:100%">
                 </div>
 
-                <div class="col-8 row">
+                <div class="col-8 row"> -->
                     <!-- タイトル -->
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         ペッパーライス
-                    </div>
+                    </div> -->
                     <!-- 予算 -->
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         予算
                     </div>
                     <div class="col-6">
                         100円
-                    </div>
+                    </div> -->
                     <!-- いいね、お気に入り　-->
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         <i class="bi bi-hand-thumbs-up"></i>
                         <span style="">9999999</span>
                     </div>
@@ -173,7 +313,7 @@ if(isset($_SESSION['id']) == false  &&
                         <span style="">9999999</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             
 
@@ -182,30 +322,30 @@ if(isset($_SESSION['id']) == false  &&
 
         </div>
 
-        <div class="newpost"><br>
+        <!-- <div class="newpost"><br>
             <h1 style="text-align:left">・最新の投稿</h1>
 
 
-            <div class="row" style="border-bottom: 1px solid #000000;">
+            <div class="row" style="border-bottom: 1px solid #000000;"> -->
                 <!-- 画像 -->
-                <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
+                <!-- <div class="col-4" style="margin-bottom: 5px; margin-top: 5px;">
                     <image src="img/PepperRice.png"style="width:100%">
                 </div>
 
-                <div class="col-8 row">
+                <div class="col-8 row"> -->
                     <!-- タイトル -->
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         ペッパーライス
-                    </div>
+                    </div> -->
                     <!-- 予算 -->
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         予算
                     </div>
                     <div class="col-6">
                         100円
-                    </div>
+                    </div> -->
                     <!-- いいね、お気に入り　-->
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         <i class="bi bi-hand-thumbs-up"></i>
                         <span style="">9999999</span>
                     </div>
@@ -217,7 +357,7 @@ if(isset($_SESSION['id']) == false  &&
             </div>
 
 
-        </div>
+        </div> -->
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     </div>
@@ -229,7 +369,7 @@ if(isset($_SESSION['id']) == false  &&
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="myPage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
             <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>

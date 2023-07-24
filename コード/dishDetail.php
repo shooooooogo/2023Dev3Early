@@ -15,7 +15,6 @@ if(isset($_SESSION['id']) == false  &&
     <title>料理詳細画面</title>
     <!-- cssの導入 -->
     <link rel="stylesheet" href="css/style.css?v=2">
-
     <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
@@ -84,7 +83,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
                 <li><a href="top.php">Top画面</a></li>
                 <li><a href="ranking.php">ランキング</a></li>
                 <li><a href="myPage.php">マイページ</a></li>
@@ -124,7 +123,9 @@ if(isset($_SESSION['id']) == false  &&
 
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
-            <a href="userPage.php">
+            <form action="userPage.php" method="post">
+            <input type="hidden" name="recipe_Id" value="<?php echo $_POST['recipeId']; ?>" />
+            <div onclick="this.parentNode.submit();">
             <?php
                 foreach($detailRecipe as $row){
                      $recipe_user_id = $row['user_id'];//レシピ投稿者のuser_idを$recipe_user_idに取り出す。
@@ -140,7 +141,9 @@ if(isset($_SESSION['id']) == false  &&
                        }
             ?>
                                                                     <!-- ↓ここでアイコンを表示 -->
-                <img class="offset-1 col-2 img-fluid userSell1" src=<?php echo $result_icon?>></a>
+                <img class="offset-1 col-2 img-fluid userSell1" src=<?php echo $result_icon?>>
+                </div>
+            </form>
             <h3 class="col-4 ml-2 userSell2">
                 
                     <?php
@@ -405,7 +408,7 @@ if(isset($_SESSION['id']) == false  &&
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="myPage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
             <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>

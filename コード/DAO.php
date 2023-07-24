@@ -112,6 +112,9 @@ class DAO{
         $materials = array();
         
         for($i=0; $i<$num; $i++){
+            if(empty($name[$i])&empty($quantity[$i])&empty($cost[$i])){
+                continue;
+            }
             $materials[$i]=$pdo->prepare($sql);
             
             $materials[$i]->bindValue(':recipe_id',$id,PDO::PARAM_INT);
@@ -135,6 +138,9 @@ class DAO{
         $targetDir = "img/HowTo/";  // アップロードされたファイルを保存するディレクトリパス
 
         for($i=0; $i<$num; $i++){
+            if(empty($name[$i])&empty($quantity[$i])&empty($cost[$i])){
+                continue;
+            }
             if(!empty($howToImage['name'][$i])){
                 $imageFileType[$i] = strtolower(pathinfo($howToImage["name"][$i], PATHINFO_EXTENSION));//拡張子を格納
                 $targetFile[$i] = $targetDir.$recipe_id."_HowTo".$i.".".$imageFileType[$i];//保存するファイル名を格納
@@ -330,6 +336,28 @@ class DAO{
         return $selectF->fetchAll();
     }
 
+    //ジャンル全件検索
+    public function selectAllGenre(){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * 
+                FROM genres
+                ";
+        $selectAG = $pdo->prepare($sql);
+
+        $selectAG ->execute();
+        return $selectAG->fetchAll();
+    }
+    //時間帯全件検索
+    public function selectAllTimeZone(){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * 
+                FROM time_zones
+                ";
+        $selectATG = $pdo->prepare($sql);
+
+        $selectATG ->execute();
+        return $selectATG->fetchAll();
+    }
 
 
     // フォローに関する機能(フォローする人→follower_user_id  フォローを受ける人→follow_user_id)
@@ -566,6 +594,69 @@ class DAO{
         
         return $selectPMR->fetchAll();
     }
+
+
+    // 提案機能
+    public function suggest($genre_id,$cost,$time_zone_id){
+        $pdo = $this->dbConnect();
+        if($genre_id!=-1){
+            $sql = "SELECT
+                    recipes.recipe_id,
+                    recipes.recipe_name, 
+                    recipes.recipe_image, 
+                    recipes.recipe_introduction,
+                    COALESCE(SUM(materials.material_cost), 0) AS sumCost, 
+                    COUNT(goods.recipe_id) AS goodCount, 
+                    COUNT(favorites.recipe_id) AS favoriteCount
+                FROM recipes
+                    LEFT JOIN materials ON recipes.recipe_id = materials.recipe_id
+                    LEFT JOIN goods ON recipes.recipe_id = goods.recipe_id AND goods.good_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW()
+                    LEFT JOIN favorites ON recipes.recipe_id = favorites.recipe_id
+                WHERE recipes.genre_id = :genre_id
+                  AND recipes.time_zone_id = :time_zone_id
+                  AND recipes.recipe_is_upload = 1
+                GROUP BY recipes.recipe_id
+                HAVING sumCost <= :cost
+                ORDER BY RAND()
+                LIMIT 10
+            ";
+            $S = $pdo->prepare($sql);
+
+            $S->bindValue(":genre_id", $genre_id, PDO::PARAM_INT);
+            $S->bindValue(":cost", $cost, PDO::PARAM_INT);
+            $S->bindValue(":time_zone_id", $time_zone_id, PDO::PARAM_INT);
+    
+        }else{
+            $sql = "SELECT
+                    recipes.recipe_id,
+                    recipes.recipe_name, 
+                    recipes.recipe_image, 
+                    recipes.recipe_introduction,
+                    COALESCE(SUM(materials.material_cost), 0) AS sumCost, 
+                    COUNT(goods.recipe_id) AS goodCount, 
+                    COUNT(favorites.recipe_id) AS favoriteCount
+                FROM recipes
+                    LEFT JOIN materials ON recipes.recipe_id = materials.recipe_id
+                    LEFT JOIN goods ON recipes.recipe_id = goods.recipe_id AND goods.good_time BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW()
+                    LEFT JOIN favorites ON recipes.recipe_id = favorites.recipe_id
+                WHERE recipes.time_zone_id = :time_zone_id
+                  AND recipes.recipe_is_upload = 1
+                GROUP BY recipes.recipe_id
+                HAVING sumCost <= :cost
+                ORDER BY RAND()
+                LIMIT 10
+            ";
+            $S = $pdo->prepare($sql);
+
+            $S->bindValue(":cost", $cost, PDO::PARAM_INT);
+            $S->bindValue(":time_zone_id", $time_zone_id, PDO::PARAM_INT);    
+        }
+        
+        $S->execute();
+
+        return $S->fetchAll();
+    }
+
 
     //メールアドレス再設定
     public function resetMail($resetmail,$newmail){
@@ -888,6 +979,50 @@ public function recipeDetail_how_to_make($detail_id){
         $ps->execute();
         return $ps->fetch();
     }
+    //投稿されたレシピをいいね数が多い順でcount
+    public function getRecipesDetails($user_id) {
+        $pdo = $this->dbConnect();
+    
+        $sql = "SELECT r.*, 
+                SUM(m.material_cost) AS total_cost,
+                COUNT(g.recipe_id) AS goods_count,
+                COUNT(f.recipe_id) AS favorite_count
+                FROM recipes r
+                LEFT JOIN materials m ON r.recipe_id = m.recipe_id
+                LEFT JOIN goods g ON r.recipe_id = g.recipe_id
+                LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
+                WHERE r.user_id = :user_id AND recipe_is_upload = 1
+                GROUP BY r.recipe_id
+                ORDER BY goods_count DESC";
+    
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(':user_id', $user_id);
+        $ps->execute();
+        return $ps->fetchAll();
+    }
+
+    //最新のレシピが投稿された順で
+    public function recipes_letest($user_id) {
+        $pdo = $this->dbConnect();
+    
+        $sql = "SELECT r.*, 
+                SUM(m.material_cost) AS total_cost,
+                COUNT(g.recipe_id) AS goods_count,
+                COUNT(f.recipe_id) AS favorite_count
+                FROM recipes r
+                LEFT JOIN materials m ON r.recipe_id = m.recipe_id
+                LEFT JOIN goods g ON r.recipe_id = g.recipe_id
+                LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
+                WHERE r.user_id = :user_id AND recipe_is_upload = 1
+                GROUP BY r.recipe_id
+                ORDER BY r.upload_time DESC";
+    
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(':user_id', $user_id);
+        $ps->execute();
+        return $ps->fetchAll();
+    }
+    
 
     //お気に入り
     public function favorite($session_id,$recipe_id){
