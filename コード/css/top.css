@@ -1,5 +1,5 @@
 .ranking{
-    margin: 10%;
+    margin: 10% 10% 0 10%;
     border: solid 1.5px #FF7800;
     background-color: #FFFAD7;
     border-radius: 5px;
@@ -10,6 +10,24 @@
     position:relative;
 	z-index: 1;
 	height: 50%;
+    padding-left: 0;
+    text-align: center;
+}
+
+.ranking-title{
+    display: inline-block;
+    color: #FF7800;
+    font-size: 7vw;
+    font-weight: bold;
+    text-decoration: none; 
+    margin-right: auto;
+    margin-left: auto;
+}
+.slider-contents{
+    padding: 5%
+}
+.point-weight{
+    color: #dc143c;
 }
 
 
@@ -67,7 +85,7 @@
 .proposalButton{
     display: flex;
     justify-content: center;
-    margin-top: 150px;
+    margin-top: 130px;
 }
 .suggestButton{
     width: 130px;
