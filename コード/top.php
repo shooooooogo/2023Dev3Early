@@ -161,14 +161,8 @@ if(isset($_SESSION['id']) == false  &&
 
         </li>
 
-<<<<<<< HEAD
         <li class="slider-item slider-item02" href="momentRanking.php">
             <a class="ranking-title" href="ranking.php?ver=2">
-=======
-        <li class="slider-item slider-item02">
-            <a style="color: #FF7800;text-decoration: none; text-align: center;" 
-                    href="ranking.php?ver=2">
->>>>>>> f5249db39b98fa4b17a45dd54da79a67b8b3e856
                     瞬間ランキング
             </a>
 
@@ -213,15 +207,9 @@ if(isset($_SESSION['id']) == false  &&
         $user_prefecture;
         if(!empty($userdata['prefecture_id'])){
             echo 
-<<<<<<< HEAD
             "<li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
                 <a class='ranking-title'
                     href='overallRanking.php?ver=3'>
-=======
-            "<li class='slider-item slider-item03'>
-                <a style='color: #FF7800;text-decoration: none; text-align: center;'
-                    href='ranking.php?ver=3'>
->>>>>>> f5249db39b98fa4b17a45dd54da79a67b8b3e856
                     ".$user_prefecture['prefecture_name']."総合ランキング
                 </a>";
 
@@ -262,13 +250,8 @@ if(isset($_SESSION['id']) == false  &&
                     ランキングの詳細はこちら
                 </a>
             </li>
-<<<<<<< HEAD
             <li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
                 <a class='ranking-title'
-=======
-            <li class='slider-item slider-item03'>
-                <a style='color: #FF7800;text-decoration: none; text-align: center;'
->>>>>>> f5249db39b98fa4b17a45dd54da79a67b8b3e856
                         href='ranking.php?ver=4'>
                         ".$user_prefecture['prefecture_name']."瞬間ランキング
                 </a>";
