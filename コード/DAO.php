@@ -979,6 +979,50 @@ public function recipeDetail_how_to_make($detail_id){
         $ps->execute();
         return $ps->fetch();
     }
+    //投稿されたレシピをいいね数が多い順でcount
+    public function getRecipesDetails($user_id) {
+        $pdo = $this->dbConnect();
+    
+        $sql = "SELECT r.*, 
+                SUM(m.material_cost) AS total_cost,
+                COUNT(g.recipe_id) AS goods_count,
+                COUNT(f.recipe_id) AS favorite_count
+                FROM recipes r
+                LEFT JOIN materials m ON r.recipe_id = m.recipe_id
+                LEFT JOIN goods g ON r.recipe_id = g.recipe_id
+                LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
+                WHERE r.user_id = :user_id AND recipe_is_upload = 1
+                GROUP BY r.recipe_id
+                ORDER BY goods_count DESC";
+    
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(':user_id', $user_id);
+        $ps->execute();
+        return $ps->fetchAll();
+    }
+
+    //最新のレシピが投稿された順で
+    public function recipes_letest($user_id) {
+        $pdo = $this->dbConnect();
+    
+        $sql = "SELECT r.*, 
+                SUM(m.material_cost) AS total_cost,
+                COUNT(g.recipe_id) AS goods_count,
+                COUNT(f.recipe_id) AS favorite_count
+                FROM recipes r
+                LEFT JOIN materials m ON r.recipe_id = m.recipe_id
+                LEFT JOIN goods g ON r.recipe_id = g.recipe_id
+                LEFT JOIN favorites f ON r.recipe_id = f.recipe_id
+                WHERE r.user_id = :user_id AND recipe_is_upload = 1
+                GROUP BY r.recipe_id
+                ORDER BY r.upload_time DESC";
+    
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(':user_id', $user_id);
+        $ps->execute();
+        return $ps->fetchAll();
+    }
+    
 
     //お気に入り
     public function favorite($session_id,$recipe_id){
