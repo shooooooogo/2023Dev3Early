@@ -112,6 +112,9 @@ class DAO{
         $materials = array();
         
         for($i=0; $i<$num; $i++){
+            if(empty($name[$i])&empty($quantity[$i])&empty($cost[$i])){
+                continue;
+            }
             $materials[$i]=$pdo->prepare($sql);
             
             $materials[$i]->bindValue(':recipe_id',$id,PDO::PARAM_INT);
@@ -135,6 +138,9 @@ class DAO{
         $targetDir = "img/HowTo/";  // アップロードされたファイルを保存するディレクトリパス
 
         for($i=0; $i<$num; $i++){
+            if(empty($name[$i])&empty($quantity[$i])&empty($cost[$i])){
+                continue;
+            }
             if(!empty($howToImage['name'][$i])){
                 $imageFileType[$i] = strtolower(pathinfo($howToImage["name"][$i], PATHINFO_EXTENSION));//拡張子を格納
                 $targetFile[$i] = $targetDir.$recipe_id."_HowTo".$i.".".$imageFileType[$i];//保存するファイル名を格納
