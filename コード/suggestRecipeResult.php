@@ -108,8 +108,8 @@
 
     <!-- このdivの中に要素を書き込んでください -->
 
-    <div>
-        <h1>こちらのレシピはどうでしょうか？</h1>
+    <div class="recipiResult-Area">
+        <h1 style="font-size: 6vw;">こちらのレシピはどうでしょうか？</h1>
 
         <?php
             $count=1;
@@ -117,8 +117,8 @@
                 echo "
                     <div class='row' onclick='document.getElementById(".$rData['recipe_id'].").submit();'>
 
-                        <img src='".$rData['recipe_image']."' class='col-4 img-fluid'>
-                        <p>".$rData['recipe_name']."</p>
+                        <img src='".$rData['recipe_image']."' class='col-12 img-fluid'>
+                        <p class='Recipi-name'>".$rData['recipe_name']."</p>
                         
                         
     
