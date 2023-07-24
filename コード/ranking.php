@@ -114,7 +114,7 @@
     <!--
     <ul class="slider slick-initalizad stick-slider slick-dotted">== $0
         -->
-<div class="flex">
+<!-- <div class="flex">
   <figure class="sampledish1" style="margin:10px"><img src="img/naporitan.png" alt="料理" style="width: 180px"></figure>
   <div class="right">
     <p class="title">nameA ナポリタン</p>
@@ -141,38 +141,41 @@
             いいね数　○○
     </p>
   </div>
-</div> -->
-    <h1 class='text-center'><?php
-    if ($_GET['ver']>=3) {
-        echo $user_prefecture['prefecture_name'];  
-    } 
-    echo $ranking_kinds[$_GET['ver']]; 
-    ?>ランキング
-    </h1>
-    <?php
-    
-        $count=1;
-        foreach ($rankingData as $rData) {
-            echo "
-                <div class='row' onclick='document.getElementById(".$rData['recipe_id'].").submit();'>
-                    
-                    <p >".$count."位</p>
+</div> --> 
+    <div class="ranking-contents">
+        <h1 class='text-center'>      
+            <?php
+        if ($_GET['ver']>=3) {
+            echo $user_prefecture['prefecture_name'];  
+        } 
+        echo $ranking_kinds[$_GET['ver']]; 
+        ?>ランキング
+        </h1>
+  
+            <?php
+            
+                $count=1;
+                foreach ($rankingData as $rData) {
+                    echo "
+                        <div class='row' onclick='document.getElementById(".$rData['recipe_id'].").submit();'>
+                            
+                            <p class='rank'>".$count."位</p><p class='rank-recipi-name'>投稿料理名</p>
 
-                    <img src='".$rData['recipe_image']."' class='col-4 img-fluid'>
-                    <p>".$rData['recipe_name']."</p>
-                    <p>いいね数：".$rData['goodCount']."件</p>
-                    <p>予算：".$rData['sumCost']."円</p>
+                            <img src='".$rData['recipe_image']."' class='col-12 img-fluid ranking-image'>  
+                            <p class='recipi-text'>".$rData['recipe_name']."</p>
+                            <p class='recipi-value'><span class='font-weight'>いいね数:</span>".$rData['goodCount']."件</p>
+                            <p class='recipi-value'><span class='font-weight'>予算：</span>".$rData['sumCost']."円</p>
 
-                    <form action='dishDetail.php' method='post' id='".$rData['recipe_id']."' style='display:none;'>
-                        <input type='hidden' name='recipeId' value='".$rData['recipe_id']."'>
-                    </form>
-                </div>
-            ";  
-            $count++;  
-        }
-        
-
-    ?>
+                            <form action='dishDetail.php' method='post' id='".$rData['recipe_id']."' style='display:none;'>
+                                <input type='hidden' name='recipeId' value='".$rData['recipe_id']."'>
+                            </form>
+                        </div>
+                    ";  
+                    $count++;  
+                }
+                
+            ?>
+        </div>
         <br><br><br><br><br><br><br><br><br><br>
         <!-- ここまで -->
         <div class="footerCooporation">
@@ -190,7 +193,7 @@
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: black;text-decoration: none;"><i class="bi bi-house-fill" style="margin-left:10%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="myPage.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
             <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none;"><i class="bi bi-journal-check" style="margin-right:10%;font-size:40px"></i></a>
         </div>
     </footer>
