@@ -132,11 +132,10 @@ if(isset($_SESSION['id']) == false  &&
                         foreach ($followData as $row) {
                             $followUser = $dao->selectUser($row['follower_user_id']);
                             echo "<div class='follow-user-info'>
-                                    <img src='".$followUser['user_icon']."' alt='アイコン' class='follow-user-icon'>
-                                    <div class='follow-user-name'>".$followUser['user_name']."</div>
-                                    <button class='follow-user-button' onclick='document.getElementById(form".$followUser['user_id'].".submit())'>ユーザページへ</button>
+                                    <img src='".$followUser['user_icon']."' alt='アイコン' class='follow-user-icon' onclick='document.getElementById(form".$followUser['user_id'].".submit())'>
+                                    <div class='follow-user-name' onclick='document.getElementById(form".$followUser['user_id'].".submit())'>".$followUser['user_name']."</div>
                                     <form method='post' action='userPage.php' id='form".$followUser['user_id']."'>
-                                        <input type='hidden' value='".$followUser['user_name']."'>
+                                        <input type='hidden' name='user_Id' value='".$followUser['user_id']."'>
                                     </form>
                                   </div>
                                   <div class='follow-underline'></div>";
@@ -152,11 +151,13 @@ if(isset($_SESSION['id']) == false  &&
                         $followerData = $dao->selectFollower($_SESSION['id']);
 
                         foreach ($followerData as $row) {
-                            $followerUser = $dao->selectUser($row['follow_user_id']);
+                            $followerUser = $dao->selectUser($row['follower_user_id']);
                             echo "<div class='follow-user-info'>
-                                    <img src='".$followerUser['user_icon']."' alt='アイコン' class='follow-user-icon'>
-                                    <div class='follow-user-name'>".$followerUser['user_name']."</div>
-                                    <button class='follow-user-button'>ユーザページへ</button>
+                                    <img src='".$followerUser['user_icon']."' alt='アイコン' class='follow-user-icon' onclick='document.getElementById(form".$followerUser['user_id'].".submit())'>
+                                    <div class='follow-user-name'  onclick='document.getElementById(form".$followerUser['user_id'].".submit())'>".$followerUser['user_name']."</div>
+                                    <form method='post' action='userPage.php' id='form".$followerUser['user_id']."'>
+                                    <input type='hidden' name='user_Id' value='".$followerUser['user_id']."'>
+                                </form>
                                   </div>
                                   <div class='follow-underline'></div>";
                         }

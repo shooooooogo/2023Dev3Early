@@ -728,6 +728,24 @@ public function recipeDetail($detail_id){
         return $resultRecipe;
     }
 }
+//他人のユーザーページで使う情報を取得
+public function recipeDetail_user_id($user_id){
+    $pdo= $this->dbConnect();
+    //レシピidでWHERE句を指定
+    $sql= "SELECT * FROM recipes WHERE user_id = $user_id";
+    $ps= $pdo->prepare($sql);
+    // $ps->bindValue(':recipe_set',$recipe_search_name);
+    $ps->execute();
+    //dishDetail.phpにreturnで値を返す
+    if ($ps->rowCount() > 0) {
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }else{
+        echo "該当するレシピが存在しません";
+        $resultRecipe = $ps->fetchAll();
+        return $resultRecipe;
+    }
+}
 
 
 //レシピ詳細Part2

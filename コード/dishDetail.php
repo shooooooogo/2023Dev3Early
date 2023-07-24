@@ -116,6 +116,7 @@ if(isset($_SESSION['id']) == false  &&
             foreach($detailRecipe as $row){//foreachで回しながらレシピ名を出力
                 //レシピ名を表示
                 echo $row['recipe_name'];
+                $user_id = $row['user_id'];
             }
             ?>
         </h3>
@@ -124,7 +125,7 @@ if(isset($_SESSION['id']) == false  &&
         <!-- レシピを作成したユーザの情報 -->
         <div class="row mt-2 mb-2 user">
             <form action="userPage.php" method="post">
-            <input type="hidden" name="recipe_Id" value="<?php echo $_POST['recipeId']; ?>" />
+            <input type="hidden" name="user_Id" value="<?php echo $user_id; ?>" />
             <div onclick="this.parentNode.submit();">
             <?php
                 foreach($detailRecipe as $row){
