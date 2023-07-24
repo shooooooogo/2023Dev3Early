@@ -111,8 +111,9 @@ if(isset($_SESSION['id']) == false  &&
                 <h1 class="ms-2"style="margin-top:10px;">・サムネイル</h1>
                 
                 <!-- 画像追加のinputタグ -->
-                <input class="inputs suggestButton" type="file" name="recipe_image" id="recipe_image"><br/>
-                
+                <label>
+                <input class="inputs suggestButton" type="file" name="recipe_image" id="recipe_image">＋　写真を選択<br/>
+        
                 <!-- 追加された画像を表示する物 -->
                 <div id="preview"></div>
             </span>
