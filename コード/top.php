@@ -310,7 +310,7 @@ if(isset($_SESSION['id']) == false  &&
     <footer class="text-center">
         <div class="row footerBar fontGothicBold">
             <a href="top.php" class="col-4" style="color: #FF7800;text-decoration: none; padding:3%"><i class="bi bi-house-fill" style="margin-left:20%;font-size:40px"></i></a>
-            <a href="mypage.php" class="col-4"style="color: black;text-decoration: none; padding:3%"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
+            <a href="myPage.php" class="col-4"style="color: black;text-decoration: none; padding:3%"><i class="bi bi-person-circle" style="font-size:40px"></i></a>
             <a href="createRecipe.php" class="col-4"style="color: black;text-decoration: none; padding:3%"><i class="bi bi-journal-check" style="margin-right:20%;font-size:40px"></i></a>
         </div>
     </footer>
