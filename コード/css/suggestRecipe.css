@@ -67,8 +67,11 @@
   background-color: #FFFAD7;
   border-radius: 5px;
 }
+.recipi-image{
+  margin-top: 5%;
+}
 .Recipi-name{
-  font-size: 5vw;
+  font-size: 4vw;
   font-weight: bold;
   margin-bottom: 0;
   margin-bottom: 2%;
