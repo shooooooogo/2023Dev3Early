@@ -10,23 +10,27 @@
     $ranking_kinds = ['','総合','瞬間','総合','瞬間'];
 
     $rankingData = array();
-
-    switch ($_GET['ver']) {
-        case 1:
-            $rankingData = $dao->selectAllRanking();
-            break;
-        case 2:
-            $rankingData = $dao->selectMomentRanking();
-            break;
-        case 3:
-            $rankingData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
-            break;
-        case 4:
-            $rankingData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
-            break;
-        default:
-            # code...
-            break;
+    if(!empty($_GET['ver'])){
+        switch ($_GET['ver']) {
+            case 1:
+                $rankingData = $dao->selectAllRanking();
+                break;
+            case 2:
+                $rankingData = $dao->selectMomentRanking();
+                break;
+            case 3:
+                $rankingData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
+                break;
+            case 4:
+                $rankingData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
+                break;
+            default:
+                $rankingData = $dao->selectAllRanking();
+                $_GET['ver'] = 1;
+        }    
+    }else{
+        $rankingData = $dao->selectAllRanking();
+        $_GET['ver'] = 1;
     }
 
 ?>
