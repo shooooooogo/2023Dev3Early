@@ -104,7 +104,7 @@ if(isset($_SESSION['id']) == false  &&
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <div class="mt-3" style="border-bottom: 1px solid #ff7800;"></div>
+                <div class="mt-3" style="border-bottom: 1px solid #333;"></div>
                 <li><a href="top.php">Top画面</a></li>  
                 <li><a href="ranking.php">ランキング</a></li>  
                 <li><a href="mypage.php">マイページ</a></li>
@@ -120,10 +120,10 @@ if(isset($_SESSION['id']) == false  &&
     <ul class="slider">
 
         <li class="slider-item slider-item01">
-            <a style="color: #FF7800;text-decoration: none; text-align: center;" 
-                    href="ranking.php?ver=1">
+            <a class="ranking-title" href="ranking.php?ver=1">
                     総合ランキング
             </a>
+            <div class="slider-contents">
             <?php
                 $allRankingData = $dao->selectAllRanking();
                 if(count($allRankingData)>=5){
@@ -132,7 +132,7 @@ if(isset($_SESSION['id']) == false  &&
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".($i+1)."位</h3>
                             <image class='col-3 img-fluid' src='".$allRankingData[$i]['recipe_image']."' >
-                            <h3 class='col-6'>".$allRankingData[$i]['goodCount']."ポイント</h3>
+                            <h3 class='offset-1 col-5'>".$allRankingData[$i]['goodCount']."ポイント</h3>
                         </div>";
                     }
                 }else{
@@ -142,7 +142,7 @@ if(isset($_SESSION['id']) == false  &&
                         echo 
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".$i."位</h3>
-                            <image class='col-3' src='".$allRanking['recipe_image']."' style='height:80px'>
+                            <image class='col-3' src='".$allRanking['recipe_image']."'>
                             <h3 class='offset-1 col-5'>".$allRanking['goodCount']."ポイント</h3>
                         </div>";
                         $i++;
@@ -153,6 +153,7 @@ if(isset($_SESSION['id']) == false  &&
                 }
 
             ?>
+            </div>
             <a style="color: #FF7800;text-decoration: none; text-align: center;" 
                     href="ranking.php?ver=1">
                     ランキングの詳細はこちら
@@ -160,11 +161,12 @@ if(isset($_SESSION['id']) == false  &&
 
         </li>
 
-        <li class="slider-item slider-item02">
-            <a style="color: #FF7800;text-decoration: none; text-align: center;" 
-                    href="ranking.php?ver=2">
+        <li class="slider-item slider-item02" href="momentRanking.php">
+            <a class="ranking-title" href="ranking.php?ver=2">
                     瞬間ランキング
             </a>
+
+            <div class="slider-contents">
             <?php
                 $MRData = $dao->selectMomentRanking();
                 if(count($allRankingData)>=5){
@@ -172,8 +174,8 @@ if(isset($_SESSION['id']) == false  &&
                         echo 
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".($k+1)."位</h3>
-                            <image class='col-3' src='".$allRankingData[$k]['recipe_image']."' style='height:80px'>
-                            <h3 class='col-6'>".$allRankingData[$k]['goodCount']."ポイント</h3>
+                            <image class='col-3 img-fluid' src='".$allRankingData[$k]['recipe_image']."'>
+                            <h3 class='offset-1 col-5'>".$allRankingData[$k]['goodCount']."ポイント</h3>
                         </div>";
                     }
                 }else{
@@ -183,7 +185,7 @@ if(isset($_SESSION['id']) == false  &&
                         echo 
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".$k."位</h3>
-                            <image class='col-3' src='".$allRanking['recipe_image']."' style='height:80px'>
+                            <image class='col-3 img-fluid' src='".$allRanking['recipe_image']."'>
                             <h3 class='offset-1 col-5'>".$allRanking['goodCount']."ポイント</h3>
                         </div>";
                         $k++;
@@ -194,6 +196,7 @@ if(isset($_SESSION['id']) == false  &&
                 }
 
             ?>
+            </div>
 
             <a style="color: #FF7800;text-decoration: none; text-align: center;" 
                     href="ranking.php?ver=2">
@@ -204,12 +207,14 @@ if(isset($_SESSION['id']) == false  &&
         $user_prefecture;
         if(!empty($userdata['prefecture_id'])){
             echo 
-            "<li class='slider-item slider-item03'>
-                <a style='color: #FF7800;text-decoration: none; text-align: center;'
-                    href='ranking.php?ver=3'>
+            "<li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
+                <a class='ranking-title'
+                    href='overallRanking.php?ver=3'>
                     ".$user_prefecture['prefecture_name']."総合ランキング
                 </a>";
 
+                echo 
+                "<div class='slider-contents'>";
                 $PARData = $dao->selectPrefectureAllRanking($userdata['prefecture_id']);
 
                 if(count($MRData)>=5){
@@ -217,8 +222,8 @@ if(isset($_SESSION['id']) == false  &&
                         echo 
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".($j+1)."位</h3>
-                            <image class='col-3' src='".$PARData[$j]['recipe_image']."' style='height:80px'>
-                            <h3 class='col-6'>".$PARData[$j]['goodCount']."ポイント</h3>
+                            <image class='col-3 img-fluid' src='".$PARData[$j]['recipe_image']."'>
+                            <h3 class='offset-1 col-5'>".$PARData[$j]['goodCount']."ポイント</h3>
                         </div>";
                     }
                 }else{
@@ -228,7 +233,7 @@ if(isset($_SESSION['id']) == false  &&
                         echo 
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".$j."位</h3>
-                            <image class='col-3' src='".$PAR['recipe_image']."' style='height:80px'>
+                            <image class='col-3 img-fluid' src='".$PAR['recipe_image']."'>
                             <h3 class='offset-1 col-5'>".$PAR['goodCount']."ポイント</h3>
                         </div>";
                         $j++;
@@ -237,8 +242,7 @@ if(isset($_SESSION['id']) == false  &&
                         }
                     }
                 }
-
-
+                echo "</div>";
 
             echo 
                 "<a style='color: #FF7800;text-decoration: none; text-align: center;' 
@@ -246,12 +250,13 @@ if(isset($_SESSION['id']) == false  &&
                     ランキングの詳細はこちら
                 </a>
             </li>
-            <li class='slider-item slider-item03'>
-                <a style='color: #FF7800;text-decoration: none; text-align: center;'
+            <li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
+                <a class='ranking-title'
                         href='ranking.php?ver=4'>
                         ".$user_prefecture['prefecture_name']."瞬間ランキング
                 </a>";
 
+                echo "<div class='slider-contents'>";
                 $PMRData = $dao->selectPrefectureMomentRanking($userdata['prefecture_id']);
 
                 if(count($MRData)>=5){
@@ -259,8 +264,8 @@ if(isset($_SESSION['id']) == false  &&
                         echo 
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".($l+1)."位</h3>
-                            <image class='col-3' src='".$PMRData[$l]['recipe_image']."' style='height:80px'>
-                            <h3 class='col-6'>".$PMRData[$l]['goodCount']."ポイント</h3>
+                            <image class='col-3 img-fluid' src='".$PMRData[$l]['recipe_image']."'>
+                            <h3 class='offset-1 col-5'>".$PMRData[$l]['goodCount']."ポイント</h3>
                         </div>";
                     }
                 }else{
@@ -270,7 +275,7 @@ if(isset($_SESSION['id']) == false  &&
                         echo
                         "<div class='ranking-content row' style='margin:5px'>
                             <h3 class='col-2'>".$l."位</h3>
-                            <image class='col-3' src='".$PMR['recipe_image']."' style='height:80px'>
+                            <image class='col-3 img-fluid' src='".$PMR['recipe_image']."'>
                             <h3 class='offset-1 col-5'>".$PMR['goodCount']."ポイント</h3>
                         </div>";
                         $l++;
@@ -279,6 +284,7 @@ if(isset($_SESSION['id']) == false  &&
                         }
                     }
                 }
+                echo "</div>";
         
             echo
                 "<a style='color: #FF7800;text-decoration: none; text-align: center;' 

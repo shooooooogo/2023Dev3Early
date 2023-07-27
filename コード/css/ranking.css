@@ -3,3 +3,46 @@
         width:100%;
     }
 }
+
+/* ランキング名 */
+.text-center{
+    color: #FF7800;
+    font-size: 7vw;
+    font-weight: bold;
+    text-decoration: none; 
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1.75%;
+}
+
+/* ランキングの中身 */
+.ranking-contents{
+    margin: 10% 10% 0 10%;
+    padding: 0 3%;
+    border: solid 1.5px #FF7800;
+    background-color: #FFFAD7;
+    border-radius: 5px;
+}
+.rank{
+    font-size: 6vw;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-bottom: 2%;
+}
+.rank-recipi-name{
+    font-size: 6vw;
+    font-weight: bold;
+}
+.ranking-image{
+    padding: 3% 6%;
+}
+.recipi-text{
+    font-size: 5vw;
+    padding-left: 6%;
+}
+.recipi-value{
+    font-size: 4.5vw;
+    padding-left: 6%;
+}
+
+

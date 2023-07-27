@@ -89,7 +89,7 @@ if(isset($_SESSION['id']) == false  &&
             require_once 'DAO.php';
             $dao = new DAO();
             //投稿者の情報を取りに行き、$detailRecipeで受け取る
-            $detailRecipe = $dao->recipeDetail($_POST['recipe_Id']);
+            $detailRecipe = $dao->recipeDetail_user_id($_POST['user_Id']);
             foreach($detailRecipe as $row){//foreachで回しながら画像を出力
                 //user_idを取得
                 $user_id = $row['user_id'];
