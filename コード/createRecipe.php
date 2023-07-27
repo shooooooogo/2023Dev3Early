@@ -26,14 +26,23 @@ if(isset($_SESSION['id']) == false  &&
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- header導入のためのcss -->
-    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css"> -->
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
     <!-- 個別cssの読み込み場所 -->
     <link rel="stylesheet" href="css/createRecipe.css">
 
+    <?php
+        //DAOの呼び出し
+        require_once 'DAO.php';
+        $dao = new DAO();
 
+        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+        $userdata = $dao->selectUser($_SESSION['id']);
+        $user_prefecture = $dao->selectPrefecture($userdata['prefecture_id']);
+
+    ?>
 </head>
 <body>
     <!-- 謎のナビゲーションバー？ -->
@@ -72,8 +81,12 @@ if(isset($_SESSION['id']) == false  &&
                 <div>
                     <!-- マイページへ遷移 -->
                     <a href="myPage.php" class="row ml-5" style="text-decoration: none;">
-                        <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3>
+                        <?php
+                            echo"
+                                <img class='col-3 img-fluid' src='".$userdata['user_icon']."'>
+                                <h3 class='col-6 text-start ml-3 pt-2' style='text-decoration: none; color: #333333;'>".$userdata['user_name']."</h3>
+                            ";
+                        ?>
                     </a>
                 </div>
 
@@ -97,29 +110,36 @@ if(isset($_SESSION['id']) == false  &&
     <!-- このdivの中に要素を書き込んでください -->
     <!-- ※注意！クラス名やcss等個々の中に関連する物をいじる場合はjavascriptも同期できるようにコーディングしてください -->
     <div class="container-fluid elements">
-
+        
+        <!-- 見出し -->
+        <div class="text-center" style="margin: 50px 0px 50px 0px;">
+            <p style="font-size: 32px;font-weight:bold;">レシピ作成</p>
+        </div>
         <form class="row" method="post" action="createRecipeRemind.php" enctype="multipart/form-data">
         
             <!-- レシピのタイトル -->
-            <span>
-            <h1  class="ms-2" style="margin-top:10px;">・レシピのタイトル</h1>
-            <input class="textInput col-11 ms-3" type="text" name="recipe_name" placeholder="(例)さばの味噌煮">
+            <span class="mb-5">
+                <h1  class="ms-2" style="margin-top:10px;">・レシピのタイトル</h1>
+                <input class="textInput col-11 ms-3" type="text" name="recipe_name" placeholder="(例)さばの味噌煮" required>
             </span>
 
             <!-- サムネイル画像 -->
-            <span>
-                <h1 class="ms-2"style="margin-top:10px;">・サムネイル</h1>
-                
-                <!-- 画像追加のinputタグ -->
-                <label>
-                <input class="inputs suggestButton" type="file" name="recipe_image" id="recipe_image">＋　写真を選択<br/>
-        
+            <span class="row mb-5">
+                <h1 class="mt-3 ms-2"style="margin-top:10px;">・サムネイル</h1>
                 <!-- 追加された画像を表示する物 -->
-                <div id="preview"></div>
+                <div class="mb-3" id="preview"></div>
+
+                <!-- 画像追加のinputタグ -->
+                <div class="text-center mt-3">
+                <input class="inputs suggestButton noneDisplay" type="file" name="recipe_image" id="recipe_image">
+                <input type="button" class=" offset-3 col-6 suggestButton" onclick="document.getElementById('recipe_image').click()" value="アップロード" style="text-align:center;">
+                </div>
+                
+                
             </span>
         
             <!-- 紹介文 -->
-            <span>
+            <span class="mb-5">
                 <h1 class="ms-2"style="margin-top:10px;">・紹介文</h1>
                 <input class="textInput col-11 ms-3" type="text" name="recipe_intro" placeholder="ここに紹介文を入力してください">
             </span>
@@ -133,39 +153,39 @@ if(isset($_SESSION['id']) == false  &&
                 <input type="hidden" id="materialNumber" name="materialNumber" value=1>
                 
                 <!-- 何人前？ -->
-                <input class="textInput mb-4 col-11 ms-3" type="text" name="recipe_people" placeholder="何人前">
+                <input class="textInput mb-4 col-11 ms-3" type="text" name="recipe_people" placeholder="何人前" required>
             </span>
             
             <!-- 余裕あれば追加した材料入力欄を消せる機能を追加したい -->
             <!-- 材料の入力フォームを追加するボタン -->
-            <span class="text-center" id="addMaterial" name="addMaterialButton" onclick="addMaterial()">+  材料を追加する</span>
+            <span class="text-center" id="addMaterial" name="addMaterialButton" onclick="addMaterial()">+  材料入力欄を一つ追加する</span>
 
             <!-- 材料の入力フォーム -->
-            <span class="mb-3" id="addMaterialSpan">
+            <span id="addMaterialSpan">
                 <span id="Material_1">
-                    <p class="materialNumber ms-2">・材料1</p>
-                    <input class="textInput col-5 ms-3" type="text" name="materialName[]" placeholder="材料名">
-                    <input class="textInput col-5 offset-1" type="text" name="materialQuantity[]" placeholder="分量">
-                    <input class="textInput col-11 ms-3" type="number" name="materialCost[]" placeholder="材料の費用">
+                    <p class="materialNumber ms-3">材料1</p>
+                    <input class="textInput col-5 ms-3" type="text" name="materialName[]" placeholder="材料名" required>
+                    <input class="textInput col-5 offset-1" type="text" name="materialQuantity[]" placeholder="分量" required>
+                    <input class="textInput col-11 ms-3" type="number" name="materialCost[]" placeholder="材料の費用" required>
                 </span>
             </span>
-            <div>
-                <p class="deleteMaterial text-center" onclick="deleteMaterial()">材料入力欄を一つ削除する</p>
+            <div class="mb-5">
+                <p class="deleteMaterial text-center" onclick="deleteMaterial()">-材料入力欄を一つ削除する</p>
             </div>
            
             
             <!-- 作り方 -->
-            <span class="mb-3" id="addHowToSpan">
+            <span class="mb-5" id="addHowToSpan">
                 <h1 class="ms-3"style="margin-top:10px;">・作り方</h1>
                 
                 <!-- 作り方の数を数えて送るタグ -->
                 <input type="hidden" id="howToNumber" name="howToNumber" value=1>
 
-                <p class="text-center" onclick="add()">+追加する</p>
+                <p class="text-center" onclick="add()">+手順入力欄を一つ追加する</p>
                 
                 <div class="How_To">
                     <div class="row" id="How_To1">
-                        <p class=" HowToNumber ms-2">・手順1</p>
+                        <p class=" HowToNumber ms-3">手順1</p>
                         <!-- 追加された画像を表示する物 -->
                         <span class="How_To_preview  offset-1 col-3" id="How_To_preview1">
                             <input type="file" class="file-input noneDisplay" name="How_To_image[]" id="How_To_image1" onchange='handleFileSelectHowTo("How_To_image1","image1")'>
@@ -177,100 +197,105 @@ if(isset($_SESSION['id']) == false  &&
                     </div>
                 </div>
                 <div>
-                    <p class="deleteHowTo text-center" onclick="deleteHowTo()">手順を一つ削除する</p>
+                    <p class="deleteHowTo text-center" onclick="deleteHowTo()">-手順を一つ削除する</p>
                 </div>
                 
                 
             </span>
 
             <!-- 時間帯 -->
-            <div style="text-align: center;">
-                <h1 class="ms-2">時間帯(以下の内から選択)</h1><br>
-                <select name="time_zone_id" style="text-align: center;">
-                    <option value="0">時間帯を指定しない</option>
-                    <option value="1">朝食</option>
-                    <option value="2">昼食</option>
-                    <option value="3">夕食</option>
-                    <option value="4">おやつ</option>
-                </select>
+            <div class="mb-5" style="text-align: center;">
+                <h1>時間帯(以下の内から選択)</h1><br>
+                <label class="selectbox-005">
+                    <select class="select" name="time_zone_id" style="text-align: center;" required>
+                        <option value="" hidden>選択してください</option>
+                        <option value="0">時間帯を指定しない</option>
+                        <option value="1">朝食</option>
+                        <option value="2">昼食</option>
+                        <option value="3">夕食</option>
+                        <option value="4">おやつ</option>
+                    </select>
+                </label>
             </div>
 
             <!-- ジャンル -->
-            <div style="text-align: center;">
-                <h1 class="ms-2">ジャンル</h1><br>
-                <select name="genre_id" style="text-align: center;">
-                    <option value="0">野菜料理</option>
-                    <option value="1">魚料理</option>
-                    <option value="2">肉料理</option>
-                    <option value="3">麺料理</option>
-                    <option value="4">ご飯もの</option>
-                    <option value="5">デザート</option>
-                    <option value="6">和食</option>
-                    <option value="7">中華料理</option>
-                    <option value="8">イタリアン</option>
-                    <option value="9">フレンチ</option>
-                </select>
+            <div class="mb-5" style="text-align: center;">
+                <h1>ジャンル</h1><br>
+                <label class="selectbox-005">
+                    <select class="select" name="genre_id" style="text-align: center;">
+                        <?php
+                            $genres = $dao->selectAllGenre();
+                            echo "<option value='' hidden>選択してください</option>";
+                            foreach ($genres as $genre) {
+                                echo"<option value='".$genre['genre_id']."'>".$genre['genre_name']."</option>";
+                            }
+                                                
+                        ?>
+                    </select>
+                </label>
             </div>
 
 
             <!-- 都道府県 -->
-            <div style="text-align: center;">
+            <div class="mb-5" style="text-align: center;">
                 <h1>都道府県</h1><br>
-                <select name="prefecture_id" style="text-align: center;">
-                    <option value="0">県を指定しない</option>
-                    <option value="1">北海道</option>
-                    <option value="2">青森県</option>
-                    <option value="3">岩手県</option>
-                    <option value="4">宮城県</option>
-                    <option value="5">秋田県</option>
-                    <option value="6">山形県</option>
-                    <option value="7">福島県</option>
-                    <option value="8">茨城県</option>
-                    <option value="9">栃木県</option>
-                    <option value="10">群馬県</option>
-                    <option value="11">埼玉県</option>
-                    <option value="12">千葉県</option>
-                    <option value="13">東京都</option>
-                    <option value="14">神奈川県</option>
-                    <option value="15">新潟県</option>
-                    <option value="16">富山県</option>
-                    <option value="17">石川県</option>
-                    <option value="18">福井県</option>
-                    <option value="19">山梨県</option>
-                    <option value="20">長野県</option>
-                    <option value="21">岐阜県</option>
-                    <option value="22">静岡県</option>
-                    <option value="23">愛知県</option>
-                    <option value="24">三重県</option>
-                    <option value="25">滋賀県</option>
-                    <option value="26">京都府</option>
-                    <option value="27">大阪府</option>
-                    <option value="28">兵庫県</option>
-                    <option value="29">奈良県</option>
-                    <option value="30">和歌山県</option>
-                    <option value="31">鳥取県</option>
-                    <option value="32">島根県</option>
-                    <option value="33">岡山県</option>
-                    <option value="34">広島県</option>
-                    <option value="35">山口県</option>
-                    <option value="36">徳島県</option>
-                    <option value="37">香川県</option>
-                    <option value="38">愛媛県</option>
-                    <option value="39">高知県</option>
-                    <option value="40">福岡県</option>
-                    <option value="41">佐賀県</option>
-                    <option value="42">長崎県</option>
-                    <option value="43">熊本県</option>
-                    <option value="44">大分県</option>
-                    <option value="45">宮崎県</option>
-                    <option value="46">鹿児島県</option>
-                    <option value="47">沖縄県</option>
-                </select>
+                <label class="selectbox-005">
+                    <select class="select" name="prefecture_id" style="text-align: center;">
+                        <option value="" hidden>選択してください</option>
+                        <option value="0">県を指定しない</option>
+                        <option value="1">北海道</option>
+                        <option value="2">青森県</option>
+                        <option value="3">岩手県</option>
+                        <option value="4">宮城県</option>
+                        <option value="5">秋田県</option>
+                        <option value="6">山形県</option>
+                        <option value="7">福島県</option>
+                        <option value="8">茨城県</option>
+                        <option value="9">栃木県</option>
+                        <option value="10">群馬県</option>
+                        <option value="11">埼玉県</option>
+                        <option value="12">千葉県</option>
+                        <option value="13">東京都</option>
+                        <option value="14">神奈川県</option>
+                        <option value="15">新潟県</option>
+                        <option value="16">富山県</option>
+                        <option value="17">石川県</option>
+                        <option value="18">福井県</option>
+                        <option value="19">山梨県</option>
+                        <option value="20">長野県</option>
+                        <option value="21">岐阜県</option>
+                        <option value="22">静岡県</option>
+                        <option value="23">愛知県</option>
+                        <option value="24">三重県</option>
+                        <option value="25">滋賀県</option>
+                        <option value="26">京都府</option>
+                        <option value="27">大阪府</option>
+                        <option value="28">兵庫県</option>
+                        <option value="29">奈良県</option>
+                        <option value="30">和歌山県</option>
+                        <option value="31">鳥取県</option>
+                        <option value="32">島根県</option>
+                        <option value="33">岡山県</option>
+                        <option value="34">広島県</option>
+                        <option value="35">山口県</option>
+                        <option value="36">徳島県</option>
+                        <option value="37">香川県</option>
+                        <option value="38">愛媛県</option>
+                        <option value="39">高知県</option>
+                        <option value="40">福岡県</option>
+                        <option value="41">佐賀県</option>
+                        <option value="42">長崎県</option>
+                        <option value="43">熊本県</option>
+                        <option value="44">大分県</option>
+                        <option value="45">宮崎県</option>
+                        <option value="46">鹿児島県</option>
+                        <option value="47">沖縄県</option>
+                    </select>
+                </label>
             </div>
             
-            <input type="submit" class="suggestButton" style="margin: auto;margin-top:10px" value="登録する">
-            <!-- <button>下書きを保存する</button>
-            <button>投稿する</button> -->
+            <input type="submit" class="suggestButton mt-3 mb-5" style="margin: auto;margin-top:10px" value="登録する">
+
         </form>
         <br>
         

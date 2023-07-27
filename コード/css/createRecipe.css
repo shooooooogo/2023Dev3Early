@@ -1,5 +1,6 @@
 /* 各テキストボックスに適用するクラス */
 .textInput{
+    border-style: none;
     border-bottom: solid 1px #000;
     margin-bottom: 3%;
 }
@@ -74,13 +75,46 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-label {
-  padding: 10px 40px;
-  color: #ffffff;
-  background-color: #384878;
+
+.noneDisplay{
+  display: none;
+}
+
+/* .select{
+  border-style:none;
+  
+} */
+
+.selectbox-005 {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.selectbox-005::after {
+  position: absolute;
+  right: 15px;
+  width: 10px;
+  height: 7px;
+  background-color: #535353;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  content: '';
+  pointer-events: none;
+}
+
+.selectbox-005 select {
+  appearance: none;
+  min-width: 230px;
+  height: 2.8em;
+  padding: .4em calc(.8em + 30px) .4em .8em;
+  border: none;
+  border-bottom: 1px solid #000;
+  background-color: #fff;
+  color: #333333;
+  font-size: 1em;
   cursor: pointer;
 }
 
-input[type="file"] {
-  display: none;
+.selectbox-005 select:focus {
+  outline: none;
 }

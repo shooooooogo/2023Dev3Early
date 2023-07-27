@@ -19,8 +19,8 @@ function add() {
 
     // 手順の番号が書かれたpタグの作成
     let newHowToP = document.createElement("p");
-    newHowToP.className = "HowToNumber ms-2";
-    newHowToP.innerHTML = "・手順"+howToCount;
+    newHowToP.className = "HowToNumber ms-3";
+    newHowToP.innerHTML = "手順"+howToCount;
     newHowToDiv.appendChild(newHowToP);
     
     //画像の格納先となるspanタグの作成   

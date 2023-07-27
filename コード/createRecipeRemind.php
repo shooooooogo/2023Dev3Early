@@ -143,8 +143,11 @@ if(isset($_SESSION['id']) == false  &&
 
         ?>
 
+        <div class="text-center" style="margin: 50px 0px 50px 0px;">
+            <p style="font-size: 32px;font-weight:bold;">レシピ作成完了</p>
+        </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid mt-5">
             <div class="row">
                 <div class="border col-3">
                     <p>タイトル</p>

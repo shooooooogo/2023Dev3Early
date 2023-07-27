@@ -19,8 +19,8 @@ function addMaterial(){
     
     // 材料〇のpタグ
     const label=document.createElement("p");
-    label.className="materialNumber ms-2";
-    label.innerHTML="・材料"+materialNumberCount;
+    label.className="materialNumber ms-3";
+    label.innerHTML="材料"+materialNumberCount;
     newMaterialSpan.appendChild(label);
 
     // 材料名のinputタグ
