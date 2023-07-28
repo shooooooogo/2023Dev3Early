@@ -39,6 +39,18 @@ if(isset($_SESSION['id']) == false  &&
     <link rel="stylesheet" href="./css/createRecipe.css">
 
       <title>設定画面</title>
+
+      <?php
+        //DAOの呼び出し
+        require_once 'DAO.php';
+        $dao = new DAO();
+
+        //マイページなので、セッションのidを利用して自分のユーザ情報を検索
+        $userdata = $dao->selectUser($_SESSION['id']);
+
+
+    ?>
+    
     </head>
 
     <body>
@@ -64,8 +76,14 @@ if(isset($_SESSION['id']) == false  &&
                 <div>
                     <!-- マイページへ遷移 -->
                     <a href="myPage.php" class="row ml-5" style="text-decoration: none;">
-                        <img class="col-3 img-fluid" src="img/UserIcon_default.png">
-                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3>
+                    <?php
+                            echo"
+                                <img class='col-3 img-fluid' id='iconsize' src='".$userdata['user_icon']."'>
+                                <h3 class='col-6 text-start ml-3 pt-2' style='text-decoration: none; color: #333333;'>".$userdata['user_name']."</h3>
+                            ";
+                        ?>
+                        <!-- <img class="col-3 img-fluid" src="img/UserIcon_default.png">
+                        <h3 class="col-6 text-start ml-3 pt-2" style="text-decoration: none; color: #333333;">ユーザ名</h3> -->
                     </a>
                 </div>
 
@@ -110,8 +128,8 @@ if(isset($_SESSION['id']) == false  &&
               <!-- <input type="file" id="icon_change" name="icon" /> -->
               <div id="icon_preview">
               <?php
-              require_once 'DAO.php';
-              $dao = new DAO();
+              // require_once 'DAO.php';
+              // $dao = new DAO();
               //アイコン表示する関数を起動し、returnで帰ってきた値を格納
               $result_icon = $dao->display_the_icon($_SESSION['id']);
               //result_iconをforeachで回す

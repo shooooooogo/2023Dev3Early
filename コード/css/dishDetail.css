@@ -44,3 +44,11 @@
     transform:translate(-50%,-50%);
     height:80%;
 }
+
+.iconsize{
+    width: 60px; /* 任意のサイズを指定 */
+    height: 60px; /* 任意のサイズを指定 */
+    border-radius: 50%; /* 50%で円形になります */
+    overflow: hidden; /* 必要に応じて指定。画像の余白を隠すため */
+    background-size: cover; /* 画像をアイコンの大きさにカバーさせます */ 
+}
