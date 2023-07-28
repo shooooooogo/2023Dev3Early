@@ -340,7 +340,7 @@ if(isset($_SESSION['id']) == false  &&
         <!--  ランキング画面の自動横スクjs -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="js/6-1-1.js"></script>
+
 
     <!-- この画面のjs -->
     <script src="script/top.js"></script>
