@@ -57,7 +57,40 @@ class DAO{
             exit();
         }else{
             //データベースに登録していないとき
-            echo "メールアドレスが間違っています。もう一度やり直してください";
+            function func_alert($message){
+                echo "<script>alert('$message');</script>";
+                //アラートのOKを押したら新規登録画面に移動
+                echo "<script>location.href='login.php';</script>";
+            }
+            func_alert("メールアドレスが間違っています。");
+            $log_check = $ps->fetchAll();
+            return $log_check;
+        }
+        // recipe_name
+    }
+    //パスワード変更で使う
+    public function pass($logmail){
+        $pdo= $this->dbConnect();
+        //アカウントが存在するか
+        $sql= "SELECT * FROM users WHERE user_mail = ?";
+        $ps= $pdo->prepare($sql);
+        $ps->bindValue(1, $logmail, PDO::PARAM_STR);
+        $ps->execute();
+        //データベースに登録しているメアドがあったら
+        if ($ps->rowCount() > 0) {
+            //パスワードの照合のため、login_check.phpに移動
+            $log_check = $ps->fetchAll();
+            //SESSION使うかもしれないから一応置いとく
+            return $log_check;
+            exit();
+        }else{
+            //データベースに登録していないとき
+            function func_alert($message){
+                echo "<script>alert('$message');</script>";
+                //アラートのOKを押したら新規登録画面に移動
+                echo "<script>location.href='resettingPassword.php';</script>";
+            }
+            func_alert("メールアドレスが間違っています。");
             $log_check = $ps->fetchAll();
             return $log_check;
         }
@@ -674,7 +707,12 @@ class DAO{
                     header("Location: login.php");
                     exit();
                 }else{
-                    echo "以前のメールアドレスが間違っています。もう一度やり直してください";
+                    function func_alert($message){
+                        echo "<script>alert('$message');</script>";
+                        //アラートのOKを押したら新規登録画面に移動
+                        echo "<script>location.href='resettingMailaddress.php';</script>";
+                    }
+                    func_alert("以前のメールアドレスが間違っています。");
                 }
             }
 
@@ -705,7 +743,12 @@ class DAO{
                     exit();
                 }
                 }else{
-                    echo "以前のパスワードが間違っています。もう一度やり直してください";
+                    function func_alert($message){
+                        echo "<script>alert('$message');</script>";
+                        //アラートのOKを押したら新規登録画面に移動
+                        echo "<script>location.href='resettingPassword.php';</script>";
+                    }
+                    func_alert("パスワードが間違っています。");
                     }
         }
     }
