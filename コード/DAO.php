@@ -57,7 +57,12 @@ class DAO{
             exit();
         }else{
             //データベースに登録していないとき
-            echo "メールアドレスが間違っています。もう一度やり直してください";
+            function func_alert($message){
+                echo "<script>alert('$message');</script>";
+                //アラートのOKを押したら新規登録画面に移動
+                echo "<script>location.href='login.php';</script>";
+            }
+            func_alert("メールアドレスが間違っています。");
             $log_check = $ps->fetchAll();
             return $log_check;
         }
