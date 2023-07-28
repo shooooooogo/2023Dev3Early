@@ -225,7 +225,7 @@ if(isset($_SESSION['id']) == false  &&
 
                             foreach ($selectGR as $row) {
                                 echo "<div class='div-underline'>
-                                <div class='myPage-content-posts' onclick='alert(a)'>
+                                <div class='myPage-content-posts' onclick=document.getElementById('form".$row['recipe_id']."').submit()>
                                     <div class='myPage-content-posted'>
                                         <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
                                         <div class='post-image-float'>
@@ -239,7 +239,8 @@ if(isset($_SESSION['id']) == false  &&
                                         </div>
                                     </div>
                                     <form method='post' action='dishDetail.php' id='form".$row['recipe_id']."'>
-                                        <input type='hidden' name='recipe_id' value='".$row['recipe_id']."'>
+                                        <input type='hidden' name='recipeId' value='".$row['recipe_id']."'>
+                                        <input type='submit' id='' value='' style='display:none;'>
                                     </form>
                                 </div>
                                 <div class='post-underline'></div>
@@ -283,7 +284,7 @@ if(isset($_SESSION['id']) == false  &&
                             foreach ($selectFR as $row) {
 
                                 echo "<div class='div-underline'>
-                                <div class='myPage-content-posts'>
+                                <div class='myPage-content-posts'  onclick=document.getElementById('form".$row['recipe_id']."').submit()>
                                     <div class='myPage-content-posted'>
                                         <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
                                         <div class='post-image-float'>
@@ -295,6 +296,10 @@ if(isset($_SESSION['id']) == false  &&
                                             <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
                                         </div>
                                     </div>
+                                    <form method='post' action='dishDetail.php' id='form".$row['recipe_id']."'>
+                                        <input type='hidden' name='recipeId' value='".$row['recipe_id']."'>
+                                        <input type='submit' id='' value='' style='display:none;'>
+                                    </form>
                                 </div>
                                 <div class='post-underline'></div>
                             </div>";       
@@ -339,7 +344,7 @@ if(isset($_SESSION['id']) == false  &&
                             foreach ($selectUR as $row) {
 
                                 echo "<div class='div-underline'>
-                                <div class='myPage-content-posts'>
+                                <div class='myPage-content-posts' onclick=document.getElementById('form".$row['recipe_id']."').submit()>
                                     <div class='myPage-content-posted'>
                                         <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
                                         <div class='post-image-float'>
@@ -351,6 +356,10 @@ if(isset($_SESSION['id']) == false  &&
                                             <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
                                         </div>
                                     </div>
+                                    <form method='post' action='dishDetail.php' id='form".$row['recipe_id']."'>
+                                        <input type='hidden' name='recipeId' value='".$row['recipe_id']."'>
+                                        <input type='submit' id='' value='' style='display:none;'>
+                                    </form>
                                 </div>
                                 <div class='post-underline'></div>
                             </div>";       
@@ -396,7 +405,7 @@ if(isset($_SESSION['id']) == false  &&
                             foreach ($selectDR as $row) {
 
                                 echo "<div class='div-underline'>
-                                    <div class='myPage-content-posts'>
+                                    <div class='myPage-content-posts' onclick=document.getElementById('form".$row['recipe_id']."').submit()>
                                         <div class='myPage-content-posted'>
                                             <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
                                             <div class='post-image-float'>
@@ -408,6 +417,10 @@ if(isset($_SESSION['id']) == false  &&
                                                 <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
                                             </div>
                                         </div>
+                                        <form method='post' action='dishDetail.php' id='form".$row['recipe_id']."'>
+                                            <input type='hidden' name='recipeId' value='".$row['recipe_id']."'>
+                                            <input type='submit' id='' value='' style='display:none;'>
+                                        </form>
                                     </div>
                                     <div class='post-underline'></div>
                                 </div>";       

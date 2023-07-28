@@ -248,7 +248,7 @@ if(isset($_SESSION['id']) == false  &&
                 </div>
             </div>
             <div>
-                <button onclick="recipeUpload(<?php echo $currentRecipeId ?>)">このままレシピを投稿する</button>
+                <p class="text-center suggestButton" onclick="recipeUpload(<?php echo $currentRecipeId ?>)">このままレシピを投稿する</p>
             </div>
         </div>
 
