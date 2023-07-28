@@ -30,9 +30,9 @@ if(isset($_SESSION['id']) == false  &&
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/css/5-1-14.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
 
-        <!--  ランキング画面の自動横スクcss -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="css/6-1-1.css">
+    <!--  ランキング画面の自動横スクcss -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/6-1-1.css"> -->
 
     <!-- この画面のcss-->
     <link rel="stylesheet" href="./css/top.css">
@@ -213,9 +213,9 @@ if(isset($_SESSION['id']) == false  &&
         $user_prefecture;
         if(!empty($userdata['prefecture_id'])){
             echo 
-            "<li class='slider-item slider-item03' href='prefectureOverallRanking.php'>
+            "<li class='slider-item slider-item03' href='ranking.php?ver=3'>
                 <a class='ranking-title'
-                    href='overallRanking.php?ver=3'>
+                    href='ranking.php?ver=3'>
                     ".$user_prefecture['prefecture_name']."総合ランキング
                 </a>";
 

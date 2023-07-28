@@ -79,8 +79,7 @@ if(isset($_SESSION['id']) == false  &&
         
 
         // 作り方が投稿されていれば、それらをhow_to_makeテーブルに全て格納する
-
-        if($_FILES['How_To_image'] != NULL){
+        if($howToNumber>0){
             $dao->insertHowTo($currentRecipeId,$_FILES['How_To_image'],$_POST['HowTo'],$_POST['howToNumber']);
         }
 

@@ -224,9 +224,8 @@ if(isset($_SESSION['id']) == false  &&
                             $selectGR = $dao->selectGoodRecipes($_SESSION['id']);
 
                             foreach ($selectGR as $row) {
-
                                 echo "<div class='div-underline'>
-                                <div class='myPage-content-posts'>
+                                <div class='myPage-content-posts' onclick='alert(a)'>
                                     <div class='myPage-content-posted'>
                                         <img src='".$row['recipe_image']."' alt='投稿写真' class='post-image'>
                                         <div class='post-image-float'>
@@ -239,6 +238,9 @@ if(isset($_SESSION['id']) == false  &&
                                             <i class='bi bi-bookmark-star verylike'>".$row['favoriteCount']."</i>
                                         </div>
                                     </div>
+                                    <form method='post' action='dishDetail.php' id='form".$row['recipe_id']."'>
+                                        <input type='hidden' name='recipe_id' value='".$row['recipe_id']."'>
+                                    </form>
                                 </div>
                                 <div class='post-underline'></div>
                             </div>";       
