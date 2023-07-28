@@ -20,11 +20,14 @@ if(isset($_SESSION['id']) == false  &&
       <link rel="stylesheet" href="./css/style.css?v=2">
       <!-- <link rel="stylesheet" href="./css/resettingMailaddress.css">
       <link rel="stylesheet" href="./css/createRecipe.css"> -->
-          <!-- javascriptの導入 -->
+    <!-- javascriptの導入 -->
     <script src="./script/script.js"></script>
     
     <!-- bootstrapのCSSの導入 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- 検索ボックス導入のためのcss -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- header導入のためのcss -->
     <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
@@ -215,7 +218,13 @@ if(isset($_SESSION['id']) == false  &&
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    
     <!-- 固有のjs -->
     <script src="script/icon/icon_display.js"></script>
-    <script src="script/icon/change_icon_display.js"></script>
+    <!-- <script src="script/icon/change_icon_display.js"></script> -->
+
+    <!-- header導入のjs -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+    <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-1-14/js/5-1-14.js"></script>
+    <script src="script/header.js"></script>
     </html>
